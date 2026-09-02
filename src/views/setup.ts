@@ -40,18 +40,15 @@ export function renderSetup(
   const form = el('div', 'setup-form');
 
   const subjectLabel = el('div', 'field-label', '📚 Subject');
-  const subjectGroup = el('div', 'card-group');
-  subjectGroup.setAttribute('role', 'radiogroup');
-  subjectGroup.setAttribute('aria-label', 'Subject');
-  const subjectInputs: HTMLInputElement[] = [];
-  bank.subjects.forEach((s, i) => {
-    const { wrapper, input } = radioChip('subject', s.id, i === 0, 'card-radio', 'card-content', (content) => {
-      content.appendChild(el('span', '', s.book));
-    });
-    input.addEventListener('change', populateModes);
-    subjectGroup.appendChild(wrapper);
-    subjectInputs.push(input);
+  const subjectShell = el('div', 'select-shell');
+  const subjectSelect = el('select');
+  subjectShell.append(subjectSelect, el('span', 'select-arrow', '▾'));
+  bank.subjects.forEach((s) => {
+    const opt = el('option', '', s.book);
+    opt.value = s.id;
+    subjectSelect.appendChild(opt);
   });
+  subjectSelect.addEventListener('change', populateModes);
 
   const modeLabel = el('div', 'field-label', '🎮 Quiz type');
   const modeGroup = el('div', 'segmented');
@@ -76,7 +73,7 @@ export function renderSetup(
   let count = 10;
 
   function currentSubjectId(): string {
-    return subjectInputs.find((i) => i.checked)?.value ?? bank.subjects[0].id;
+    return subjectSelect.value || bank.subjects[0].id;
   }
 
   function currentMode(): QuizMode {
@@ -170,7 +167,7 @@ export function renderSetup(
   scopeSelect.addEventListener('change', applyScope);
 
   const subjectField = el('div', 'field');
-  subjectField.append(subjectLabel, subjectGroup);
+  subjectField.append(subjectLabel, subjectShell);
   const modeField = el('div', 'field');
   modeField.append(modeLabel, modeGroup);
   const scopeField = el('div', 'field');
