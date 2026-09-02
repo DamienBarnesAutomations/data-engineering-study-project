@@ -1,0 +1,612 @@
+{
+  "title": "Chapter 8 — Queries, Modeling, and Transformation: Key Terms",
+  "source_file": "chapter-8-queries-modeling-and-transformation.md",
+  "question_count": 55,
+  "questions": [
+    {
+      "question": "What is a query?",
+      "options": [
+        "A stored set of query results persisted for consumption by downstream transformations",
+        "A request to retrieve and act on data, such as issuing a request to read a pattern of records",
+        "A language for defining database objects such as schemas and tables",
+        "A process that schedules multiple discrete operations into a workflow"
+      ],
+      "correctIndex": 1,
+      "explanation": "A query allows you to retrieve and act on data; when it retrieves data it issues a request to read a pattern of records, which is the R (read) in CRUD."
+    },
+    {
+      "question": "What is data definition language (DDL)?",
+      "options": [
+        "Commands that add and alter data within database objects",
+        "Commands that control access to database objects or data",
+        "Commands that perform operations on database objects, defining the state of objects such as schemas, tables, and users",
+        "Commands that control the details of transactions, such as commits and rollbacks"
+      ],
+      "correctIndex": 2,
+      "explanation": "DDL commands perform operations on database objects such as the database itself, schemas, tables, or users, and DDL defines the state of objects; common DDL expressions include CREATE, DROP, and UPDATE."
+    },
+    {
+      "question": "What is data manipulation language (DML)?",
+      "options": [
+        "Commands that define the state of database objects",
+        "Commands that control access to database objects via GRANT and REVOKE",
+        "Commands that manage transaction checkpoints and rollbacks",
+        "Commands for adding and altering data within database objects, such as SELECT, INSERT, UPDATE, and DELETE"
+      ],
+      "correctIndex": 3,
+      "explanation": "After DDL defines objects, DML is the primary means of adding and altering data within them; common DML commands include SELECT, INSERT, UPDATE, DELETE, COPY, and MERGE."
+    },
+    {
+      "question": "What is data control language (DCL)?",
+      "options": [
+        "SQL commands such as GRANT, DENY, and REVOKE that control access to database objects or data",
+        "SQL commands that add and alter data within tables",
+        "SQL commands that define the state of database objects such as schemas and tables",
+        "SQL commands that manage transaction commit checkpoints and rollbacks"
+      ],
+      "correctIndex": 0,
+      "explanation": "DCL allows you to control access to database objects or the data, using SQL commands such as GRANT, DENY, and REVOKE to finely control who can access what."
+    },
+    {
+      "question": "What is a query optimizer?",
+      "options": [
+        "A tool that visualizes the sequence of steps a database will take to execute a query",
+        "A component that parses SQL to check for proper semantics and object access",
+        "A database component that analyzes bytecode to determine how to execute a query, reordering and refactoring steps to use resources as efficiently as possible",
+        "A system that caches query results for instant retrieval on rerun"
+      ],
+      "correctIndex": 2,
+      "explanation": "The query optimizer analyzes bytecode to determine how to execute a query, reordering and refactoring steps and assessing joins, indexes, and data scan size to execute the query in the least expensive manner."
+    },
+    {
+      "question": "What is an explain plan?",
+      "options": [
+        "A report of the data scanned by a query, such as rows and columns retrieved",
+        "A view of how the query optimizer determined its optimum lowest-cost query, including the objects used and resource consumption statistics in each stage",
+        "A log of transaction commits and rollbacks during query execution",
+        "A list of indexes the database recommends creating on a table"
+      ],
+      "correctIndex": 1,
+      "explanation": "The explain plan shows how the query optimizer determined its optimum lowest-cost query, the database objects used, and resource consumption and performance statistics in each query stage; some databases expose it via the EXPLAIN command."
+    },
+    {
+      "question": "What is row explosion?",
+      "options": [
+        "A problem that occurs when a large number of many-to-many matches generate huge numbers of output rows, often from repetition in join keys",
+        "A condition where a query scans the entire table because no predicate is applied",
+        "A failure caused by an uncommitted transaction altering rows being read",
+        "A situation where outdated records accumulate in the database filesystem"
+      ],
+      "correctIndex": 0,
+      "explanation": "Row explosion occurs with a large number of many-to-many matches, often from repetition in join keys; in the book's example a key repeated 5 and 10 times produces a cross-join of 5 x 10 = 50 output rows, which can consume massive resources or cause a query to fail."
+    },
+    {
+      "question": "What is vacuuming in a database context?",
+      "options": [
+        "Compressing table data to reduce storage costs",
+        "Reordering the data in a table by a cluster key",
+        "Caching query results to speed up repeated queries",
+        "Removing dead records that accumulate in the database filesystem from operations such as updates, deletes, and index operations"
+      ],
+      "correctIndex": 3,
+      "explanation": "Vacuuming removes dead records that no longer need to be referenced; it frees up space, leads to more accurate query plans, and cleans up poor indexes. Handling differs by database, from auto-vacuuming in Snowflake to manual vacuuming in relational databases."
+    },
+    {
+      "question": "What is the fast-follower approach in streaming queries?",
+      "options": [
+        "Handling all data as events and retaining them in streaming storage for extended retention",
+        "Caching frequently run query results in the analytics database",
+        "Using continuous CDC to set up an analytics database as a fast follower to a production database, serving real-time analytics with a slight lag and minimal impact on the production system",
+        "Running analytics queries directly on the production database during off-peak hours"
+      ],
+      "correctIndex": 2,
+      "explanation": "Continuous CDC sets up an analytics database as a fast follower to a production database; querying it retrieves statistical results and aggregations with a slight lag while keeping large analytics scans off the production system."
+    },
+    {
+      "question": "What is the Kappa architecture?",
+      "options": [
+        "An architecture that handles all data like events and stores them as a stream rather than a table, treating streaming storage as a real-time transport layer and a database for historical queries",
+        "An architecture that combines a streaming buffer with long-term columnar storage for trailing statistics",
+        "An architecture that separates data into batch and speed layers",
+        "An architecture where an analytics database follows a production database via CDC"
+      ],
+      "correctIndex": 0,
+      "explanation": "Kappa's principal idea is to handle all data like events and store them as a stream rather than a table, retaining events for extended periods (months or years) so streaming storage serves as both a real-time transport layer and a database for historical queries."
+    },
+    {
+      "question": "What is a session window?",
+      "options": [
+        "A window that runs on a fixed schedule and processes all data since the previous window closed",
+        "A window of fixed time length where separate windows may overlap",
+        "A threshold used to determine whether data in a window is considered late",
+        "A window that groups events that occur close together, filtering out periods of inactivity, and closes after a timeout with no events"
+      ],
+      "correctIndex": 3,
+      "explanation": "A session window groups events that occur close together and filters out periods of inactivity; for example, a user session is any interval with no inactivity gap of five minutes or more, and the system closes the window and flushes data when that gap occurs."
+    },
+    {
+      "question": "What is a fixed-time (tumbling) window?",
+      "options": [
+        "A window that groups events by periods of inactivity",
+        "A window featuring fixed time periods that run on a fixed schedule and processes all data since the previous window closed",
+        "A window of fixed time length in which separate windows may overlap",
+        "A threshold that determines whether data in a window is considered late"
+      ],
+      "correctIndex": 1,
+      "explanation": "A fixed-time (tumbling) window runs on a fixed schedule and processes all data since the previous window closed, for example closing every 20 seconds; it is similar to traditional batch ETL but with lower latency."
+    },
+    {
+      "question": "What is a sliding window?",
+      "options": [
+        "A window that groups events occurring close together until a period of inactivity",
+        "A window that runs on a fixed schedule and processes all data since the previous window",
+        "A window in which events are bucketed into windows of fixed time length, where separate windows might overlap",
+        "A threshold marking data as late if it is older than the watermark"
+      ],
+      "correctIndex": 2,
+      "explanation": "In a sliding window, events are bucketed into windows of fixed time length where separate windows might overlap, such as generating a new 60-second window every 30 seconds."
+    },
+    {
+      "question": "What is a watermark in stream processing?",
+      "options": [
+        "A threshold used by a window to determine whether data in a window is within the established time interval or considered late",
+        "A session timeout that closes a window after a period of inactivity",
+        "A fixed schedule at which tumbling windows close",
+        "A buffer retention interval used when joining streams"
+      ],
+      "correctIndex": 0,
+      "explanation": "Because data is sometimes ingested out of the order from which it originated, a watermark acts as a threshold; data that is new to the window but older than the watermark's timestamp is considered late-arriving data."
+    },
+    {
+      "question": "What is a data model?",
+      "options": [
+        "A collection of tables organized around a single fact table",
+        "A representation of the way data relates to the real world, reflecting how data must be structured and standardized to capture an organization's processes, definitions, and logic",
+        "A highly normalized representation of a company's source systems",
+        "A physical file format used to store data in object storage"
+      ],
+      "correctIndex": 1,
+      "explanation": "A data model represents the way data relates to the real world and reflects how data must be structured and standardized to best capture an organization's processes, definitions, workflows, and logic."
+    },
+    {
+      "question": "What is a conceptual data model?",
+      "options": [
+        "A model that adds detail on how the conceptual model will be implemented, including primary and foreign keys",
+        "A model that defines how the logical model will be implemented in a specific database system",
+        "A model that stores data in hubs, links, and satellites",
+        "A model containing business logic and rules that describes the system's data, such as schemas, tables, and fields, often visualized in an entity-relationship (ER) diagram"
+      ],
+      "correctIndex": 3,
+      "explanation": "The conceptual model contains business logic and rules and describes the system's data, such as schemas, tables, and fields (names and types); it is often visualized in an entity-relationship (ER) diagram."
+    },
+    {
+      "question": "What is a logical data model?",
+      "options": [
+        "A model that details how the conceptual model will be implemented in practice, adding information such as field types and mapped primary and foreign keys",
+        "A model containing business logic and rules visualized in an ER diagram",
+        "A model defining how the logical model will be implemented in a database system with specific databases and tables",
+        "A denormalized model built from facts and dimensions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The logical model details how the conceptual model will be implemented in practice, adding significantly more detail such as the types of customer ID, customer names, and addresses, plus mapped primary and foreign keys."
+    },
+    {
+      "question": "What is a physical data model?",
+      "options": [
+        "A model containing business rules visualized in an ER diagram",
+        "A model that maps primary and foreign keys for implementation",
+        "A model that defines how the logical model will be implemented in a database system, adding specific databases, schemas, tables, and configuration details",
+        "A model that separates business keys, links, and attributes"
+      ],
+      "correctIndex": 2,
+      "explanation": "The physical model defines how the logical model will be implemented in a database system, adding specific databases, schemas, and tables to the logical model, including configuration details."
+    },
+    {
+      "question": "What is the grain of data?",
+      "options": [
+        "The number of columns in a fact table",
+        "The resolution at which data is stored and queried, typically at the level of a primary key such as customer ID or order ID",
+        "The compression level applied to stored data",
+        "The granularity of access permissions on a table"
+      ],
+      "correctIndex": 1,
+      "explanation": "The grain is the resolution at which data is stored and queried, typically at the level of a primary key (customer ID, order ID, product ID), often accompanied by a date or timestamp; you should model at the lowest level of grain possible since it is generally impossible to restore aggregated-away details."
+    },
+    {
+      "question": "What is normalization?",
+      "options": [
+        "A data modeling practice that enforces strict control over the relationships of tables and columns to remove redundancy and ensure referential integrity",
+        "A practice of combining all data into a single wide table",
+        "A technique for prejoining data to speed up analytics queries",
+        "A method for tracking changes to dimension records over time"
+      ],
+      "correctIndex": 0,
+      "explanation": "Normalization enforces strict control over the relationships of tables and columns, with the goal of removing data redundancy and ensuring referential integrity; it is basically the DRY principle applied to data in a database."
+    },
+    {
+      "question": "What is a partial dependency?",
+      "options": [
+        "A situation where a nonkey field depends on another nonkey field",
+        "A field that uniquely determines rows in a table",
+        "A situation where a subset of fields in a composite key can be used to determine a nonkey column of a table",
+        "A dependency between two tables established through a foreign key"
+      ],
+      "correctIndex": 2,
+      "explanation": "A partial dependency occurs when a subset of fields in a composite key can be used to determine a nonkey column of the table; it can occur only when the primary key is composite."
+    },
+    {
+      "question": "What is a transitive dependency?",
+      "options": [
+        "A situation where a subset of a composite key determines a nonkey column",
+        "A situation where a nonkey field depends on another nonkey field",
+        "A field that uniquely determines rows in a table",
+        "A dependency that crosses between multiple tables"
+      ],
+      "correctIndex": 1,
+      "explanation": "A transitive dependency occurs when a nonkey field depends on another nonkey field; in the book's example, Sku depends on the composite key while ProductName depends on Sku, which is a transitive dependency."
+    },
+    {
+      "question": "What does first normal form (1NF) require?",
+      "options": [
+        "Each column is unique and has a single value, and the table has a unique primary key",
+        "Partial dependencies are removed",
+        "Each table contains only fields relevant to its primary key with no transitive dependencies",
+        "No normalization is applied and nested data is allowed"
+      ],
+      "correctIndex": 0,
+      "explanation": "In 1NF each column is unique and has a single value (no repeats or nested data), and the table has a unique primary key, as shown when the nested OrderItems field is flattened into separate fields."
+    },
+    {
+      "question": "What does second normal form (2NF) require?",
+      "options": [
+        "Each column has a single value and the table has a unique primary key",
+        "Partial dependencies are removed and transitive dependencies are eliminated",
+        "All redundancy is removed so every table is fully normalized",
+        "The requirements of 1NF, plus partial dependencies are removed"
+      ],
+      "correctIndex": 3,
+      "explanation": "2NF requires the conditions of 1NF plus the removal of partial dependencies; in the example, columns determined by order number alone are split into separate Orders and OrderLineItem tables."
+    },
+    {
+      "question": "What does third normal form (3NF) require?",
+      "options": [
+        "The requirements of 2NF, plus partial dependencies are removed",
+        "Each column is unique with a single value",
+        "The requirements of 2NF, plus each table contains only fields relevant to its primary key with no transitive dependencies",
+        "Nested and redundant data is allowed"
+      ],
+      "correctIndex": 2,
+      "explanation": "3NF requires the conditions of 2NF plus that each table contains only fields relevant to its primary key and has no transitive dependencies; a database is usually considered normalized if it is in 3NF."
+    },
+    {
+      "question": "What does denormalization mean?",
+      "options": [
+        "Enforcing strict control over the relationships of tables and columns",
+        "Relaxing normalization, e.g., allowing nested and redundant data, often for performance advantages in OLAP systems",
+        "Splitting tables to remove partial and transitive dependencies",
+        "Adding primary and foreign keys to enforce referential integrity"
+      ],
+      "correctIndex": 1,
+      "explanation": "Denormalized data has no (or relaxed) normalization, with nested and redundant data allowed; although it can seem like an antipattern, it is common in OLAP systems that store semistructured data."
+    },
+    {
+      "question": "What is the Inmon approach to data warehouse modeling?",
+      "options": [
+        "A top-down approach that integrates data from across the organization into a granular, highly normalized (3NF) data warehouse and serves departments via data marts",
+        "A bottom-up approach that models facts and dimensions in the data warehouse itself",
+        "An approach that separates structural aspects from attributes using hubs, links, and satellites",
+        "An approach that loads all data into a single wide, denormalized table"
+      ],
+      "correctIndex": 0,
+      "explanation": "Created by Bill Inmon, the father of the data warehouse, this approach integrates data from key business source systems into a highly normalized (3NF) data warehouse with a relentless emphasis on ETL, and presents data to departments via data marts."
+    },
+    {
+      "question": "What is the Kimball approach to data warehouse modeling?",
+      "options": [
+        "A top-down approach that stores granular corporate data in a 3NF warehouse",
+        "An approach that loads source data directly into hubs, links, and satellites",
+        "An approach that only models data for streaming use cases",
+        "A bottom-up approach that models data with fact and dimension tables in a star schema, effectively making the data mart the data warehouse"
+      ],
+      "correctIndex": 3,
+      "explanation": "Created by Ralph Kimball in the early 1990s, this bottom-up approach focuses less on normalization, modeling department or business analytics directly in the data warehouse with facts and dimensions in a star schema."
+    },
+    {
+      "question": "What is a fact table?",
+      "options": [
+        "A table that provides reference data, attributes, and relational context for events",
+        "A table that contains factual, quantitative, event-related data, is immutable and append-only, and is typically narrow and long",
+        "A table that stores unique business keys and load dates",
+        "A table that tracks relationships between business keys"
+      ],
+      "correctIndex": 1,
+      "explanation": "Fact tables contain factual, quantitative, event-related data; because facts relate to events, the data is immutable and the table is append-only, typically narrow and long, at the lowest grain possible."
+    },
+    {
+      "question": "What is a dimension table?",
+      "options": [
+        "A table that contains immutable, append-only quantitative data",
+        "A table that stores unique business keys for a Data Vault",
+        "A table that provides the reference data, attributes, and relational context for events stored in fact tables, typically wide and short and denormalized",
+        "A table that maintains relationships among business keys"
+      ],
+      "correctIndex": 2,
+      "explanation": "Dimension tables provide the reference data, attributes, and relational context for the events stored in fact tables; they are smaller and take an opposite shape, typically wide and short, and are denormalized with the possibility of duplicate data."
+    },
+    {
+      "question": "What is a star schema?",
+      "options": [
+        "A data model consisting of a single fact table surrounded by the necessary dimension tables",
+        "A highly normalized model split across many related tables",
+        "A model built from hubs, links, and satellites",
+        "A single wide denormalized table containing all fields"
+      ],
+      "correctIndex": 0,
+      "explanation": "A star schema represents the data model of the business as a fact table surrounded by the necessary dimensions; it results in fewer joins than highly normalized models, which speeds up query performance."
+    },
+    {
+      "question": "What is a slowly changing dimension (SCD)?",
+      "options": [
+        "A technique for removing redundancy in relational tables",
+        "A method for prejoining dimensions to facts for performance",
+        "A method for storing business keys in a hub table",
+        "A technique for tracking changes in dimension data over time, with types that overwrite, version, or add fields for changes"
+      ],
+      "correctIndex": 3,
+      "explanation": "A slowly changing dimension (SCD) is necessary to track changes in dimensions; though SCDs can go up to seven levels, the three most common are Type 1 (overwrite), Type 2 (insert a new record), and Type 3 (create a new field)."
+    },
+    {
+      "question": "What is a conformed dimension?",
+      "options": [
+        "A dimension that is duplicated for each star schema it belongs to",
+        "A dimension that is reused across multiple star schemas, sharing the same fields, so multiple fact tables can be combined across schemas",
+        "A dimension that stores only numeric, quantitative data",
+        "A dimension that tracks changes by inserting new records"
+      ],
+      "correctIndex": 1,
+      "explanation": "A conformed dimension is a dimension reused across multiple star schemas, sharing the same fields; it allows you to combine multiple fact tables across multiple star schemas."
+    },
+    {
+      "question": "What is the Data Vault modeling approach?",
+      "options": [
+        "A methodology that separates the structural aspects of a source system's data from its attributes, loading data from source systems directly into hubs, links, and satellites in an insert-only manner",
+        "A top-down approach that stores normalized corporate data in a 3NF warehouse",
+        "A bottom-up approach that models facts and dimensions in star schemas",
+        "An approach that loads all source data into a single wide table"
+      ],
+      "correctIndex": 0,
+      "explanation": "Created by Dan Linstedt in the 1990s, the Data Vault separates the structural aspects of a source system's data from its attributes and loads data directly into purpose-built hubs, links, and satellites insert-only, with no notion of good, bad, or conformed data."
+    },
+    {
+      "question": "What is a hub in a Data Vault?",
+      "options": [
+        "A table that tracks relationships of business keys between hubs",
+        "A table that provides descriptive attributes and context for business keys",
+        "A central entity that retains a record of all unique business keys loaded into the Data Vault, containing hash key, load date, record source, and business keys",
+        "A table that stores quantitative facts about business events"
+      ],
+      "correctIndex": 2,
+      "explanation": "A hub is the central entity of a Data Vault that retains a record of all unique business keys; it always contains a hash key, load date, record source, and business key(s), and is insert-only with data never altered."
+    },
+    {
+      "question": "What is a link table in a Data Vault?",
+      "options": [
+        "A table that stores unique business keys and load dates",
+        "A table that provides descriptive attributes and context for hubs",
+        "A table that stores quantitative facts about business events",
+        "A table that tracks the relationships of business keys between hubs, connecting hubs at the lowest possible grain and often many to many"
+      ],
+      "correctIndex": 3,
+      "explanation": "Link tables track the relationships of business keys between hubs and connect hubs, ideally at the lowest possible grain; because they connect data from various hubs, they are many to many."
+    },
+    {
+      "question": "What is a satellite in a Data Vault?",
+      "options": [
+        "A table that retains all unique business keys",
+        "A descriptive table that gives meaning and context to hubs (or links), containing the parent hub's business key and a load date plus any number of attributes",
+        "A table that tracks relationships between hubs",
+        "A table that stores quantitative event facts"
+      ],
+      "correctIndex": 1,
+      "explanation": "Satellites are descriptive attributes that give meaning and context to hubs; they can connect to either hubs or links, with the only required fields being a primary key of the parent hub's business key and a load date."
+    },
+    {
+      "question": "What is a wide table?",
+      "options": [
+        "A highly denormalized and very wide collection of many fields, typically created in a columnar database, that may contain nested data and can have thousands of columns",
+        "A table that stores a single business entity in strict 3NF",
+        "A table surrounded by dimension tables in a star schema",
+        "A table that stores only numeric, quantitative facts"
+      ],
+      "correctIndex": 0,
+      "explanation": "A wide table is a highly denormalized and very wide collection of many fields, typically created in a columnar database, with fields that may contain nested data and thousands of columns; nulls take up virtually no space in a columnar database."
+    },
+    {
+      "question": "What is a transformation (as opposed to a query)?",
+      "options": [
+        "An operation that retrieves data from sources based on filtering and join logic",
+        "An operation that defines the state of database objects",
+        "An operation that persists query results for consumption by additional transformations or queries, increasing data's value in a scalable, reliable, and cost-effective manner",
+        "An operation that controls access to database objects"
+      ],
+      "correctIndex": 2,
+      "explanation": "A query retrieves data from various sources based on filtering and join logic, whereas a transformation persists the results for consumption by additional transformations or queries; the results may be stored ephemerally or permanently."
+    },
+    {
+      "question": "What is a broadcast join?",
+      "options": [
+        "A join where both tables are repartitioned by join key using a hashing scheme",
+        "An asymmetric distributed join where a small table is broadcast to all nodes and joined with the parts of a large table, far less compute intensive than a shuffle hash join",
+        "A join that requires shuffling both tables across all nodes in a cluster",
+        "A join performed on a single node without distributing data"
+      ],
+      "correctIndex": 1,
+      "explanation": "In a broadcast join, the query engine broadcasts the small table out to all nodes, where it is joined with the parts of the large table; broadcast joins are far less compute intensive than shuffle hash joins."
+    },
+    {
+      "question": "What is a shuffle hash join?",
+      "options": [
+        "A distributed join used when neither table fits on a single node, where a hashing scheme repartitions data by join key across nodes before joining",
+        "A join where a small table is broadcast to all nodes and joined with a large table",
+        "A join that prejoins data in advance to avoid repeated computations",
+        "A join performed entirely in cluster memory with no data movement"
+      ],
+      "correctIndex": 0,
+      "explanation": "When neither table is small enough to fit on a single node, the query engine uses a shuffle hash join; a hashing scheme partitions the join key across nodes, data is reshuffled to the appropriate nodes, and the partitions of tables A and B are joined on each node."
+    },
+    {
+      "question": "What is ETL?",
+      "options": [
+        "Extract, load, and transform: raw data is imported into a warehouse and transformed in place",
+        "A pattern where data is loaded with no preparation and transformed at an undetermined future time",
+        "A pattern that only reads data from sources without persisting results",
+        "Extract, transform, and load: an external transformation system pulls and cleans data for a target schema, then loads it into a target system such as a data warehouse"
+      ],
+      "correctIndex": 3,
+      "explanation": "Traditional ETL relies on an external transformation system to pull, transform, and clean data while preparing it for a target schema, such as a data mart or Kimball star schema, before loading it into a target system like a data warehouse."
+    },
+    {
+      "question": "What is ELT?",
+      "options": [
+        "Extract, transform, and load: data is transformed in an external system before being loaded",
+        "Extract, load, and transform: raw data is imported into a data warehouse with minimal transformation and then cleaned and transformed directly in the warehouse",
+        "A pattern that transforms data at the time it is loaded into the source system",
+        "A pattern that loads data into a target system without any transformation step"
+      ],
+      "correctIndex": 1,
+      "explanation": "As data warehouse systems grew in performance and storage capacity, it became common to simply extract raw data, import it into the warehouse with minimal transformation, and then clean and transform it directly in the warehouse system."
+    },
+    {
+      "question": "Why is SQL considered a declarative language?",
+      "options": [
+        "Because SQL requires programmers to specify every step of the data processing procedure",
+        "Because SQL is compiled into bytecode that is executed directly by the CPU",
+        "Instead of coding a data processing procedure, SQL writers stipulate the characteristics of their final data in set-theoretic language, and the compiler and optimizer determine the steps",
+        "Because SQL can only be used for simple queries and not complex workflows"
+      ],
+      "correctIndex": 2,
+      "explanation": "SQL is declarative: instead of coding a data processing procedure, SQL writers stipulate the characteristics of their final data in set-theoretic language, and the SQL compiler and optimizer determine the steps required to put data in that state."
+    },
+    {
+      "question": "What is dbt (Data Build Tool)?",
+      "options": [
+        "A transformation tool that facilitates the reuse of SQL statements and offers a templating language, giving analysts the ability to write in-database transformations using SQL",
+        "A stream-processing framework that processes events one at a time",
+        "A graphical low-code tool that visualizes transformation workflows",
+        "A distributed processing framework built on map, shuffle, and reduce"
+      ],
+      "correctIndex": 0,
+      "explanation": "dbt facilitates the reuse of SQL statements and offers a templating language for easier customization; as an analytics engineering tool, it lets analysts and data scientists write in-database transformations using SQL without direct intervention from a DBA or data engineer."
+    },
+    {
+      "question": "What is the upsert (or merge) update pattern?",
+      "options": [
+        "A pattern that wipes old data and reloads it from scratch",
+        "A pattern that inserts only new records without changing or deleting old ones",
+        "A pattern that marks records as deleted in place",
+        "A pattern that matches source records against a target table by primary key, updating on match and inserting on no match; merge also adds the ability to delete records"
+      ],
+      "correctIndex": 3,
+      "explanation": "Upserting takes a set of source records and looks for matches against a target table using a primary key; on a match the target record is updated (replaced), and on no match the database inserts the new record. The merge pattern adds the ability to delete records."
+    },
+    {
+      "question": "What is copy on write (COW) in file-based systems?",
+      "options": [
+        "A mechanism where updates change records in place within the file",
+        "A mechanism where, if one record in a file is changed or deleted, the whole file must be rewritten with the new changes, since file-based systems don't support in-place updates",
+        "A mechanism that appends new records to a file without rewriting",
+        "A mechanism that compresses files before writing them to storage"
+      ],
+      "correctIndex": 1,
+      "explanation": "File-based systems don't actually support in-place file updates; under copy on write, if one record in a file is changed or deleted, the whole file must be rewritten with the new changes, which is why early big data adopters rejected updates."
+    },
+    {
+      "question": "What is data wrangling?",
+      "options": [
+        "Combining multiple streams in real time to enrich events",
+        "A process that defines the state of database objects",
+        "Taking messy, malformed data and turning it into useful, clean data, generally as a batch transformation process",
+        "A process of rendering business logic into derived metrics"
+      ],
+      "correctIndex": 2,
+      "explanation": "Data wrangling takes messy, malformed data and turns it into useful, clean data; it is generally a batch transformation process, and graphical wrangling tools act like integrated development environments (IDEs) for malformed data."
+    },
+    {
+      "question": "What is derived data?",
+      "options": [
+        "Data computed from other data stored in a data system, such as reporting data that renders business logic like profit calculations",
+        "Data that is loaded directly from source systems without transformation",
+        "Data that is stored in a wide denormalized table",
+        "Data that is cached for instant retrieval by queries"
+      ],
+      "correctIndex": 0,
+      "explanation": "Derived data is data computed from other data stored in a data system; the reporting data for business logic like the profit calculations is a quintessential example, though critics note it is challenging for ETL to maintain consistency in derived metrics."
+    },
+    {
+      "question": "What is MapReduce?",
+      "options": [
+        "A streaming architecture that treats all data as events stored in a stream",
+        "A batch processing pattern introduced by Google consisting of map tasks that read data blocks, a shuffle that redistributes results across the cluster, and a reduce step that aggregates data on each node",
+        "A SQL optimization technique that pushes predicates to source databases",
+        "An in-memory processing framework that caches data in RAM"
+      ],
+      "correctIndex": 1,
+      "explanation": "A simple MapReduce job consists of a collection of map tasks that read individual data blocks scattered across the nodes, a shuffle that redistributes result data across the cluster by key, and a reduce step that aggregates data on each node."
+    },
+    {
+      "question": "What is a view in a database?",
+      "options": [
+        "A precomputed object that does some or all of its computation in advance",
+        "An external table defined on an S3 bucket",
+        "A materialized table that stores query results",
+        "A database object we can select from just like a table, which is in practice a query that references other tables"
+      ],
+      "correctIndex": 3,
+      "explanation": "A view is a database object we can select from just like any other table; in practice it is just a query that references other tables, and when you select from a view the database creates a new query combining the view subquery with your query."
+    },
+    {
+      "question": "What is a materialized view?",
+      "options": [
+        "A view that runs its computation every time it is queried",
+        "A query that selects from external data sources such as object storage",
+        "A view that does some or all of the view computation in advance, e.g., saving a five-table join so users query the prejoined data",
+        "A table that stores only unique business keys"
+      ],
+      "correctIndex": 2,
+      "explanation": "A materialized view does some or all of the view computation in advance, making it a de facto transformation step that the database manages; optimizers may also rewrite queries that resemble a materialized view to select from its precomputed results."
+    },
+    {
+      "question": "What is a federated query?",
+      "options": [
+        "A database feature that allows an OLAP database to select from an external data source, such as object storage or an RDBMS, and return combined results",
+        "A query that is split into smaller node joins across a cluster",
+        "A query that is cached after its first run",
+        "A query that reads from a precomputed materialized view"
+      ],
+      "correctIndex": 0,
+      "explanation": "Federated queries allow an OLAP database to select from an external data source, such as object storage or MySQL and PostgreSQL databases, and return combined results; some OLAP systems can even convert federated queries into materialized views."
+    },
+    {
+      "question": "What is data virtualization?",
+      "options": [
+        "A system that stores data in a streaming buffer before querying",
+        "A data processing and query system that doesn't store data internally, querying external sources on demand, as exemplified by Trino and Presto",
+        "A system that precomputes joins in materialized views",
+        "A system that replicates production data to an analytics database"
+      ],
+      "correctIndex": 1,
+      "explanation": "Data virtualization typically entails a data processing and query system that doesn't store data internally; Trino (e.g., Starburst) and Presto are examples par excellence, and the most significant considerations are supported external sources and performance."
+    },
+    {
+      "question": "What is the difference between micro-batching and true streaming?",
+      "options": [
+        "Micro-batching processes one event at a time, while true streaming processes small batches",
+        "Micro-batching is only suitable for batch workloads, while true streaming handles all data as events",
+        "Micro-batching applies a batch-oriented framework to a streaming situation by processing small batches every few seconds, while true streaming processes one event at a time with significant overhead",
+        "Micro-batching requires in-memory processing, while true streaming writes to disk"
+      ],
+      "correctIndex": 2,
+      "explanation": "Micro-batching takes a batch-oriented framework and applies it in a streaming situation, with batches running anywhere from every two minutes to every second; true streaming systems such as Beam and Flink are designed to process one event at a time, which comes with significant overhead."
+    }
+  ]
+}

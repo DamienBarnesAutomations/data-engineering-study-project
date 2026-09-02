@@ -1,0 +1,139 @@
+{
+  "title": "Module 6 — Key Terms",
+  "source_file": "M6.1.md",
+  "question_count": 12,
+  "questions": [
+    {
+      "question": "What is Activator in Microsoft Fabric?",
+      "options": [
+        "Microsoft Fabric's event detection and rules engine within Real-Time Intelligence",
+        "A data storage service for streaming data",
+        "A notebook authoring tool for data analysis",
+        "A dashboard visualization service"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Activator is Microsoft Fabric's event detection and rules engine within Real-Time Intelligence.\""
+    },
+    {
+      "question": "In Activator, what do business objects represent?",
+      "options": [
+        "The entities you want to monitor, like packages, devices, or customers",
+        "The actions to take when conditions are met",
+        "The data fields used as unique identifiers",
+        "The rules that evaluate conditions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Business objects represent the entities you want to monitor. For a package delivery company, each package becomes an object in Activator.\""
+    },
+    {
+      "question": "What do Properties represent in the Activator business object model?",
+      "options": [
+        "The data attributes for each instance, like Temperature and DeliveryState",
+        "The individual object instances",
+        "The actual data values flowing in from data sources",
+        "The actions triggered when conditions are met"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Properties represent the data attributes for each instance (Temperature, City, DeliveryState, HoursInTransit).\""
+    },
+    {
+      "question": "In the Activator object model, what contains the actual data values that flow in from your data sources?",
+      "options": [
+        "Events",
+        "Properties",
+        "Objects",
+        "Rules"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Events contain the actual data values that flow in from your data sources.\""
+    },
+    {
+      "question": "When creating objects from an eventstream, what do you select to create separate objects for each package?",
+      "options": [
+        "A unique identifier field like PackageId",
+        "A property to monitor like Temperature",
+        "A condition threshold",
+        "An action type"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source instructs: \"Choose your unique identifier - Select the field that uniquely identifies the object (like PackageId or DeviceID)\" and notes \"Use PackageId as your unique identifier to create separate package objects.\""
+    },
+    {
+      "question": "Which alerting approaches use the same Activator engine but interpret data differently than the business objects model?",
+      "options": [
+        "Dashboard alerts, system event alerts, and query alerts",
+        "Email alerts and Teams alerts",
+        "Power Automate flows and Fabric notebooks",
+        "Threshold and range monitoring"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"You can create dashboard alerts directly from Real-Time Dashboard visualizations, set up system event alerts to monitor Fabric workspace activities and OneLake file operations, or create query alerts from KQL Queryset results and visualizations. These approaches use the same Activator engine but interpret data differently than the business objects model.\""
+    },
+    {
+      "question": "In the Monitor section of the Definition pane, what is an Attribute?",
+      "options": [
+        "The specific property from your event data that Activator watches",
+        "The action executed when a rule condition is met",
+        "The window of historical data used in summarization",
+        "The threshold value that triggers an alert"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"First, you select an Attribute - the specific property from your event data. For our package delivery scenario, you'd choose Temperature from your package sensor data.\""
+    },
+    {
+      "question": "Which summarization type is described as useful for detecting sensor failures?",
+      "options": [
+        "Count",
+        "Average",
+        "Minimum/Maximum",
+        "Total"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source lists the summarization options and states: \"Count - Track how many readings you're getting (useful for detecting sensor failures).\""
+    },
+    {
+      "question": "In summarization timing, what does the Window size control?",
+      "options": [
+        "How much historical data to include in each calculation",
+        "How often to recalculate the summary",
+        "Which properties are monitored",
+        "When the rule action is triggered"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Window size: How much historical data to include (maybe 10 minutes of temperature readings).\" Step size is the separate setting that controls how often to recalculate."
+    },
+    {
+      "question": "Which detection approach in the Condition section catches sensor failures when no new events arrive?",
+      "options": [
+        "Missing data",
+        "Threshold monitoring",
+        "Change detection",
+        "Range monitoring"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Missing data: Catch sensor failures (No new events for more than 30 minutes).\""
+    },
+    {
+      "question": "Which Action type sends immediate messages to channels or individuals for quick responses and team coordination?",
+      "options": [
+        "Teams actions",
+        "Email actions",
+        "Power Automate actions",
+        "Fabric item actions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Teams actions send immediate messages to channels or individuals. Use Teams when you need quick responses and team coordination.\""
+    },
+    {
+      "question": "Which Action type executes data pipelines or notebooks for further processing and analysis?",
+      "options": [
+        "Fabric item actions",
+        "Email actions",
+        "Power Automate actions",
+        "Teams actions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Fabric item actions execute data pipelines or notebooks for other processing and analysis. Use Fabric items when you need to process more data or perform advanced analysis.\""
+    }
+  ]
+}

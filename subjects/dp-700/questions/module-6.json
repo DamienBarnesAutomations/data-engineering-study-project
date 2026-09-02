@@ -1,0 +1,139 @@
+{
+  "title": "Module 6 — Quality Question Bank",
+  "source_file": "M6.1.md",
+  "question_count": 12,
+  "questions": [
+    {
+      "question": "What is Activator in Microsoft Fabric?",
+      "options": [
+        "A data transformation service for batch processing",
+        "An event detection and rules engine within Real-Time Intelligence",
+        "A visualization tool for building dashboards",
+        "A storage engine for OneLake files"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source defines Activator as Microsoft Fabric's event detection and rules engine within Real-Time Intelligence."
+    },
+    {
+      "question": "In Activator's business objects model, what do business objects represent?",
+      "options": [
+        "The data values flowing in from your data sources",
+        "The properties you want to evaluate",
+        "The real-world entities you want to monitor, like individual packages",
+        "The actions triggered when conditions are met"
+      ],
+      "correctIndex": 2,
+      "explanation": "Business objects represent the entities you want to monitor, with each package (Package001, Package002) becoming an object in Activator."
+    },
+    {
+      "question": "In the business objects model, what are properties?",
+      "options": [
+        "The data attributes for each instance, such as Temperature and City",
+        "The events sent from your data sources",
+        "The rules that define detection conditions",
+        "The unique identifiers that create new objects"
+      ],
+      "correctIndex": 0,
+      "explanation": "Properties represent the data attributes for each instance, like Temperature, City, DeliveryState, and HoursInTransit."
+    },
+    {
+      "question": "When creating a business object from an eventstream, which field should you choose as the unique identifier?",
+      "options": [
+        "Any numeric field in the eventstream",
+        "The field that uniquely identifies the object, like PackageId or DeviceID",
+        "The field with the highest number of values",
+        "A field that only changes rarely"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source says you select the field that uniquely identifies the object, such as PackageId or DeviceID, to create separate objects."
+    },
+    {
+      "question": "Which summarization option in the Monitor section is used to smooth out noisy raw readings by averaging them over time?",
+      "options": [
+        "Minimum/Maximum",
+        "Count",
+        "Total",
+        "Average"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source states Average smooths out the noise by averaging readings over time, while Minimum/Maximum catches extremes and Count detects sensor failures."
+    },
+    {
+      "question": "Which summarization option is useful for detecting sensor failures?",
+      "options": [
+        "Count",
+        "Average",
+        "Minimum/Maximum",
+        "Total"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source says Count tracks how many readings you are getting, which is useful for detecting sensor failures."
+    },
+    {
+      "question": "In the Monitor section, what do window size and step size control?",
+      "options": [
+        "Window size sets the threshold value; step size sets the action type",
+        "Window size sets how much historical data to include; step size sets how often to recalculate",
+        "Window size sets how often to recalculate; step size sets how much history to include",
+        "Window size sets the number of properties; step size sets the number of filters"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source explains window size is how much historical data to include and step size is how often to recalculate, e.g. monitoring average temperature over 10-minute windows updating every 5 minutes."
+    },
+    {
+      "question": "Which detection approach in the Condition section catches sensor failures by detecting a lack of new events?",
+      "options": [
+        "Threshold monitoring",
+        "Change detection",
+        "Range monitoring",
+        "Missing data"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source lists Missing data as the approach to catch sensor failures, such as no new events for more than 30 minutes."
+    },
+    {
+      "question": "For what purpose should you use the Occurrence behavior setting 'When it has been true for'?",
+      "options": [
+        "To trigger immediate alerts every time the condition is true",
+        "To identify persistent problems, like a temperature that stays high for 15 minutes",
+        "To apply the rule to only one specific event",
+        "To send alerts to multiple recipients at once"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source says 'When it has been true for' identifies persistent problems, such as a value that stays high for 15 minutes, whereas 'Every time' provides immediate alerts."
+    },
+    {
+      "question": "How many property filters can you combine to narrow down which events are evaluated by a rule?",
+      "options": [
+        "One",
+        "Two",
+        "Up to three",
+        "Up to ten"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source states you can combine up to three filters to create precise targeting, such as ColdChainType equals medicine or City equals Seattle."
+    },
+    {
+      "question": "Which Activator action type should you use when you need immediate messages that let teams quickly discuss and coordinate their response?",
+      "options": [
+        "Email actions",
+        "Teams actions",
+        "Power Automate actions",
+        "Fabric item actions"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source says Teams actions send immediate messages to channels or individuals and are used when you need quick responses and team coordination."
+    },
+    {
+      "question": "Which Activator action type executes data pipelines or notebooks for additional processing and advanced analysis?",
+      "options": [
+        "Email actions",
+        "Power Automate actions",
+        "Fabric item actions",
+        "Teams actions"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source says Fabric item actions execute data pipelines or notebooks for other processing and analysis in response to evaluated conditions."
+    }
+  ]
+}

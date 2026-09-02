@@ -1,0 +1,249 @@
+{
+  "title": "Module 5 — Key Terms",
+  "source_file": "M5.1.md, M5.2.md, M5.3.md, M5.4.md",
+  "question_count": 22,
+  "questions": [
+    {
+      "question": "Which of the following best describes continuous integration (CI)?",
+      "options": [
+        "Frequently committing code to a shared code branch or trunk where changes are validated by a build process and automated testing",
+        "Automatically releasing updates into production environments through structured deployment stages after automated tests pass",
+        "Deploying code to a staging environment where more automated testing is performed before release",
+        "Tracking code revisions over time so you can revert to prior versions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states that in CI, \"you frequently commit code to a shared code branch or trunk in a version control system and once it's merged, changes are validated by a build process and automated testing.\" The other options describe continuous deployment, continuous delivery, and version control."
+    },
+    {
+      "question": "What is continuous deployment in a CI/CD process?",
+      "options": [
+        "A process that automatically releases updates into production environments through structured deployment stages, once they pass automated tests",
+        "Frequently committing code to a shared branch to identify conflicts earlier in development",
+        "Deploying code to a staging environment for more automated testing before production",
+        "Managing code changes using branches and pull requests in a version control system"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source defines continuous deployment as \"a process that automatically releases updates into production environments through structured deployment stages, once they pass automated tests.\" The other options describe continuous integration, continuous delivery, and version control."
+    },
+    {
+      "question": "In Fabric CI/CD, integration is implemented using which tool?",
+      "options": [
+        "Git",
+        "Deployment pipelines",
+        "Fabric REST APIs",
+        "Monitor hub"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Managing the lifecycle of Fabric items using CI/CD has two parts: integration and deployment. Integration is implemented using Git.\""
+    },
+    {
+      "question": "In Fabric CI/CD, deployment of content across environments is implemented using which tool?",
+      "options": [
+        "Fabric deployment pipelines",
+        "Git",
+        "Fabric REST APIs",
+        "Power BI Desktop"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Integration is implemented using Git. Deployment is implemented using Fabric deployment pipelines.\""
+    },
+    {
+      "question": "Which version control systems are supported in Microsoft Fabric?",
+      "options": [
+        "GitHub and Azure DevOps",
+        "GitLab and Bitbucket",
+        "GitHub and SVN",
+        "Azure DevOps and Mercurial"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"GitHub and Azure DevOps are the version control systems that are supported in Fabric.\""
+    },
+    {
+      "question": "Fabric deployment pipelines let you promote code changes to which set of environments?",
+      "options": [
+        "Development, test, and production",
+        "Development, UAT, and sandbox",
+        "Staging, review, and live",
+        "Test, preview, and archive"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source says deployment pipelines \"let you promote code changes to different environments like development, test, and production.\""
+    },
+    {
+      "question": "In Fabric REST APIs, REST stands for which of the following?",
+      "options": [
+        "Representational State Transfer",
+        "Rapid Event Streaming Technology",
+        "Remote Execution Service Technology",
+        "Resource Exchange Standard Transfer"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"REST API stands for Representational State Transfer Application Programming Interface.\""
+    },
+    {
+      "question": "In the context of Microsoft Fabric, monitoring is best described as:",
+      "options": [
+        "Collecting system data and metrics that determine if a system is healthy and operating as expected",
+        "Automatically taking action when patterns or conditions are detected in changing data",
+        "Deploying content between development and production stages",
+        "Granting granular access to specific tables and folders in a lakehouse"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Monitoring is the process of collecting system data and metrics that determine if a system is healthy and operating as expected. Monitoring exposes errors that occurred and when they happened.\""
+    },
+    {
+      "question": "What is Monitor hub in Microsoft Fabric?",
+      "options": [
+        "The monitoring visualization tool that collects and aggregates data from selected Fabric items and processes in a common interface",
+        "A technology that triggers actions when patterns are detected in streaming data",
+        "A deployment pipeline stage used for testing content before production",
+        "A security role that controls access to specific tables in a lakehouse"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source says: \"Monitor hub is the monitoring visualization tool in Microsoft Fabric. Monitor hub collects and aggregates data from selected Fabric items and processes. It stores Fabric activity data in a common interface.\""
+    },
+    {
+      "question": "What is Activator in Microsoft Fabric?",
+      "options": [
+        "A technology in Microsoft Fabric that enables automated processing of events that trigger actions",
+        "A monitoring hub that aggregates Fabric activity data in one place",
+        "A version control system used to manage code changes",
+        "A licensing model for viewing Power BI content on F capacities"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Activator is a technology in Microsoft Fabric that enables automated processing of events that trigger actions.\""
+    },
+    {
+      "question": "Activator operates based on which four core concepts?",
+      "options": [
+        "Events, Objects, Properties, and Rules",
+        "Tables, Columns, Rows, and Filters",
+        "Development, Test, Production, and Staging",
+        "Data, Permission, Members, and Constraints"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Activator operates based on four core concepts: Events, Objects, Properties, and Rules.\" The last option lists the four components of an OneLake security role instead."
+    },
+    {
+      "question": "In the Fabric security model, access is evaluated sequentially across which three levels?",
+      "options": [
+        "Microsoft Entra ID authentication, Fabric access, and data security",
+        "Workspace roles, item permissions, and OneLake security",
+        "Tenant, capacity, and domain",
+        "Read, ReadAll, and Write"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states that \"Fabric evaluates access sequentially across three levels: Microsoft Entra ID authentication, Fabric access, and data security.\""
+    },
+    {
+      "question": "Which workspace role can create, view, and modify all content and data in the workspace but cannot share content or manage permissions?",
+      "options": [
+        "Contributor",
+        "Member",
+        "Admin",
+        "Viewer"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source defines Contributor as \"Can create, view, and modify all content and data in the workspace.\" Admin can also share and manage permissions, Member can also share, and Viewer can only view."
+    },
+    {
+      "question": "OneLake security uses which model to define who can access which tables or folders?",
+      "options": [
+        "A role-based access control (RBAC) model",
+        "A row-level security model based on T-SQL",
+        "A column-level security model using GRANT statements",
+        "A workspace-level access model using security groups"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"OneLake security uses a role-based access control (RBAC) model. You create security roles that define who can access which tables or folders.\""
+    },
+    {
+      "question": "Each OneLake security role has which four components?",
+      "options": [
+        "Data, Permission, Members, and Constraints",
+        "Events, Objects, Properties, and Rules",
+        "Read, ReadWrite, DefaultReader, and Contributor",
+        "Tables, Folders, Filters, and Groups"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Each OneLake security role has four components: Data, Permission, Members, and Constraints.\" The first incorrect option lists Activator's four core concepts."
+    },
+    {
+      "question": "Which workspace roles already have full read and write access to all OneLake data, so OneLake security roles don't restrict that access?",
+      "options": [
+        "Admin, Member, or Contributor",
+        "Viewer and Contributor",
+        "Admin and Viewer",
+        "Member and Viewer"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Users with Admin, Member, or Contributor workspace roles already have full read and write access to all OneLake data — OneLake security roles don't restrict that access.\""
+    },
+    {
+      "question": "Which level sits at the top of the five-level Microsoft Fabric hierarchy?",
+      "options": [
+        "Tenant",
+        "Capacity",
+        "Domain",
+        "Workspace"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Microsoft Fabric operates on a five-level architecture... At the top is the tenant, which represents Contoso's entire Fabric environment.\""
+    },
+    {
+      "question": "Which admin role controls tenant settings, manages all capacities and domains, and assigns other admins?",
+      "options": [
+        "Fabric admin",
+        "Capacity admin",
+        "Domain admin",
+        "Workspace admin"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source table defines Fabric admin as having scope \"Entire tenant\" with responsibility \"Controls tenant settings, manages all capacities and domains, assigns other admins.\""
+    },
+    {
+      "question": "In Microsoft Fabric, a capacity is best defined as:",
+      "options": [
+        "A dedicated compute and storage resource that powers Fabric workloads",
+        "A logical grouping of workspaces that reflects how an organization structures its business",
+        "A collaboration container where teams store and share Fabric items",
+        "A data asset users create, such as a lakehouse or notebook"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"A capacity is a dedicated compute and storage resource that powers Fabric workloads.\" The other options describe a domain, a workspace, and items."
+    },
+    {
+      "question": "Consumption in Microsoft Fabric is measured in which unit?",
+      "options": [
+        "Capacity units (CUs)",
+        "Workspace units (WUs)",
+        "Processing units (PUs)",
+        "Transaction units (TUs)"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Consumption in Fabric is measured in capacity units (CUs). The Microsoft Fabric Capacity Metrics app lets Alex visualize CU consumption across her capacity.\""
+    },
+    {
+      "question": "Because Contoso has an F64 capacity, which license allows users to view Power BI reports and dashboards with only a viewer role on the workspace?",
+      "options": [
+        "Fabric Free",
+        "Power BI Pro",
+        "Power BI Premium Per User (PPU)",
+        "Microsoft 365 E5"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Because Contoso has an F64 capacity, users with just a Free license can view Power BI reports and dashboards if they have a viewer role on the workspace. On capacities smaller than F64, viewing Power BI content requires Pro or PPU.\""
+    },
+    {
+      "question": "In Fabric governance, what is the difference between Promoted and Certified items?",
+      "options": [
+        "Promoted items are marked as trusted by workspace members with Contributor or Admin role, while Certified items require a formal review by an authorized certifier",
+        "Certified items are marked by any workspace member, while Promoted items require a formal review",
+        "Promoted items appear only in the OneLake catalog, while Certified items appear in the Fabric portal",
+        "Promoted items receive sensitivity labels, while Certified items receive audit logs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states: \"Workspace members with Contributor or Admin role can mark their own quality items as Promoted... Certified items go further: they require a formal review by an authorized certifier and appear with a Certified badge.\""
+    }
+  ]
+}

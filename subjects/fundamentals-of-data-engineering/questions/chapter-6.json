@@ -1,0 +1,1735 @@
+{
+  "title": "Chapter 6 — Storage: Quality Question Bank",
+  "source_file": "chapter-6-storage.md",
+  "original_question_file": "chapter-6.json",
+  "question_count": 157,
+  "questions": [
+    {
+      "question": "Why do magnetic disks (HDDs) remain common for bulk data storage despite SSDs dramatically outperforming them on latency and IOPS?",
+      "options": [
+        "HDDs are significantly cheaper per gigabyte, and cloud object storage achieves high aggregate transfer rates through parallelism across many disks, offsetting per-disk speed limits",
+        "HDDs actually have lower latency than SSDs for random access",
+        "SSDs cannot be safely used in large-scale data centers due to power requirements",
+        "HDDs are required by regulation for storing compliance-relevant data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes HDDs cost roughly 3 cents/GB versus 20-30 cents/GB for SSDs, and explains cloud object storage gets high transfer rates \"by reading from numerous disks simultaneously,\" not per-disk speed."
+    },
+    {
+      "question": "What key property distinguishes RAM from SSD/HDD storage regarding data persistence?",
+      "options": [
+        "RAM is volatile — it loses data within seconds of losing power — while SSDs and HDDs are nonvolatile and generally retain data when powered off",
+        "RAM is nonvolatile while SSDs are volatile",
+        "RAM and SSDs are both equally volatile",
+        "Volatility is a property only of magnetic disks, not RAM or SSDs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states RAM \"is volatile, while magnetic drives and SSDs are nonvolatile... RAM loses data in less than a second when it is unpowered.\""
+    },
+    {
+      "question": "What three main advantages of compression does the book identify for storage systems?",
+      "options": [
+        "Smaller data size on disk, faster effective scan speed per disk, and improved effective network bandwidth",
+        "Improved data accuracy, stronger encryption, and simplified schema design",
+        "Faster CPU clock speed, lower RAM usage, and higher IOPS",
+        "Better indexing, faster joins, and reduced compliance risk"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists exactly these three: smaller storage footprint, higher effective scan speed (e.g. 200MB/s becoming 2GB/s with 10:1 compression), and higher effective network bandwidth."
+    },
+    {
+      "question": "The book calls archival storage a \"reverse cache.\" What does it mean by this?",
+      "options": [
+        "A cache offers fast access at high cost for frequently used data; archival storage instead offers slow, expensive access at very low storage cost, for data rarely touched except in emergencies",
+        "Archival storage automatically becomes a live cache after 12 hours of access",
+        "Archival storage is physically located on the same silicon as CPU cache",
+        "Archival storage is always faster to read from than RAM"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"Archival storage provides inferior access characteristics for low costs,\" the inverse of a cache's fast-access/high-cost profile, used for emergency-only retrieval like disaster recovery."
+    },
+    {
+      "question": "What does BASE stand for, and how does it relate to ACID?",
+      "options": [
+        "Basically available, soft-state, eventual consistency — essentially the opposite trade-off from ACID, favoring availability and scalability over strict consistency",
+        "Batch, asynchronous, stateless, ephemeral — unrelated to ACID",
+        "BASE is a stricter version of ACID used only in financial databases",
+        "BASE and ACID describe identical guarantees under different names"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states directly: \"BASE, which stands for basically available, soft-state, eventual consistency... Think of it as the opposite of ACID.\""
+    },
+    {
+      "question": "A distributed database offers both eventually consistent reads and strongly consistent (but slower) reads. What trade-off does this represent, per the book?",
+      "options": [
+        "Eventual consistency trades instant correctness for speed/scale, tolerable when slightly stale data is acceptable; strong consistency trades speed for guaranteed up-to-date reads when correctness is critical",
+        "Eventually consistent reads are always faster and equally correct, so there's no real trade-off",
+        "Strongly consistent reads are available only for writes, never for reads",
+        "The two modes differ only in storage cost, not correctness or speed"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains: \"Strongly consistent reads are slower and consume more resources, so it is best to use them sparingly, but they are available when consistency is required,\" citing DynamoDB as an example."
+    },
+    {
+      "question": "What's the key difference between a \"file\" and an \"object\" in object storage, in terms of supported operations?",
+      "options": [
+        "A file supports finite length, append operations, and random access/updates; an object supports only finite length — written once as an immutable stream, requiring a full rewrite to change",
+        "Objects support random in-place updates while files do not",
+        "Files and objects support exactly the same set of operations",
+        "Objects can be infinitely appended to, unlike files"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states objects \"support only the first characteristic, finite length\" of the three file properties, and that objects \"don't support random writes or append operations; instead, they are written once as a stream of bytes.\""
+    },
+    {
+      "question": "Why can listing a \"subdirectory's\" contents in an object store (e.g. an S3 key prefix) be slow, even if only a few objects share that prefix, in a bucket with millions of objects?",
+      "options": [
+        "Object stores don't use a real directory tree — listing requires filtering/scanning keys by prefix match across the bucket rather than traversing a hierarchy",
+        "Object storage re-encrypts every key before it can be listed",
+        "Object storage requires a database join for every listing operation",
+        "Object storage only permits one listing operation per day"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains: \"the object store must filter keys on the key prefix... If the bucket contains millions of objects, this operation might take some time, even if the 'subdirectory' houses only a few objects.\""
+    },
+    {
+      "question": "What's the difference between object versioning and the default (unversioned) behavior of overwriting an object under the same key?",
+      "options": [
+        "Without versioning, rewriting an object replaces the old one (eventually garbage collected); with versioning enabled, old versions stay retrievable via a version list, at the cost of extra storage",
+        "Versioning makes object writes instantaneous instead of eventually consistent",
+        "Versioning is required before any object can ever be deleted at all",
+        "Versioning eliminates the need for lifecycle policies entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains that with versioning, \"we retain other pointers to previous versions... Because old versions of the object are still referenced, they aren't cleaned up by the garbage collector,\" at additional storage cost."
+    },
+    {
+      "question": "A company needs 7-10 years of retention for data accessed only once or twice a year. What storage tier does the book suggest, and what's the trade-off?",
+      "options": [
+        "A deep archival tier (like S3 Glacier Deep Archive) — very cheap monthly storage, but retrieval can take hours and costs more",
+        "Standard hot-tier storage, since infrequent access doesn't affect pricing",
+        "In-memory caching, since retrieval speed always outweighs storage cost for compliance data",
+        "RAID-backed block storage, since archival data always needs the fastest possible access"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book cites S3 Glacier Deep Archive specifically for this exact use case: storage \"start[ing] at $1 per terabyte per month\" for data \"accessed only one to two times per year,\" with 12-hour restoration."
+    },
+    {
+      "question": "What's the defining characteristic that differentiates HDFS from typical cloud object storage, per the book?",
+      "options": [
+        "HDFS combines compute and storage on the same nodes for in-place processing, whereas object stores typically have limited internal processing and separate storage from compute",
+        "HDFS cannot replicate data across nodes, unlike object storage",
+        "Object storage always runs on the same physical machines as the compute cluster, unlike HDFS",
+        "HDFS is used exclusively for streaming data, never batch data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"Hadoop is similar to object storage but with a key difference: Hadoop combines compute and storage on the same nodes, where object stores typically have limited support for internal processing.\""
+    },
+    {
+      "question": "In streaming storage systems like Kafka, what is \"replay,\" and why does it matter for data engineering?",
+      "options": [
+        "Replay lets a streaming system return a range of historical stored data — used to run batch queries over a time range or reprocess data in a pipeline",
+        "Replay means automatically re-executing a query every time new data arrives",
+        "Replay is a Kafka-exclusive feature not found in competing streaming platforms",
+        "Replay refers to replaying messages that were deleted and never actually stored"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines replay exactly this way: \"Replay allows a streaming system to return a range of historical stored data... used to run batch queries over a time range or to reprocess data in a streaming pipeline.\""
+    },
+    {
+      "question": "Why do columnar databases generally outperform row-oriented ones for large analytical scans but underperform for typical transactional lookups?",
+      "options": [
+        "Columnar storage scans only the relevant columns and compresses similar values efficiently for large scans — but retrieving/updating single rows requires touching many separate column files, which is inefficient",
+        "Columnar databases are simply faster at everything, with no meaningful trade-off",
+        "Row-oriented databases can never be compressed, which is the only real difference",
+        "Columnar databases don't support SQL at all, unlike row-oriented databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains columnar serialization lets a query \"scan only the columns required,\" but \"columnar databases perform poorly for transactional use cases—i.e., when we try to look up large numbers of individual rows asynchronously.\""
+    },
+    {
+      "question": "What is Snowflake's \"micro-partitioning\" approach, and how does it differ from traditional single-field (e.g. date-only) partitioning?",
+      "options": [
+        "Snowflake automatically clusters similar rows together across small (50-500MB) partitions using an algorithm that can consider multiple fields, rather than relying on a single manually chosen field",
+        "Micro-partitioning means Snowflake stores each individual row as its own separate file",
+        "Micro-partitioning is identical to traditional date-based partitioning, just renamed",
+        "Micro-partitioning disables all query pruning to simplify how storage is organized"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Snowflake's approach as an \"algorithmic approach that attempts to cluster together similar rows,\" contrasted with \"the traditional naive approach to partitioning on a single designated field, such as a date.\""
+    },
+    {
+      "question": "What key advantage does the data lakehouse offer over a proprietary, closed-format managed platform, per the book?",
+      "options": [
+        "Interoperability — since data is stored in an open file format in object storage, various tools can connect directly to the metadata layer and read it without costly reserialization",
+        "Lakehouses guarantee lower storage costs than any proprietary system, as a rule",
+        "Lakehouses eliminate the need for any schema or metadata management whatsoever",
+        "Lakehouses are the only architecture capable of supporting SQL queries"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"The key advantage of the data lakehouse over proprietary tools is interoperability. It's much easier to exchange data between tools when stored in an open file format.\""
+    },
+    {
+      "question": "What motivates the industry shift toward separating compute from storage, despite colocation historically offering better raw performance?",
+      "options": [
+        "Ephemeral, pay-as-you-go compute is often cheaper than always-on colocated servers for variable workloads, and cloud object storage offers strong durability/availability across zones",
+        "Separation of compute and storage always delivers strictly better raw performance than colocation, with no trade-offs",
+        "Colocation of compute and storage was prohibited under GDPR",
+        "Separation removes any need for data replication across zones"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains: \"significant efficiencies are realized with a pay-as-you-go model if servers can scale up and down,\" plus object stores' multizone durability — while noting colocation still wins on raw performance in some cases."
+    },
+    {
+      "question": "A team accidentally deletes the underlying files behind a \"zero-copy cloned\" table in a data lake. What does the book warn could happen, and why?",
+      "options": [
+        "Because zero-copy cloning typically just creates new pointers to the same underlying files rather than physically duplicating data, deleting the originals can also destroy the \"cloned\" copy",
+        "Zero-copy clones are always fully independent physical copies, so deleting the original has zero effect",
+        "Zero-copy cloning is not possible in object-storage-based systems at all",
+        "Deleting original files only affects clones created more than a year prior"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns exactly this: \"cloning an object in a data lake environment and then deleting the files in the original object might also wipe out the new object,\" since clones are typically shallow/virtual copies."
+    },
+    {
+      "question": "A dataset is accessed several times per second to power live product recommendations. Using the book's hot/warm/cold framework, how should this data be stored, and what's the trade-off?",
+      "options": [
+        "As hot data, on fast media like SSD or memory — the highest storage cost of the three tiers, but fast and cheap retrieval",
+        "As cold data, since recommendation systems don't require speed",
+        "As warm data, since monthly access patterns are ideal for real-time recommendations",
+        "Storage tier choice makes no cost difference, since all three tiers are priced identically"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives \"retrieving product recommendations and product page results\" as its own example of hot data, noting \"the cost of storing hot data is the highest of these three storage tiers, but retrieval is often inexpensive.\""
+    },
+    {
+      "question": "How does the book physically describe magnetic disk drives, and how is data encoded?",
+      "options": [
+        "They use spinning platters coated with a ferromagnetic film that a read/write head magnetizes during writes to encode binary data, and detects the magnetic field to output a bitstream during reads",
+        "They store charges in flash memory cells read by purely electronic means",
+        "They store data in capacitors that must be periodically refreshed",
+        "They write data to optical discs using laser light"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says magnetic disks \"utilize spinning platters coated with a ferromagnetic film,\" with a read/write head magnetizing the film for writes and detecting the field to output a bitstream for reads."
+    },
+    {
+      "question": "What history does the book give for magnetic disk drives?",
+      "options": [
+        "IBM developed the technology in the 1950s; the first commercial drive, the IBM 350, held 3.75 megabytes, and drives of 20 TB are commercially available at the time of writing",
+        "SSD manufacturers invented magnetic drives in the 1990s",
+        "Magnetic drives were developed by Amazon in the 2000s",
+        "The IBM 350 held 20 terabytes when first released"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"IBM developed magnetic disk drive technology in the 1950s,\" the IBM 350 had 3.75 MB, and 20 TB drives are currently available."
+    },
+    {
+      "question": "Which techniques does the book cite as continuing innovations in magnetic disk storage density?",
+      "options": [
+        "Heat-assisted magnetic recording (HAMR), shingled magnetic recording (SMR), and helium-filled disk enclosures",
+        "Quantum storage and optical holography",
+        "Phase-change memory and memristors",
+        "Compression-only recording and deduplication"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names HAMR, SMR, and helium-filled enclosures as methods \"used to realize ever greater storage densities.\""
+    },
+    {
+      "question": "Why does disk transfer speed not scale in proportion with disk capacity?",
+      "options": [
+        "Capacity scales with areal density (gigabits per square inch) while transfer speed scales with linear density (bits per inch), so if capacity grows 4x, transfer speed grows only 2x",
+        "Transfer speed is capped by law at 300 MB/s",
+        "Disk capacity and transfer speed are unrelated quantities",
+        "Transfer speed grows faster than capacity in every case"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains this areal-versus-linear density relationship directly: 4x capacity growth yields only 2x transfer-speed growth."
+    },
+    {
+      "question": "What are the physical limitations on HDD performance beyond capacity that the book describes?",
+      "options": [
+        "Disk transfer speed, seek time (relocating read/write heads to the right track), and rotational latency (waiting for data to rotate under the heads)",
+        "Cache size, bus width, and power supply",
+        "Firmware bugs, driver versions, and cable length",
+        "File count, directory depth, and sector size"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists transfer speed, seek time, and rotational latency as physics-imposed limits, leading to over four milliseconds of average latency on 7,200 RPM drives."
+    },
+    {
+      "question": "What is the typical IOPS range for magnetic drives, and why does it matter?",
+      "options": [
+        "50 to 500 IOPS — critical for transactional databases that need many small random accesses per second",
+        "Tens of thousands to millions of IOPS",
+        "0 to 10 IOPS, too slow for any workload",
+        "IOPS is not a meaningful metric for disks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"a magnetic drive ranges from 50 to 500 IOPS,\" and identifies IOPS as \"critical for transactional databases.\""
+    },
+    {
+      "question": "What tricks does the book say can improve HDD latency and transfer speed, and what remains true despite them?",
+      "options": [
+        "Higher rotational speed increases transfer rate and decreases rotational latency; limiting platter radius or writing to a narrow band reduces seek time — but none of these makes magnetic drives remotely competitive with SSDs for random access lookups",
+        "Increasing platter diameter always improves random access",
+        "Magnetic drives can match SSD random access with enough tuning",
+        "Seek time cannot be affected by any technique"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes these techniques but concludes they cannot make magnetic drives competitive with SSDs for random access."
+    },
+    {
+      "question": "What is the \"critical idea behind cloud object storage\" regarding magnetic disks?",
+      "options": [
+        "Data can be distributed across thousands of disks in clusters, and transfer rates go up dramatically by reading from numerous disks simultaneously, limited primarily by network performance",
+        "Each disk is read one at a time to maximize per-disk throughput",
+        "Object storage avoids using magnetic disks entirely",
+        "Magnetic disks are replaced by tape in cloud storage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says magnetic drives \"can sustain extraordinarily high transfer rates through parallelism,\" which is the critical idea behind cloud object storage."
+    },
+    {
+      "question": "How do SSDs store and read data, and what latency do they achieve for random lookups?",
+      "options": [
+        "They store data as charges in flash memory cells and read by purely electronic means, looking up random data in less than 0.1 ms (100 microseconds)",
+        "They use spinning magnetic platters with mechanical heads",
+        "They rely on capacitors that must be refreshed constantly",
+        "They cannot support random access lookups"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says SSDs \"store data as charges in flash memory cells,\" read by purely electronic means, and \"can look up random data in less than 0.1 ms.\""
+    },
+    {
+      "question": "How do SSDs achieve high transfer speeds and IOPS at scale?",
+      "options": [
+        "By slicing storage into partitions with numerous storage controllers running in parallel, supporting transfer speeds of many gigabytes per second and tens of thousands of IOPS",
+        "By spinning faster than any magnetic disk",
+        "By relying on a single central controller",
+        "By storing data only in CPU cache"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says SSDs \"can scale both data-transfer speeds and IOPS by slicing storage into partitions with numerous storage controllers running in parallel.\""
+    },
+    {
+      "question": "What impact have SSDs had on transactional databases, according to the book?",
+      "options": [
+        "They have revolutionized them and become the accepted standard for commercial OLTP deployments, letting relational databases like PostgreSQL, MySQL, and SQL Server handle thousands of transactions per second",
+        "They have made transactional databases slower",
+        "They are rarely used in OLTP systems",
+        "They are used only for analytics databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says SSDs \"have revolutionized transactional databases and are the accepted standard for commercial deployments of OLTP systems.\""
+    },
+    {
+      "question": "Why are SSDs not currently the default option for high-scale analytics data storage?",
+      "options": [
+        "Cost — commercial SSDs cost 20-30 cents per gigabyte, nearly 10 times the per-capacity cost of magnetic drives, so object storage on magnetic disks leads for lakes and cloud warehouses",
+        "SSDs cannot scan large data volumes",
+        "SSDs are slower than HDDs for analytics",
+        "SSDs cannot be used in the cloud"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book attributes it \"again, this comes down to cost,\" with SSD prices nearly 10 times magnetic per capacity, making object storage on magnetic disks the leading option for large-scale analytics storage."
+    },
+    {
+      "question": "What role do SSDs play in OLAP systems, per the book?",
+      "options": [
+        "Some OLAP databases leverage SSD caching to support high-performance queries on frequently accessed data, and SSD usage should grow as low-latency OLAP becomes more popular",
+        "SSDs are never used in OLAP systems",
+        "OLAP systems rely exclusively on magnetic disks",
+        "SSD usage in OLAP is declining"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"some OLAP databases leverage SSD caching to support high-performance queries on frequently accessed data,\" with expectations of increasing SSD usage."
+    },
+    {
+      "question": "What specific characteristics does the book use to distinguish RAM from magnetic drives and SSDs?",
+      "options": [
+        "It is attached to a CPU and mapped into CPU address space; it stores the code CPUs execute and the data that code processes; it is volatile; it offers far higher transfer speeds; it is significantly more expensive; and it is still slower than CPU cache",
+        "It is nonvolatile and slower than SSD",
+        "It can only store code, never data",
+        "It is cheaper than magnetic disk storage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these characteristics of RAM, including volatility, roughly $10/GB cost, and being slower than CPU cache while far faster than SSD."
+    },
+    {
+      "question": "What latency and bandwidth figures does the book cite for DDR5 memory compared with SSDs?",
+      "options": [
+        "Retrieval latency on the order of 100 nanoseconds — roughly 1,000 times faster than SSD — with a typical CPU supporting 100 GB/s bandwidth to attached memory and millions of IOPS",
+        "Latency of 1 second with 1 GB/s bandwidth",
+        "Identical latency to magnetic disks",
+        "Latency of 10 milliseconds, similar to an HDD"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives these DDR5 figures and notes they vary by memory-channel configuration."
+    },
+    {
+      "question": "What does the book say about dynamic RAM versus static RAM?",
+      "options": [
+        "System memory is almost always dynamic RAM, a high-density low-cost form storing data as charges in capacitors that leak and must be refreshed; static RAM is used in specialized applications such as CPU caches",
+        "Static RAM is the standard system memory, and dynamic RAM is used only in caches",
+        "Dynamic RAM never needs refreshing",
+        "Both are identical in cost and density"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"when we talk about system memory, we almost always mean dynamic RAM,\" which stores charges in capacitors that leak, while static RAM serves CPU caches."
+    },
+    {
+      "question": "What caution does the book raise about databases that treat RAM as a primary storage layer?",
+      "options": [
+        "RAM's volatility means that even data replicated across a cluster can be lost if a power outage brings down several nodes; durable architectures may use battery backups and automatically dump data to disk on power loss",
+        "RAM is too slow for primary storage",
+        "RAM cannot be replicated at all",
+        "Volatility is irrelevant once data is in memory"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns that replicated in-memory data can still be lost to a power outage and describes battery-backup strategies for durable architectures."
+    },
+    {
+      "question": "Why does the book mention networking and CPU as raw ingredients for storing data?",
+      "options": [
+        "Storage systems are increasingly distributed, with disks spread across networks and even multiple data centers and availability zones; CPUs service requests and aggregate reads/writes, and network performance and topology are key to high performance",
+        "Networking and CPU have no effect on storage",
+        "Storage is never distributed in modern systems",
+        "CPUs are only needed for rendering dashboards"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains that distributed storage relies on networking and CPU, describing storage as becoming \"a web application with an API, backend service components, and load balancing.\""
+    },
+    {
+      "question": "What are availability zones, and what does multizonal storage provide?",
+      "options": [
+        "Standard cloud constructs consisting of compute environments with independent power, water, and other resources; multizonal storage enhances both the availability and durability of data",
+        "Single server racks with no redundancy",
+        "Physical locations inside one building with shared power",
+        "Backup tapes stored in a vault"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines availability zones with independent power/water and says \"multizonal storage enhances both the availability and durability of data.\""
+    },
+    {
+      "question": "What is serialization, as the book defines it?",
+      "options": [
+        "The process of flattening and packing data into a standard format that a reader will be able to decode, providing a standard of data exchange",
+        "Encrypting data before it is stored",
+        "Compressing data to reduce its size",
+        "Duplicating data across multiple nodes"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines serialization as \"the process of flattening and packing data into a standard format that a reader will be able to decode.\""
+    },
+    {
+      "question": "What do serialization algorithms handle, and what exception example does the book give?",
+      "options": [
+        "They handle types, impose rules on data structure, allow exchange between languages and CPUs, and handle exceptions — e.g. throwing an error or limiting nesting depth on encountering a cyclic reference in Python objects",
+        "They only handle encryption keys",
+        "They cannot handle type information",
+        "They reject all structured data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says a serialization algorithm \"has logic for handling types, imposes rules on data structure, and allows exchange between programming languages and CPUs,\" with cyclic-reference handling as the exception example."
+    },
+    {
+      "question": "What serialization formats and systems does the book suggest data engineers become familiar with?",
+      "options": [
+        "Common formats such as Apache Parquet, hybrid serialization such as Apache Hudi, and in-memory serialization such as Apache Arrow",
+        "Only XML and JSON",
+        "Only proprietary database formats",
+        "Only CSV files"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends familiarity with \"the most popular current formats (e.g., Apache Parquet), hybrid serialization (e.g., Apache Hudi), and in-memory serialization (e.g., Apache Arrow).\""
+    },
+    {
+      "question": "What disadvantage of compression does the book acknowledge?",
+      "options": [
+        "Compressing and decompressing data entails extra time and resource consumption to read or write data",
+        "Compression always loses data accuracy",
+        "Compression cannot be applied to object storage",
+        "Compressed data always takes more disk space"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"compressing and decompressing data entails extra time and resource consumption to read or write data.\""
+    },
+    {
+      "question": "What is the core idea of caching, and what trade-off does it involve?",
+      "options": [
+        "Store frequently or recently accessed data in a fast access layer; the faster the cache, the higher the cost and the less storage space available, with less-frequent data in cheaper slower storage",
+        "Store all data in the fastest layer regardless of cost",
+        "Store rarely accessed data in the fastest memory",
+        "Caches are only useful for CPU registers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines caching and its cost/space trade-off directly, noting caches are critical for serving, processing, and transformation."
+    },
+    {
+      "question": "Ordering the cache hierarchy the book presents, what are the approximate latencies of CPU cache, RAM, SSD, HDD, object storage, and archival storage?",
+      "options": [
+        "1 nanosecond, 0.1 microseconds, 0.1 milliseconds, 4 milliseconds, 100 milliseconds, and 12 hours respectively",
+        "All storage types have identical latency",
+        "Archival storage is faster than RAM",
+        "HDD is faster than CPU cache"
+      ],
+      "correctIndex": 0,
+      "explanation": "These values are exactly what Table 6-1 lists, from CPU cache at 1 ns down to archival storage at 12 hours."
+    },
+    {
+      "question": "What is distributed storage, and which systems does the book say rely on it?",
+      "options": [
+        "A distributed system that coordinates multiple servers to store, retrieve, and process data at larger scale while providing redundancy — used by object storage, Apache Spark, and cloud data warehouses",
+        "A single server with many disks",
+        "A filesystem attached to one machine only",
+        "Storage that is never replicated"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines distributed storage and names object storage, Apache Spark, and cloud data warehouses as examples."
+    },
+    {
+      "question": "Why might a large-scale distributed system deliberately use eventual consistency?",
+      "options": [
+        "If you want to scale horizontally to process data in high volumes, eventual consistency is often the price you'll pay — it lets you retrieve data quickly without verifying the latest version across all nodes",
+        "Eventual consistency is always more accurate",
+        "Strong consistency requires no extra cost",
+        "Eventual consistency is required by regulation"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"eventual consistency is often the price you'll pay\" for horizontal scaling, allowing quick retrieval without version verification."
+    },
+    {
+      "question": "How does strong consistency work in a distributed database, and when should it be used?",
+      "options": [
+        "Writes are distributed with a consensus and reads return consistent values; use it when you can tolerate higher query latency and require correct data every time you read",
+        "Reads always return stale data",
+        "It requires no consensus overhead",
+        "It should be used for every read regardless of latency"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says with strong consistency \"the distributed database ensures that writes to any node are first distributed with a consensus,\" for use when correctness matters more than latency."
+    },
+    {
+      "question": "At what three places does the book say data engineers generally make consistency decisions?",
+      "options": [
+        "The database technology itself, configuration parameters for the database, and per-query consistency configuration",
+        "Only in the data warehouse schema",
+        "Only at the application frontend",
+        "Consistency decisions are made solely by vendors"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these three places: database technology, configuration parameters, and individual query-level consistency settings."
+    },
+    {
+      "question": "What three characteristics does the book use to define a file?",
+      "options": [
+        "Finite length, append operations, and random access (read from any location or write updates to any location)",
+        "Encryption, compression, and indexing",
+        "Immutable writes, versioning, and replication",
+        "A name, a size, and a timestamp"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines a file as a finite-length byte stream that supports appends and random access."
+    },
+    {
+      "question": "How does the book recommend handling file storage in pipelines?",
+      "options": [
+        "Be careful with state and use ephemeral environments as much as possible, use object storage for intermediate storage between processing steps, and reserve manual low-level file processing for one-time ingestion steps or exploratory development",
+        "Always process files directly on permanent servers",
+        "Never use object storage in a pipeline",
+        "Store all intermediate data on local disks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives this advice about file paradigms, favoring ephemeral environments and object storage for intermediate data."
+    },
+    {
+      "question": "What filesystems and guarantees does the book associate with local disk storage?",
+      "options": [
+        "NTFS and ext4 on Windows and Linux; local filesystems generally support full read-after-write consistency and various locking strategies for concurrent writes, plus optional journaling, snapshots, redundancy, multi-disk extension, encryption, and compression",
+        "Filesystems never support read-after-write consistency",
+        "Local filesystems cannot be encrypted or journaled",
+        "NTFS is used only on Linux"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these filesystems, the read-after-write consistency, locking strategies, and advanced features."
+    },
+    {
+      "question": "What is network-attached storage (NAS), and what advantages does it provide?",
+      "options": [
+        "A file storage system provided to clients over a network, offering redundancy and reliability, fine-grained resource control, storage pooling across multiple disks, and file sharing across multiple machines — with performance penalties versus local access",
+        "A local disk directly attached to one server",
+        "A block-level storage network without a filesystem abstraction",
+        "A proprietary mainframe storage format"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines NAS and its advantages, contrasting it with SAN's block-level access."
+    },
+    {
+      "question": "How does the book distinguish a storage area network (SAN) from NAS?",
+      "options": [
+        "SAN systems provide block-level access without the filesystem abstraction, whereas NAS provides a file system over the network",
+        "SAN provides a filesystem while NAS provides blocks",
+        "SAN and NAS are identical",
+        "SAN only works on-premises and NAS only in the cloud"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"SAN systems provide block-level access without the filesystem abstraction\" as the alternative to NAS."
+    },
+    {
+      "question": "What example of a cloud filesystem service does the book give, and what consistency guarantees does it describe?",
+      "options": [
+        "Amazon EFS — exposed through NFS 4, automatic scaling and pay-per-storage pricing, local read-after-write consistency, and open-after-close consistency across the full filesystem",
+        "Amazon S3 — an object store with no filesystem semantics",
+        "Amazon EBS — a virtualized block device",
+        "Google BigQuery — a data warehouse"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes EFS with NFS 4, automatic scaling, and its read-after-write and open-after-close consistency models."
+    },
+    {
+      "question": "What is a block in block storage, and how has its size evolved?",
+      "options": [
+        "The smallest addressable unit of data supported by a disk — often 512 bytes on older disks, now 4,096 bytes on most current disks, containing extra bits for error detection/correction and metadata",
+        "The largest file a disk can store",
+        "A group of many disks in a RAID array",
+        "A network packet"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines blocks as the smallest addressable unit and notes the shift from 512 to 4,096 bytes."
+    },
+    {
+      "question": "Why does the block layout of magnetic disks matter for seek time?",
+      "options": [
+        "Two blocks on the same track can be read without moving the head, while reading blocks on separate tracks requires a seek",
+        "Blocks are all read in random order regardless of position",
+        "Magnetic disks have no seek time",
+        "Blocks on separate tracks require no head movement"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains the geometric arrangement of blocks on a platter and the seek-time implications."
+    },
+    {
+      "question": "What is RAID, and what does it provide?",
+      "options": [
+        "A redundant array of independent disks that simultaneously controls multiple disks to improve durability, enhance performance, and combine capacity, appearing as a single block device with various parity schemes",
+        "A single very large disk",
+        "A protocol for network file sharing",
+        "A compression algorithm for object storage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines RAID and its goals of durability, performance, and capacity combination."
+    },
+    {
+      "question": "What do SAN systems provide, and how does cloud virtualized block storage differ from them?",
+      "options": [
+        "SANs provide virtualized block storage devices over a network from a storage pool; cloud virtualized block storage is similar but frees engineers from managing SAN clusters and networking details",
+        "SANs provide file storage while cloud block storage provides objects",
+        "Cloud block storage requires engineers to build SAN clusters",
+        "SAN systems only exist in the cloud"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says cloud virtualized block storage solutions \"are similar to SAN but free engineers from dealing with SAN clusters and networking details.\""
+    },
+    {
+      "question": "What does the book say about Amazon EBS as the default storage for EC2?",
+      "options": [
+        "It offers several tiers with different performance, with metrics given in IOPS and throughput; higher tiers are SSD-backed while magnetic-disk-backed storage has lower IOPS but costs less per gigabyte",
+        "It is always faster than instance store volumes",
+        "It cannot persist beyond an instance's lifetime",
+        "It only supports magnetic disks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes EBS tiers, their IOPS/throughput metrics, and the SSD versus magnetic backing trade-off."
+    },
+    {
+      "question": "Why do EBS volumes persist when an EC2 instance shuts down or is deleted?",
+      "options": [
+        "EBS volumes store data separate from the instance host server but in the same zone, and replicate all data to at least two separate host machines",
+        "EBS data is stored directly on the instance's local disk",
+        "EBS cannot outlive an instance under any circumstances",
+        "EBS volumes are not replicated across hosts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says EBS volumes store data separately from the host in the same zone, persisting through shutdowns/failures/deletion, and replicate to at least two host machines."
+    },
+    {
+      "question": "What advanced snapshot capability does the book attribute to EBS?",
+      "options": [
+        "Instantaneous point-in-time snapshots taken while the drive is in use, with subsequent snapshots being differential (only changed blocks written to S3) to minimize storage costs and backup time",
+        "Snapshots that require stopping the instance",
+        "Full backups written to S3 on every snapshot",
+        "Snapshots that cannot be restored"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes EBS's point-in-time snapshots and differential subsequent snapshots written to S3."
+    },
+    {
+      "question": "What scaling limits does the book cite for EBS volumes at the time of writing?",
+      "options": [
+        "Some EBS volume classes can scale up to 64 TiB, 256,000 IOPS, and 4,000 MiB/s",
+        "EBS is limited to 1 TB and 100 IOPS",
+        "EBS cannot be resized after creation",
+        "EBS volumes are unlimited in every dimension"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book cites these exact EBS scaling figures."
+    },
+    {
+      "question": "What is a local instance store volume, and what happens to it when a VM shuts down or is deleted?",
+      "options": [
+        "A block storage volume physically attached to the host server running the VM, generally very low cost with low latency and high IOPS; its contents are lost when the VM shuts down or is deleted, even from intentional user action",
+        "A replicated volume that persists across instance deletion",
+        "A volume that supports snapshots",
+        "A network-attached filesystem"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes instance store volumes as locally attached with data loss on VM shutdown/deletion to prevent cross-customer data reads."
+    },
+    {
+      "question": "What limitations do locally attached disks have compared with services like EBS?",
+      "options": [
+        "They support none of the advanced virtualization features — no replication, so a physical disk failure can lose data even if the host runs, and no snapshots or other backup features",
+        "They are fully replicated across zones",
+        "They support automatic snapshots",
+        "They never lose data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says locally attached disks lack replication and snapshot support, so physical disk failure can lose or corrupt data."
+    },
+    {
+      "question": "Why are locally attached disks extremely useful despite their limitations?",
+      "options": [
+        "They are often used as a local cache — e.g. an EMR job reads from S3, stores data temporarily in the distributed filesystem across instances, processes, and writes results back to S3, so the instance store serves as a cache with local read/process performance",
+        "They are the only way to store permanent data",
+        "They always replicate data to other zones",
+        "They are required for object storage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives the EMR example where the instance store serves as an ephemeral processing cache, enhancing performance via local data flow."
+    },
+    {
+      "question": "How does the book recommend thinking about locally attached storage, and what simple mitigation does it suggest?",
+      "options": [
+        "Think in worst-case scenarios — what are the consequences of disk failure, accidental VM/cluster shutdown, or zonal/regional outage — and use simple mitigations such as periodic checkpoint backups to S3",
+        "Assume locally attached data is always durable",
+        "Never use locally attached storage under any circumstances",
+        "Locally attached disks never fail"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends worst-case analysis and simple mitigation strategies like periodic checkpoints to S3."
+    },
+    {
+      "question": "What does the book say an object store fundamentally is, and what does that mean for writing?",
+      "options": [
+        "A key-value store for immutable data objects — objects don't support random writes or append operations, are written once as a stream of bytes, become immutable, and require a full rewrite to change",
+        "A mutable file system with random access",
+        "A database with full SQL update support",
+        "A cache that evicts data by age"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"an object store is a key-value store for immutable data objects,\" with writes as an immutable byte stream."
+    },
+    {
+      "question": "Why does the book say \"less is more\" regarding object storage's lack of locks and change synchronization?",
+      "options": [
+        "Object stores don't need locks or change synchronization, allowing data storage across massive disk clusters with extremely performant parallel stream reads/writes that are hidden from engineers",
+        "Objects require more locking than files",
+        "Object stores cannot parallelize reads",
+        "Parallelism must be managed manually by engineers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says object stores' lack of locks enables massive clusters and hidden parallelism, ideal for high-volume web traffic and parallel query engines."
+    },
+    {
+      "question": "What scales object storage write speed and read bandwidth in a cloud environment, per the book?",
+      "options": [
+        "Write speed scales with the number of streams being written up to vendor quota limits; read bandwidth scales with the number of parallel requests, VMs employed, and CPU cores",
+        "Write speed is fixed regardless of streams",
+        "Read bandwidth is limited to a single VM",
+        "CPU cores do not affect read bandwidth"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states these scaling characteristics directly."
+    },
+    {
+      "question": "Why do typical cloud object stores save data in several availability zones, and what is the trade-off?",
+      "options": [
+        "To dramatically reduce the odds the storage goes fully offline or is lost; the durability/availability is built into the cost, with vendors offering discounted storage classes in exchange for reduced durability or availability",
+        "To maximize per-disk transfer speed",
+        "Single-zone storage is always more durable",
+        "Availability zones have no effect on durability"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says multizone saves reduce offline/loss odds, with cost built in and cheaper classes trading reduced durability/availability."
+    },
+    {
+      "question": "How does cloud object storage help make big data available to smaller organizations?",
+      "options": [
+        "It is a key ingredient in separating compute and storage, letting engineers process data with ephemeral clusters that scale up and down on demand, so organizations needn't own hardware for jobs run only occasionally",
+        "It requires purchasing permanent clusters",
+        "It only benefits large tech companies",
+        "It eliminates the need for any compute"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says this separation and ephemerality make big data accessible to smaller organizations that can't afford permanent hardware."
+    },
+    {
+      "question": "What is the primary limit on object storage space for public cloud customers, in practice?",
+      "options": [
+        "Budget — providers handle exabytes, so storage space is virtually limitless for customers, with budget as the practical constraint",
+        "The number of disks the customer owns",
+        "Physical server space in the customer's data center",
+        "The customer's network cable length"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"the primary limit on storage space for public cloud customers is budget.\""
+    },
+    {
+      "question": "The book addresses the folklore that object stores are bad for updates. What does it say?",
+      "options": [
+        "It is only partially true — object stores are an inferior fit for transactional workloads with many small updates per second, but work well for a low rate of update operations where each updates a large volume of data",
+        "Object stores are always terrible for updates",
+        "Object stores are ideal for millions of small updates per second",
+        "The folklore is completely false with no nuance"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the folklore \"is only partially true,\" distinguishing many-small-updates from few-large-updates patterns."
+    },
+    {
+      "question": "What does the book say about WORM and update management in object storage-based data lakes?",
+      "options": [
+        "Write-once-read-many was the early standard mostly due to data version/file-management complexity; systems like Apache Hudi and Delta Lake now manage this complexity, and privacy regulations like GDPR and CCPA made deletion and update capabilities imperative",
+        "WORM remains mandatory and cannot be changed",
+        "Hudi and Delta Lake have made updates impossible",
+        "GDPR forbids object storage deletion"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says WORM had more to do with complexity than limitations, and that Hudi/Delta Lake plus GDPR/CCPA drove update and deletion capabilities."
+    },
+    {
+      "question": "How does the book describe object storage's fit for unstructured data and ML pipelines?",
+      "options": [
+        "It can house any binary data with no constraints on type or structure and frequently plays a role in ML pipelines for raw text, images, video, and audio",
+        "It can only store structured tabular data",
+        "It rejects binary data",
+        "It is unsuitable for ML workloads"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says object storage is an ideal repository for unstructured data in any format, including ML raw inputs."
+    },
+    {
+      "question": "How does object storage reference objects, and what uniqueness constraints apply to buckets and keys?",
+      "options": [
+        "Through a top-level logical container (a bucket) and a key; bucket names must be unique across the entire provider, while keys are unique within a bucket",
+        "Through a directory tree like a filesystem",
+        "Bucket names only need to be unique per account",
+        "Keys can be duplicated within a bucket freely"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says S3 bucket names must be unique across all of AWS and keys unique within a bucket, with no true directory hierarchy."
+    },
+    {
+      "question": "How does the book say object stores can be made strongly consistent using a strongly consistent database?",
+      "options": [
+        "Writing becomes two steps — write the object, then write the returned object-version metadata to the strongly consistent database; readers fetch latest metadata, query the object by key, and retry until metadata matches",
+        "Writing becomes impossible",
+        "The database replaces the object store entirely",
+        "Strong consistency requires disabling versioning"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes this two-step write and metadata-checking read pattern, managed behind an API at the cost of higher latency."
+    },
+    {
+      "question": "What happens mechanically when an object is rewritten under an existing key, and when is space reclaimed?",
+      "options": [
+        "A brand-new object is written, references from the key are set to it, old references are deleted, and eventually the garbage collector deallocates the dereferenced data to recycle disk capacity",
+        "The old object is overwritten in place instantly",
+        "Old data is never reclaimed",
+        "Rewriting is prohibited"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the write-new/update-references/delete-old-references flow and the garbage collector reclaiming space."
+    },
+    {
+      "question": "How does object versioning interact with consistency?",
+      "options": [
+        "The key and version metadata together form a unique reference to a particular immutable object, so reads always return the same object; the consistency issue remains only when requesting the default or latest version",
+        "Versioning makes all reads eventually consistent",
+        "Versioning eliminates the key entirely",
+        "Versioning has no effect on consistency"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says key+version is a unique reference to an immutable object, with the consistency issue only for default/latest requests."
+    },
+    {
+      "question": "What is the principal overhead of object versioning, and how do object stores store versions?",
+      "options": [
+        "The cost of storage — historical versions cost about the same as current ones, and object stores store full object data for each version rather than differential snapshots, so data size and update frequency drive costs",
+        "CPU overhead during reads",
+        "Network bandwidth for writes",
+        "Versioning is always free"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book calls storage cost the principal overhead and notes versions are brute-force full copies, not differential snapshots."
+    },
+    {
+      "question": "What do storage lifecycle policies enable?",
+      "options": [
+        "Automatic deletion of old object versions when conditions are met (e.g. age thresholds or many newer versions), and management of archival processes",
+        "Manual deletion of all objects",
+        "Prevention of any deletion",
+        "Automatic re-encryption of objects"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says lifecycle policies allow automatic deletion of old versions when conditions are met, and can manage archival."
+    },
+    {
+      "question": "What do cloud storage classes trade away in exchange for discounted pricing?",
+      "options": [
+        "Reduced access (higher retrieval costs) or reduced durability",
+        "Data accuracy",
+        "Data completeness",
+        "Encryption"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says storage classes \"discount data storage pricing in exchange for reduced access or reduced durability.\""
+    },
+    {
+      "question": "What trade-offs does the book describe for the S3 One Zone-Infrequent Access tier?",
+      "options": [
+        "It replicates only to a single zone, with projected availability dropping from 99.9% to 99.5% due to possible zonal outage, though Amazon still claims extremely high durability with the caveat of data loss if a zone is destroyed",
+        "It replicates to every zone for maximum durability",
+        "It provides zero availability guarantees",
+        "It is the most expensive tier"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes One Zone-IA's single-zone replication and reduced availability projection."
+    },
+    {
+      "question": "What retrieval options and costs does the book describe for S3 Glacier tiers?",
+      "options": [
+        "Users have various retrieval speed options from minutes to hours, with higher retrieval costs for faster access; Deep Archive restoration takes 12 hours",
+        "All Glacier retrievals are instantaneous",
+        "Faster retrieval is always cheaper",
+        "Deep Archive restores in seconds"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Glacier's minutes-to-hours retrieval options with higher cost for speed, and Deep Archive's 12-hour restoration."
+    },
+    {
+      "question": "What caution does the book give about planning to use archival storage?",
+      "options": [
+        "It is easy to get into and often costly to access data, especially if you need it more often than expected",
+        "Archival storage is always cheaper to access than hot storage",
+        "There are no costs associated with archival storage",
+        "Archival storage cannot be retrieved at all"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns archival storage is easy to enter and costly to access, especially with more frequent-than-expected needs."
+    },
+    {
+      "question": "What does the book say about tools like s3fs and Amazon S3 File Gateway that mount S3 as local storage?",
+      "options": [
+        "They work well for files updated infrequently, but high-speed transactional writing will overwhelm the update capabilities of an object store",
+        "They are ideal for high-frequency transactional writes",
+        "They never interact with object storage pricing",
+        "They are the recommended solution for OLTP workloads"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says mounting object storage as a local filesystem works well for infrequently updated files, but transactional writes overwhelm it."
+    },
+    {
+      "question": "What role do RAM-based storage systems generally play, and why?",
+      "options": [
+        "They are focused on caching applications for quick access and high bandwidth because a power outage lasting even a second can erase data; data should generally be written to a more durable medium for retention",
+        "They are the primary durable storage for all data",
+        "They never lose data on power loss",
+        "They are used only for archival data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says RAM-based systems are focused on caching due to volatility, with data written to durable media for retention."
+    },
+    {
+      "question": "What is Memcached, and what data types and role does the book describe for it?",
+      "options": [
+        "A key-value store designed for caching database query results and API call responses, using simple data structures supporting string or integer types, delivering very low latency while taking load off backend systems",
+        "A durable transactional database",
+        "A wide-column analytics store",
+        "A graph database for social networks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Memcached as a simple low-latency key-value caching store for query results and API responses."
+    },
+    {
+      "question": "How does the book contrast Redis with Memcached?",
+      "options": [
+        "Redis supports more complex data types such as lists and sets, builds in persistence mechanisms including snapshotting and journaling, and typically writes data roughly every two seconds, tolerating a small amount of data loss",
+        "Redis supports only string types",
+        "Redis has no persistence mechanisms",
+        "Redis loses all data on every write"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts Redis's richer types and persistence with Memcached's simpler profile."
+    },
+    {
+      "question": "What is HDFS based on, and what was it initially engineered to support?",
+      "options": [
+        "The Google File System (GFS), initially engineered to process data with the MapReduce programming model",
+        "The Amazon S3 API",
+        "A proprietary Microsoft filesystem",
+        "The Berkeley file system"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says HDFS is \"based on Google File System (GFS) and was initially engineered to process data with the MapReduce programming model.\""
+    },
+    {
+      "question": "How does HDFS manage files and ensure durability?",
+      "options": [
+        "Large files are broken into blocks of less than a few hundred megabytes, managed by the NameNode which maintains directories, metadata, and a block-location catalog; each block is replicated to three nodes, and the NameNode instructs re-replication if the factor falls below 3",
+        "Files are stored whole on a single node",
+        "Blocks are never replicated",
+        "There is no metadata catalog"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes HDFS blocks, the NameNode, and three-way replication with automatic re-replication."
+    },
+    {
+      "question": "How does the book characterize the claim that \"Hadoop is dead\"?",
+      "options": [
+        "It is only partially true — Hadoop is no longer bleeding-edge, tools like Apache Pig are on life support for legacy jobs, and pure MapReduce has faded, but HDFS remains widely used",
+        "It is completely true — Hadoop is fully gone",
+        "It is false — Hadoop is still the hottest technology",
+        "Hadoop never existed"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the claim is \"only partially true,\" detailing the decline of Pig and MapReduce but the continued use of HDFS."
+    },
+    {
+      "question": "What does the book say about Hadoop in legacy installations and for smaller companies?",
+      "options": [
+        "Many organizations adopted Hadoop during the big-data craze with no immediate migration plans; it's a good choice for massive thousand-node clusters with on-premises resources, while smaller companies may want to reconsider the cost and scale limits against cloud solutions",
+        "All Hadoop installations should be migrated immediately",
+        "Smaller companies should always run Hadoop",
+        "Hadoop clusters require no maintenance"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book weighs massive on-premises clusters favorably but cautions smaller companies about cost and scale limits."
+    },
+    {
+      "question": "Why is HDFS still a key ingredient of modern big data engines?",
+      "options": [
+        "It is a key ingredient of Amazon EMR, and Apache Spark is still commonly run on HDFS clusters",
+        "It is only used by legacy mainframes",
+        "It cannot run Spark or EMR",
+        "It has been replaced entirely by object storage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says HDFS is a key ingredient of Amazon EMR and Spark still commonly runs on HDFS clusters."
+    },
+    {
+      "question": "How do the storage requirements of streaming data differ from nonstreaming data, and what retention do modern platforms support?",
+      "options": [
+        "Message-queue data is temporal and expected to disappear, but scalable streaming frameworks like Kafka now allow extremely long retention, even indefinite, by pushing old infrequently accessed messages down to object storage; competitors include Kinesis, Pulsar, and Pub/Sub",
+        "Streaming data is always deleted immediately",
+        "Streaming platforms cannot retain data",
+        "Kafka is the only platform supporting retention"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the temporal nature of queues versus Kafka's long/indefinite retention via object storage, with competitors also supporting long retention."
+    },
+    {
+      "question": "What does the book say was the first real-time query engine, and what limitations did it have?",
+      "options": [
+        "Transactional databases emerged as the first real-time query engines since data becomes visible as soon as it is written, but they have well-known scaling and locking limitations for analytics queries across large volumes",
+        "Object storage was the first real-time engine",
+        "Columnar databases preceded transactional ones",
+        "Real-time query engines never existed before the cloud"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says transactional databases were the first real-time query engines but have scaling and locking limits for large analytics queries."
+    },
+    {
+      "question": "What do indexes provide in databases, and what happens without them?",
+      "options": [
+        "A map of the table for particular fields allowing extremely fast lookup of individual records; without indexes, a database must scan the entire table to find records satisfying a WHERE condition",
+        "Automatic encryption of table data",
+        "Compression of all columns",
+        "Guaranteed strong consistency"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines indexes as lookup maps and contrasts them with full-table scans."
+    },
+    {
+      "question": "Where does the book say indexes are typically used in RDBMSs?",
+      "options": [
+        "For primary table keys and foreign keys, and on other columns to serve specific applications; with indexes an RDBMS can look up and update thousands of rows per second",
+        "Indexes are never used in RDBMSs",
+        "Indexes are used only for analytics tables",
+        "Only foreign keys can be indexed"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes index use for primary keys, foreign keys, and application-specific columns, enabling thousands of row operations per second."
+    },
+    {
+      "question": "How did early data warehouses and row-oriented MPP systems handle analytics indexing?",
+      "options": [
+        "Early warehouses were built on the same RDBMSs as transactional applications; MPP systems shifted toward parallel processing for scan performance, but row-oriented MPPs still used indexes to support joins and condition checking",
+        "MPP systems removed all indexes",
+        "Early warehouses never used databases",
+        "Row-oriented MPPs cannot process analytics"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book traces the evolution from RDBMS-based warehouses to MPP systems that still used indexes."
+    },
+    {
+      "question": "Why did the book's past advice to always denormalize columnar data change?",
+      "options": [
+        "Join performance for columnar databases has improved dramatically in recent years, so while denormalization can still help, it is no longer a necessity",
+        "Denormalization was never recommended",
+        "Joins are still impossible in columnar databases",
+        "Normalization is now forbidden"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says join performance has improved dramatically, making denormalization no longer a necessity."
+    },
+    {
+      "question": "Why is date- and time-based partitioning extremely common in analytics?",
+      "options": [
+        "It is common to scan over a time range in analytics and data science use cases, and partitioning a table on a field can reduce the amount of data scanned",
+        "Time-based partitioning is the only supported scheme",
+        "Analytics queries never filter by time",
+        "Partitioning always increases scan volume"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says time-range scans are common, making date/time partitioning common, with other schemes also supported."
+    },
+    {
+      "question": "What are clusters in columnar databases, and what do they improve?",
+      "options": [
+        "A finer-grained organization within partitions that sorts data by one or a few fields, colocating similar values and improving performance for filtering, sorting, and joining those values",
+        "A physical grouping of servers",
+        "A replacement for all indexes",
+        "An encryption scheme for partitions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines clustering as sorting by a few fields within partitions to colocate similar values."
+    },
+    {
+      "question": "What sizes are Snowflake micro-partitions, and how does Snowflake use them for pruning?",
+      "options": [
+        "Sets of rows between 50 and 500 megabytes uncompressed; Snowflake clusters similar rows algorithmically, stores metadata about each partition, and excludes partitions that don't match query predicates",
+        "Individual rows stored as separate files",
+        "Terabyte-scale files with no metadata",
+        "In-memory tables only"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes micro-partitions of 50-500 MB, algorithmic clustering, a metadata database, and predicate-based pruning."
+    },
+    {
+      "question": "What does the book mean by Snowflake's \"hybrid columnar storage\"?",
+      "options": [
+        "Tables are broken into small groups of rows even though storage is fundamentally columnar, with a metadata database playing a role similar to an index",
+        "Data is stored in both rows and columns simultaneously",
+        "Snowflake uses no columnar storage",
+        "Tables are never split into groups"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says hybrid columnar storage partially refers to breaking tables into small row groups while storage is fundamentally columnar."
+    },
+    {
+      "question": "What key considerations does the book say determine the storage abstraction a data engineer requires?",
+      "options": [
+        "Purpose and use case, update patterns, cost (direct/indirect, time to value, opportunity), and whether to separate storage and compute",
+        "Only the brand of the vendor",
+        "Only the number of tables",
+        "Only network latency"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these considerations: purpose/use case, update patterns, cost, and separate storage and compute."
+    },
+    {
+      "question": "What does the book predict about the lines between OLAP databases and data lakes?",
+      "options": [
+        "The popularity of separating storage from compute means the lines are increasingly blurring; major cloud data warehouses and data lakes are on a collision course and may differ in name only in the future",
+        "They will remain completely distinct",
+        "Data lakes will replace all warehouses",
+        "OLAP databases will disappear entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the two are on a collision course and may become functionally and technically very similar."
+    },
+    {
+      "question": "How does the book describe the evolution of data warehouse storage?",
+      "options": [
+        "From conventional transactional databases, to row-based MPP systems (e.g. Teradata and IBM Netezza), to columnar MPP systems (e.g. Vertica and Teradata Columnar), and on to cloud data warehouses and data platforms",
+        "From cloud warehouses back to transactional databases",
+        "Warehouses never used MPP systems",
+        "All warehouses have always been cloud-native"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book traces this evolution through row-based and columnar MPP systems to cloud warehouses."
+    },
+    {
+      "question": "What is a data lake, and what is its key advantage over cloud data warehouses for unstructured data?",
+      "options": [
+        "A storage area for massive amounts of unprocessed raw data, as originally conceived by James Dixon; cloud data warehouses can handle raw text and complex JSON but cannot handle truly unstructured data like images, video, or audio, unlike a true data lake",
+        "A storage area that only accepts structured tables",
+        "A database optimized for OLTP",
+        "A cache for frequently accessed rows"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines the data lake (attributed to James Dixon) and contrasts cloud warehouse limitations with true lakes for unstructured data."
+    },
+    {
+      "question": "Why were data lakes initially built primarily on Hadoop systems?",
+      "options": [
+        "Cheap storage allowed retention of massive amounts of data without the cost overhead of a proprietary MPP system",
+        "Hadoop could not store raw data",
+        "MPP systems were free",
+        "Object storage did not exist"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says initially lakes were built primarily on Hadoop because cheap storage allowed massive retention without proprietary MPP cost overhead."
+    },
+    {
+      "question": "What two major developments does the book describe in the evolution of data lake storage over the last five years?",
+      "options": [
+        "A migration toward separation of compute and storage (from Hadoop to cloud object storage for long-term retention), and the discovery that MPP functionality like schema management and update/merge/delete was extremely useful",
+        "A return to proprietary MPP systems for everything",
+        "The elimination of object storage",
+        "A ban on schema management in lakes"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names these two developments: compute/storage separation and rediscovery of MPP functionality, leading to the lakehouse."
+    },
+    {
+      "question": "What features does the data lakehouse add on top of a data lake?",
+      "options": [
+        "Robust table and schema support, features for managing incremental updates and deletes, and table history and rollback accomplished by retaining old versions of files and metadata",
+        "Elimination of all schema support",
+        "A ban on deletes and updates",
+        "Loss of table history"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the lakehouse adds warehouse-style table/schema support, incremental updates/deletes, and history/rollback to object-storage data."
+    },
+    {
+      "question": "Which open source system has Databricks promoted as a lakehouse storage management system, and how does the lakehouse architecture relate to BigQuery and Snowflake?",
+      "options": [
+        "Delta Lake; the lakehouse architecture is similar to commercial data platforms like BigQuery and Snowflake, which store data in object storage with automated metadata management, table history, and update/delete capabilities hidden from the user",
+        "Apache Hudi; commercial platforms never use object storage",
+        "Apache Iceberg; the lakehouse is unrelated to commercial platforms",
+        "Druid; lakehouses cannot manage metadata"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says Databricks promoted Delta Lake, and the lakehouse architecture resembles BigQuery/Snowflake's object-storage-plus-metadata design."
+    },
+    {
+      "question": "What does the book emphasize about data in a lakehouse not necessarily having a table structure?",
+      "options": [
+        "Much of the data may not have a table structure imposed; warehouse features can be imposed where needed, leaving other data raw or even unstructured",
+        "All lakehouse data must have strict schemas",
+        "Unstructured data is forbidden in lakehouses",
+        "Table structures are always enforced everywhere"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says warehouse features are imposed where needed, with other data left raw or unstructured."
+    },
+    {
+      "question": "Which lakehouse competitors to Delta Lake does the book name?",
+      "options": [
+        "Apache Hudi and Apache Iceberg",
+        "Apache Spark and Flink",
+        "Kafka and Pulsar",
+        "Memcached and Redis"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names Hudi and Iceberg as emerging lakehouse competitors."
+    },
+    {
+      "question": "How does the book characterize data platforms, and what is a concern about them?",
+      "options": [
+        "Vendors create ecosystems of interoperable tools tightly integrated with a core storage layer; tools outside the platform can still interoperate with extra overhead, and the race is on to create a \"walled garden\" of tools that simplifies work but generates vendor lock-in",
+        "Platforms always fully interoperate with zero overhead",
+        "Platforms never integrate with object storage",
+        "The data platform concept is fully settled"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the notion is not fully fleshed out and describes the walled-garden race and lock-in concern."
+    },
+    {
+      "question": "How does the stream-to-batch storage architecture work, and how does BigQuery's streaming buffer fit in?",
+      "options": [
+        "Data flowing through a topic is written to multiple consumers — some real-time processing systems and a batch storage consumer (e.g. Kinesis Firehose) for long-term retention; BigQuery ingests into a streaming buffer that is automatically reserialized into columnar object storage, queryable alongside object data",
+        "Streaming data is never persisted",
+        "Batch consumers cannot write to object storage",
+        "BigQuery never reserializes its streaming buffer"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes this Lambda-like architecture and BigQuery's streaming-buffer-to-columnar-object-storage flow."
+    },
+    {
+      "question": "What is a data catalog, and what does it typically integrate?",
+      "options": [
+        "A centralized metadata store for all data across an organization that integrates data lineage and presentation of data relationships, allows user editing of data descriptions, and works across operational and analytics data sources",
+        "A physical inventory of hard drives",
+        "A billing system for storage",
+        "A network monitoring tool"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines the data catalog as a centralized metadata store and describes its integration and editing capabilities."
+    },
+    {
+      "question": "How do cataloging systems collect metadata?",
+      "options": [
+        "They typically rely on an automated scanning layer that collects metadata from data lakes, warehouses, and operational databases, and may use scanning tools to infer metadata such as key relationships or the presence of sensitive data",
+        "They require manual entry of all metadata",
+        "They cannot scan data systems",
+        "They only infer relationships, never collect existing metadata"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes automated scanning to collect metadata and infer relationships or sensitive data."
+    },
+    {
+      "question": "What human access and social features do data catalogs typically provide?",
+      "options": [
+        "A web interface where users can search for data and view relationships, enhanced with a social layer offering wiki functionality for posting updates and requesting information",
+        "A command-line-only interface",
+        "No user-facing features",
+        "A physical binder of printouts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the web interface and wiki-based social layer of data catalogs."
+    },
+    {
+      "question": "What use cases does the book give for data catalogs?",
+      "options": [
+        "Technically, a key ingredient of the data lakehouse for table discoverability in queries; organizationally, letting business users, analysts, scientists, and engineers search for data and streamlining cross-organizational communication and collaboration",
+        "They are only used for billing",
+        "They cannot be used by business users",
+        "They replace all data storage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists both organizational and technical use cases for data catalogs."
+    },
+    {
+      "question": "How does data sharing work, and what security challenges does multitenancy introduce?",
+      "options": [
+        "Organizations share specific data and carefully defined permissions with specific entities, from sandbox collaboration to ad tech sharing with customers; multitenancy eases collaboration but requires careful control of sharing policies to prevent accidental exposure or deliberate exfiltration",
+        "Data sharing gives all users full access to everything",
+        "Multitenant environments have no security challenges",
+        "Sharing policies are unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes data sharing and the new security challenges of multitenant collaboration."
+    },
+    {
+      "question": "How does the book describe schema as a \"Rosetta stone,\" and what two major schema patterns exist?",
+      "options": [
+        "Schema functions as instructions that tell us how to read the data; the two major patterns are schema on write and schema on read",
+        "Schema is a physical storage format",
+        "Only one schema pattern exists",
+        "Schema can never change over time"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book calls schema a Rosetta stone and names schema on write and schema on read as the two patterns."
+    },
+    {
+      "question": "What is schema on write, and what does a data lake need to support it?",
+      "options": [
+        "The traditional data warehouse pattern where a table has an integrated schema and any writes must conform; to support it a data lake must integrate a schema metastore",
+        "A pattern where writes never conform to a schema",
+        "A pattern that requires no schema at all",
+        "A pattern that only works for unstructured data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines schema on write and the requirement of a schema metastore for lakes."
+    },
+    {
+      "question": "What is schema on read, and which file formats does the book recommend for it?",
+      "options": [
+        "The schema is dynamically created when data is written and a reader must determine it when reading; ideally implemented with formats carrying built-in schema information such as Parquet or JSON, with CSV notorious for schema inconsistency and not recommended",
+        "The schema is fixed at write time and never changes",
+        "Any format works equally well",
+        "CSV is the recommended format"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines schema on read and recommends self-describing formats like Parquet/JSON, avoiding CSV."
+    },
+    {
+      "question": "What are the principal advantages of schema on write versus schema on read?",
+      "options": [
+        "Schema on write enforces data standards making data easier to consume in the future; schema on read emphasizes flexibility allowing virtually any data to be written, at the cost of greater difficulty consuming data later",
+        "Schema on write is more flexible",
+        "Schema on read enforces stricter standards",
+        "The two patterns have identical trade-offs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts standards enforcement with flexibility and future consumption difficulty."
+    },
+    {
+      "question": "Why does colocation of compute and storage improve database performance?",
+      "options": [
+        "For transactional databases, data colocation allows fast, low-latency disk reads and high bandwidth; with HDFS and MapReduce, map jobs run locally on data blocks, preserving bandwidth for the reduce shuffle",
+        "Colocation always increases network traffic",
+        "Map jobs must read data over the network",
+        "Colocation has no performance effect"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes colocation's low-latency reads and the local map-step benefit that preserves shuffle bandwidth."
+    },
+    {
+      "question": "Why is it often cheaper to use ephemeral cloud compute rather than owning always-on hardware?",
+      "options": [
+        "It is cheaper to buy and host a server than rent it only if you run it 24/7 for years; workloads vary dramatically, so pay-as-you-go with scaling up and down realizes significant efficiencies",
+        "Renting is always more expensive",
+        "Workloads never vary",
+        "Cloud servers cannot scale"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains the economics: ownership wins only for constant utilization, while variable workloads favor pay-as-you-go."
+    },
+    {
+      "question": "How does the book describe the durability and availability benefits of cloud object stores, and what mitigations exist for misconfiguration risk?",
+      "options": [
+        "They store data across multiple zones so a destroyed zone still leaves data available and resources can be spun up elsewhere; misconfiguration risk can be mitigated by copying data to multiple regions and replicating to multiple storage providers",
+        "Object stores cannot survive any zone failure",
+        "Misconfiguration risk cannot be mitigated",
+        "Only single-zone storage is available"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes multizone durability and mitigations including multi-region copies and multi-provider replication."
+    },
+    {
+      "question": "What two ways does the book say engineers hybridize colocation and separation of compute and storage?",
+      "options": [
+        "Multitier caching and hybrid object storage",
+        "Deduplication and compression",
+        "Versioning and lifecycle policies",
+        "Encryption and masking"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names multitier caching and hybrid object storage as the two hybridization approaches."
+    },
+    {
+      "question": "What common hybrid pattern does the book describe for AWS EMR with S3 and HDFS?",
+      "options": [
+        "Stand up temporary HDFS clusters on SSDs, pull from S3, save intermediate processing data on local HDFS for performance, then write full results back to S3 and delete the cluster",
+        "Store all data permanently on HDFS only",
+        "Never use S3 during processing",
+        "Keep clusters running indefinitely"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes this EMR pattern: temporary HDFS on SSDs for intermediate steps, final results to S3, cluster deletion."
+    },
+    {
+      "question": "Why does Apache Spark benefit from separating compute and storage in the cloud?",
+      "options": [
+        "Spark relies heavily on in-memory storage and dynamic RAM is extremely expensive, so by separating compute and storage engineers can rent large quantities of memory and release it when the job completes",
+        "Spark cannot use memory at all",
+        "Spark requires permanently owned hardware",
+        "DRAM is free in the cloud"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the problem with owning Spark infrastructure is DRAM cost; separation lets engineers rent and release memory."
+    },
+    {
+      "question": "How does Apache Druid hybridize colocation and separation of compute and storage?",
+      "options": [
+        "It relies heavily on SSDs, keeps only one copy of data in its cluster to reduce live storage costs by a factor of three, and uses an object store as its durability layer from which data can be recovered to new nodes",
+        "It keeps three copies of everything on magnetic disks",
+        "It has no durability layer",
+        "It cannot recover data after node failure"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Druid's SSD-based single copy with object storage as the durability layer."
+    },
+    {
+      "question": "What examples of hybrid object storage does the book give?",
+      "options": [
+        "Google's Colossus file storage system with fine-grained control of data block location (used by BigQuery to colocate customer tables), and Amazon's S3 Select which filters data directly in S3 clusters before returning it across the network",
+        "Only on-premises SAN systems",
+        "Only tape archives",
+        "Only local instance stores"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Colossus/BigQuery colocation and S3 Select as hybrid object storage examples."
+    },
+    {
+      "question": "What does the book say about deep copying versus shallow (zero-copy) cloning in data lake management systems?",
+      "options": [
+        "Some technologies like Databricks also support deep copying, whereby all underlying data objects are copied — more expensive, but more robust if files are unintentionally lost or deleted",
+        "Deep copying is always free",
+        "Shallow copies are more robust than deep copies",
+        "Deep copying deletes the original data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts the robustness and cost of deep copying with shallow zero-copy cloning."
+    },
+    {
+      "question": "How does the book distinguish the data storage lifecycle from data retention?",
+      "options": [
+        "The data storage lifecycle asks how important the data is and how often downstream users need to access it; data retention asks how long the data should be kept — indefinitely or only past a certain timeframe",
+        "They are identical concepts",
+        "Retention is about access frequency",
+        "Lifecycle only concerns archival tiers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book poses \"How important is the data... and how often do they need to access it?\" as the storage lifecycle and \"How long should I keep this data?\" as retention."
+    },
+    {
+      "question": "What hardware and use cases does the book associate with hot data?",
+      "options": [
+        "Instant or frequent access requirements stored on fast media such as SSD or memory; examples include product recommendations, product page results, and query results caches",
+        "Data accessed once a month on archival tiers",
+        "Data stored on tape for compliance",
+        "Data never accessed after ingestion"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says hot data suits fast storage like SSD or memory and gives product recommendations and query results caches as examples."
+    },
+    {
+      "question": "What is a query results cache, and what benefit does the book describe?",
+      "options": [
+        "Query engines persist results so that running the same query again serves the cached results instead of rerunning against storage, allowing much faster response times",
+        "A cache that stores the entire database",
+        "A cache that only works for streaming queries",
+        "A cache that slows down repeated queries"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes query results caches serving cached results for repeated identical queries."
+    },
+    {
+      "question": "What characterizes warm data, and which storage tiers accommodate it?",
+      "options": [
+        "It is accessed semi-regularly, say once per month; major cloud providers offer tiers like S3's Infrequently Accessed tier and Google Cloud's Nearline, which are cheaper than hot storage with slightly more expensive retrieval",
+        "It is accessed every second and stored in RAM",
+        "It is never accessed and stored on tape",
+        "It requires the most expensive storage available"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines warm data as semi-regular access and cites S3 IA and Google Nearline as accommodating tiers."
+    },
+    {
+      "question": "What hardware and trade-offs does the book associate with cold data?",
+      "options": [
+        "Infrequently accessed data stored on cheap durable hardware such as HDD, tape, and cloud archival systems, mainly for long-term archival; storing is cheap but retrieving is often expensive",
+        "Frequently accessed data on SSDs",
+        "Data that must be retrieved instantly",
+        "Data stored only in memory"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says cold data hardware is cheap and durable (HDD, tape, cloud archival), with cheap storage but expensive retrieval."
+    },
+    {
+      "question": "What is the cost trade-off the book highlights between storing everything hot versus everything cold?",
+      "options": [
+        "Storing all data hot allows fast access but at a tremendous price; storing all data cold lowers storage costs but at the expense of prolonged retrieval times and high retrieval costs",
+        "Both extremes are equally expensive",
+        "Cold storage is always faster than hot storage",
+        "Storage tier has no effect on cost"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts the extremes of the hot/cold cost trade-off."
+    },
+    {
+      "question": "What does the book say about the history of cold storage and its cloud adoption?",
+      "options": [
+        "Historically it involved physical backups and mailing data to a third party that archived it in a literal vault; it is increasingly popular in the cloud, where you should weigh the cost of pushing data into cold storage versus the cost and time to retrieve it",
+        "Cold storage never existed before the cloud",
+        "Cloud cold storage is always free",
+        "Cold storage cannot store backups"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the physical vault history and the cloud cost/retrieval weighing."
+    },
+    {
+      "question": "What does the book say about spillover from hot to warm/cold storage?",
+      "options": [
+        "Memory is expensive and finite, so hot data in memory can be spilled to disk when there's too much new data; some databases move infrequently accessed data to warm or cold tiers on HDD or object storage, often automatically in managed cloud services",
+        "Hot data can never be moved to another tier",
+        "Spillover only happens on-premises",
+        "Managed services never spill data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes memory spillover to disk and automatic movement to warm/cold tiers, with managed services handling it automatically."
+    },
+    {
+      "question": "What lifecycle policy example does the book give for cloud object storage?",
+      "options": [
+        "Move data accessed only once a month to an infrequent access tier, and move data 180 days old and unused by current queries to an archival tier, automating migration away from regular object storage to save money while considering retrieval costs",
+        "Store all data in regular object storage forever",
+        "Delete all data after 24 hours",
+        "Never migrate data between tiers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives these exact lifecycle policy examples and warns to consider retrieval costs."
+    },
+    {
+      "question": "What consequences does the book associate with the early \"big data\" tendency to accumulate every piece of data?",
+      "options": [
+        "Data hoarding became unwieldy and dirty, giving rise to data swamps and regulatory crackdowns on data retention",
+        "It always produced clean, valuable datasets",
+        "It had no negative consequences",
+        "It reduced storage costs dramatically"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says data hoarding \"inevitably became unwieldy and dirty, giving rise to data swamps and regulatory crackdowns.\""
+    },
+    {
+      "question": "What questions does the book say to consider for data retention regarding value, time, and compliance?",
+      "options": [
+        "Value: is the data impossible to re-create and what's the impact if unavailable? Time: new data is typically more valuable, and hot data in cache/memory may need a time-to-live (TTL). Compliance: regulations like HIPAA and PCI may require keeping data or deleting it within specific timeframes",
+        "Value, time, and compliance are irrelevant to retention",
+        "Only storage cost matters",
+        "Regulations never require data deletion"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book discusses value, time, and compliance as retention considerations, including TTLs for hot data and HIPAA/PCI requirements."
+    },
+    {
+      "question": "Why might you set a time-to-live (TTL) on hot data stored in cache or memory?",
+      "options": [
+        "So you can expire data after a certain point or persist it to warm or cold storage; otherwise hot storage becomes full and queries suffer from performance lags",
+        "To prevent data from ever being deleted",
+        "To make hot storage cheaper",
+        "TTLs only apply to archival data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says without TTLs hot storage fills and queries lag, so TTLs expire or persist data."
+    },
+    {
+      "question": "What is single-tenant storage, and what trade-off does schema variation across tenants create?",
+      "options": [
+        "Each tenant gets dedicated storage (e.g. their own database) with no data shared; schema variation across tenants can be an advantage and a complication — querying multiple tenants' tables for a unified view becomes difficult if schemas aren't uniform",
+        "All tenants share one database with identical schemas",
+        "Single-tenant storage is never used",
+        "Schema variation has no consequences"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes single-tenant isolation and the schema-uniformity implications for unified views."
+    },
+    {
+      "question": "What is multitenant storage, and how does it differ from single-tenant storage?",
+      "options": [
+        "Multiple tenants reside within a single database, sharing the same schemas or tables, rather than each customer getting their own isolated database",
+        "Each tenant gets a dedicated database",
+        "Multitenant storage prohibits shared tables",
+        "Multitenant storage is identical to single-tenant storage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says multitenant storage houses multiple tenants in a single database's schemas or tables."
+    },
+    {
+      "question": "Who does the book say you'll interact with regarding storage infrastructure, and what should be defined?",
+      "options": [
+        "The people who own IT infrastructure — typically DevOps, security, and cloud architects; defining domains of responsibility between data engineering and other teams is critical, such as whether data engineers can deploy infrastructure in an AWS account",
+        "Only the CFO",
+        "Only external vendors",
+        "Nobody — storage is self-managed"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names DevOps, security, and cloud architects, and stresses defining responsibility domains."
+    },
+    {
+      "question": "How does the division of storage responsibilities vary with organizational data maturity?",
+      "options": [
+        "In an early-stage company the data engineer will likely manage the storage systems and workflow; in a later-stage company the data engineer will probably manage only a section of the storage system",
+        "Responsibilities are identical at every maturity stage",
+        "Data engineers never manage storage",
+        "Later-stage companies have no storage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the division depends significantly on the organization's data maturity."
+    },
+    {
+      "question": "How does the book frame security in the context of storage undercurrents?",
+      "options": [
+        "Security is a key enabler — robust security at rest and in motion with fine-grained access control lets data be shared and consumed more widely, increasing its value; engineers should exercise the principle of least privilege and pay attention to column, row, and cell-level access controls",
+        "Security is purely an impediment",
+        "Least privilege means granting full database access",
+        "Cell-level access controls are unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says security is an enabler, advises least privilege, and highlights column/row/cell-level controls."
+    },
+    {
+      "question": "What data-management practices does the book recommend for storage?",
+      "options": [
+        "Invest in metadata — cataloging enables discovery, lineage accelerates tracking down data problems and locating upstream raw sources, and integrating a data dictionary lets users share institutional knowledge; analytics over these systems gives an active picture of what's happening with data",
+        "Metadata is irrelevant to storage",
+        "Lineage slows down problem tracking",
+        "Data dictionaries are unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes cataloging, lineage, data dictionaries, and analytics over metadata for governance."
+    },
+    {
+      "question": "How does data versioning in object storage benefit ML engineering?",
+      "options": [
+        "It helps with error recovery when processes fail and data is corrupted, and tracks the history of datasets used to build models — just as code version control finds bug-causing commits, data version control helps track changes that lead to model performance degradation",
+        "Versioning only helps billing",
+        "Versioning has no ML use",
+        "Versioning prevents model training"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says data versioning aids error recovery and dataset history tracking, analogous to code version control."
+    },
+    {
+      "question": "How have privacy regulations like GDPR impacted storage system design?",
+      "options": [
+        "Any data with privacy implications has a lifecycle that data engineers must manage, including responding to data deletion requests and selectively removing data, with anonymization and masking accommodating privacy and security",
+        "Privacy regulations have no storage impact",
+        "Deletion requests are ignored",
+        "Masking is forbidden"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes managing privacy-data lifecycles, deletion requests, and anonymization/masking."
+    },
+    {
+      "question": "What monitoring responsibilities does the book assign to data engineers under DataOps?",
+      "options": [
+        "Monitoring infrastructure storage components where they exist, monitoring object storage and other serverless systems, and taking the lead on FinOps (cost management), security monitoring, and access monitoring, while actively observing data statistics and watching for anomalies or logical inconsistencies",
+        "Only monitoring CPU usage",
+        "Only checking network cables",
+        "Monitoring is not a data engineering task"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these monitoring duties including FinOps, security, access, and data-characteristic monitoring."
+    },
+    {
+      "question": "What data architecture tips does the book give for storage?",
+      "options": [
+        "Design for required reliability and durability, understand upstream source systems and how data will be stored and accessed, understand downstream data models and queries, negotiate storage with your provider for growth, take an active approach to FinOps, don't prematurely optimize, and lean toward fully managed systems while understanding provider SLAs",
+        "Never negotiate storage with providers",
+        "Prematurely optimize every detail",
+        "Avoid fully managed systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives these architecture tips including managed systems, SLAs, FinOps, and growth negotiation."
+    },
+    {
+      "question": "How does the book characterize the relationship between orchestration and storage?",
+      "options": [
+        "Storage allows data to flow through pipelines and orchestration is the pump; orchestration also helps engineers cope with complexity by potentially combining many storage systems and query engines",
+        "Orchestration and storage are unrelated",
+        "Orchestration replaces storage entirely",
+        "Storage makes orchestration impossible"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says orchestration is highly entangled with storage, with storage enabling flow and orchestration acting as the pump."
+    },
+    {
+      "question": "What software-engineering guidance does the book give in the context of storage?",
+      "options": [
+        "The code you write should perform well with your storage system and store data correctly without causing data/memory leaks or performance issues; define your storage infrastructure as code and use ephemeral compute resources for processing so you can spin resources up and down while keeping data in object storage",
+        "Code quality does not affect storage",
+        "Storage infrastructure should be manually configured",
+        "Ephemeral compute should never be used"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives both code-quality and infrastructure-as-code guidance with ephemeral compute."
+    }
+  ]
+}

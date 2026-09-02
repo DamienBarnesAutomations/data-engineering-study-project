@@ -1,0 +1,271 @@
+{
+  "title": "Appendix A — Serialization and Compression Technical Details: Key Terms",
+  "source_file": "appendix-a-serialization-and-compression-technical-details.md",
+  "question_count": 24,
+  "questions": [
+    {
+      "question": "What does serialization mean in the context of data engineering?",
+      "options": [
+        "The process of compressing data by removing redundancy and repetition from it.",
+        "The process of converting data into a format suitable for storage or transfer between systems.",
+        "The process of reading data from a stored format and converting it back into usable data.",
+        "The process of converting data from one storage format to another as it moves through a pipeline."
+      ],
+      "correctIndex": 1,
+      "explanation": "The appendix introduces serialization as a storage raw ingredient that converts data into a form that can be stored and transferred; it notes that serialization and compression algorithms go hand in hand."
+    },
+    {
+      "question": "What does deserialization mean in data engineering?",
+      "options": [
+        "The process of converting data into a compact binary format for storage or transfer.",
+        "The process of organizing data by column into its own set of files.",
+        "The process of reading a serialized format and converting it back into usable data.",
+        "The process of replacing repeated values in a column with tokens to compress it."
+      ],
+      "correctIndex": 2,
+      "explanation": "The appendix describes how engineers must deserialize data formats and handle exceptions, then clean up and convert the data for consistent, fast downstream processing."
+    },
+    {
+      "question": "What does reserialization refer to?",
+      "options": [
+        "The conversion of data from one serialization format to another as it moves through a pipeline.",
+        "Reading a compressed file and restoring it to its original uncompressed state.",
+        "Storing each column of a dataset into its own set of files.",
+        "Mapping each location in a JSON schema to a separate column."
+      ],
+      "correctIndex": 0,
+      "explanation": "The appendix states that as data moves through a pipeline, engineers manage reserialization, defined as conversion from one format to another."
+    },
+    {
+      "question": "What is row-based serialization?",
+      "options": [
+        "A serialization approach that stores each column into its own set of files.",
+        "A serialization format that keeps data in memory without any serialization overhead.",
+        "A technique for combining multiple serialization techniques in one table.",
+        "A serialization approach that organizes data by row, storing each object as a unit."
+      ],
+      "correctIndex": 3,
+      "explanation": "As its name suggests, row-based serialization organizes data by row; for semistructured data, row-oriented serialization entails storing each object as a unit, with CSV as an archetypal example."
+    },
+    {
+      "question": "What is CSV, and how is it characterized in the appendix?",
+      "options": [
+        "A columnar format designed for excellent read and write performance in a data lake.",
+        "The 'nonstandard standard' — a catchall for delimited text with flexible conventions for escaping, quote characters, and delimiters.",
+        "A binary row-oriented format whose schema metadata is specified in JSON.",
+        "A legacy markup language that is generally slow to deserialize."
+      ],
+      "correctIndex": 1,
+      "explanation": "The appendix calls CSV the 'nonstandard standard' and a catchall for delimited text, and warns that it is highly error-prone and delivers poor performance in pipelines."
+    },
+    {
+      "question": "What is JSONL (JSON Lines)?",
+      "options": [
+        "A binary serialization format that builds in schema information and natively supports nested data.",
+        "A row-oriented data format designed for RPCs with schema metadata in JSON.",
+        "A specialized version of JSON that stores a sequence of JSON objects delimited by line breaks.",
+        "A columnar storage format that was very popular for use with Apache Hive."
+      ],
+      "correctIndex": 2,
+      "explanation": "The appendix describes JSONL as a specialized version of JSON for storing bulk semistructured data in files, storing a sequence of JSON objects delimited by line breaks."
+    },
+    {
+      "question": "What is Avro?",
+      "options": [
+        "A columnar format that natively supports nested data and is portable across data lake tools.",
+        "A row-oriented data format designed for RPCs and data serialization that encodes data into binary with schema metadata specified in JSON.",
+        "A binary in-memory format used to avoid the overhead of serialization and deserialization.",
+        "A legacy markup language that is largely replaced by JSON."
+      ],
+      "correctIndex": 1,
+      "explanation": "The appendix defines Avro as a row-oriented data format designed for RPCs and data serialization that encodes data into a binary format, with schema metadata specified in JSON, popular in the Hadoop ecosystem."
+    },
+    {
+      "question": "What is columnar serialization?",
+      "options": [
+        "A serialization approach that pivots data organization by storing each column into its own set of files.",
+        "A serialization approach that stores complete relations or documents written sequentially into files.",
+        "A format that stores a sequence of JSON objects delimited by line breaks.",
+        "A technique for storing data in memory using a binary format that avoids serialization."
+      ],
+      "correctIndex": 0,
+      "explanation": "With columnar serialization, data organization is essentially pivoted by storing each column into its own set of files, allowing reads of only a subset of fields and reducing the data scanned per query."
+    },
+    {
+      "question": "What is Parquet?",
+      "options": [
+        "A row-oriented format designed for RPCs and data serialization.",
+        "A markup language now viewed as legacy and slow to deserialize.",
+        "A columnar format designed for excellent read and write performance in a data lake, with built-in schema information and native support for nested data.",
+        "A hybrid format that combines row-oriented and columnar serialization to support updates."
+      ],
+      "correctIndex": 2,
+      "explanation": "Parquet stores data in a columnar format designed for excellent read and write performance in a data lake; it builds in schema information, natively supports nested data unlike CSV, and is portable across tools."
+    },
+    {
+      "question": "What is ORC?",
+      "options": [
+        "A row-oriented binary serialization format designed for RPCs.",
+        "An in-memory binary format that avoids serialization and deserialization overhead.",
+        "A table management technology that supports time travel in a data lake.",
+        "Optimized Row Columnar — a columnar storage format similar to Parquet that was very popular for use with Apache Hive."
+      ],
+      "correctIndex": 3,
+      "explanation": "The appendix defines ORC (Optimized Row Columnar) as a columnar storage format similar to Parquet that was very popular with Apache Hive, though it now enjoys less support in modern cloud ecosystem tools."
+    },
+    {
+      "question": "What is Apache Arrow?",
+      "options": [
+        "A row-oriented text format for storing bulk semistructured data in files.",
+        "A binary data format suitable for both in-memory processing and export that avoids the overhead of serialization and deserialization.",
+        "A columnar format popular in the Hadoop ecosystem that is designed for RPCs.",
+        "A table management technology that tracks files in each table snapshot over time."
+      ],
+      "correctIndex": 1,
+      "explanation": "The idea of Apache Arrow is to rethink serialization by using a binary data format suitable for both in-memory processing and export, avoiding serialization/deserialization overhead by using the same format everywhere."
+    },
+    {
+      "question": "What is shredding in the context of Apache Arrow?",
+      "options": [
+        "A technique for breaking columnar files into many files so updates do not rewrite full columns.",
+        "The process of converting data from one format to another as it moves through a pipeline.",
+        "A technique for nested data that maps each location in the schema of a JSON document into a separate column.",
+        "A compression method that looks for repeated values and replaces them with tokens."
+      ],
+      "correctIndex": 2,
+      "explanation": "The appendix states that for nested data, Arrow uses a technique called shredding, which maps each location in the schema of JSON documents into a separate column."
+    },
+    {
+      "question": "What does the term hybrid serialization refer to?",
+      "options": [
+        "Technologies that combine multiple serialization techniques or integrate serialization with additional abstraction layers such as schema management.",
+        "Serialization that stores data in densely packed structures in memory for simple types.",
+        "Periodically combining row and columnar files into updated columnar files.",
+        "Storing each column in its own set of files for analytics queries."
+      ],
+      "correctIndex": 0,
+      "explanation": "The appendix uses hybrid serialization to refer to technologies that combine multiple serialization techniques or integrate serialization with additional abstraction layers, citing Apache Hudi and Apache Iceberg as examples."
+    },
+    {
+      "question": "What is Hudi?",
+      "options": [
+        "A columnar storage format similar to Parquet that was popular with Apache Hive.",
+        "Hadoop Update Delete Incremental — a table management technology that combines row-oriented and columnar serialization to support both analytics performance and atomic, transactional updates.",
+        "A binary in-memory serialization format used by the Dremio query engine.",
+        "A markup language used to exchange data with legacy systems."
+      ],
+      "correctIndex": 1,
+      "explanation": "Hudi (Hadoop Update Delete Incremental) combines multiple serialization techniques to allow columnar performance for analytics queries while supporting atomic, transactional updates, typically fed by a CDC stream from a transactional database."
+    },
+    {
+      "question": "What is Apache Iceberg?",
+      "options": [
+        "A row-oriented data format designed for RPCs and data serialization.",
+        "A compression algorithm that prioritizes speed and CPU efficiency over compression ratio.",
+        "A storage engine that supports fully pluggable storage, as in MySQL.",
+        "A table management technology that tracks all files making up a table, supports time travel and schema evolution, and can manage petabyte-scale tables."
+      ],
+      "correctIndex": 3,
+      "explanation": "Iceberg is a table management technology that can track all files that make up a table and files in each table snapshot over time, enabling time travel, schema evolution, and management of petabyte-scale tables."
+    },
+    {
+      "question": "What is a storage engine?",
+      "options": [
+        "The part of a database that executes queries against stored data.",
+        "A software layer, typically separate from the query engine, that manages how data is stored on disk, including serialization, the physical arrangement of data, and indexes.",
+        "A format for storing each column in its own set of files.",
+        "A table management technology that tracks table snapshots over time."
+      ],
+      "correctIndex": 1,
+      "explanation": "The storage engine is typically a separate software layer from the query engine that manages all aspects of how data is stored on disk, including serialization, the physical arrangement of data, and indexes."
+    },
+    {
+      "question": "What is the basic idea behind compression algorithms?",
+      "options": [
+        "Algorithms that convert data into a binary format with schema metadata specified in JSON.",
+        "Algorithms that organize data by column into separate files to allow subset reads.",
+        "Algorithms that look for redundancy and repetition in data, then reencode the data to reduce that redundancy.",
+        "Algorithms that map each location in a schema into a separate column."
+      ],
+      "correctIndex": 2,
+      "explanation": "Compression algorithms look for redundancy and repetition in data, then reencode the data to reduce redundancy; decompression reverses the algorithm to put the redundancy back in."
+    },
+    {
+      "question": "What is lossless compression?",
+      "options": [
+        "Compression that aims for sensory fidelity for audio, images, and video rather than an exact copy.",
+        "Compression where decompressing recovers a bit-for-bit exact copy of the original data.",
+        "Compression that prioritizes speed and CPU efficiency over compression ratio.",
+        "Compression achieved by replacing the most common words in text with shortened tokens."
+      ],
+      "correctIndex": 1,
+      "explanation": "The appendix notes that lossless compression recovers a bit-for-bit exact copy of the original data on decompression, and is the type used in serialization for analytics where exact data fidelity is required."
+    },
+    {
+      "question": "What is lossy compression?",
+      "options": [
+        "Compression that aims for sensory fidelity for audio, images, and video, where decompression does not produce an exact copy of the original.",
+        "Compression where decompressing recovers a bit-for-bit exact copy of the original data.",
+        "The compression used in serialization for analytics, where exact data fidelity is required.",
+        "A compression algorithm that can often realize compression ratios of 10:1 on text data."
+      ],
+      "correctIndex": 0,
+      "explanation": "Lossy compression algorithms for audio, images, and video aim for sensory fidelity; decompression recovers something that sounds like or looks like the original but is not an exact copy."
+    },
+    {
+      "question": "What is a compression ratio?",
+      "options": [
+        "The number of tokens used to replace common words in a text.",
+        "The amount of disk space saved by storing each column in its own files.",
+        "The ratio between the uncompressed size of data and its compressed size, for example 2:1 or 10:1 on text data.",
+        "The speed of a compression algorithm as measured by CPU efficiency."
+      ],
+      "correctIndex": 2,
+      "explanation": "The appendix gives examples of compression ratios, noting a naive token technique might realize 2:1 while sophisticated algorithms often realize 10:1 on text data."
+    },
+    {
+      "question": "What is gzip?",
+      "options": [
+        "A speed-optimized compression algorithm frequently used to compress data in data lakes or columnar databases.",
+        "A columnar serialization format designed for data lake environments.",
+        "A binary format for in-memory processing and export.",
+        "A traditional compression engine that compresses text data extremely well and is frequently applied to JSON, JSONL, XML, CSV, and other text-based formats."
+      ],
+      "correctIndex": 3,
+      "explanation": "Traditional compression engines such as gzip and bzip2 compress text data extremely well and are frequently applied to JSON, JSONL, XML, CSV, and other text-based data formats."
+    },
+    {
+      "question": "What is Snappy?",
+      "options": [
+        "A traditional compression engine frequently applied to text-based data formats such as JSON and CSV.",
+        "A speed-optimized compression algorithm that prioritizes speed and CPU efficiency over compression ratio and is popular for use with Parquet.",
+        "A columnar storage format similar to Parquet that was popular with Apache Hive.",
+        "A table management technology that supports time travel in a data lake."
+      ],
+      "correctIndex": 1,
+      "explanation": "Snappy is a speed-optimized compression algorithm especially popular with Parquet, part of a new generation of algorithms that prioritize speed and CPU efficiency over compression ratio."
+    },
+    {
+      "question": "What is Zstandard?",
+      "options": [
+        "A traditional compression engine that compresses text data extremely well.",
+        "A row-oriented serialization format designed for RPCs and data serialization.",
+        "A new-generation compression algorithm that prioritizes speed and CPU efficiency over compression ratio, frequently used to compress data in data lakes or columnar databases.",
+        "A technique for nested data that maps each location in a JSON schema into a separate column."
+      ],
+      "correctIndex": 2,
+      "explanation": "Zstandard is cited among new-generation compression algorithms (with Snappy, LZFSE, and LZ4) that prioritize speed and CPU efficiency over compression ratio, used to optimize for fast query performance in data lakes or columnar databases."
+    },
+    {
+      "question": "What is LZ4?",
+      "options": [
+        "A traditional compression engine frequently applied to text-based formats such as JSON, XML, and CSV.",
+        "A new-generation compression algorithm that prioritizes speed and CPU efficiency over compression ratio, used to compress data in data lakes or columnar databases.",
+        "A columnar serialization format that builds in schema information and natively supports nested data.",
+        "A table management technology that combines row-oriented and columnar serialization for transactional updates."
+      ],
+      "correctIndex": 1,
+      "explanation": "The appendix lists LZ4 among the major examples of new-generation compression algorithms that prioritize speed and CPU efficiency over compression ratio, frequently used in data lakes or columnar databases for fast query performance."
+    }
+  ]
+}

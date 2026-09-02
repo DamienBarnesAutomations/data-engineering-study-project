@@ -1,0 +1,502 @@
+{
+  "title": "Chapter 5 — Data Generation in Source Systems: Key Terms",
+  "source_file": "chapter-5-data-generation-in-source-systems.md",
+  "question_count": 45,
+  "questions": [
+    {
+      "question": "What is the term for 'data' as defined in the chapter?",
+      "options": [
+        "A sequence of bytes, typically stored on a disk, that applications write to.",
+        "An unorganized, context-less collection of facts and figures, created in both analog and digital ways.",
+        "Raw data communicated across two or more systems, typically through a message queue.",
+        "A structured collection of records stored in tables with a fixed schema."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter states that data is an unorganized, context-less collection of facts and figures, created in many ways both analog and digital."
+    },
+    {
+      "question": "What is a file, as described in the chapter?",
+      "options": [
+        "An unorganized, context-less collection of facts and figures.",
+        "A mechanism for asynchronously sending data between discrete systems.",
+        "A sequence of bytes, typically stored on a disk, that may store parameters, events, logs, images, and audio.",
+        "A database that stores the state of an application."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter defines a file as a sequence of bytes, typically stored on a disk, used by applications to store parameters, events, logs, images, and audio."
+    },
+    {
+      "question": "What is an application programming interface (API)?",
+      "options": [
+        "A standard way of exchanging data between systems.",
+        "A set of several changes committed as a single unit.",
+        "A sequence of bytes stored on a disk.",
+        "An append-only log of event records."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter describes APIs as a standard way of exchanging data between systems, though in practice many APIs still expose data complexity for engineers to manage."
+    },
+    {
+      "question": "What is an application database?",
+      "options": [
+        "A database built to run large analytics queries.",
+        "A nonrelational database that retrieves records using a unique key.",
+        "A message queue mechanism using a publish and subscribe model.",
+        "A database that stores the state of an application, such as account balances for bank accounts."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says an application database stores the state of an application, giving the example of a database that stores account balances for bank accounts."
+    },
+    {
+      "question": "What is OLTP (online transaction processing)?",
+      "options": [
+        "A database that reads and writes individual data records at a high rate, supporting low latency and high concurrency.",
+        "A database built to run large analytics queries that scan vast amounts of data.",
+        "A nonrelational database that stores data as nested JSON documents.",
+        "A mechanism to asynchronously send data between discrete systems."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter defines OLTP as a database that reads and writes individual data records at a high rate, with low latency and high concurrency, typically as an application backend."
+    },
+    {
+      "question": "What is OLAP (online analytical processing)?",
+      "options": [
+        "A database that reads and writes individual records at a high rate with low latency.",
+        "A database that stores the state of an application.",
+        "A system built to run large analytics queries, typically inefficient at handling lookups of individual records.",
+        "An append-only log of event records."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says an OLAP system is built to run large analytics queries and is typically inefficient at handling lookups of individual records, since it is optimized to scan large volumes of data."
+    },
+    {
+      "question": "What does ACID stand for?",
+      "options": [
+        "A method for extracting change events from a database.",
+        "Atomicity, consistency, isolation, and durability.",
+        "A database built to run large analytics queries.",
+        "An append-only log of event records."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter states that ACID stands for atomicity, consistency, isolation, and durability, a critical set of database characteristics that guarantee a consistent picture of the world."
+    },
+    {
+      "question": "What is an atomic transaction?",
+      "options": [
+        "A series of values organized by time.",
+        "A single SQL query that reads one record.",
+        "A mechanism for asynchronously sending data between systems.",
+        "A set of several changes that are committed as a unit, succeeding entirely or failing without updating anything."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter defines an atomic transaction as a set of several changes committed as a unit, illustrated by a bank transfer that updates both accounts or fails without updating either."
+    },
+    {
+      "question": "What does 'change data capture' (CDC) mean?",
+      "options": [
+        "A standard way of exchanging data between systems over HTTP.",
+        "A method for extracting each change event (insert, update, delete) that occurs in a database, often used to replicate between databases in near real time.",
+        "A strategy for ensuring data is not duplicated in multiple places.",
+        "A remote procedure call library developed at Google."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter defines CDC as a method for extracting each change event (insert, update, delete) that occurs in a database, frequently used to replicate between databases in near real time or create an event stream for downstream processing."
+    },
+    {
+      "question": "What is a log?",
+      "options": [
+        "A database that reads and writes individual records at a high rate.",
+        "A series of values organized by time.",
+        "A record that captures information about events that occur in systems, including at minimum who, what, and when.",
+        "A query language for application data created at Facebook."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says a log captures information about events that occur in systems, such as traffic patterns on a web server, and at minimum should capture who, what, and when."
+    },
+    {
+      "question": "What is a write-ahead log?",
+      "options": [
+        "A database log, typically a binary file in a database-native format, in which operations are stored before the server acknowledges a request, enabling recovery after failure.",
+        "A log that captures only errors and debugging messages.",
+        "A text-encoded log in a JSON serialization format.",
+        "An append-only log of event records used for message passing."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter explains that write-ahead logs, typically binary files in a database-native format, store each operation before the server acknowledges the request, so the database can recover its state on reboot after a failure."
+    },
+    {
+      "question": "What does 'log resolution' refer to?",
+      "options": [
+        "The conditions required to record a log entry, concerning errors and debugging.",
+        "The format in which a log is encoded.",
+        "The mechanism by which messages are delivered to subscribers.",
+        "The amount of event data captured in a log."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter defines log resolution as the amount of event data captured in a log; for example, database logs capture enough information to reconstruct the database state at any point in time."
+    },
+    {
+      "question": "What does CRUD stand for?",
+      "options": [
+        "A class of databases that abandon the relational paradigm.",
+        "A transactional pattern representing the four basic operations of persistent storage: create, read, update, and delete.",
+        "A set of several changes committed as a unit.",
+        "A strategy for ensuring data is not duplicated in multiple places."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says CRUD, which stands for create, read, update, and delete, is a transactional pattern representing the four basic operations of persistent storage and the most common pattern for storing application state."
+    },
+    {
+      "question": "What is the insert-only pattern?",
+      "options": [
+        "A pattern where records are updated in place to keep a single current version.",
+        "A pattern where only events are captured rather than current state.",
+        "A pattern that retains history directly in a table by inserting new records with a timestamp rather than updating existing records.",
+        "A pattern where data is purged after a record sunset date."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says the insert-only pattern retains history directly in a table: rather than updating records, new records are inserted with a timestamp, and the latest record under an ID gives the current state."
+    },
+    {
+      "question": "What is a message?",
+      "options": [
+        "Raw data communicated across two or more systems, typically sent through a message queue from a publisher to a consumer.",
+        "An append-only log of event records.",
+        "A set of several changes committed as a unit.",
+        "A sequence of bytes stored on disk."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter defines a message as raw data communicated across two or more systems, typically sent through a message queue and removed from the queue once delivered."
+    },
+    {
+      "question": "What is a stream?",
+      "options": [
+        "Raw data communicated between two systems and removed once delivered.",
+        "An append-only, ordered log of event records that persists over a long retention window and can be replayed.",
+        "A collection of related events in an event-streaming platform.",
+        "A mechanism to asynchronously send small messages between discrete systems."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter defines a stream as an append-only log of event records accumulated in an ordered sequence; records persist over a long retention window, allowing aggregations and rewinding to a point in time."
+    },
+    {
+      "question": "What is a message queue?",
+      "options": [
+        "An append-only log of event records retained for replay.",
+        "A nonrelational database that retrieves records using a unique key.",
+        "A database built to run large analytics queries.",
+        "A mechanism to asynchronously send data between discrete systems using a publish and subscribe model, buffering messages and making them durable."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says a message queue asynchronously sends data between discrete systems using a publish and subscribe model, buffers messages to handle load spikes, and makes messages durable through distributed replication."
+    },
+    {
+      "question": "What is an event-streaming platform?",
+      "options": [
+        "A system used to ingest and process data in an ordered log of records, retaining data for a while so messages can be replayed from a past point in time.",
+        "A mechanism to asynchronously send individual messages that are removed once delivered.",
+        "A database that reads and writes individual records at a high rate.",
+        "A query language for retrieving multiple data models in a single request."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says an event-streaming platform is used to ingest and process data in an ordered log of records, retaining data so it can be replayed from a past point in time, unlike a message queue."
+    },
+    {
+      "question": "In streaming, what is an event?",
+      "options": [
+        "A sequence of bytes typically stored on disk.",
+        "A written agreement between a source system owner and an ingestion team.",
+        "Something that happened, typically a change in the state of something, having a key, a value, and a timestamp.",
+        "A series of values organized by time."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter quotes an event as something that happened, typically a change in the state of something, with the features of a key, a value, and a timestamp."
+    },
+    {
+      "question": "What is a topic in an event-streaming platform?",
+      "options": [
+        "A subdivision of a stream into multiple streams for parallelism.",
+        "A collection of related events, with zero, one, or multiple producers and consumers.",
+        "A raw message sent between two systems.",
+        "A strategy for ensuring data is not duplicated."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says a producer streams events to a topic, a collection of related events such as fraud alerts, customer orders, or IoT temperature readings, which can have zero, one, or multiple producers and consumers."
+    },
+    {
+      "question": "What are stream partitions?",
+      "options": [
+        "A collection of related events.",
+        "The amount of event data captured in a log.",
+        "A mechanism for asynchronously delivering messages.",
+        "Subdivisions of a stream into multiple streams; messages with the same partition key always end up in the same partition."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter compares stream partitions to lanes on a multilane freeway, allowing parallelism and higher throughput; messages are distributed across partitions by partition key, so same-key messages stay together."
+    },
+    {
+      "question": "What is an idempotent system?",
+      "options": [
+        "A system that delivers each message exactly once.",
+        "A system where the outcome of processing a message once is identical to processing it multiple times.",
+        "A system that buffers messages to handle transient load spikes.",
+        "A system that guarantees strict FIFO message ordering."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says that in an idempotent system, the outcome of processing a message once is identical to processing it multiple times, gracefully handling scenarios such as a consumer failing right before acknowledging."
+    },
+    {
+      "question": "What is event time?",
+      "options": [
+        "The time when an event is generated in a source system, including the timestamp of the original event itself.",
+        "The time when an event is ingested into a message queue, cache, memory, or storage.",
+        "The time when data is processed, typically a transformation.",
+        "How long the data took to process."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says event time indicates when an event is generated in a source system, and an undetermined lag occurs before the event is ingested and processed downstream."
+    },
+    {
+      "question": "What is ingestion time?",
+      "options": [
+        "When an event is generated in a source system.",
+        "How long data took to process.",
+        "When an event is ingested from a source system into a message queue, cache, memory, object storage, a database, or any other place where data is stored.",
+        "The conditions required to record a log entry."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says ingestion time indicates when an event is ingested from source systems into a message queue, cache, memory, object storage, a database, or any other place data is stored."
+    },
+    {
+      "question": "What is process time (and processing time)?",
+      "options": [
+        "The time when an event is generated in a source system.",
+        "The time when an event is ingested into storage.",
+        "The amount of event data captured in a log.",
+        "The time after ingestion when data is processed, typically a transformation; processing time is how long the processing took."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says process time occurs after ingestion when data is processed (typically a transformation), while processing time is how long the data took to process."
+    },
+    {
+      "question": "What is a database management system (DBMS)?",
+      "options": [
+        "A class of databases that abandon the relational paradigm.",
+        "A database system used to store and serve data, consisting of a storage engine, query optimizer, disaster recovery, and other key components.",
+        "A database built to run large analytics queries.",
+        "A mechanism to asynchronously send data between systems."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter defines a DBMS as a database system used to store and serve data, comprising a storage engine, query optimizer, disaster recovery, and other key components for managing the database."
+    },
+    {
+      "question": "What is a relational database management system (RDBMS)?",
+      "options": [
+        "A database that stores data in tables of relations (rows), each with fields (columns), where every relation shares the same schema.",
+        "A database that stores data as nested JSON documents in collections.",
+        "A database that explicitly stores data as a set of nodes and edges.",
+        "A nonrelational database that retrieves records using a unique key."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says an RDBMS stores data in a table of relations (rows), each relation containing multiple fields (columns) with the same schema, and is typically ACID compliant."
+    },
+    {
+      "question": "What is a primary key?",
+      "options": [
+        "A field whose values connect to primary keys in other tables, facilitating joins.",
+        "A strategy for preventing data duplication.",
+        "A unique field for each row in a table, typically used to index the table.",
+        "A subdivision of a stream into multiple streams."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says tables are typically indexed by a primary key, a unique field for each row, with its indexing strategy closely connected to the table's layout on disk."
+    },
+    {
+      "question": "What is a foreign key?",
+      "options": [
+        "A unique field for each row in a table.",
+        "A field whose values are connected with the values of primary keys in other tables, facilitating joins.",
+        "A collection of related events.",
+        "A remote procedure call library built around Protocol Buffers."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says foreign keys are fields with values connected to primary keys in other tables, facilitating joins and allowing complex schemas spread across multiple tables."
+    },
+    {
+      "question": "What is normalization?",
+      "options": [
+        "A pattern where new records are inserted with timestamps rather than updated.",
+        "A method for extracting change events from a database.",
+        "A set of database characteristics guaranteeing consistency.",
+        "A strategy for ensuring data in records is not duplicated in multiple places, avoiding inconsistencies."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter defines normalization as a strategy for ensuring data in records is not duplicated in multiple places, avoiding the need to update states in multiple locations and preventing inconsistencies."
+    },
+    {
+      "question": "What does NoSQL mean?",
+      "options": [
+        "A class of databases, standing for 'not only SQL,' that abandon the relational paradigm and often drop strong consistency, joins, or a fixed schema.",
+        "A database that stores data in tables of rows and columns with a fixed schema.",
+        "A query language for application data created at Facebook.",
+        "An append-only log of event records."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says NoSQL, which stands for 'not only SQL,' refers to a whole class of databases that abandon the relational paradigm, typically also abandoning strong consistency, joins, or a fixed schema."
+    },
+    {
+      "question": "What is a key-value store?",
+      "options": [
+        "A database that stores nested JSON documents retrieved by key.",
+        "A database built to run large analytics queries.",
+        "A nonrelational database that retrieves records using a key that uniquely identifies each record, similar to a hash map or dictionary.",
+        "A database that stores data with a graph structure of nodes and edges."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter defines a key-value database as a nonrelational database that retrieves records using a key uniquely identifying each record, similar to a hash map or dictionary but potentially more scalable."
+    },
+    {
+      "question": "What is a document store?",
+      "options": [
+        "A nonrelational database optimized for massive data volumes with sub-10ms latency.",
+        "A specialized key-value store where documents, typically JSON objects, are stored in collections and retrieved by key.",
+        "A database that stores a series of values organized by time.",
+        "A database that stores data as a set of nodes and edges."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says a document store is a specialized key-value store where a document is a nested object, usually a JSON object, stored in collections and retrieved by key; a collection is roughly equivalent to a table."
+    },
+    {
+      "question": "What is a wide-column database?",
+      "options": [
+        "A database that stores nested JSON documents in collections.",
+        "A database used to search your data's semantic and structural characteristics.",
+        "A database that stores data with a mathematical graph structure.",
+        "A database optimized for storing massive amounts of data with high transaction rates and extremely low latency, supporting petabytes, millions of requests per second, and sub-10ms latency."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says wide-column databases are optimized for storing massive amounts of data with high transaction rates and extremely low latency, supporting petabytes of data, millions of requests per second, and sub-10ms latency."
+    },
+    {
+      "question": "What is a graph database?",
+      "options": [
+        "A database that stores a series of values organized by time.",
+        "A database that explicitly stores data with a mathematical graph structure of nodes and edges, ideal for analyzing connectivity between elements.",
+        "A database optimized for massive data volumes and low latency.",
+        "A database that stores nested JSON documents in collections."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says graph databases explicitly store data with a mathematical graph structure as a set of nodes and edges, and are a good fit when you want to analyze the connectivity between elements."
+    },
+    {
+      "question": "What is a search database?",
+      "options": [
+        "A database built to run large analytics queries.",
+        "A specialized key-value store for JSON documents.",
+        "A nonrelational database used to search your data's semantic and structural characteristics, commonly used for text search and log analysis.",
+        "A database that stores data as a set of nodes and edges."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter defines a search database as a nonrelational database used to search data's semantic and structural characteristics, with two prominent use cases: text search and log analysis."
+    },
+    {
+      "question": "What is a time series database?",
+      "options": [
+        "A database optimized for retrieving and statistically processing time-series data, which is a series of values organized by time.",
+        "A database that explicitly stores data as a set of nodes and edges.",
+        "A nonrelational database that retrieves records using a unique key.",
+        "A database used to search your data's semantic and structural characteristics."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says a time series is a series of values organized by time, and a time-series database is optimized for retrieving and statistically processing time-series data."
+    },
+    {
+      "question": "What is REST?",
+      "options": [
+        "A query language created at Facebook for retrieving multiple data models in one request.",
+        "A remote procedure call library developed at Google.",
+        "A simple event-based data-transmission pattern where the source calls an HTTP endpoint on the consumer.",
+        "A set of practices and philosophies, standing for representational state transfer, built around HTTP verbs such as GET and PUT, in which interactions are stateless."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says REST, which stands for representational state transfer, is the dominant API paradigm built around HTTP verbs such as GET and PUT, and one of its principal ideas is that interactions are stateless."
+    },
+    {
+      "question": "What is GraphQL?",
+      "options": [
+        "A set of practices for building HTTP APIs around verbs such as GET and PUT.",
+        "A query language created at Facebook for application data that allows retrieving multiple data models in a single request and is built around JSON.",
+        "A remote procedure call library built around Protocol Buffers.",
+        "A simple event-based data-transmission pattern called a reverse API."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says GraphQL was created at Facebook as a query language for application data, opening up the possibility of retrieving multiple data models in a single request, and is built around JSON."
+    },
+    {
+      "question": "What is a webhook?",
+      "options": [
+        "A remote procedure call used to run a procedure on a remote system.",
+        "A query language for application data created at Facebook.",
+        "A simple event-based data-transmission pattern in which events in the source system trigger a call to an HTTP endpoint hosted by the data consumer; often called a reverse API.",
+        "A set of practices for building stateless HTTP APIs."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says webhooks are a simple event-based data-transmission pattern where specified events trigger a call to an HTTP endpoint hosted by the data consumer; because the connection goes from source to sink, they are often called reverse APIs."
+    },
+    {
+      "question": "What is a remote procedure call (RPC)?",
+      "options": [
+        "A technique commonly used in distributed computing that allows you to run a procedure on a remote system.",
+        "A query language for application data created at Facebook.",
+        "A simple event-based data-transmission pattern.",
+        "A set of practices for building stateless HTTP APIs."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says a remote procedure call (RPC) is commonly used in distributed computing and allows you to run a procedure on a remote system."
+    },
+    {
+      "question": "What is gRPC?",
+      "options": [
+        "A set of practices for building stateless HTTP APIs.",
+        "A remote procedure call library developed at Google in 2015, built around the Protocol Buffers serialization standard and emphasizing efficient bidirectional data exchange over HTTP/2.",
+        "A query language for application data created at Facebook.",
+        "A simple event-based data-transmission pattern."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says gRPC is a remote procedure call library developed internally at Google in 2015, built around the Protocol Buffers serialization standard and emphasizing efficient bidirectional exchange of data over HTTP/2."
+    },
+    {
+      "question": "What is cloud data sharing?",
+      "options": [
+        "A written agreement between a source system owner and an ingestion team.",
+        "A method for extracting change events from a database.",
+        "A cloud concept in which a multitenant system supports security policies for sharing data among tenants, often enabling row, column, and sensitive data filtering.",
+        "A decentralized data management pattern."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says the core concept of cloud data sharing is that a multitenant system supports security policies for sharing data among tenants, and many platforms support row, column, and sensitive data filtering."
+    },
+    {
+      "question": "What is a data contract?",
+      "options": [
+        "A set of expectations for what you can expect from source systems.",
+        "A measure of performance against an SLA.",
+        "A collection of related events in an event-streaming platform.",
+        "A written agreement between the owner of a source system and the team ingesting data from that system, stating what data is extracted, via what method, how often, and who the contacts are."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter quotes James Denmore: a data contract is a written agreement between the owner of a source system and the team ingesting data, stating what data is extracted, via what method, how often, and who the contacts are."
+    },
+    {
+      "question": "What is an SLA, and what is an SLO?",
+      "options": [
+        "A written agreement between a source system owner and an ingestion team.",
+        "An SLA provides expectations of what you can expect from the source systems you rely upon, while an SLO (service-level objective) measures performance against what you agreed to in the SLA.",
+        "A method for extracting change events from a database.",
+        "A strategy for ensuring data is not duplicated in multiple places."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says an SLA provides expectations of what you can expect from the source systems you rely upon, and a service-level objective (SLO) measures performance against what you've agreed to in the SLA, such as 99% uptime."
+    }
+  ]
+}

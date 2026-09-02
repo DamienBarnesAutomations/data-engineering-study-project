@@ -1,0 +1,447 @@
+{
+  "title": "Chapter 4 — Choosing Technologies Across the Data Engineering Lifecycle: Key Terms",
+  "source_file": "chapter-4-choosing-technologies-across-the-data-engineering-lifecycle.md",
+  "question_count": 40,
+  "questions": [
+    {
+      "question": "What does 'interoperability' describe in the context of choosing data technologies?",
+      "options": [
+        "How various technologies or systems connect, exchange information, and interact with one another.",
+        "The total estimated cost of an initiative, including the direct and indirect costs of products and services utilized.",
+        "The software distribution model in which software and its underlying codebase are made freely available for general use.",
+        "Moving on-premises servers one by one to virtual machines in the cloud."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter defines interoperability as how various technologies or systems connect, exchange information, and interact, noting it is often a spectrum ranging from seamless integration to time-intensive manual configuration."
+    },
+    {
+      "question": "What is 'total cost of ownership' (TCO)?",
+      "options": [
+        "The cost of lost opportunities incurred in choosing a technology, an architecture, or a process.",
+        "The total estimated cost of an initiative, including the direct and indirect costs of the products and services utilized.",
+        "An up-front investment in hardware or software that is paid for today and depreciates over time.",
+        "Gradual expenses spread out over time, typically paid on a pay-as-you-go basis."
+      ],
+      "correctIndex": 1,
+      "explanation": "Total cost of ownership (TCO) is the total estimated cost of an initiative, including the direct and indirect costs of the products and services utilized."
+    },
+    {
+      "question": "What are 'direct costs' in the context of total cost of ownership?",
+      "options": [
+        "Costs that are independent of an initiative and must be paid regardless of where they are attributed.",
+        "Up-front capital outlays that are treated as assets and slowly depreciate over time.",
+        "Costs that can be directly attributed to an initiative, such as the salaries of a team working on it or the cloud bill for services consumed.",
+        "The cost of lost opportunities incurred in choosing a technology."
+      ],
+      "correctIndex": 2,
+      "explanation": "Direct costs can be directly attributed to an initiative; examples given are the salaries of a team working on the initiative or the AWS bill for all services consumed."
+    },
+    {
+      "question": "What are 'indirect costs,' also known as overhead?",
+      "options": [
+        "Costs that can be directly attributed to a specific initiative.",
+        "Gradual, pay-as-you-go expenses that are spread out over time.",
+        "The cost of lost opportunities incurred in choosing a technology.",
+        "Costs that are independent of an initiative and must be paid regardless of where they are attributed."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter states that indirect costs, also known as overhead, are independent of an initiative and must be paid regardless of where they are attributed."
+    },
+    {
+      "question": "What are 'capital expenses' (capex)?",
+      "options": [
+        "Expenses that require an up-front investment, such as purchasing hardware and software, paid for today and depreciated over time.",
+        "Expenses that are gradual and spread out over time on a pay-as-you-go basis.",
+        "The cost of lost opportunities incurred in choosing a technology.",
+        "The total estimated cost of an initiative, including direct and indirect costs."
+      ],
+      "correctIndex": 0,
+      "explanation": "Capital expenses (capex) require an up-front investment paid today, such as the large hardware and software acquisition contracts companies signed before the cloud existed, with the cost depreciating over time."
+    },
+    {
+      "question": "What are 'operational expenses' (opex)?",
+      "options": [
+        "Expenses that require a significant up-front capital outlay and depreciate over time.",
+        "Expenses that are gradual and spread out over time, often pay-as-you-go or consumption-based, offering more flexibility.",
+        "The total estimated cost of an initiative, including direct and indirect costs.",
+        "The cost of moving data out of a cloud platform."
+      ],
+      "correctIndex": 1,
+      "explanation": "Operational expenses (opex) are the opposite of capex in certain respects: gradual, spread out over time, pay-as-you-go, and closer to a direct cost, making them easier to attribute to a project."
+    },
+    {
+      "question": "What is 'total opportunity cost of ownership' (TOCO)?",
+      "options": [
+        "The total estimated cost of an initiative, including direct and indirect costs.",
+        "An up-front investment paid today that depreciates over time.",
+        "The cost of lost opportunities that you incur in choosing a technology, an architecture, or a process.",
+        "A fee charged for extracting data from a cloud platform."
+      ],
+      "correctIndex": 2,
+      "explanation": "Total opportunity cost of ownership (TOCO) is the cost of lost opportunities incurred in choosing a technology, architecture, or process; the chapter calls the failure to evaluate it a massive blind spot."
+    },
+    {
+      "question": "What is 'FinOps'?",
+      "options": [
+        "A cloud pricing model where resources are billed in per-second increments.",
+        "The practice of purchasing hardware up front and depreciating it over time.",
+        "A software distribution model in which the codebase is made freely available.",
+        "A practice that operationalizes financial accountability and business value by applying DevOps-like practices of monitoring and dynamically adjusting systems."
+      ],
+      "correctIndex": 3,
+      "explanation": "The goal of FinOps is to fully operationalize financial accountability and business value by applying DevOps-like practices of monitoring and dynamically adjusting systems; the book stresses that FinOps is about making money, not just saving it."
+    },
+    {
+      "question": "What are 'immutable technologies'?",
+      "options": [
+        "Technologies that tend to stay the same over long periods, such as object storage, networking, SQL, and the C programming language.",
+        "Technologies that come and go, following a trajectory of hype, growth, and decline into obscurity.",
+        "Managed cloud services that scale automatically from zero to high usage.",
+        "Proprietary technologies sold only by cloud vendors."
+      ],
+      "correctIndex": 0,
+      "explanation": "Immutable technologies underpin the cloud or are languages and paradigms that have stood the test of time; examples include object storage, networking, SQL, and bash."
+    },
+    {
+      "question": "What are 'transitory technologies'?",
+      "options": [
+        "Technologies that underpin the cloud and benefit from the Lindy effect.",
+        "Technologies that come and go, typically following a trajectory from a lot of hype and meteoric growth to a slow descent into obscurity.",
+        "Technologies managed entirely by a commercial vendor.",
+        "Technologies that require large up-front capital investments."
+      ],
+      "correctIndex": 1,
+      "explanation": "Transitory technologies come and go; the chapter cites the JavaScript frontend framework landscape as a classic example and notes that even Hive now appears primarily in legacy deployments."
+    },
+    {
+      "question": "What is the 'Lindy effect'?",
+      "options": [
+        "The tendency of vendors to lock customers into their cloud offerings.",
+        "The idea that once data lands in a cloud, the cost to extract it is very high.",
+        "The idea that the longer a technology has been established, the longer it will be used.",
+        "The practice of comparing ephemeral and non-ephemeral systems on a cost-per-second basis."
+      ],
+      "correctIndex": 2,
+      "explanation": "Immutable technologies benefit from the Lindy effect: the longer a technology has been established, the longer it will be used; the chapter suggests applying it as a litmus test for whether a technology is potentially immutable."
+    },
+    {
+      "question": "What is 'cargo-cult engineering'?",
+      "options": [
+        "Choosing technologies based on what looks best on a resume.",
+        "Designing new products to look like something familiar to accelerate adoption.",
+        "Moving on-premises servers one by one to virtual machines in the cloud.",
+        "Small data teams emulating the extremely complex technologies and practices of giant tech companies, generally wasting time and money."
+      ],
+      "correctIndex": 3,
+      "explanation": "Cargo-cult engineering is what happens when small data teams emulate the extremely complex technologies and practices of giant tech companies; the chapter calls it generally a big mistake that consumes valuable time and money."
+    },
+    {
+      "question": "What does the chapter say about the relationship between architecture and tools?",
+      "options": [
+        "Architecture is strategic (the what, why, and when) while tools are tactical (the how).",
+        "Architecture and tools are the same thing.",
+        "Tools are strategic and architecture is tactical.",
+        "Architecture should be selected only after choosing the tools."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter emphasizes that architecture is strategic, the high-level design, roadmap, and blueprint that satisfy strategic aims, while tools are tactical, the 'how' used to make the architecture a reality."
+    },
+    {
+      "question": "What does it mean to run technology 'on premises'?",
+      "options": [
+        "Renting hardware and managed services from a cloud provider.",
+        "A model where companies own their hardware, possibly in data centers they own or in leased colocation space, and are operationally responsible for it.",
+        "Deploying workloads to multiple public clouds.",
+        "Maintaining some workloads outside the cloud while running others in it."
+      ],
+      "correctIndex": 1,
+      "explanation": "On-premises systems mean companies own their hardware, which may live in data centers they own or leased colocation space, and they are operationally responsible for repair, replacement, and upgrade cycles."
+    },
+    {
+      "question": "What is 'the cloud' as a deployment model?",
+      "options": [
+        "Owning hardware that lives in the company's own data centers.",
+        "Deploying workloads across multiple public clouds.",
+        "Renting hardware and managed services from a cloud provider, often on an extremely short-term basis billed in per-second increments.",
+        "Running some workloads in the cloud and some outside it indefinitely."
+      ],
+      "correctIndex": 2,
+      "explanation": "The cloud flips the on-premises model on its head: instead of purchasing hardware, you rent hardware and managed services from a provider such as AWS, Azure, or Google Cloud, with resources billed in per-second increments."
+    },
+    {
+      "question": "What is a 'hybrid cloud' model?",
+      "options": [
+        "Deploying workloads to multiple public clouds at the same time.",
+        "Owning and operating all hardware in a company's own data centers.",
+        "Renting hardware and services from a single public cloud provider.",
+        "A model that assumes an organization will indefinitely maintain some workloads outside the cloud."
+      ],
+      "correctIndex": 3,
+      "explanation": "The hybrid cloud model assumes that an organization will indefinitely maintain some workloads outside the cloud, since virtually no business can migrate all of its workloads overnight."
+    },
+    {
+      "question": "What is 'multicloud'?",
+      "options": [
+        "Deploying workloads to multiple public clouds.",
+        "Maintaining some workloads outside the cloud indefinitely.",
+        "Owning hardware in leased colocation space.",
+        "Running all workloads on a single cloud platform."
+      ],
+      "correctIndex": 0,
+      "explanation": "Multicloud simply refers to deploying workloads to multiple public clouds, motivated by serving data near customers, regulatory requirements, or using best-of-breed services across several clouds."
+    },
+    {
+      "question": "What is 'infrastructure as a service' (IaaS)?",
+      "options": [
+        "Managed services that add sophisticated capabilities to support applications.",
+        "Cloud offerings such as VMs and virtual disks that are essentially rented slices of hardware.",
+        "Fully functioning enterprise software platforms like Salesforce or Fivetran.",
+        "Serverless functions that run on an as-needed basis."
+      ],
+      "correctIndex": 1,
+      "explanation": "The early cloud era was dominated by infrastructure as a service (IaaS), products such as VMs and virtual disks that are essentially rented slices of hardware."
+    },
+    {
+      "question": "What is 'platform as a service' (PaaS)?",
+      "options": [
+        "Rented slices of hardware such as VMs and virtual disks.",
+        "Fully functioning enterprise software platforms provided with little operational management.",
+        "Cloud offerings that include IaaS but add sophisticated managed services to support applications, such as managed databases and managed Kubernetes.",
+        "A software distribution model in which the codebase is freely available."
+      ],
+      "correctIndex": 2,
+      "explanation": "PaaS includes IaaS products but adds more sophisticated managed services to support applications, such as Amazon RDS, Amazon Kinesis, and Google Kubernetes Engine."
+    },
+    {
+      "question": "What is 'software as a service' (SaaS)?",
+      "options": [
+        "Rented slices of hardware such as virtual machines.",
+        "Managed services that support applications, such as managed databases.",
+        "A software distribution model in which the underlying codebase is freely available.",
+        "Cloud offerings that provide a fully functioning enterprise software platform with little operational management."
+      ],
+      "correctIndex": 3,
+      "explanation": "SaaS offerings move one additional step up the ladder of abstraction, providing a fully functioning enterprise software platform with little operational management; examples include Salesforce, Google Workspace, Microsoft 365, and Fivetran."
+    },
+    {
+      "question": "What does 'serverless' mean in practice?",
+      "options": [
+        "Products that offer automated scaling from zero to high usage, are billed on a pay-as-you-go basis, and let engineers operate without awareness of underlying servers, in practice meaning many invisible servers.",
+        "Long-running servers that are sized to handle full peak load at all times.",
+        "Hardware owned by the company and housed in its own data center.",
+        "A delivery model in which a vendor fully manages every aspect of a monolithic stack."
+      ],
+      "correctIndex": 0,
+      "explanation": "Serverless products generally offer automated scaling from zero to extremely high usage rates, are billed on a pay-as-you-go basis, and in practice usually mean many invisible servers rather than no servers at all."
+    },
+    {
+      "question": "What is 'function as a service' (FaaS)?",
+      "options": [
+        "A container management system for deploying microservices.",
+        "The wildly popular serverless flavor, exemplified by AWS Lambda, in which small chunks of code execute on an as-needed basis without managing a server.",
+        "A managed database service offered by cloud providers.",
+        "A software distribution model where the codebase is freely available."
+      ],
+      "correctIndex": 1,
+      "explanation": "The serverless trend kicked off in full force with AWS Lambda in 2014, promising to execute small chunks of code on an as-needed basis without having to manage a server, which is function as a service (FaaS)."
+    },
+    {
+      "question": "What is 'data gravity'?",
+      "options": [
+        "The idea that the longer a technology has been established, the longer it will be used.",
+        "The practice of keeping data on premises to avoid cloud egress costs.",
+        "The tendency that once data lands in a cloud, the cost to extract it and migrate processes can be very high.",
+        "A pricing model where resources are billed in per-second increments."
+      ],
+      "correctIndex": 2,
+      "explanation": "Data gravity is real: once data lands in a cloud, the cost to extract it and migrate processes can be very high, and vendors exploit this by making data ingress cheap or free while egress is expensive."
+    },
+    {
+      "question": "What are 'data egress fees'?",
+      "options": [
+        "Up-front fees for purchasing hardware and software.",
+        "Fees charged for renting virtual machines by the second.",
+        "Costs that must be paid regardless of where they are attributed.",
+        "Charges for getting data out of a cloud platform, which can be extremely expensive even though getting data in is cheap or free."
+      ],
+      "correctIndex": 3,
+      "explanation": "Getting data onto a cloud platform is cheap or free on most platforms, but getting data out can be extremely expensive; the chapter warns to be aware of data egress fees before being blindsided by a large bill."
+    },
+    {
+      "question": "What is 'cloud repatriation'?",
+      "options": [
+        "Moving cloud workloads back to on-premises servers, as discussed in 'The Cost of Cloud, a Trillion Dollar Paradox.'",
+        "Migrating on-premises workloads into the cloud.",
+        "Deploying the same workload to multiple public clouds.",
+        "Renting hardware from a cloud provider on a short-term basis."
+      ],
+      "correctIndex": 0,
+      "explanation": "Sarah Wang and Martin Casado's article was widely read as a call to repatriate cloud workloads to on-premises servers, though their actual argument was that companies should control cloud spending and consider repatriation as a possible option."
+    },
+    {
+      "question": "What is the 'build versus buy' debate about?",
+      "options": [
+        "The choice between a monolith and a modular architecture.",
+        "The age-old debate of whether to build a solution for end-to-end control or buy one given resource constraints and expertise, decided by TCO, TOCO, and competitive advantage.",
+        "The choice between running servers or using serverless functions.",
+        "The choice between a single cloud or multiple clouds."
+      ],
+      "correctIndex": 1,
+      "explanation": "Build versus buy comes down to TCO, TOCO, and whether the solution provides a competitive advantage; the book recommends investing in building only where it provides a competitive advantage and otherwise using what is already available."
+    },
+    {
+      "question": "What is 'open source software' (OSS)?",
+      "options": [
+        "Closed-source software sold by independent vendors.",
+        "Software that requires a large up-front license purchase.",
+        "A software distribution model in which software and its underlying codebase are made available for general use, typically under specific licensing terms, and free to use, change, and distribute with caveats.",
+        "A fully managed cloud service offered by a commercial vendor."
+      ],
+      "correctIndex": 2,
+      "explanation": "Open source software (OSS) is a software distribution model in which software and the underlying codebase are made available for general use under specific licensing terms, free to use, change, and distribute most of the time with caveats."
+    },
+    {
+      "question": "What is 'community-managed OSS'?",
+      "options": [
+        "OSS that a vendor hosts and manages as a cloud SaaS offering.",
+        "OSS that is only available under a paid commercial license.",
+        "Proprietary software offered by a cloud platform.",
+        "OSS created and maintained by a distributed community of collaborators, which succeeds with a strong community, mindshare, and maturity."
+      ],
+      "correctIndex": 3,
+      "explanation": "Community-managed OSS is a prevalent path for OSS projects, with communities opening up high rates of innovation and contributions from developers worldwide; factors to weigh include mindshare, maturity, and project management."
+    },
+    {
+      "question": "What is 'commercial OSS' (COSS)?",
+      "options": [
+        "A model where a vendor offers the core of the OSS for free while charging for enhancements, curated code distributions, or fully managed services.",
+        "OSS maintained only by a volunteer community with no commercial involvement.",
+        "Closed-source software sold by independent vendors.",
+        "A model where a cloud vendor offers a managed version of proprietary software."
+      ],
+      "correctIndex": 0,
+      "explanation": "Commercial OSS (COSS) is a model in which a vendor typically offers the core of the OSS for free while charging for enhancements, curated code distributions, or fully managed services; examples include Databricks, Confluent, and DBT Labs."
+    },
+    {
+      "question": "What is a 'proprietary walled garden'?",
+      "options": [
+        "Open source software with a vibrant community and transparent codebase.",
+        "A closed-source, non-OSS product sold by a vendor, offered either as an independent offering or a cloud platform proprietary service.",
+        "A model where the core of the software is free but enhancements are paid.",
+        "A software distribution model in which the codebase is freely available for general use."
+      ],
+      "correctIndex": 1,
+      "explanation": "Proprietary walled gardens are non-OSS technologies of two major types, independent offerings and cloud-platform offerings; although they lack the transparency of pure OSS solutions, they can work well as fully managed services in the cloud."
+    },
+    {
+      "question": "What is a 'monolithic' system?",
+      "options": [
+        "A system of decoupled, best-of-breed services communicating via APIs.",
+        "A distributed system whose services share a common set of dependencies or a common codebase.",
+        "A self-contained system that often performs multiple functions under a single system.",
+        "A system where each job runs on its own temporary, isolated cluster."
+      ],
+      "correctIndex": 2,
+      "explanation": "Monolithic systems are self-contained, often performing multiple functions under a single system; they are easy to reason about, but they are brittle, with tightly coupled parts, slow releases, and painful switching costs."
+    },
+    {
+      "question": "What is 'modularity' in data systems?",
+      "options": [
+        "A self-contained system performing multiple functions under a single entity.",
+        "A distributed system that still shares a common codebase and dependencies.",
+        "A system managed entirely by a single vendor.",
+        "Decoupled, best-of-breed technologies performing tasks at which they are uniquely great, with swappable components."
+      ],
+      "correctIndex": 3,
+      "explanation": "The modular camp leans toward decoupled, best-of-breed technologies performing tasks at which they are uniquely great; the book views data modularity as a more powerful paradigm than monolithic data engineering."
+    },
+    {
+      "question": "What is the 'distributed monolith pattern'?",
+      "options": [
+        "A distributed architecture that still suffers from many limitations of monolithic architecture because its services and nodes share a common set of dependencies or a common codebase.",
+        "A self-contained system performing multiple functions under one entity.",
+        "Decoupled services communicating via APIs with swappable components.",
+        "Ephemeral infrastructure where each job gets its own temporary cluster."
+      ],
+      "correctIndex": 0,
+      "explanation": "The distributed monolith pattern runs a distributed system with different services, but services and nodes share a common set of dependencies or a common codebase; the chapter cites traditional Hadoop clusters and Airflow as examples."
+    },
+    {
+      "question": "What are 'containers'?",
+      "options": [
+        "Systems that wrap up an entire operating system including its kernel.",
+        "Lightweight virtual machines that package an isolated user space, such as a filesystem and a few processes, many of which can coexist on a single host OS.",
+        "Managed database services offered by cloud providers.",
+        "A software distribution model with a freely available codebase."
+      ],
+      "correctIndex": 1,
+      "explanation": "Containers are often referred to as lightweight virtual machines: they package an isolated user space such as a filesystem and a few processes, providing virtualization benefits without the overhead of an entire OS kernel."
+    },
+    {
+      "question": "What is a 'container escape'?",
+      "options": [
+        "A container that shuts down automatically when not in use.",
+        "The process of migrating a container between hosts.",
+        "A class of exploits whereby code in a container gains privileges outside the container at the OS level.",
+        "A security feature that fully isolates containers from one another."
+      ],
+      "correctIndex": 2,
+      "explanation": "Container escape, broadly a class of exploits whereby code in a container gains privileges outside the container at the OS level, is common enough to be considered a risk for multitenancy."
+    },
+    {
+      "question": "What are the 'benchmark wars'?",
+      "options": [
+        "Competition among cloud vendors to offer best-of-breed services.",
+        "Debates over monolith versus modular architecture.",
+        "Comparisons of serverless versus server costs.",
+        "Flare-ups among major data vendors in which benchmarks compare databases optimized for completely different use cases or use test scenarios unrelated to real-world needs."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter notes a new round of benchmark wars among major data vendors and cautions that the data space is full of nonsensical benchmarks using tricks to place a thumb on the scale."
+    },
+    {
+      "question": "What is 'asymmetric optimization' in benchmarking?",
+      "options": [
+        "A benchmark trick where a vendor tunes its own system, such as preindexing joins, without applying comparable tuning to the competing database.",
+        "Comparing ephemeral and non-ephemeral systems on a cost-per-second basis.",
+        "Using benchmark datasets small enough to fit in SSD or memory.",
+        "Optimizing workloads to scale to zero when idle."
+      ],
+      "correctIndex": 0,
+      "explanation": "The deceit of asymmetric optimization often involves comparing a row-based MPP system against a columnar database on highly normalized data while juicing the vendor's own system with extra join optimization and not applying comparable tuning to the competitor."
+    },
+    {
+      "question": "What does 'caveat emptor' mean for evaluating data technology?",
+      "options": [
+        "Always choose the newest, most cutting-edge technology.",
+        "Let the buyer beware: do your homework before blindly relying on vendor benchmarks to evaluate and choose technology.",
+        "Buy all technology from a single cloud vendor to minimize lock-in.",
+        "Never benchmark technology before purchasing it."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter ends its benchmark discussion with caveat emptor, 'let the buyer beware,' urging engineers to do their homework rather than blindly relying on vendor benchmarks to evaluate and choose technology."
+    },
+    {
+      "question": "What is the 'curse of familiarity'?",
+      "options": [
+        "The Lindy effect applied as a litmus test for immutable technologies.",
+        "The tendency of vendors to lock customers into their offerings through data gravity.",
+        "The cognitive error of treating new technology as if it works just like familiar technology, even though new products are intentionally designed to look familiar to ease adoption.",
+        "The practice of comparing cloud and on-premises systems on a per-second basis."
+      ],
+      "correctIndex": 2,
+      "explanation": "The curse of familiarity is a broader issue in tech: many new technology products are intentionally designed to look familiar to facilitate ease of use and accelerate adoption, but they have subtleties users must learn; the belief that cloud services are just like on-premises servers is a widespread example."
+    },
+    {
+      "question": "What is 'undifferentiated heavy lifting'?",
+      "options": [
+        "Complex, customized work that gives your business a competitive advantage.",
+        "The work of running and maintaining on-premises servers.",
+        "The work of building proprietary walled gardens.",
+        "Unnecessarily complex work that adds little to no value and should be avoided by using off-the-shelf or managed solutions."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book urges eliminating undifferentiated heavy lifting, unnecessarily complex work that adds little to no value, by using open source or managed solutions and focusing customization on areas that provide a competitive advantage."
+    }
+  ]
+}

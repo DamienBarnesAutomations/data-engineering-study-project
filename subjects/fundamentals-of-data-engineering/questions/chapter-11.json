@@ -1,0 +1,624 @@
+{
+  "title": "Chapter 11 — The Future of Data Engineering: Quality Question Bank",
+  "source_file": "chapter-11-the-future-of-data-engineering.md",
+  "original_question_file": "chapter-11.json",
+  "question_count": 56,
+  "questions": [
+    {
+      "question": "The book rejects the idea that simpler data tools will make data engineers obsolete, using a mobile app developer analogy. What's the argument?",
+      "options": [
+        "Just as more sophisticated mobile OSes didn't eliminate mobile app developers but let them build higher-quality apps, easier data tools let data engineers move up the value chain rather than disappear",
+        "The book actually agrees that data engineers will become obsolete within a decade",
+        "The mobile analogy argues the opposite — that easier tools always eliminate the underlying engineering role",
+        "The book claims data engineering has already been fully replaced by AutoML tools"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"more sophisticated mobile operating systems and frameworks have not eliminated mobile app developers. Instead, mobile app developers can now focus on building better-quality, more sophisticated applications. We expect similar developments for data engineering.\""
+    },
+    {
+      "question": "Per the book's \"cloud-scale data OS\" analogy, what role do managed cloud data services (BigQuery, Snowflake, Lambda) play, compared to a traditional single-device OS?",
+      "options": [
+        "They function like operating system services (providing standardized functionality via APIs), but distributed across many machines rather than a single device",
+        "They are described as functionally unrelated to any operating system concept",
+        "The analogy claims cloud services eliminate the need for any orchestration whatsoever",
+        "The comparison is specifically to a database index, not to an operating system"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states these services \"resemble operating system services, but at a much larger scale, running across many machines rather than a single server.\""
+    },
+    {
+      "question": "What two ingredients does the book identify as key to a future data interoperability ecosystem?",
+      "options": [
+        "A shared batch interface layer via object storage with efficient file formats (like Parquet/Avro), and a metadata catalog describing schemas/hierarchies (a successor to tools like Hive Metastore)",
+        "A single proprietary vendor controlling every data format",
+        "Universal adoption of CSV as the sole data interchange format going forward",
+        "Elimination of all metadata in favor of purely raw binary storage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names \"object storage in the cloud\" with \"new generation file formats (such as Parquet and Avro)\" plus a metadata catalog as \"critical ingredient[s] of a data API ecosystem.\""
+    },
+    {
+      "question": "Why does the book predict next-generation orchestration platforms will need more than task scheduling?",
+      "options": [
+        "They'll need deeper data awareness (cataloging/lineage integration) plus infrastructure-as-code and deployment features, so missing infrastructure (e.g. a Snowflake database) gets provisioned automatically the first time a pipeline runs",
+        "The book predicts orchestration platforms will be entirely replaced by spreadsheets",
+        "Orchestration is described as becoming unnecessary once data volumes shrink",
+        "Future orchestration will handle only billing, with no role in infrastructure or data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book predicts orchestration platforms will \"build IaC capabilities... missing infrastructure and services... will be deployed the first time the pipeline runs,\" alongside deeper cataloging/lineage integration."
+    },
+    {
+      "question": "What does the book mean by data engineering becoming more \"enterprisey,\" and why does it push back on the term's negative connotations?",
+      "options": [
+        "Practices once reserved for huge companies — management, governance, operations — are becoming accessible to companies of all sizes; the authors clarify they don't mean bureaucratic red tape, just genuinely useful \"boring\" disciplines trickling downstream",
+        "\"Enterprisey\" is used exclusively to mean adopting waterfall project management",
+        "It means data engineering will only be practiced at large Fortune 500 companies going forward",
+        "The term is used ironically to predict the field's coming decline"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book clarifies: \"we're referring to some of the good things that larger companies do with data—management, operations, governance... Technologies and practices once reserved for giant organizations are trickling downstream.\""
+    },
+    {
+      "question": "What new hybrid role does the book predict will emerge between ML engineering and data engineering?",
+      "options": [
+        "An ML-focused engineer who builds systems automating model training, monitoring, and operationalization for well-understood model types, overlapping into data pipeline/quality monitoring, while ML engineers specialize into research-heavy model types",
+        "A role focused entirely on manual data entry that replaces both ML and data engineers",
+        "A purely managerial role carrying no technical responsibilities at all",
+        "A role that eliminates the need for any data pipeline monitoring going forward"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes this role as knowing \"algorithms, ML techniques, model optimization, model monitoring, and data monitoring,\" focused on operationalizing well-understood models while \"ML engineers will become more specialized to work on... less well understood\" ones."
+    },
+    {
+      "question": "How does the book contrast the \"modern data stack\" (MDS) with the \"live data stack\" it predicts will follow it?",
+      "options": [
+        "The MDS is essentially a cloud/SaaS repackaging of traditional batch data warehouse practices treating data as bounded; the live data stack treats data as a continuous, unbounded stream fused directly into applications",
+        "The MDS is described as inherently real-time, while the live data stack is described as purely batch-oriented",
+        "Both terms are described as functionally identical concepts marketed under different names",
+        "The live data stack is described as a step backward from the MDS toward on-premises hardware"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states the MDS \"limits itself to batch techniques that treat data as bounded. In contrast, real-time data applications treat data as an unbounded, continuous stream,\" fusing analytics and ML into applications."
+    },
+    {
+      "question": "What does the book provisionally call \"STL,\" and how does it relate to ETL/ELT?",
+      "options": [
+        "Stream, transform, and load — a shift back toward transforming data before loading it (like ETL), but in a continuous streaming context where extraction is an ongoing process rather than a discrete batch step",
+        "STL stands for \"storage, transformation, logging\" and is unrelated to ETL or ELT",
+        "STL means eliminating all transformation steps from the pipeline entirely",
+        "STL is described as a purely batch-only pattern with no streaming component"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"we expect a back-to-the-future moment for data transformations. We'll shift away from ELT... to something that looks more like ETL. We provisionally refer to this as stream, transform, and load (STL).\""
+    },
+    {
+      "question": "The book calls spreadsheets \"the dark matter of the data world.\" What does it mean, and why might a new category of tool emerge?",
+      "options": [
+        "An enormous amount of real analytics (financial reporting, supply chain, CRM) happens in spreadsheets outside sophisticated data systems, because spreadsheets offer interactivity BI tools haven't matched — the book predicts tools combining spreadsheet interactivity with cloud OLAP power",
+        "\"Dark matter\" means spreadsheet data is scientifically unmeasurable and therefore worthless",
+        "The book predicts spreadsheets will be banned from enterprise use entirely",
+        "It means spreadsheets are physically stored in a special, undetectable file format"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states spreadsheets handle \"financial reporting, supply-chain analytics, and even CRM\" invisibly to formal data systems, and predicts \"a new class of tools... that combines the interactive analytics capabilities of a spreadsheet with the backend power of cloud OLAP systems.\""
+    },
+    {
+      "question": "Why does the book expect the feedback loop between applications and ML to tighten over time?",
+      "options": [
+        "As data moves faster and applications integrate ML more deeply, systems can adapt in real time to changing data — creating a cycle of increasingly smart, adaptive applications and growing business value",
+        "The book expects ML feedback loops to lengthen as data volumes grow, not tighten",
+        "Tightening feedback loops are described as a purely theoretical, unrealizable goal",
+        "The book claims ML integration into applications is a fading, temporary trend"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"As data moves more quickly, the feedback loop between applications and ML will tighten... This creates a cycle of ever-smarter applications and increasing business value.\""
+    },
+    {
+      "question": "Why did the book's authors face pushback when writing about a field that changes so quickly?",
+      "options": [
+        "Friends asked \"How dare you write about a field that is changing so quickly?!\" — sifting through the noise to find the signal of what's unlikely to change was among the most challenging parts of writing the book",
+        "Nobody thought the field was changing at all",
+        "The authors were criticized for being too futuristic with no basis",
+        "The book was banned from publication"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the pushback and the challenge of finding what's unlikely to change."
+    },
+    {
+      "question": "What does the book say is likely to remain intact despite rapid technological change?",
+      "options": [
+        "The primary stages of the data engineering lifecycle will likely remain intact for many years, even though the order of operations and names of best practices and technologies might change",
+        "Every detail of current technology will persist unchanged",
+        "The lifecycle is expected to disappear entirely",
+        "Only undercurrents remain, never stages"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says lifecycle stages will remain intact even as practices and technologies change."
+    },
+    {
+      "question": "Why does the book say data engineering is one of the fastest-growing careers in technology?",
+      "options": [
+        "As companies realize they first need to build a data foundation before moving to \"sexier\" things like AI and ML, data engineering continues growing in popularity and importance, centered around the data engineering lifecycle",
+        "Because data engineering requires no foundation work",
+        "Because AI and ML need no data",
+        "Data engineering is a declining career"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book ties data engineering's growth to the need for a data foundation before AI/ML."
+    },
+    {
+      "question": "How do simplified, easy-to-use tools affect data engineering, and who can now do it?",
+      "options": [
+        "They lower the barrier to entry — a great thing given the data engineer shortage — and since the ascendance of SaaS-managed services removed the complexity of understanding big data systems, data engineering is now something all companies can do",
+        "Only large companies with deep pockets can do data engineering",
+        "Simplified tools make data engineering harder",
+        "Data engineering is dependent on a particular technology"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says simplified tools lower barriers and SaaS removed complexity, making data engineering accessible to all companies."
+    },
+    {
+      "question": "How does the book describe BigQuery as \"a victim of its extraordinary success\"?",
+      "options": [
+        "BigQuery, a descendant of GFS and MapReduce that can query petabytes of data, was once reserved for internal Google use but is now available to anybody with a GCP account, who simply pay for data stored and queried rather than building massive infrastructure",
+        "BigQuery is described as a failure",
+        "BigQuery can only be used by Google employees",
+        "BigQuery requires building massive infrastructure"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes BigQuery's democratization from internal Google tool to pay-as-you-go public service."
+    },
+    {
+      "question": "How has the cloud shifted the usage of open source tools, per the book?",
+      "options": [
+        "Many open source data tools are now available as managed cloud services competing directly with proprietary services — Linux preconfigured on cloud instances, managed Airflow like Cloud Composer, managed Kubernetes, and serverless platforms running Python/Java/Go",
+        "Open source still requires downloading and configuring everything yourself",
+        "Open source tools are unavailable in the cloud",
+        "Managed open source is never as easy as proprietary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes open source's shift to managed cloud services."
+    },
+    {
+      "question": "What does the book say about managed versus self-managed open source?",
+      "options": [
+        "In many cases managed open source is just as easy to use as proprietary competitors; companies with highly specialized needs can deploy managed open source, then move to self-managed open source later if they need to customize the underlying code",
+        "Managed open source is always harder than proprietary",
+        "Self-managed open source cannot be customized",
+        "Companies should never deploy managed open source"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the managed-to-self-managed path for specialized needs."
+    },
+    {
+      "question": "What does the book predict about API connectors and off-the-shelf data connectors?",
+      "options": [
+        "The new generation of managed connectors (e.g. Fivetran and Airbyte) is highly compelling because engineers recognize the value of recapturing time; API connectors will be an outsourced problem so data engineers can focus on unique business issues",
+        "Engineers will continue building all connectors by hand",
+        "Managed connectors are never worth using",
+        "Connector plumbing is the core of data engineering"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book predicts API connectors will be outsourced so engineers focus on business-specific issues."
+    },
+    {
+      "question": "What does the book say the intersection of competition in data tooling and a growing number of data engineers will produce?",
+      "options": [
+        "Data tools will continue decreasing in complexity while adding even more functionality and features, which will only grow the practice of data engineering as more companies discover value in data",
+        "Tools will grow more complex and less functional",
+        "The data engineering practice will shrink",
+        "Competition will eliminate innovation"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book predicts simpler tools with more features grow the practice."
+    },
+    {
+      "question": "How does the book describe how an application interacts with an operating system's services?",
+      "options": [
+        "An application doesn't directly access hardware; it sends commands to operating system services via standard APIs, and the OS orchestrates a boot process starting services in dependency order and maintains them by monitoring and restarting on failure",
+        "Applications directly access all hardware",
+        "The OS provides no orchestration",
+        "Services are never restarted after failure"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the OS service API model, boot orchestration, and service maintenance."
+    },
+    {
+      "question": "What did Benn Stancil call for, and what does the book predict about interoperability standards?",
+      "options": [
+        "Stancil called for standardized data APIs for building data pipelines and applications; the book predicts data engineering will gradually coalesce around a handful of data interoperability standards",
+        "Stancil called for eliminating all data APIs",
+        "The book predicts infinite proprietary standards",
+        "Interoperability standards are impossible"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Stancil's call and predicts coalescence around a few standards."
+    },
+    {
+      "question": "Why do new generation file formats like Parquet and Avro matter for cloud data interchange?",
+      "options": [
+        "They are taking over for cloud data interchange, significantly improving on the dreadful interoperability of CSV and the poor performance of raw JSON",
+        "They are worse than CSV",
+        "They cannot be used in the cloud",
+        "JSON outperforms them in every way"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says Parquet and Avro improve on CSV's interoperability and JSON's performance."
+    },
+    {
+      "question": "What role does a metadata catalog play, and what currently fills it?",
+      "options": [
+        "A metadata catalog describes schemas and data hierarchies and is a critical ingredient of a data API ecosystem; this role is largely filled by the legacy Hive Metastore, though new entrants are expected to take its place",
+        "Metadata catalogs are unnecessary",
+        "The role is filled by spreadsheets",
+        "Hive Metastore is described as the permanent future solution"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the metadata catalog's role and Hive Metastore's current position."
+    },
+    {
+      "question": "How does the book characterize Apache Airflow and its upcoming competition?",
+      "options": [
+        "Airflow has emerged as the first truly cloud-oriented data orchestration platform and will grow in capabilities building on its massive mindshare, while new entrants like Dagster and Prefect compete by rebuilding orchestration architecture from the ground up",
+        "Airflow is being abandoned",
+        "Dagster and Prefect copy Airflow exactly",
+        "Airflow cannot build on its mindshare"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Airflow's position and Dagster/Prefect's ground-up competition."
+    },
+    {
+      "question": "What does the book say about the future of streaming DAGs and managed stream processors?",
+      "options": [
+        "Tools like Apache Pulsar point toward streaming DAGs deployed with complex transformations using relatively simple code; managed stream processors like Kinesis Data Analytics and Dataflow have emerged, and a new generation of orchestration tools will manage, stitch together, and monitor them",
+        "Streaming DAGs will always be extremely complex",
+        "Pulsar cannot define DAGs",
+        "Managed stream processors are obsolete"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Pulsar's simplification and the emerging managed stream processor ecosystem."
+    },
+    {
+      "question": "How does the book respond to the term \"enterprise\" making readers cringe?",
+      "options": [
+        "The term conjures Kafkaesque nightmares of red tape and waterfall projects for some, but the authors mean the good things larger companies do with data — management, operations, governance — and note we're in the golden age of enterprisey data management tools",
+        "Enterprise always means bureaucracy and failure",
+        "The authors embrace all negative connotations",
+        "Enterprise refers only to Fortune 500 companies"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book reframes enterprisey as good large-company data practices trickling downstream."
+    },
+    {
+      "question": "What opportunities do the abstractions of data management, DataOps, and other undercurrents give data engineers?",
+      "options": [
+        "Data engineers working on new tooling find opportunities in these abstractions as data engineering becomes enterprisey",
+        "Undercurrents eliminate data engineer opportunities",
+        "Data engineers should avoid all abstractions",
+        "DataOps has no future role"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says enterprisey data engineering creates opportunities in undercurrent abstractions."
+    },
+    {
+      "question": "How does the book describe data scientists becoming data engineers?",
+      "options": [
+        "Many data scientists are transformed into data engineers through an organic process — tasked with doing data science but lacking the tools, they take on designing and building systems to serve the data engineering lifecycle",
+        "Data scientists never become data engineers",
+        "The transformation is always deliberate and formal",
+        "Only engineers become data scientists"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the organic transformation of data scientists into engineers."
+    },
+    {
+      "question": "How will simplification change how data scientists and data engineers spend their time?",
+      "options": [
+        "Data scientists will spend a smaller slice of time gathering and munging data, and data engineers will spend less time on low-level tasks like managing servers and configuration, making enterprisey data engineering more prevalent",
+        "Both will spend more time on low-level tasks",
+        "Data scientists will munge data more",
+        "Low-level management will grow"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book predicts simplification reduces low-level work for both roles."
+    },
+    {
+      "question": "What does the book predict about the intersection of software engineering and data engineering?",
+      "options": [
+        "Data applications blending traditional software with analytics will drive the trend — software engineers will need a much deeper understanding of data engineering, developing expertise in streaming, data pipelines, data modeling, and data quality",
+        "The two fields will remain fully separate",
+        "Software engineers need no data skills",
+        "Data applications will disappear"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book predicts software engineers will need deeper data engineering knowledge."
+    },
+    {
+      "question": "What does the book say about the \"throw it over the wall\" approach and the future of team integration?",
+      "options": [
+        "We will move beyond the throw-it-over-the-wall approach — data engineers will be integrated into application development teams, software developers will acquire data engineering skills, and boundaries between backend and data engineering tools will be lowered via streaming and event-driven architectures",
+        "Throw-it-over-the-wall will persist",
+        "Data engineers will be excluded from app teams",
+        "Backend boundaries will grow"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book predicts integration of data engineers into application teams and lowered boundaries."
+    },
+    {
+      "question": "What does the book applaud the modern data stack (MDS) for?",
+      "options": [
+        "Bringing a great selection of powerful data tools to the masses, lowering prices, and empowering data analysts to take control of their data stack — with ELT, cloud data warehouses, and SaaS data pipelines changing the game",
+        "Increasing prices and restricting access",
+        "Limiting analysts' control",
+        "Eliminating data tools"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book applauds the MDS for democratizing powerful tools and empowering analysts."
+    },
+    {
+      "question": "What limitation does the book identify with the MDS?",
+      "options": [
+        "The MDS is basically a repackaging of old data warehouse practices using modern cloud and SaaS technologies, and because it's built around the cloud data warehouse paradigm, it has serious limitations compared to next-generation real-time data applications",
+        "The MDS is too real-time",
+        "The MDS has no limitations",
+        "The MDS is purely on-premises"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the MDS as a bounded-batch repackaging with limitations versus real-time apps."
+    },
+    {
+      "question": "How does the book say analytics will be affected by automation?",
+      "options": [
+        "In many cases analytics (BI and operational analytics) will be replaced by automation — most dashboards answer what/when questions, and if the resulting action is repetitive, it's a candidate for automation",
+        "Analytics will never be automated",
+        "All dashboards are irreplaceable",
+        "Automation only applies to batch data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says repetitive what/when actions are automation candidates."
+    },
+    {
+      "question": "What examples does the book give of true real-time data applications, and what makes them feel like magic?",
+      "options": [
+        "TikTok, Uber, Google, and DoorDash deliver actions at the click of a button while performing extremely sophisticated data processing and ML behind the scenes with miniscule latency",
+        "These apps do no data processing",
+        "These apps run only batch analytics",
+        "Their magic comes from no ML at all"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book cites these apps as true real-time data applications."
+    },
+    {
+      "question": "How does the book say the sophistication behind elite tech companies' real-time apps will spread?",
+      "options": [
+        "This sophistication is becoming democratized, similar to the way the MDS brought cloud-scale data warehouses and pipelines to the masses — the data world will soon go live",
+        "It will remain locked away at large tech companies",
+        "Democratization is impossible",
+        "Only the MDS can be democratized"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the democratization of real-time sophistication."
+    },
+    {
+      "question": "What will the live data stack fuse, and how does it cover the data lifecycle?",
+      "options": [
+        "The live data stack fuses real-time analytics and ML into applications using streaming technologies, covering the full data lifecycle from application source systems to data processing to ML, and back",
+        "It only covers storage",
+        "It excludes ML entirely",
+        "It only handles batch data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the live data stack's fusion and full-lifecycle coverage."
+    },
+    {
+      "question": "What two core technologies does the book say will facilitate the move from the MDS to the live data stack?",
+      "options": [
+        "Streaming pipelines and real-time analytical databases",
+        "Batch warehouses and CSV files",
+        "On-premises servers and tapes",
+        "Spreadsheets and email"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names streaming pipelines and real-time analytical databases as the two core technologies."
+    },
+    {
+      "question": "How have streaming systems frequently been treated up to the present, and what does the book predict?",
+      "options": [
+        "Streaming has frequently been treated like an expensive novelty or a dumb pipe for moving data from A to B, but in the future it will radically transform organizational technology and business processes with data architects and engineers taking the lead",
+        "Streaming is already fully mature",
+        "Streaming will fade away",
+        "Streaming has no business utility"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes streaming's past treatment and future transformative role."
+    },
+    {
+      "question": "What do real-time analytical databases enable, and what constraints do they remove?",
+      "options": [
+        "They enable both fast ingestion and subsecond queries on data, which can be enriched or combined with historical datasets — no longer constrained by slow-running ELT processes, 15-minute updates, or other slow-moving parts",
+        "They only support slow batch loads",
+        "They cannot combine historical data",
+        "ELT constraints will always apply"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes real-time analytical databases' fast ingestion/query and constraint removal."
+    },
+    {
+      "question": "How does the book say batch ingestion will eventually be viewed?",
+      "options": [
+        "As streaming ingestion becomes more prevalent, batch ingestion will be less common — we'll eventually look at batch ingestion the same way we now look at dial-up modems",
+        "Batch ingestion will dominate forever",
+        "Batch is the future standard",
+        "Dial-up modems are the model to emulate"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book compares batch ingestion's future to dial-up modems."
+    },
+    {
+      "question": "Why won't batch transformations entirely go away?",
+      "options": [
+        "Batch will still be very useful for model training, quarterly reporting, and more, even though streaming transformation will become the norm",
+        "Batch will be eliminated entirely",
+        "Model training only works with streaming",
+        "Quarterly reporting needs streaming"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says batch remains useful for model training and reporting."
+    },
+    {
+      "question": "What does the book say about data warehouses and lakes versus low-latency data?",
+      "options": [
+        "While the data warehouse and data lake are great for housing large amounts of data and performing ad hoc queries, they are not so well optimized for low-latency data ingestion or queries on rapidly moving data",
+        "Warehouses are ideal for low-latency ingestion",
+        "Lakes are optimized for rapid queries",
+        "Warehouses and lakes handle all workloads perfectly"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes warehouses/lakes are not optimized for low-latency streaming."
+    },
+    {
+      "question": "Which purpose-built streaming OLAP databases does the book name as leading the way?",
+      "options": [
+        "Druid, ClickHouse, Rockset, and Firebolt",
+        "Only PostgreSQL and MySQL",
+        "Only Hadoop and Hive",
+        "Only SQL Server and Oracle"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names Druid, ClickHouse, Rockset, and Firebolt."
+    },
+    {
+      "question": "Why does the book say data modeling is ripe for disruption?",
+      "options": [
+        "There hasn't been serious innovation since the early 2000s, and traditional batch-oriented modeling techniques aren't suited for streaming data — new modeling will occur in the systems that generate the data via an upstream definitions layer",
+        "Data modeling is fully mature",
+        "Batch modeling works perfectly for streaming",
+        "No innovation is possible"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the lack of innovation and the streaming mismatch."
+    },
+    {
+      "question": "What does the book expect the next revolution to be?",
+      "options": [
+        "The fusion of the application and data layers — right now applications sit in one area and the MDS in another, requiring lots of duct tape; soon application stacks will be data stacks and vice versa",
+        "Further separation of applications and data",
+        "More duct tape between systems",
+        "The elimination of data stacks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book predicts the fusion of application and data layers."
+    },
+    {
+      "question": "How will the fusion of applications and data affect the data engineering lifecycle?",
+      "options": [
+        "The lifecycle won't necessarily change, but the time between stages will drastically shorten, and applications will integrate real-time automation and decision making powered by streaming pipelines and ML",
+        "The lifecycle will be eliminated",
+        "Stages will take much longer",
+        "Automation will be removed"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the lifecycle stays but stage times drastically shorten."
+    },
+    {
+      "question": "What emerging technologies does the book suggest paying attention to?",
+      "options": [
+        "Emerging database technologies designed to address the mix of OLTP and OLAP use cases, and feature stores which may play a similar role for ML use cases",
+        "Only batch warehouses",
+        "Only spreadsheet tools",
+        "No new technologies matter"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book highlights hybrid OLTP/OLAP databases and feature stores."
+    },
+    {
+      "question": "Why is ML well-suited for high-volume, high-velocity data scenarios?",
+      "options": [
+        "ML is well-suited for scenarios where data is generated at such a high rate and volume that humans cannot feasibly process it by hand — and as data sizes and velocity grow, this applies to every scenario",
+        "ML only suits tiny datasets",
+        "Humans can always process data by hand",
+        "ML is unsuited to fast data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says ML suits high-rate/volume data beyond human processing."
+    },
+    {
+      "question": "Why has the BI tool ecosystem failed to displace spreadsheets?",
+      "options": [
+        "BI tools have failed to bring comparable interactivity to databases — users interacting with the UI are typically limited to slicing and dicing within certain guardrails, not general-purpose programmable analytics",
+        "BI tools offer full programmability",
+        "Spreadsheets are hard to use",
+        "BI tools are more interactive than spreadsheets"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says BI tools haven't matched spreadsheet interactivity and programmability."
+    },
+    {
+      "question": "What does the book predict about the winner of the spreadsheet-plus-cloud-OLAP category?",
+      "options": [
+        "A new class of tools will combine the interactive analytics capabilities of a spreadsheet with the backend power of cloud OLAP systems; the ultimate winner may continue to use spreadsheet paradigms or define entirely new interface idioms",
+        "The winner will be a pure spreadsheet",
+        "No tools will emerge",
+        "The winner must use code-only interfaces"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book predicts a spreadsheet-cloud-OLAP hybrid category with uncertain interface idioms."
+    },
+    {
+      "question": "How does the book describe the confidence level of its predictions?",
+      "options": [
+        "Some predictions sit on relatively secure footing (simplification of managed tooling, enterprisey data engineering), while others are much more speculative (the live data stack), and the real-time trend may stall with other trends unidentified",
+        "All predictions are guaranteed",
+        "None of the predictions are grounded",
+        "The future is fully predictable"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book distinguishes secure-footing predictions from speculative ones."
+    },
+    {
+      "question": "What does the book advise readers to do to continue exploring data engineering?",
+      "options": [
+        "Continue the conversation as part of a community, identify domain experts, read the latest books/blog posts/papers, participate in meetups, ask questions, share expertise, and watch vendor announcements with a healthy grain of salt",
+        "Work in isolation",
+        "Ignore the community",
+        "Believe all vendor claims"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends community, experts, reading, meetups, and skeptical vendor watching."
+    },
+    {
+      "question": "What larger goals does the book say data engineers should not lose sight of?",
+      "options": [
+        "Focus on the lifecycle, on serving your customers — internal and external — on your business, on serving, and on your larger goals",
+        "Only on technology trends",
+        "Only on individual tools",
+        "On nothing beyond immediate tasks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to keep the lifecycle and customer/business goals in focus."
+    },
+    {
+      "question": "How does the book say technology trends are defined, and what is as critical as tool creation?",
+      "options": [
+        "Technology trends are defined not only by those who create the underlying technology but also by those who adopt it and put it to good use — successful tool use is as critical as tool creation",
+        "Only creators define trends",
+        "Tool use is unimportant",
+        "Adoption never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book emphasizes adoption and practical application alongside creation."
+    },
+    {
+      "question": "What does the book say will materialize the live data stack as a new industry standard?",
+      "options": [
+        "Find opportunities to apply real-time technology that will improve the user experience, create value, and define entirely new types of applications — it is this kind of practical application that will materialize the live data stack, or perhaps some other trend wins the day",
+        "Only technology creators determine this",
+        "Practical application is irrelevant",
+        "No application can drive standards"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says practical application of real-time technology materializes the live data stack."
+    }
+  ]
+}

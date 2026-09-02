@@ -1,0 +1,282 @@
+{
+  "title": "Module 3 — Key Terms",
+  "source_file": "M3.1.md, M3.2.md, M3.4.md",
+  "question_count": 25,
+  "questions": [
+    {
+      "question": "Because there is always some degree of processing and network latency involved, real-time analytics is also known as what?",
+      "options": [
+        "Near real-time analytics",
+        "Batch analytics",
+        "Historical analytics",
+        "Snapshot analytics"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.1 states that real-time analytics is also known as near real-time analytics, since there is always some degree of processing and network latency involved."
+    },
+    {
+      "question": "In Real-Time Intelligence, what is a stream?",
+      "options": [
+        "A single digital record or log entry that documents an activity",
+        "A sequence of events, typically ordered by the time an event occurred",
+        "A static snapshot of historical data stored in a database",
+        "A scheduled batch job that processes data on an interval"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.1 defines a stream as essentially a sequence of events, typically ordered by the time an event occurred, and events flow through streams continuously as they occur."
+    },
+    {
+      "question": "In the context of real-time analytics, what is an event?",
+      "options": [
+        "A record of something that happens in a system, capturing moments when something occurs, changes, or is completed",
+        "A sequence of data points ordered by the time they occurred",
+        "A transformation applied to data as it flows through a pipeline",
+        "A storage container optimized for time-series data"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.1 describes events as records of things that happen in a system; they capture moments when something occurs, changes, or is completed, such as website clicks, stock price changes, or sensor readings."
+    },
+    {
+      "question": "Which Real-Time Intelligence component stores real-time data in KQL (Kusto Query Language) databases?",
+      "options": [
+        "Eventhouse",
+        "Eventstream",
+        "Real-Time hub",
+        "Activator"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.1 states Real-Time Intelligence stores data in KQL databases in Eventhouses, which are designed for time-series data and fast ingestion of streaming data, with storage integrated with OneLake."
+    },
+    {
+      "question": "What is the primary purpose of the Real-Time hub in Microsoft Fabric?",
+      "options": [
+        "A central location to discover and manage all of the data-in-motion you have access to",
+        "A workspace for running and managing queries against KQL databases",
+        "A tool for transforming and aggregating data as it flows through an eventstream",
+        "An engine that triggers automated actions based on user-defined rules"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.1 describes the Real-Time hub as a central location where you can discover and manage all of the data-in-motion that you have access to, and think of it as your streaming data catalog."
+    },
+    {
+      "question": "What is an update policy in a KQL database in an Eventhouse?",
+      "options": [
+        "An automation mechanism triggered when new data is written to a table that runs a query to transform ingested data and saves the result to a destination table",
+        "A transformation applied during stream processing before data is routed to a destination",
+        "A precomputed aggregation that updates automatically as new data arrives",
+        "A rule that sends notifications when monitored values exceed a threshold"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.1 defines update policies as automation mechanisms triggered when new data is written to a table; they run a query to transform ingested data and save the result to a destination table, unlike eventstream transformations that occur during stream processing."
+    },
+    {
+      "question": "When routing eventstream data to a Lakehouse destination, what happens to the real-time events?",
+      "options": [
+        "They are converted into Delta Lake format and stored in designated lakehouse tables",
+        "They are stored as-is in a KQL database for querying with Kusto Query Language",
+        "They are sent to an external system or custom application outside Microsoft Fabric",
+        "They are routed to Activator to trigger automated actions"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.2 explains the Lakehouse destination gives you the ability to transform your real-time events before ingesting them, where real-time events are converted into Delta Lake format and then stored in designated lakehouse tables."
+    },
+    {
+      "question": "What is a derived stream in an Eventstream?",
+      "options": [
+        "A transformed version of your original data stream that enables content-based routing",
+        "A KQL query saved for future use and sharing with others",
+        "A visualization tile that displays streaming data in a dashboard",
+        "A custom endpoint that routes data to an external application"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.2 describes derived streams as transformed versions of your original data stream that enable content-based routing, letting you route subsets of data to different destinations based on the content of the data."
+    },
+    {
+      "question": "Which Eventstream transformation creates a new row for each value within an array?",
+      "options": [
+        "Expand",
+        "Union",
+        "Join",
+        "Aggregate"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.2 states the Expand transformation is an array transformation used to create a new row for each value within an array."
+    },
+    {
+      "question": "What does the Union transformation do in an eventstream?",
+      "options": [
+        "Connects two or more nodes and adds events with shared fields (same name and data type) into one table, dropping fields that don't match",
+        "Combines data from two streams based on a matching condition between them",
+        "Creates a new row for each value within an array",
+        "Calculates an aggregation such as Sum, Minimum, Maximum, or Average over a period of time"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.2 explains the Union transformation connects two or more nodes and adds events with shared fields (with the same name and data type) into one table; fields that don't match are dropped and not included in the output."
+    },
+    {
+      "question": "Which Eventstream transformation supports tumbling windows (fixed intervals) and sliding windows (overlapping intervals)?",
+      "options": [
+        "Group by",
+        "Filter",
+        "Manage fields",
+        "Join"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.2 states the Group by transformation calculates aggregations across events within time windows and supports various time windows including tumbling windows (fixed intervals) and sliding windows (overlapping intervals)."
+    },
+    {
+      "question": "How do KQL databases organize data to make recent data quickly accessible?",
+      "options": [
+        "They automatically partition data by ingestion time",
+        "They partition data alphabetically by table name",
+        "They keep a single flat table and scan all data for each query",
+        "They partition data randomly across storage locations"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.3 states KQL databases automatically partition data by ingestion time, making recent data quickly accessible while storing historical data for trend analysis, so queries for recent data know exactly where to search."
+    },
+    {
+      "question": "Why is real-time data in a KQL database described as immutable time-series data?",
+      "options": [
+        "Events can't be changed once they've occurred and follow an append-only pattern",
+        "Events can be freely updated and deleted after they are ingested",
+        "Events are stored in traditional relational tables with relationships",
+        "Events are only kept for a short period before being overwritten"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.3 explains immutable means events can't be changed once they've occurred, and time-series data follows an append-only pattern where new events are continuously added and data is rarely updated or deleted."
+    },
+    {
+      "question": "What do database shortcuts in an Eventhouse allow you to do?",
+      "options": [
+        "Query data from external KQL databases as if the data were stored locally, without actually copying the data",
+        "Copy data from one KQL database into another eventhouse for local storage",
+        "Create a real-time dashboard that connects directly to a KQL database",
+        "Transform ingested data before it lands in a destination table"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.3 states database shortcuts let you query data from external KQL databases in other eventhouses or Azure Data Explorer databases as if the data were stored locally, without actually copying the data."
+    },
+    {
+      "question": "Which statement about Kusto Query Language (KQL) is true?",
+      "options": [
+        "KQL is case-sensitive for everything including table names, column names, function names, operators, keywords, and string values",
+        "KQL is case-insensitive for table names but case-sensitive for column names",
+        "KQL ignores case for all identifiers except string values",
+        "KQL requires all queries to be written in uppercase"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.3 states KQL is case-sensitive for everything including table names, column names, function names, operators, keywords, and string values, so all identifiers must match exactly."
+    },
+    {
+      "question": "A materialized view in a KQL database consists of which two parts that work together to provide current results?",
+      "options": [
+        "A materialized part (precomputed aggregation results) and a delta (new data since the last background update)",
+        "A source table and a destination table",
+        "A filter operator and a project operator",
+        "An ingestion-time index and a storage partition"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.3 explains a materialized view consists of a materialized part with precomputed aggregation results from processed data and a delta with new data that has arrived since the last background update; the system combines both parts at query time."
+    },
+    {
+      "question": "What is a stored function in KQL?",
+      "options": [
+        "A query encapsulated as a function, with optional parameters, that can be reused across multiple queries",
+        "A precomputed aggregation that automatically updates as new data arrives",
+        "A rule that triggers actions when property values meet conditions",
+        "A visualization that renders query results as charts or tables"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.3 states KQL includes the ability to encapsulate a query as a function with optional parameters, so you can repeat the same query with variable values and reuse filtering or transformation logic across different queries."
+    },
+    {
+      "question": "Which join optimization is recommended for efficient KQL queries?",
+      "options": [
+        "Put the smaller table first when joining",
+        "Put the larger table first so more rows are matched",
+        "Always project all columns before joining",
+        "Avoid filtering before the join operation"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.3 explains when joining tables, KQL processes the first table to match with the second, so starting with a smaller table means fewer rows to process, making the join more efficient."
+    },
+    {
+      "question": "What are the two authorization options available when connecting a Real-Time Dashboard to a data source?",
+      "options": [
+        "Pass-through identity and dashboard editor's identity",
+        "Public access and private access",
+        "Reader role and contributor role",
+        "Row-level security and column-level security"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.4 states when connecting a dashboard to a data source you can use pass-through identity, where each person accesses data using their own permissions, or the dashboard editor's identity, where everyone uses the creator's permissions."
+    },
+    {
+      "question": "What is the purpose of base queries in a Real-Time Dashboard?",
+      "options": [
+        "Retrieve a general set of records relevant for multiple tiles so tile-specific queries can filter or group the data",
+        "Set the default refresh rate for the dashboard",
+        "Define the authorization identity for the dashboard",
+        "Configure pages that group related tiles into logical containers"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.4 explains base queries retrieve a general set of records relevant for multiple tiles, helping you avoid duplicating the same logic across multiple tiles by referencing one base query."
+    },
+    {
+      "question": "In Real-Time Dashboard auto refresh, what can editors set to manage system performance and prevent users from refreshing too frequently?",
+      "options": [
+        "A minimum refresh rate",
+        "A maximum number of pages",
+        "A default number of tiles",
+        "A maximum query timeout"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.4 states dashboard editors can set a default refresh rate and also set a minimum refresh rate to manage system performance and prevent users from refreshing too frequently."
+    },
+    {
+      "question": "Activator operates based on which four core concepts?",
+      "options": [
+        "Events, Objects, Properties, and Rules",
+        "Sources, Transformations, Destinations, and Actions",
+        "Pages, Tiles, Parameters, and Queries",
+        "Monitors, Conditions, Filters, and Alerts"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.1 states Activator operates based on four core concepts: Events (each record in a stream), Objects (business entities), Properties (fields mapped to object state), and Rules (conditions under which actions are triggered)."
+    },
+    {
+      "question": "In Activator summarization, what do the window size and step size settings control?",
+      "options": [
+        "Window size is how much historical data to include and step size is how often to recalculate",
+        "Step size is how much historical data to include and window size is how often to recalculate",
+        "Window size is the threshold value and step size is the summarization method",
+        "Step size is the action type and window size is the property being monitored"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.5 explains window size controls how much historical data to include (e.g., 10 minutes of temperature readings) and step size controls how often to recalculate (e.g., every 5 minutes for near real-time monitoring)."
+    },
+    {
+      "question": "Which detection approaches does the Condition section in Activator support?",
+      "options": [
+        "Threshold monitoring, change detection, range monitoring, and missing data",
+        "Filter, manage fields, aggregate, and group by",
+        "Email, Teams, Power Automate, and Fabric item actions",
+        "Pages, tiles, parameters, and base queries"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.5 lists the detection approaches in the Condition section: threshold monitoring (alert when values cross safety limits), change detection (monitor trends), range monitoring (track entry/exit from safe zones), and missing data (catch sensor failures)."
+    },
+    {
+      "question": "Which four types of actions does Activator offer when rule conditions are met?",
+      "options": [
+        "Email actions, Teams actions, Power Automate actions, and Fabric item actions",
+        "Filter, aggregate, group by, and join transformations",
+        "Sources, destinations, derived streams, and custom endpoints",
+        "Pages, tiles, base queries, and parameters"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.5 states Activator offers four types of actions: Email actions (detailed information for later review), Teams actions (immediate messages for quick response), Power Automate actions (multi-step business processes), and Fabric item actions (execute data pipelines or notebooks)."
+    }
+  ]
+}

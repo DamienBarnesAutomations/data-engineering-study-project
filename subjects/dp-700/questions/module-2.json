@@ -1,0 +1,623 @@
+{
+  "title": "Module 2 — Quality Question Bank",
+  "source_file": "M2.1.md, M2.2.md, M2.4.md, M2.7.md",
+  "question_count": 56,
+  "questions": [
+    {
+      "question": "What storage technology is OneLake built on?",
+      "options": [
+        "Azure Blob Storage",
+        "Azure Data Lake Storage Gen2",
+        "Amazon S3",
+        "Azure Table Storage"
+      ],
+      "correctIndex": 1,
+      "explanation": "OneLake is built on Azure Data Lake Storage Gen2 (ADLS Gen2) and supports formats including Delta, Parquet, CSV, and JSON."
+    },
+    {
+      "question": "How do shortcuts allow access to external data in Fabric?",
+      "options": [
+        "By copying data into OneLake on a schedule",
+        "By converting data to Delta format",
+        "By referencing data without copying it",
+        "By duplicating data into each workspace"
+      ],
+      "correctIndex": 2,
+      "explanation": "Shortcuts are references to files or storage locations within OneLake or external sources such as ADLS, Amazon S3, or Dataverse, letting you access existing data without copying it."
+    },
+    {
+      "question": "What is the centralized location for Fabric administration?",
+      "options": [
+        "Power BI service settings",
+        "The OneLake catalog",
+        "The Admin portal",
+        "Workspace settings"
+      ],
+      "correctIndex": 2,
+      "explanation": "Fabric administration is centralized in the Admin portal, where you manage groups, permissions, data sources, gateways, and monitor usage and performance."
+    },
+    {
+      "question": "Which administrator role has implicit Fabric admin rights through organization-wide permissions?",
+      "options": [
+        "Fabric administrator",
+        "Power Platform administrator",
+        "Global administrator",
+        "Capacity administrator"
+      ],
+      "correctIndex": 2,
+      "explanation": "The Global administrator has implicit Fabric admin rights through organization-wide permissions, while Fabric and Power Platform administrators manage specific settings."
+    },
+    {
+      "question": "What are the four roles used to manage workspace access?",
+      "options": [
+        "admin, contributor, member, and viewer",
+        "owner, editor, member, and reader",
+        "admin, developer, analyst, and viewer",
+        "administrator, editor, contributor, and auditor"
+      ],
+      "correctIndex": 0,
+      "explanation": "Workspace access is managed through four roles: admin, contributor, member, and viewer, which apply to all items in a workspace."
+    },
+    {
+      "question": "Which Fabric workload is designed to process, monitor, and analyze streaming data?",
+      "options": [
+        "Data Engineering",
+        "Real-Time Intelligence",
+        "Data Factory",
+        "Data Warehouse"
+      ],
+      "correctIndex": 1,
+      "explanation": "Real-Time Intelligence is the workload for processing, monitoring, and analyzing streaming data."
+    },
+    {
+      "question": "What is the core item of the Fabric IQ workload?",
+      "options": [
+        "The semantic model",
+        "The ontology",
+        "The graph database",
+        "The Delta table"
+      ],
+      "correctIndex": 1,
+      "explanation": "Fabric IQ's core item is the ontology, which defines business concepts, relationships, and rules so AI agents can reason using consistent business language."
+    },
+    {
+      "question": "Which IQ workload connects structured and unstructured data across Azure, SharePoint, OneLake, and the web?",
+      "options": [
+        "Fabric IQ",
+        "Work IQ",
+        "Foundry IQ",
+        "Data IQ"
+      ],
+      "correctIndex": 2,
+      "explanation": "Foundry IQ connects structured and unstructured data across Azure, SharePoint, OneLake, and the web so agents can access permission-aware enterprise knowledge."
+    },
+    {
+      "question": "What does a lakehouse in Microsoft Fabric combine?",
+      "options": [
+        "A data warehouse and a SQL database",
+        "The flexible storage of a data lake and the analytical capabilities of a data warehouse",
+        "A data warehouse and a streaming platform",
+        "A data lake and a data catalog"
+      ],
+      "correctIndex": 1,
+      "explanation": "A lakehouse combines the flexible and scalable storage of a data lake with the ability to query and analyze data like a data warehouse."
+    },
+    {
+      "question": "Which statement about the Tables folder in a lakehouse is correct?",
+      "options": [
+        "It stores files in any native format without a schema",
+        "It cannot be queried with SQL",
+        "It contains Delta Lake tables that support SQL, schemas, and ACID transactions",
+        "It is read-only for all users"
+      ],
+      "correctIndex": 2,
+      "explanation": "The Tables folder contains Delta Lake tables that support SQL queries through the SQL analytics endpoint, enforce schemas, support ACID transactions, and can be accessed in Power BI."
+    },
+    {
+      "question": "Which schema is created automatically when you create a lakehouse with schemas enabled?",
+      "options": [
+        "sales",
+        "hr",
+        "dbo",
+        "default"
+      ],
+      "correctIndex": 2,
+      "explanation": "When you create a lakehouse, schemas are enabled by default and a schema named dbo is created automatically."
+    },
+    {
+      "question": "What is the format of the four-part namespace used for cross-workspace queries?",
+      "options": [
+        "schema.workspace.lakehouse.table",
+        "lakehouse.workspace.schema.table",
+        "workspace.lakehouse.schema.table",
+        "table.schema.lakehouse.workspace"
+      ],
+      "correctIndex": 2,
+      "explanation": "Schema-enabled lakehouses support cross-workspace queries using the four-part namespace workspace.lakehouse.schema.table."
+    },
+    {
+      "question": "What capabilities does the SQL analytics endpoint provide?",
+      "options": [
+        "Full read-write access to lakehouse data",
+        "Read-only T-SQL querying with views, functions, and SQL security",
+        "Only a visual query editor",
+        "Write access limited to Dataflows Gen2"
+      ],
+      "correctIndex": 1,
+      "explanation": "The SQL analytics endpoint queries Delta tables using T-SQL in read-only mode; you can create views, functions, and apply SQL security, but you cannot modify the underlying data."
+    },
+    {
+      "question": "Which no-code option in the lakehouse explorer creates a Delta table from a file?",
+      "options": [
+        "Dataflows Gen2",
+        "Upload",
+        "Load to Table",
+        "Copy Data activity"
+      ],
+      "correctIndex": 2,
+      "explanation": "Load to Table is a no-code option that supports Parquet and CSV files and lets you append or overwrite data in new or existing tables."
+    },
+    {
+      "question": "When accessing data through a shortcut to another OneLake location, how does OneLake authorize access?",
+      "options": [
+        "Using a shared service principal",
+        "Using the current user's identity",
+        "Using the shortcut owner's credentials",
+        "Using a stored connection string"
+      ],
+      "correctIndex": 1,
+      "explanation": "When you access data through a shortcut to another OneLake location, OneLake uses your identity to authorize access, so you must have permissions in the target location."
+    },
+    {
+      "question": "What mode does Power BI use by default when you build reports on a lakehouse semantic model?",
+      "options": [
+        "Import mode",
+        "Live connection",
+        "Direct Lake mode",
+        "DirectQuery"
+      ],
+      "correctIndex": 2,
+      "explanation": "Power BI uses Direct Lake mode by default, reading data directly from Delta Lake Parquet files without importing or copying data."
+    },
+    {
+      "question": "What are the two kinds of nodes in a Fabric Spark pool?",
+      "options": [
+        "A head node and multiple worker nodes",
+        "A driver node and multiple gateway nodes",
+        "A coordinator node and a storage node",
+        "A manager node and executor nodes"
+      ],
+      "correctIndex": 0,
+      "explanation": "A Spark pool contains a head node that coordinates distributed processes through a driver program, and multiple worker nodes on which executor processes perform the actual data processing."
+    },
+    {
+      "question": "What is the purpose of the starter pool in each Fabric workspace?",
+      "options": [
+        "It is the only pool allowed in a workspace",
+        "It enables Spark jobs to start and run quickly with minimal setup",
+        "It replaces the need for environments",
+        "It runs Spark jobs without compute nodes"
+      ],
+      "correctIndex": 1,
+      "explanation": "Fabric provides a starter pool in each workspace enabling Spark jobs to be started and run quickly with minimal setup and configuration."
+    },
+    {
+      "question": "Which Spark configuration enables the native execution engine at the environment level?",
+      "options": [
+        "spark.native.enabled: true",
+        "spark.high.concurrency: true",
+        "spark.delta.enabled: true",
+        "spark.shuffle.manager: StandardShuffleManager"
+      ],
+      "correctIndex": 0,
+      "explanation": "To enable the native execution engine at the environment level, set spark.native.enabled to true along with the ColumnarShuffleManager shuffle manager."
+    },
+    {
+      "question": "What does high concurrency mode allow in Fabric Spark?",
+      "options": [
+        "Running multiple Spark pools at once",
+        "Sharing Spark sessions across multiple concurrent users with code isolation",
+        "Disabling compute nodes during idle periods",
+        "Running notebooks without a Spark session"
+      ],
+      "correctIndex": 1,
+      "explanation": "High concurrency mode shares Spark sessions across multiple concurrent users or processes while isolating code so variables in one notebook are not affected by another."
+    },
+    {
+      "question": "How does Microsoft Fabric handle MLflow logging by default?",
+      "options": [
+        "It is disabled until explicitly enabled",
+        "It requires the data scientist to add explicit logging code",
+        "It implicitly logs machine learning experiment activity",
+        "It only logs deployment operations"
+      ],
+      "correctIndex": 2,
+      "explanation": "By default, Fabric uses MLflow to implicitly log machine learning experiment activity without requiring explicit logging code, and this can be disabled in workspace settings."
+    },
+    {
+      "question": "Which magic command tells a Spark notebook cell to use PySpark?",
+      "options": [
+        "%%python",
+        "%%spark",
+        "%%pyspark",
+        "%%scala"
+      ],
+      "correctIndex": 2,
+      "explanation": "The %%pyspark magic tells Spark that the language used in the cell is PySpark, while %%spark is used to specify Scala."
+    },
+    {
+      "question": "How long does a temporary view created with createOrReplaceTempView last?",
+      "options": [
+        "Until the notebook is saved",
+        "Until the end of the current session",
+        "Forever in the Spark catalog",
+        "Until the pool is restarted"
+      ],
+      "correctIndex": 1,
+      "explanation": "A view created with createOrReplaceTempView is temporary and automatically deleted at the end of the current session, unlike persisted catalog tables."
+    },
+    {
+      "question": "What happens when you delete a managed table in Spark?",
+      "options": [
+        "Only the metadata is removed",
+        "The underlying data files are also deleted",
+        "The data moves to the Files folder",
+        "The table is moved to a recycle bin"
+      ],
+      "correctIndex": 1,
+      "explanation": "Deleting a managed table also deletes its underlying data, whereas deleting an external table does not delete the underlying data files."
+    },
+    {
+      "question": "What does a Delta table in a lakehouse consist of?",
+      "options": [
+        "Only a single Parquet file",
+        "Parquet data files and a _delta_log folder with JSON transaction logs",
+        "CSV files and an index file",
+        "A SQL database and a schema file"
+      ],
+      "correctIndex": 1,
+      "explanation": "For each Delta table, the lakehouse stores a folder containing Parquet data files and a _delta_log folder in which transaction details are logged in JSON format."
+    },
+    {
+      "question": "Which engines use Microsoft Verti-Scan technology to take full advantage of V-Order?",
+      "options": [
+        "Power BI and SQL engines",
+        "Spark and Python engines",
+        "Dataflows and Pipelines",
+        "Real-Time Intelligence and KQL"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Power BI and SQL engines use Microsoft Verti-Scan technology which takes full advantage of V-Order; Spark and other engines still benefit but without Verti-Scan."
+    },
+    {
+      "question": "What is the default retention period for the VACUUM command?",
+      "options": [
+        "24 hours",
+        "72 hours",
+        "7 days",
+        "30 days"
+      ],
+      "correctIndex": 2,
+      "explanation": "The default retention period for VACUUM is 7 days (168 hours), and the system prevents you from using a shorter retention period."
+    },
+    {
+      "question": "What does VACUUM remove?",
+      "options": [
+        "Transaction logs and data files",
+        "Old Parquet data files but not the transaction logs",
+        "Only the transaction log entries",
+        "All files in the table folder"
+      ],
+      "correctIndex": 1,
+      "explanation": "VACUUM removes old Parquet data files but not the transaction logs, and after running it you cannot time travel back earlier than the retention period."
+    },
+    {
+      "question": "Which Spark configuration controls OptimizeWrite at the Spark session level?",
+      "options": [
+        "spark.microsoft.delta.optimizeWrite.enabled",
+        "spark.delta.optimizeWrite.enabled",
+        "spark.native.optimize.enabled",
+        "spark.microsoft.delta.write.enabled"
+      ],
+      "correctIndex": 0,
+      "explanation": "OptimizeWrite is enabled by default and can be enabled or disabled at the Spark session level with spark.microsoft.delta.optimizeWrite.enabled."
+    },
+    {
+      "question": "What happens when you delete an external Delta table from the lakehouse metastore?",
+      "options": [
+        "The data files are moved to the Tables folder",
+        "The associated data files are not deleted",
+        "The data files are permanently removed",
+        "The table is moved to a recycle bin"
+      ],
+      "correctIndex": 1,
+      "explanation": "Deleting an external table from the lakehouse metastore does not delete the associated data files."
+    },
+    {
+      "question": "How can you read a specific historical version of a Delta table?",
+      "options": [
+        "Using the versionAsOf option",
+        "Using the offset option",
+        "Using the ignoreChanges option",
+        "Using the checkpointLocation option"
+      ],
+      "correctIndex": 0,
+      "explanation": "You can retrieve data from a specific version by reading the delta file location with the versionAsOf option, or by using timestampAsOf to specify a timestamp."
+    },
+    {
+      "question": "When using a Delta table as a streaming source, what must you specify if the table contains data modifications?",
+      "options": [
+        "The checkpointLocation option",
+        "The ignoreChanges or ignoreDeletes option",
+        "The overwrite mode",
+        "The partitionBy option"
+      ],
+      "correctIndex": 1,
+      "explanation": "Only append operations can be included in the stream; data modifications can cause an error unless you specify the ignoreChanges or ignoreDeletes option."
+    },
+    {
+      "question": "Which users can use dataflows to perform simple ETL tasks without relying on data engineers?",
+      "options": [
+        "Data scientists",
+        "Citizen developers and low-to-no-code users",
+        "Fabric administrators",
+        "Database administrators"
+      ],
+      "correctIndex": 1,
+      "explanation": "Low-to-no-code users and citizen developers can use dataflows to perform simple ETL tasks without relying on data engineers."
+    },
+    {
+      "question": "What mode lets data analysts connect directly to OneLake while transforming data upstream with dataflows?",
+      "options": [
+        "Import mode",
+        "Direct Lake mode",
+        "Live Connection",
+        "Storage mode"
+      ],
+      "correctIndex": 1,
+      "explanation": "Data analysts can transform data upstream using dataflows and connect directly to OneLake with Direct Lake mode, reducing the need for downstream transformations."
+    },
+    {
+      "question": "What can you do in the OneLake catalog?",
+      "options": [
+        "Change workspace permissions",
+        "Find and access data sources shared with you",
+        "Create Power BI reports",
+        "Configure capacity settings"
+      ],
+      "correctIndex": 1,
+      "explanation": "The OneLake catalog helps you find and access data sources within your organization, and you only see items that have been shared with you."
+    },
+    {
+      "question": "What is the default state of Copilot in Microsoft Fabric?",
+      "options": [
+        "Disabled for all organizations",
+        "Enabled by default",
+        "Available only in the Fabric trial",
+        "Enabled only for Power BI"
+      ],
+      "correctIndex": 1,
+      "explanation": "Copilot in Microsoft Fabric is enabled by default; administrators can disable it from the Admin portal or control access for specific security groups or at the capacity level."
+    },
+    {
+      "question": "Where can administrators enable Microsoft Fabric for the organization?",
+      "options": [
+        "Admin portal, Tenant settings in the Power BI service",
+        "Azure portal, Microsoft Entra blade",
+        "OneLake catalog settings",
+        "Workspace settings, Capacity settings"
+      ],
+      "correctIndex": 0,
+      "explanation": "Admins can enable Fabric in the Admin portal, Tenant settings in the Power BI service, for the entire organization or for specific Microsoft 365 or Entra security groups."
+    },
+    {
+      "question": "What can administrators do at the capacity level regarding Fabric enablement?",
+      "options": [
+        "Delegate the ability to enable Fabric to other users",
+        "Grant Global administrator rights to users",
+        "Automatically enable Fabric for all tenants",
+        "Create new Fabric capacities"
+      ],
+      "correctIndex": 0,
+      "explanation": "Admins can enable Fabric and can also delegate this ability to other users at the capacity level."
+    },
+    {
+      "question": "What does the data lineage view in a workspace provide?",
+      "options": [
+        "A list of user permissions",
+        "A visual view of data flow and dependencies",
+        "A chart of query performance",
+        "A log of pipeline runs"
+      ],
+      "correctIndex": 1,
+      "explanation": "Workspaces support a data lineage view, providing a visual view of data flow and dependencies to enhance transparency and decision-making."
+    },
+    {
+      "question": "Which of the following can be configured in Workspace settings?",
+      "options": [
+        "License type and Git integration",
+        "Row-level security rules",
+        "Copilot content filters",
+        "Delta table partitioning"
+      ],
+      "correctIndex": 0,
+      "explanation": "Workspace settings let you configure the license type, OneDrive access, an Azure Data Lake Gen2 storage connection, Git integration, and Spark workload settings."
+    },
+    {
+      "question": "What are the two broad categories of activities in a Microsoft Fabric pipeline?",
+      "options": [
+        "Data transformation activities and control flow activities",
+        "Copy activities and pipeline activities",
+        "ETL activities and ELT activities",
+        "Data movement and compute activities"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pipeline activities fall into two broad categories: data transformation activities and control flow activities."
+    },
+    {
+      "question": "When should you use the Copy Data activity instead of a Data Flow activity?",
+      "options": [
+        "When you need to merge data from multiple sources",
+        "When you need to apply transformations during ingestion",
+        "When copying data directly between a supported source and destination without transformations",
+        "When you want to run Spark code"
+      ],
+      "correctIndex": 2,
+      "explanation": "Use Copy Data when copying data directly between a supported source and destination without transformations; use a Data Flow activity when you need to transform data as it is ingested or merge multiple sources."
+    },
+    {
+      "question": "What do pipeline parameters enable?",
+      "options": [
+        "Encrypted data transfers",
+        "Reusability by providing specific values each time a pipeline runs",
+        "Automatic error recovery",
+        "Parallel pipeline execution"
+      ],
+      "correctIndex": 1,
+      "explanation": "Parameters let you provide specific values each time a pipeline is run, increasing the reusability and flexibility of your data ingestion and transformation processes."
+    },
+    {
+      "question": "What is used to identify and review each pipeline run?",
+      "options": [
+        "The run name",
+        "The unique run ID",
+        "The activity count",
+        "The schedule timestamp"
+      ],
+      "correctIndex": 1,
+      "explanation": "Each time a pipeline executes, a data pipeline run is initiated, and you use the unique run ID to review run details and confirm they completed successfully."
+    },
+    {
+      "question": "Which activity types are classified as data transformation activities?",
+      "options": [
+        "Loops, branches, and variables",
+        "Copy Data, Data Flow, Notebook, Stored procedure, and Delete data",
+        "Parameters, triggers, and schedules",
+        "Run, Validate, and Monitor"
+      ],
+      "correctIndex": 1,
+      "explanation": "Data transformation activities include Copy Data, Data Flow (Gen2), Notebook, Stored procedure, and Delete data activities."
+    },
+    {
+      "question": "What do control flow activities enable in a pipeline?",
+      "options": [
+        "Loops, conditional branching, and variable or parameter management",
+        "Direct data movement between storage accounts",
+        "Data quality checks",
+        "Visualization of results"
+      ],
+      "correctIndex": 0,
+      "explanation": "Control flow activities implement loops, conditional branching, and manage variable and parameter values to orchestrate data ingestion and transformation flow."
+    },
+    {
+      "question": "What are data pipelines in Microsoft Fabric most similar to?",
+      "options": [
+        "Azure Data Factory pipelines",
+        "Power BI dataflows",
+        "Azure Databricks jobs",
+        "Azure Synapse Spark pools"
+      ],
+      "correctIndex": 0,
+      "explanation": "If you are familiar with Azure Data Factory, data pipelines in Fabric will be immediately familiar, as they use the same architecture of connected activities."
+    },
+    {
+      "question": "How can you run a pipeline in Microsoft Fabric?",
+      "options": [
+        "Interactively on-demand or on a schedule",
+        "Only from the Admin portal",
+        "Only through a PowerShell script",
+        "Only on a daily basis"
+      ],
+      "correctIndex": 0,
+      "explanation": "You can run pipelines interactively in the Fabric user interface or schedule them to run automatically at a specific frequency."
+    },
+    {
+      "question": "What are the three typical layers of the medallion architecture?",
+      "options": [
+        "Raw, processed, and curated",
+        "Bronze, silver, and gold",
+        "Landing, staging, and production",
+        "Ingest, transform, and serve"
+      ],
+      "correctIndex": 1,
+      "explanation": "The medallion architecture typically has three layers: bronze (raw), silver (validated), and gold (enriched), each representing higher data quality levels."
+    },
+    {
+      "question": "What happens to data in the bronze layer?",
+      "options": [
+        "It is aggregated to a business granularity",
+        "It is stored in its original format with no changes made",
+        "It is deduplicated and validated",
+        "It is modeled in a star schema"
+      ],
+      "correctIndex": 1,
+      "explanation": "The bronze or raw layer is the landing zone for all data, where data is stored in its original format and no changes are made to it."
+    },
+    {
+      "question": "Which activities are typical in the silver layer?",
+      "options": [
+        "Aggregating data to daily or hourly granularity",
+        "Combining and merging data and enforcing validation rules like removing nulls and deduplicating",
+        "Storing data in its native format",
+        "Creating semantic models for reporting"
+      ],
+      "correctIndex": 1,
+      "explanation": "Typical silver layer activities include combining and merging data and enforcing data validation rules such as removing nulls and deduplicating."
+    },
+    {
+      "question": "In the gold layer, data is ready for use by which teams?",
+      "options": [
+        "Only the finance team",
+        "Only data engineers",
+        "Downstream teams including analytics, data science, or MLOps",
+        "Only Power BI report authors"
+      ],
+      "correctIndex": 2,
+      "explanation": "Once data reaches the gold stage, it becomes ready for use by downstream teams, including analytics, data science, or MLOps."
+    },
+    {
+      "question": "Which tools are better for larger semantic models and more complex transformations when moving data across layers?",
+      "options": [
+        "Dataflows (Gen2)",
+        "Pipelines",
+        "Notebooks",
+        "Shortcuts"
+      ],
+      "correctIndex": 2,
+      "explanation": "Notebooks are the better option for larger semantic models and more complex transformations, and they allow you to save transformed data as a managed Delta table."
+    },
+    {
+      "question": "What is the primary tool for data orchestration in Fabric?",
+      "options": [
+        "Notebooks",
+        "Dataflows (Gen2)",
+        "Pipelines",
+        "The SQL analytics endpoint"
+      ],
+      "correctIndex": 2,
+      "explanation": "The primary tool for data orchestration in Fabric is pipelines, which move data from one layer of the medallion architecture to the next and can be automated on a schedule or triggered by an event."
+    },
+    {
+      "question": "How should the gold layer be modeled for reporting?",
+      "options": [
+        "In a star schema optimized for reporting",
+        "As raw files in native format",
+        "As a denormalized single table",
+        "As unstructured data files"
+      ],
+      "correctIndex": 0,
+      "explanation": "In the most straightforward implementation, the gold layer is the presentation layer and should be modeled in a star schema optimized for reporting."
+    },
+    {
+      "question": "What does Git integration in Microsoft Fabric enable for CI/CD?",
+      "options": [
+        "Automatic data quality checks",
+        "Backing up and versioning work, reverting to previous stages, and collaborating with Git branches",
+        "Real-time streaming of lakehouse data",
+        "Automated Power BI report scheduling"
+      ],
+      "correctIndex": 1,
+      "explanation": "Fabric's Git integration enables data teams to back up and version work, revert to previous stages as needed, and collaborate using Git branches."
+    }
+  ]
+}

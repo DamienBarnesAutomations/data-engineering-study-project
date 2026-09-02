@@ -1,0 +1,613 @@
+{
+  "title": "Chapter 10 — Security and Privacy: Quality Question Bank",
+  "source_file": "chapter-10-security-and-privacy.md",
+  "original_question_file": "chapter-10.json",
+  "question_count": 55,
+  "questions": [
+    {
+      "question": "What is the book's \"power of negative thinking\" principle, and why does it recommend applying it to security?",
+      "options": [
+        "Actively considering worst-case/disaster scenarios lets you prepare for and prevent them — citing the argument that positive thinking can blind people to real risks",
+        "It means always assuming a project will fail, so no effort should be invested in it",
+        "It's a way to deliberately lower stakeholder expectations for a project",
+        "It refers to reducing energy costs in low-power data centers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book cites Atul Gawande's argument that \"positive thinking can blind us to the possibility of terrorist attacks or medical emergencies and deter preparation. Negative thinking allows us to consider disastrous scenarios and act to prevent them.\""
+    },
+    {
+      "question": "What's the best way to protect private/sensitive data, according to the book's \"power of negative thinking\" discussion?",
+      "options": [
+        "Avoid ingesting or collecting sensitive data in the first place unless there's an actual downstream need for it",
+        "Always encrypt every dataset twice, regardless of its actual sensitivity or use case",
+        "Store all sensitive data in a single, extremely well-guarded central vault",
+        "Immediately anonymize all data upon collection, with no other precaution needed"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"Data engineers should actively think through the scenarios for data utilization and collect sensitive data only if there is an actual need downstream. The best way to protect private and sensitive data is to avoid ingesting this data in the first place.\""
+    },
+    {
+      "question": "What's the difference between \"security theater\" and genuine security habit, as the book describes them?",
+      "options": [
+        "Security theater is compliance-driven box-checking (unread policies, forgotten annual reviews) that creates an illusion of security; genuine habitual security is baked into culture through regular, simple, real practice",
+        "Security theater refers only to physical office security and has nothing to do with data",
+        "Genuine security habit means having zero written security policies at all",
+        "Security theater and genuine security habit are the same thing described two ways"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts \"security policies in the hundreds of pages that nobody reads\" (security theater, \"done in the letter of compliance... without real commitment\") with pursuing \"genuine and habitual security\" baked into culture."
+    },
+    {
+      "question": "What does \"active security\" mean, per the book, as opposed to a standard compliance checklist approach?",
+      "options": [
+        "Actively researching real threats and thinking through your organization's specific vulnerabilities, rather than passively following a generic checklist",
+        "Hiring only external security auditors and taking no further internal action",
+        "It refers exclusively to automated intrusion detection software",
+        "It means disabling all employee access until a breach is actually detected"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts \"simply deploying scheduled simulated phishing attacks\" or \"a standard compliance checklist\" with actively \"researching successful phishing attacks and thinking through your organizational security vulnerabilities.\""
+    },
+    {
+      "question": "Under the shared responsibility model in the cloud, who does the book say is generally responsible for most cloud security breaches?",
+      "options": [
+        "The customer/end user — most breaches happen due to misconfigurations, mistakes, and oversights on the customer's side, not the cloud provider's infrastructure",
+        "The cloud vendor is described as responsible for every breach, regardless of configuration",
+        "Responsibility is randomly assigned by the vendor's legal team after each incident",
+        "Breaches are described as evenly split 50/50 with no discernible pattern"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"Most cloud security breaches continue to be caused by end users, not the cloud. Breaches occur because of unintended misconfigurations, mistakes, oversights, and sloppiness.\""
+    },
+    {
+      "question": "The book recommends putting rarely-needed sensitive data behind a \"broken glass\" process. What does this mean, and when is access revoked?",
+      "options": [
+        "Users can access the data only after an emergency approval process; access is revoked immediately once the work is done",
+        "\"Broken glass\" means the data is permanently deleted the first time it's accessed",
+        "It means giving every employee standing access to the data, just in case of emergency",
+        "It refers to encrypting data with a key that automatically changes on every access"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes it exactly this way: \"users can access it only after going through an emergency approval process to fix a problem... Access is revoked immediately once the work is done.\""
+    },
+    {
+      "question": "What are the book's basic credential-handling rules for individuals?",
+      "options": [
+        "Use SSO with multifactor authentication by default, never share passwords, disable/delete old credentials, never put credentials in code (use a secrets manager), and apply least privilege",
+        "Rotate every password weekly regardless of whether SSO is in use",
+        "Store shared credentials in a team spreadsheet for convenience",
+        "Credentials should be embedded in code comments so teammates can find them easily"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book's example security policy lists exactly these rules: SSO-first with MFA, never sharing credentials, deleting old ones, never committing secrets to code, and always applying least privilege."
+    },
+    {
+      "question": "Why does the book say HTTPS alone doesn't fully protect data, using the example of public S3 buckets?",
+      "options": [
+        "HTTPS encrypts data in transit, but does nothing to prevent a leak if the storage itself has been left with open/public permissions — a separate access-control failure",
+        "HTTPS is described as fully obsolete and should never be used at all",
+        "HTTPS actually makes public bucket permissions less risky, according to the book",
+        "The book states S3 buckets cannot be encrypted under any circumstances"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"HTTPS does nothing to protect data if bucket permissions are left open to the public, another cause of several data scandals over the last decade.\""
+    },
+    {
+      "question": "What four areas does the book recommend actively monitoring for security purposes?",
+      "options": [
+        "Access (who's accessing what and from where), resource usage (disk/CPU/memory/I/O anomalies), billing (unexpected spending spikes), and excess/unused permissions",
+        "Only network bandwidth, with nothing else needing regular monitoring",
+        "Only employee badge-swipe logs for the physical office",
+        "Exclusively the hardware age of each employee's laptop"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists exactly these four monitoring areas: access, resources, billing, and excess permissions, recommending they be combined into a single cross-sectional view."
+    },
+    {
+      "question": "Why does the book argue the cloud is generally a more secure default than an on-premises hardened perimeter for most organizations?",
+      "options": [
+        "The cloud is closer to a zero-trust model (every action requires authentication) and lets organizations leverage the security engineering resources of major cloud providers",
+        "On-premises servers are described as incapable of encryption under any configuration",
+        "Cloud providers are described as guaranteeing zero breaches will ever occur",
+        "Air-gapped servers are described as inherently and always insecure"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"The cloud is generally closer to zero-trust security—every action requires authentication. We believe that the cloud is a more secure option for most organizations because... [it] allows companies to leverage the army of security engineers employed by the public clouds.\""
+    },
+    {
+      "question": "What does the book say about where security should rank in a data engineer's job?",
+      "options": [
+        "Security is the first thing a data engineer needs to think about in every aspect of their job and every stage of the lifecycle, since one security breach or data leak can leave a business dead in the water",
+        "Security is an afterthought to be handled only when time permits",
+        "Security only matters at the serving stage",
+        "Security is solely the job of dedicated security teams"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says security is the first thing to consider in every aspect of the job, since a breach can be devastating."
+    },
+    {
+      "question": "Why does the book say privacy is a key ingredient for trust, and what private data do engineers handle?",
+      "options": [
+        "Privacy has long been critical to trust, and engineers directly or indirectly handle financial information, private communications, medical history, educational records, and job history",
+        "Privacy only matters for external customers",
+        "Engineers never touch private data",
+        "Privacy and trust are unrelated"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists the types of private data engineers handle and privacy's role in trust."
+    },
+    {
+      "question": "What privacy laws does the book cite as examples, and what does it say about their penalties?",
+      "options": [
+        "FERPA in the 1970s, HIPAA in the 1990s, and GDPR in the mid-2010s — penalties for violation can be significant, even devastating, to a business",
+        "Only GDPR, which has no penalties",
+        "No privacy laws exist",
+        "HIPAA applies only to retail"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book cites FERPA, HIPAA, and GDPR and warns of significant penalties."
+    },
+    {
+      "question": "How do a data engineer's security responsibilities vary between organizations?",
+      "options": [
+        "At a small startup a data engineer may do double duty as a data security engineer, while at a large tech company armies of security engineers exist — but data engineers can still identify and mitigate vulnerabilities within their own teams and systems",
+        "Responsibilities are identical at every organization",
+        "Data engineers never have security duties",
+        "Only security engineers handle security"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes how responsibilities vary and that engineers can still identify vulnerabilities."
+    },
+    {
+      "question": "Who does the book call the weakest link in security and privacy, and what posture does it recommend?",
+      "options": [
+        "You — security is often compromised at the human level, so conduct yourself as if you're always a target, take a defensive posture, and be paranoid",
+        "The cloud provider",
+        "The antivirus software",
+        "External hackers only"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the weakest link is you and recommends a defensive, paranoid posture."
+    },
+    {
+      "question": "What does the book recommend when someone asks you for your credentials?",
+      "options": [
+        "Hold off and get second opinions from coworkers and friends, confirming the request is legitimate — a quick chat or phone call is cheaper than a ransomware attack triggered through an email click",
+        "Always comply immediately",
+        "Email the credentials as requested",
+        "Ignore all requests without verification"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends extreme doubt and verification before sharing credentials."
+    },
+    {
+      "question": "Who should you trust at face value when asked for credentials or sensitive information, per the book?",
+      "options": [
+        "Trust nobody — including your coworkers — when asked for credentials, sensitive data, or confidential information",
+        "Trust all coworkers always",
+        "Trust anyone who looks official",
+        "Trust only people you've met once"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to trust nobody at face value, including coworkers."
+    },
+    {
+      "question": "How does the book describe a data engineer's role as the first line of defense in privacy and ethics?",
+      "options": [
+        "If you're uncomfortable with sensitive data you've been tasked to collect or have ethical questions, raise concerns with colleagues and leadership and ensure your work is both legally compliant and ethical",
+        "Ethical concerns should be kept private",
+        "Compliance is the only concern",
+        "Data engineers have no ethical responsibilities"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says engineers are the first line of defense and should raise ethical concerns."
+    },
+    {
+      "question": "What does the book say happens when people follow regular security processes?",
+      "options": [
+        "Security becomes part of the job — make it a habit, regularly practice real security, exercise the principle of least privilege, and understand the shared responsibility model in the cloud",
+        "Security becomes an afterthought",
+        "Regular practice weakens security",
+        "Habits are irrelevant to security"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says regular security processes make security part of the job."
+    },
+    {
+      "question": "What problem does the book describe with a pervasive focus on compliance rather than bad scenarios?",
+      "options": [
+        "It creates an illusion of security but often leaves gaping holes that would be evident with a few minutes of reflection",
+        "Compliance always eliminates all risks",
+        "Bad scenarios are impossible to predict",
+        "Compliance focus never has downsides"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says compliance focus creates an illusion of security with gaping holes."
+    },
+    {
+      "question": "How does the book say security needs to be for it to become habitual, and what practice does it cite from its own company?",
+      "options": [
+        "Security needs to be simple and effective enough to become habitual; the authors' company runs security training and policy review at least once a month to ingrain it into the team's DNA",
+        "Security must be complex to be effective",
+        "Annual reviews are sufficient",
+        "Training more than once a year is wasteful"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends simple, effective, habitual security with monthly training/review."
+    },
+    {
+      "question": "Who does the book say is responsible for security?",
+      "options": [
+        "Everyone — each person is responsible and has a role to play; it must be the priority for you and everyone else you work with",
+        "Only the CISO",
+        "Only security engineers",
+        "Nobody is responsible"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says everyone is responsible and security must be the priority."
+    },
+    {
+      "question": "What is the principle of least privilege, and what antipattern does the book describe?",
+      "options": [
+        "A person or system should be given only the privileges and data needed to complete the task at hand and nothing more; the antipattern is giving a regular user carte blanche administrative access when they need just a handful of IAM roles",
+        "Everyone should have maximum privileges",
+        "Least privilege means no access at all",
+        "Administrative access for all is recommended"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines least privilege and warns against giving carte blanche admin access."
+    },
+    {
+      "question": "How should IAM roles be granted and revoked, and what does the book say about service accounts?",
+      "options": [
+        "Provide the user (or their group) the IAM roles they need when they need them and take them away when no longer needed; treat humans and machines (service accounts) the same way",
+        "Grant all roles permanently",
+        "Service accounts need unlimited privileges",
+        "Roles should never be revoked"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to grant roles as needed and revoke them, treating humans and service accounts equally."
+    },
+    {
+      "question": "How does least privilege support privacy, and what access-control techniques does the book recommend?",
+      "options": [
+        "Users expect people to look at sensitive data only when necessary; implement column, row, and cell-level access controls, consider masking PII, and create views containing only the information the viewer needs",
+        "Privacy is not related to access control",
+        "Only column-level controls are needed",
+        "Masking PII is never recommended"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book ties least privilege to privacy and recommends column/row/cell controls, masking, and views."
+    },
+    {
+      "question": "Under the shared responsibility model, what is the cloud vendor responsible for versus the customer?",
+      "options": [
+        "The vendor is responsible for the physical security of its data center and hardware; the customer is responsible for the security of the applications and systems they build and maintain in the cloud",
+        "The vendor is responsible for everything",
+        "The customer is responsible for the data center's physical security",
+        "Neither party has responsibilities"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book splits responsibility: vendor for physical data center/hardware security, customer for their applications and systems."
+    },
+    {
+      "question": "Why does the book say you need to back up your data regularly, and what should you test?",
+      "options": [
+        "Data disappears — dead drives, accidental deletions, or bad actors locking data away in ransomware attacks — so back up regularly for disaster recovery and business continuity, and test the restoration of your backups on a regular basis",
+        "Data never disappears",
+        "Backups are unnecessary",
+        "Restoration testing is wasteful"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends regular backups for disaster recovery and testing restorations."
+    },
+    {
+      "question": "Under what larger heading does the book place data backup, and why is it adjacent to security?",
+      "options": [
+        "Data backup goes under the larger heading of disaster prevention, but it's adjacent to security, especially in the era of ransomware attacks",
+        "It is purely a security practice",
+        "It is unrelated to security",
+        "It belongs under billing"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book places backup under disaster prevention, adjacent to security."
+    },
+    {
+      "question": "What does the book say about the format of its sample security policy?",
+      "options": [
+        "They don't overcomplicate things — they give people a short list of practical actions they can take immediately",
+        "It is hundreds of pages long",
+        "It requires annual reviews nobody reads",
+        "It is too complex to follow"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the sample policy is a short list of practical, immediate actions."
+    },
+    {
+      "question": "What does the book recommend about single sign-on (SSO) and passwords?",
+      "options": [
+        "Use SSO for everything, avoid passwords whenever possible, and use SSO as the default",
+        "Use passwords instead of SSO",
+        "SSO should be avoided",
+        "Passwords are the preferred default"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends SSO for everything as the default."
+    },
+    {
+      "question": "What does the book recommend about sharing passwords and credentials?",
+      "options": [
+        "Don't share passwords or credentials, including client passwords and credentials; if in doubt, see the person you report to, and keep digging until you find an answer",
+        "Sharing credentials is fine among teammates",
+        "Client passwords can be shared freely",
+        "Doubts should be ignored"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says never to share passwords or credentials and to seek answers when in doubt."
+    },
+    {
+      "question": "What does the book say about old credentials and credentials in code?",
+      "options": [
+        "Disable or delete old credentials (preferably delete), and never put credentials in code — handle secrets as configuration, never commit them to version control, and use a secrets manager where possible",
+        "Keep old credentials active forever",
+        "Embed credentials in code for convenience",
+        "Commit secrets to version control"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends deleting old credentials and using secrets managers instead of code-embedded credentials."
+    },
+    {
+      "question": "What does the book recommend about device management?",
+      "options": [
+        "Use device management for all employee devices so they can be remotely wiped if an employee leaves or a device is lost, use MFA for all devices, and sign in with company email credentials",
+        "Devices need no management",
+        "Lost devices are not a concern",
+        "MFA is only for cloud accounts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends device management with remote wipe, MFA, and company email sign-in."
+    },
+    {
+      "question": "What does the book say about treating your device and screen sharing?",
+      "options": [
+        "Treat your device as an extension of yourself and don't let it out of your sight; when screen sharing, share only single documents, browser tabs, or windows, avoid sharing your full desktop, and share only what's required",
+        "Devices can be left unattended",
+        "Full desktop sharing is always fine",
+        "Screen sharing details don't matter"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends guarding devices and sharing only what's needed on screens."
+    },
+    {
+      "question": "What video-call and software-update habits does the book recommend?",
+      "options": [
+        "Use do-not-disturb mode on video calls so messages don't appear during calls or recordings; restart your browser on update alerts, run minor OS updates, follow company guidance on critical major OS updates, don't use beta OS versions, and wait a week or two for new major OS releases",
+        "Messages should appear during calls",
+        "Ignore all update alerts",
+        "Use beta OS versions immediately"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these video-call and update habits."
+    },
+    {
+      "question": "Why should you always patch and update operating systems and software?",
+      "options": [
+        "Software gets stale and vulnerabilities are constantly discovered, so patching avoids exposing a security flaw in an older version of the tools you're using",
+        "Updates always introduce vulnerabilities",
+        "Stale software is more secure",
+        "Vulnerabilities are never discovered"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says patching avoids exposing flaws in older software versions."
+    },
+    {
+      "question": "How can engineers keep their own code and dependencies updated?",
+      "options": [
+        "Automate builds or set alerts on releases and vulnerabilities so you can be prompted to perform the updates manually, since many SaaS and cloud-managed services already automate upgrades",
+        "Updates only happen automatically everywhere",
+        "Manual updates are never needed",
+        "Dependencies never become vulnerable"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends automating builds or setting release/vulnerability alerts."
+    },
+    {
+      "question": "What does the book say encryption will and won't do?",
+      "options": [
+        "Encryption is not a magic bullet — it will do little against a human security breach that grants credentials, but it's a baseline requirement that protects from basic attacks like network traffic interception",
+        "Encryption protects against all human breaches",
+        "Encryption is optional",
+        "Encryption only protects against physical theft"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says encryption is a baseline that won't help against credential-granting human breaches."
+    },
+    {
+      "question": "What encryption-at-rest measures does the book recommend?",
+      "options": [
+        "Full-disk encryption on company laptops, server-side encryption for servers/filesystems/databases/object storage, encrypted backups, and application-level encryption where applicable",
+        "Only encrypt databases",
+        "Encryption at rest is optional",
+        "Only encrypt backups"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these encryption-at-rest measures."
+    },
+    {
+      "question": "Why should data engineers always be aware of how keys are handled?",
+      "options": [
+        "Bad key handling is a significant source of data leaks",
+        "Keys are irrelevant to security",
+        "Key handling never causes leaks",
+        "Only the cloud provider handles keys"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book calls bad key handling a significant source of data leaks."
+    },
+    {
+      "question": "What does the book say about FTP and other older protocols?",
+      "options": [
+        "FTP is simply not secure on a public network and is vulnerable to man-in-the-middle attacks where an attacker intercepts and changes downloaded data — it's best to avoid FTP",
+        "FTP is fully secure",
+        "Man-in-the-middle attacks are impossible",
+        "FTP is recommended on public networks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns against FTP due to man-in-the-middle vulnerability."
+    },
+    {
+      "question": "What general advice does the book give about encryption over the wire?",
+      "options": [
+        "Make sure everything is encrypted over the wire, even with legacy protocols; when in doubt, use robust technology with encryption baked in",
+        "Encryption over the wire is optional",
+        "Legacy protocols need no encryption",
+        "Only new protocols encrypt"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book advises encrypting everything over the wire including legacy protocols."
+    },
+    {
+      "question": "Why is automated monitoring, logging, and alerting important for security?",
+      "options": [
+        "Hackers don't announce they're infiltrating your systems and most companies find out well after the fact, so set up automated monitoring, logging, and alerting to be aware of peculiar events, with automatic anomaly detection if possible",
+        "Companies always detect breaches instantly",
+        "Monitoring is unnecessary",
+        "Hackers always announce intrusions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends automated monitoring/logging/alerting because breaches are detected late."
+    },
+    {
+      "question": "What should access monitoring look for, according to the book?",
+      "options": [
+        "Who's accessing what, when, and from where; new accesses granted; strange patterns like users accessing systems they usually don't or shouldn't; and new unrecognized users — comb through access logs, users, and roles regularly",
+        "Only login counts",
+        "Only failed password attempts",
+        "Access logs need no review"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the access-monitoring areas to review."
+    },
+    {
+      "question": "Why should billing be monitored for security?",
+      "options": [
+        "An unexpected spike in billing might indicate someone or something is utilizing your resources for malicious purposes; set up budget alerts to make sure spending is within expectations",
+        "Billing has no security relevance",
+        "Spending spikes are always innocent",
+        "Budget alerts are unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book links unexpected billing spikes to possible malicious resource use."
+    },
+    {
+      "question": "How do vendors' excess-permission monitoring tools work, and what example does the book give?",
+      "options": [
+        "They monitor for permissions not utilized by a user or service account over time and can alert an administrator or remove permissions after an elapsed time — e.g. removing an analyst's Redshift permissions after six months of no access",
+        "They grant more permissions automatically",
+        "Unused permissions are never removed",
+        "Redshift access never expires"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes unused-permission monitoring with the six-month Redshift example."
+    },
+    {
+      "question": "How does the book recommend combining the four monitoring areas?",
+      "options": [
+        "Combine them into a single cross-sectional view of resource, access, and billing profile, set up a dashboard for everyone on the data team, and couple it with an incident response plan run through regularly",
+        "Monitor each area in isolation",
+        "Only executives see monitoring",
+        "Incident response plans need no practice"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends a combined cross-sectional dashboard and rehearsed incident response."
+    },
+    {
+      "question": "What examples of terrible network security practices does the book give?",
+      "options": [
+        "Publicly available S3 buckets housing sensitive data, EC2 instances with inbound SSH open to 0.0.0.0/0, and databases with open access to all inbound requests over the public internet",
+        "Properly firewalled databases",
+        "Whitelisted SSH access",
+        "Encrypted storage buckets"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book cites these open-access examples as terrible network security."
+    },
+    {
+      "question": "What network-access basics should a data engineer be aware of even if network security is left to experts?",
+      "options": [
+        "Understand what IPs and ports are open, to whom, and why; whitelist the incoming IP addresses of systems and users that will access these ports; and avoid broadly opening connections for any reason",
+        "Open all ports to the world",
+        "Never whitelist IPs",
+        "Port access details don't matter"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends understanding open IPs/ports and whitelisting."
+    },
+    {
+      "question": "What does the book advise about accessing the cloud or SaaS tools?",
+      "options": [
+        "Use an encrypted connection — don't use an unencrypted website from a coffee shop",
+        "Public Wi-Fi is always safe",
+        "Encryption is optional for SaaS",
+        "Coffee shop Wi-Fi needs no caution"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book advises encrypted connections, including avoiding unencrypted sites on public Wi-Fi."
+    },
+    {
+      "question": "What does the book say about air-gapped servers?",
+      "options": [
+        "They are the ultimate example of a hardened security perimeter (nuclear missile silos are air gapped), but even on premises they remain vulnerable to human security failings",
+        "Air-gapped servers are invulnerable",
+        "Air gapping is a cloud concept",
+        "Human failings can't affect air-gapped servers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes air-gapped servers as the ultimate hardened perimeter yet still human-vulnerable."
+    },
+    {
+      "question": "What does the book say about security at the level of low-level data engineering components?",
+      "options": [
+        "Every software library, storage system, or compute node is a potential security vulnerability — a flaw in an obscure logging library might bypass access controls, and even CPU architectures and microcode are potential vulnerabilities, so no link in the chain can be taken for granted",
+        "Only application code has vulnerabilities",
+        "Hardware can never be compromised",
+        "Libraries are always secure"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says every element is a potential vulnerability, from libraries to CPU microcode."
+    },
+    {
+      "question": "Why should every technology employee think about security problems in their domain of expertise?",
+      "options": [
+        "Every technology contributor develops a domain of expertise, and experts in a particular technology are well positioned to identify security holes in it — even if the company employs security researchers",
+        "Only security researchers can find holes",
+        "Domain expertise is irrelevant to security",
+        "Engineers should leave security to others"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says domain experts are well positioned to identify security holes."
+    },
+    {
+      "question": "What role should data engineers take when they identify potential security risks in their systems?",
+      "options": [
+        "Think through mitigations and take an active role in deploying them",
+        "Report and do nothing further",
+        "Wait for someone else to act",
+        "Ignore the risk"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says engineers should think through mitigations and deploy them."
+    },
+    {
+      "question": "How does the book conclude its security advice for data engineers?",
+      "options": [
+        "Security needs to be a habit of mind and action; treat data like your wallet or smartphone, and although you may not be in charge of security, knowing basic practices and keeping security top of mind helps reduce the risk of breaches",
+        "Only security teams need security habits",
+        "Data can be treated carelessly",
+        "Basic practices are unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book concludes with security as a habit of mind and action."
+    }
+  ]
+}

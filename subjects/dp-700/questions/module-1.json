@@ -1,0 +1,403 @@
+{
+  "title": "Module 1 — Quality Question Bank",
+  "source_file": "M1.1.md, M1.2.md, M1.3.md, M1.4.md",
+  "question_count": 36,
+  "questions": [
+    {
+      "question": "In Microsoft Fabric, what is a dataflow best described as?",
+      "options": [
+        "A type of cloud-based ETL tool for building and executing scalable data transformation processes",
+        "A relational database optimized for storing real-time sensor events",
+        "A dashboarding tool for visualizing analytics data",
+        "A scheduling service that only orchestrates Spark notebooks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source defines dataflows as a type of cloud-based ETL tool for building and executing scalable data transformation processes."
+    },
+    {
+      "question": "Which interface do Dataflows Gen2 use to perform transformations visually?",
+      "options": [
+        "Kusto Query Language editor",
+        "Power Query Online",
+        "Spark SQL editor",
+        "Transact-SQL Management Studio"
+      ],
+      "correctIndex": 1,
+      "explanation": "Dataflows Gen2 use Power Query Online, which provides a visual interface for extracting and transforming data."
+    },
+    {
+      "question": "Which of the following is a benefit of using Dataflows Gen2?",
+      "options": [
+        "They fully support row-level security",
+        "They replace the need for a data warehouse",
+        "They enable extracting data once for reuse, reducing data refresh time for slower sources",
+        "They only run as part of a data pipeline and never standalone"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source lists as a benefit that dataflows enable extracting data once for reuse, reducing data refresh time for slower sources."
+    },
+    {
+      "question": "Which of the following is a stated limitation of Dataflows Gen2?",
+      "options": [
+        "They cannot be incorporated into data pipelines",
+        "They cannot connect to on-premises data sources",
+        "They only support a single transformation per query",
+        "Row-level security isn't supported"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source lists row-level security not being supported as a limitation of Dataflows Gen2, alongside not being a replacement for a data warehouse."
+    },
+    {
+      "question": "In the Data Factory workload, which destinations can a dataflow land data into within a Fabric environment?",
+      "options": [
+        "Lakehouse, Warehouse, and SQL database",
+        "Only Lakehouse",
+        "Azure Blob, Amazon S3, and Google Cloud Storage",
+        "Only the Power BI default workspace"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Query settings pane lists Lakehouse, Warehouse, and SQL database as data destinations in the Fabric environment, with additional support for Azure SQL database, Azure Data Explorer, and Azure Synapse Analytics."
+    },
+    {
+      "question": "When you add a Dataflow Gen2 to a pipeline to perform additional operations after transformation, what does the source say about the dataflow?",
+      "options": [
+        "Adding a data destination to the dataflow is required first",
+        "The dataflow preserves all transformation steps, and the pipeline can orchestrate additional activities such as scripts or stored procedures",
+        "The dataflow must be recreated for each pipeline run",
+        "Pipelines cannot run a Dataflow Gen2 activity"
+      ],
+      "correctIndex": 1,
+      "explanation": "Adding a data destination is optional, the dataflow preserves all transformation steps, and a pipeline can add a Dataflow Gen2 activity to orchestrate extra activities."
+    },
+    {
+      "question": "In an ELT approach that uses Dataflows Gen2, what is the typical role of the pipeline?",
+      "options": [
+        "Create a curated semantic model for data analysts",
+        "Apply transformations using Power Query Online",
+        "Extract and load the data into a destination such as the lakehouse",
+        "Partition the data by ingestion time"
+      ],
+      "correctIndex": 2,
+      "explanation": "For ELT, the source says to use a pipeline to extract and load data into a preferred destination such as the lakehouse, then create a Dataflow Gen2 to cleanse and transform the data."
+    },
+    {
+      "question": "Which pane in the Power Query Online interface shows the Applied Steps for the selected query?",
+      "options": [
+        "Data Preview pane",
+        "Diagram view",
+        "Queries pane",
+        "Query Settings pane"
+      ],
+      "correctIndex": 3,
+      "explanation": "The Query Settings pane includes the Applied Steps, where each transformation is represented as a step that can be modified or deleted."
+    },
+    {
+      "question": "In which ways can Dataflows Gen2 be run?",
+      "options": [
+        "Manually, on a refresh schedule, or as part of a data pipeline orchestration",
+        "Only manually from Power BI Desktop",
+        "Only on demand from a KQL queryset",
+        "Only as part of a Spark job definition"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states that dataflows can be run manually, on a refresh schedule, or as part of a data pipeline orchestration."
+    },
+    {
+      "question": "In Microsoft Fabric, what does a data pipeline define?",
+      "options": [
+        "A single SQL query that transforms data",
+        "A sequence of activities that orchestrate an overall process, usually extracting from sources and loading into a destination",
+        "A visual dashboard of pipeline metrics",
+        "A machine learning model deployment"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source describes data pipelines as defining a sequence of activities that orchestrate an overall process, usually extracting data from sources and loading it into a destination."
+    },
+    {
+      "question": "What are the two broad categories of activity in a pipeline?",
+      "options": [
+        "Data transformation activities and control flow activities",
+        "Copy activities and delete activities",
+        "Ingestion activities and export activities",
+        "Query activities and reporting activities"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pipelines contain two broad categories of activity: data transformation activities and control flow activities."
+    },
+    {
+      "question": "Which activity copies data directly between a source and destination without applying transformations?",
+      "options": [
+        "Data Flow activity",
+        "Notebook activity",
+        "Copy Data activity",
+        "Stored procedure activity"
+      ],
+      "correctIndex": 2,
+      "explanation": "The Copy Data activity copies data directly between a supported source and destination without applying transformations."
+    },
+    {
+      "question": "What is the main benefit of using parameters in a pipeline?",
+      "options": [
+        "They encrypt the data being copied",
+        "They automatically partition the output",
+        "They enable row-level security",
+        "They increase the reusability of pipelines"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source states that using parameters increases the reusability of pipelines, enabling flexible data ingestion and transformation processes."
+    },
+    {
+      "question": "How can you review the details of a specific pipeline execution?",
+      "options": [
+        "Use the unique run ID to review run details",
+        "Inspect the dataflow query settings",
+        "Review the pipeline template",
+        "Check the eventhouse log"
+      ],
+      "correctIndex": 0,
+      "explanation": "Each pipeline run is given a unique run ID, which can be used to review run details and confirm the run completed successfully."
+    },
+    {
+      "question": "When should you use a Data Flow activity instead of a Copy Data activity?",
+      "options": [
+        "When copying data directly without any transformations",
+        "When you need to apply transformations to the data as it is ingested or merge data from multiple sources",
+        "When running a Spark notebook interactively",
+        "When deleting existing data before a copy"
+      ],
+      "correctIndex": 1,
+      "explanation": "Use a Data Flow activity to run a dataflow (Gen2) when you need to apply transformations as data is ingested or merge data from multiple sources."
+    },
+    {
+      "question": "What does the Validate option do for a completed pipeline?",
+      "options": [
+        "It deletes all activities that are invalid",
+        "It publishes the pipeline to a data warehouse",
+        "It checks that the pipeline configuration is valid before running",
+        "It automatically schedules the pipeline to run daily"
+      ],
+      "correctIndex": 2,
+      "explanation": "The Validate option is used to check that the pipeline configuration is valid before running it interactively or specifying a schedule."
+    },
+    {
+      "question": "What is a control flow activity used for in a pipeline?",
+      "options": [
+        "Copying data from a source to a destination",
+        "Running a dataflow transformation",
+        "Ingesting data into a lakehouse table",
+        "Implementing loops, conditional branching, or managing variable and parameter values"
+      ],
+      "correctIndex": 3,
+      "explanation": "Control flow activities are used to implement loops, conditional branching, and manage variable and parameter values for complex pipeline logic."
+    },
+    {
+      "question": "How can pipeline runs be initiated?",
+      "options": [
+        "Only from within a Power BI report",
+        "On-demand in the Fabric user interface or scheduled to start at a specific frequency",
+        "Only through the Real-Time hub",
+        "Only by running a stored procedure"
+      ],
+      "correctIndex": 1,
+      "explanation": "Runs can be initiated on-demand in the Fabric user interface or scheduled to start at a specific frequency."
+    },
+    {
+      "question": "What is Apache Spark best described as?",
+      "options": [
+        "A cloud-based ETL tool for small data transformations",
+        "A real-time event streaming service",
+        "An open source parallel processing framework for large-scale data processing and analytics",
+        "A relational database management system"
+      ],
+      "correctIndex": 2,
+      "explanation": "Apache Spark is an open source parallel processing framework for large-scale data processing and analytics."
+    },
+    {
+      "question": "In a Spark pool, which node coordinates distributed processes through a driver program?",
+      "options": [
+        "Worker node",
+        "Executor node",
+        "Data node",
+        "Head node"
+      ],
+      "correctIndex": 3,
+      "explanation": "A head node coordinates distributed processes through a driver program, while worker nodes run executor processes that perform the actual data processing."
+    },
+    {
+      "question": "In practice, most data engineering and analytics workloads in Spark are accomplished using a combination of which languages?",
+      "options": [
+        "PySpark and Spark SQL",
+        "Java and C++",
+        "R and MATLAB",
+        "COBOL and Fortran"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states that most data engineering and analytics workloads are accomplished using a combination of PySpark and Spark SQL."
+    },
+    {
+      "question": "What is the native execution engine in Microsoft Fabric?",
+      "options": [
+        "A runtime for R scripts",
+        "A vectorized processing engine that runs Spark operations directly on lakehouse infrastructure",
+        "A data lake storage service",
+        "A KQL query tool"
+      ],
+      "correctIndex": 1,
+      "explanation": "The native execution engine is a vectorized processing engine that runs Spark operations directly on lakehouse infrastructure, significantly improving performance on Parquet or Delta files."
+    },
+    {
+      "question": "Which data structure is the most commonly used for working with structured data in Spark?",
+      "options": [
+        "The resilient distributed dataset (RDD), used exclusively",
+        "The Pandas Series",
+        "The dataframe",
+        "The KQL table"
+      ],
+      "correctIndex": 2,
+      "explanation": "While Spark natively uses RDDs, the most commonly used structure for structured data is the dataframe, provided as part of the Spark SQL library."
+    },
+    {
+      "question": "What is an effect of specifying an explicit schema when loading data into a dataframe?",
+      "options": [
+        "It disables query folding",
+        "It automatically partitions the data",
+        "It requires a header row",
+        "It improves performance"
+      ],
+      "correctIndex": 3,
+      "explanation": "The source notes that specifying an explicit schema also improves performance."
+    },
+    {
+      "question": "When you save a dataframe with the partitionBy method to Parquet, how are the output folders generated?",
+      "options": [
+        "Folders are created in a column=value format, such as Category=Mountain Bikes",
+        "Folders are named by ingestion timestamp",
+        "All data is written to a single folder",
+        "Folders are numbered sequentially"
+      ],
+      "correctIndex": 0,
+      "explanation": "Partitioned output folders include the partitioning column name and value in a column=value format, such as Category=Mountain Bikes."
+    },
+    {
+      "question": "Which table format is the preferred format for tables in the Microsoft Fabric Spark catalog?",
+      "options": [
+        "CSV",
+        "Delta",
+        "JSON",
+        "Avro"
+      ],
+      "correctIndex": 1,
+      "explanation": "The preferred format is delta, which supports relational features including transactions, versioning, and streaming data."
+    },
+    {
+      "question": "What happens to a temporary view created with createOrReplaceTempView?",
+      "options": [
+        "It is persisted in the catalog permanently",
+        "It is copied to the Files storage area",
+        "It is automatically deleted at the end of the current session",
+        "It becomes a managed table"
+      ],
+      "correctIndex": 2,
+      "explanation": "A temporary view is automatically deleted at the end of the current session, unlike tables that persist in the catalog."
+    },
+    {
+      "question": "What is an Eventhouse in Microsoft Fabric?",
+      "options": [
+        "A data pipeline orchestrator",
+        "A Spark cluster",
+        "A Power BI report server",
+        "A container that houses one or more KQL databases optimized for real-time data"
+      ],
+      "correctIndex": 3,
+      "explanation": "An Eventhouse is a container that houses one or more KQL databases, each optimized for storing and analyzing real-time data that arrives continuously."
+    },
+    {
+      "question": "How do KQL databases make recent data quickly accessible?",
+      "options": [
+        "They automatically partition data by ingestion time",
+        "They store all data in a single table",
+        "They index data by category",
+        "They copy data into a warehouse"
+      ],
+      "correctIndex": 0,
+      "explanation": "KQL databases automatically partition data by ingestion time, so recent data is quickly accessible while historical data is stored for trend analysis."
+    },
+    {
+      "question": "What characteristic of real-time data makes automatic time-based organization work well?",
+      "options": [
+        "The data is frequently updated in place",
+        "The events are immutable and tied to specific moments in time",
+        "The data follows a traditional transactional model",
+        "The data requires relational integrity constraints"
+      ],
+      "correctIndex": 1,
+      "explanation": "Real-time data represents immutable events that happened at specific moments, creating time-series data that follows an append-only pattern."
+    },
+    {
+      "question": "How does KQL connect operators, and why does their order matter?",
+      "options": [
+        "Using the semicolon (;), with operators running in parallel",
+        "Using the comma (,), with order being irrelevant",
+        "Using the pipe (|), with each step working on the results of the previous step",
+        "Using the period (.), with only the first operator running"
+      ],
+      "correctIndex": 2,
+      "explanation": "KQL uses a pipeline approach with the pipe (|) character, and each operator filters, rearranges, or summarizes the data before passing it to the next step."
+    },
+    {
+      "question": "Which of the following is KQL case-sensitive for?",
+      "options": [
+        "Only function names",
+        "Only string values",
+        "Nothing; KQL is case-insensitive",
+        "Everything including table names, column names, operators, keywords, and string values"
+      ],
+      "correctIndex": 3,
+      "explanation": "KQL is case-sensitive for everything, including table names, column names, operators, keywords, and string values, so identifiers must match exactly."
+    },
+    {
+      "question": "What does the take operator do in a KQL query?",
+      "options": [
+        "It sorts the data in ascending order",
+        "It returns the first N rows from a table or query result",
+        "It deletes the first N rows",
+        "It summarizes data by a column"
+      ],
+      "correctIndex": 1,
+      "explanation": "The take operator returns the first N rows, which is useful for exploring data structure without processing the entire table."
+    },
+    {
+      "question": "What do materialized views in KQL databases store?",
+      "options": [
+        "Precomputed aggregation results that automatically update as new data arrives",
+        "Raw immutable events only",
+        "Stored SQL procedures",
+        "Database shortcuts to external tables"
+      ],
+      "correctIndex": 0,
+      "explanation": "Materialized views store precomputed aggregation results and automatically update them as new data arrives, providing instant results for dashboards and reports."
+    },
+    {
+      "question": "In a materialized view, what does the delta part represent?",
+      "options": [
+        "Precomputed results from already-processed data",
+        "Deleted rows awaiting cleanup",
+        "New data that has arrived since the last background update",
+        "The query definition of the view"
+      ],
+      "correctIndex": 2,
+      "explanation": "A materialized view has a materialized part with precomputed results and a delta containing new data since the last background update, combined at query time."
+    },
+    {
+      "question": "What is a key query optimization technique when joining tables in KQL?",
+      "options": [
+        "Always put the larger table first",
+        "Never use joins in KQL",
+        "Sort both tables in descending order before joining",
+        "Put the smaller table first, because fewer rows must be processed to match"
+      ],
+      "correctIndex": 3,
+      "explanation": "For joins, the source advises putting the smaller table first because KQL processes the first table to match the second, so fewer rows means a more efficient join."
+    }
+  ]
+}

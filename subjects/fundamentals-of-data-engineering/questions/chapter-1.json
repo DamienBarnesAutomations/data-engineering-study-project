@@ -1,0 +1,1217 @@
+{
+  "title": "Chapter 1 — Data Engineering Described: Quality Question Bank",
+  "source_file": "chapter-1-data-engineering-described.md",
+  "question_count": 110,
+  "questions": [
+    {
+      "question": "Which statement best matches the chapter's definition of data engineering?",
+      "options": [
+        "Building systems and processes that take raw data and produce high-quality, consistent information for downstream use cases",
+        "Primarily building machine-learning models from structured datasets",
+        "Administering relational databases without responsibility for downstream use",
+        "Creating dashboards and KPIs for executive decision-making"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter defines data engineering as developing, implementing, and maintaining systems/processes that turn raw data into high-quality, consistent information supporting uses such as analysis and ML."
+    },
+    {
+      "question": "Which set is explicitly described as the intersection of data engineering?",
+      "options": [
+        "ETL, dashboards, reporting, and data science",
+        "Networking, databases, statistics, and product management",
+        "BI, data science, machine learning, and cloud computing",
+        "Security, data management, DataOps, data architecture, orchestration, and software engineering"
+      ],
+      "correctIndex": 3,
+      "explanation": "These six disciplines are named in the chapter's definition."
+    },
+    {
+      "question": "Where does the data engineering lifecycle begin and end according to the chapter?",
+      "options": [
+        "At storage and at analytics",
+        "At source-system generation and at model training",
+        "With getting data from source systems and with serving data for use cases such as analysis or ML",
+        "With ingestion and with dashboard creation"
+      ],
+      "correctIndex": 2,
+      "explanation": "The lifecycle begins with getting data from source systems and ends with serving data for downstream use cases."
+    },
+    {
+      "question": "Which sequence lists the chapter's five lifecycle stages in the correct order?",
+      "options": [
+        "Ingestion → Generation → Storage → Transformation → Serving",
+        "Generation → Storage → Ingestion → Transformation → Serving",
+        "Storage → Generation → Transformation → Ingestion → Serving",
+        "Generation → Ingestion → Storage → Serving → Transformation"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter lists Generation, Storage, Ingestion, Transformation, and Serving."
+    },
+    {
+      "question": "What is the main conceptual purpose of the data engineering lifecycle?",
+      "options": [
+        "To define the job hierarchy within a data organization",
+        "To replace the need for data architecture",
+        "To rank data tools by popularity",
+        "To shift attention from technology toward the data and the end goals it must serve"
+      ],
+      "correctIndex": 3,
+      "explanation": "The lifecycle is intended to prevent technology fixation and keep attention on data and business/use-case outcomes."
+    },
+    {
+      "question": "Which group consists of lifecycle undercurrents rather than lifecycle stages?",
+      "options": [
+        "Analytics, experimentation, ML",
+        "Generation, storage, ingestion",
+        "Transformation, serving, generation",
+        "Security, data management, DataOps, data architecture, orchestration, and software engineering"
+      ],
+      "correctIndex": 3,
+      "explanation": "Those six are the undercurrents that span the lifecycle."
+    },
+    {
+      "question": "Which of the following is NOT listed as something a data engineer typically does directly?",
+      "options": [
+        "Understand how downstream consumers use data",
+        "Evaluate technology trade-offs",
+        "Build ML models directly",
+        "Build production-grade data systems"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says data engineers typically do not directly build ML models, reports/dashboards, analyses, KPIs, or software applications, although they should understand these areas."
+    },
+    {
+      "question": "Why should a data engineer understand areas such as dashboards, KPIs, and ML even if they typically do not build them directly?",
+      "options": [
+        "Because those areas replace data engineering",
+        "Because they are required lifecycle stages",
+        "Because understanding them helps the engineer serve stakeholders effectively",
+        "Because the chapter says every engineer must become a data scientist"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says engineers should have a good functioning understanding of these areas to serve stakeholders best."
+    },
+    {
+      "question": "What historical development does the chapter identify as an important root of modern data engineering?",
+      "options": [
+        "The rise of social media in the 2000s",
+        "The creation of Kubernetes",
+        "Data warehousing, with business data warehouses taking shape in the 1980s",
+        "The invention of deep learning in the 2010s"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter traces roots to data warehousing, dating back to the 1970s, with business data warehousing taking shape in the 1980s."
+    },
+    {
+      "question": "Who does the chapter credit with officially coining the term 'data warehouse' in 1989?",
+      "options": [
+        "Bill Inmon",
+        "Ralph Kimball",
+        "Jeff Dean",
+        "Jesse Anderson"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says Bill Inmon officially coined the term in 1989."
+    },
+    {
+      "question": "What role did Ralph Kimball and Bill Inmon play in the early data-warehouse era?",
+      "options": [
+        "They created AWS and Hadoop",
+        "They invented MapReduce",
+        "They developed their respective data-modeling techniques and approaches",
+        "They defined Type A and Type B data engineers"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says Kimball and Inmon developed their respective eponymous data-modeling approaches."
+    },
+    {
+      "question": "Why were BI engineer, ETL developer, and data warehouse engineer roles important historically?",
+      "options": [
+        "They addressed needs created by data warehousing and were precursors to today's data engineering",
+        "They were primarily ML research roles",
+        "They replaced software engineers in web companies",
+        "They existed only after Hadoop"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter describes these roles as precursors to today's data engineering and notes that they still play a central role."
+    },
+    {
+      "question": "What pressure pushed companies such as Yahoo, Google, and Amazon beyond traditional monolithic relational systems in the early 2000s?",
+      "options": [
+        "A requirement to use public cloud",
+        "The disappearance of data warehouses",
+        "A shortage of SQL developers",
+        "Traditional systems were being pushed to their limits by data growth"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says those companies initially relied on older systems but pushed them to their limits as data grew."
+    },
+    {
+      "question": "Which qualities did the chapter say the next generation of systems needed as traditional systems buckled?",
+      "options": [
+        "Encrypted, batch-only, monolithic, and licensed",
+        "Open source, serverless, graphical, and proprietary",
+        "Cost-effective, scalable, available, and reliable",
+        "Fast, cheap, relational, and centralized"
+      ],
+      "correctIndex": 2,
+      "explanation": "Those four qualities are explicitly listed."
+    },
+    {
+      "question": "What combination of developments helped begin the 'big data' era?",
+      "options": [
+        "The invention of dashboards",
+        "Cheap ubiquitous commodity hardware plus innovations in distributed computation and storage",
+        "The disappearance of web applications",
+        "Expensive proprietary hardware and centralized databases"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter links cheap commodity hardware with distributed computation/storage innovations and the decentralization of monolithic services."
+    },
+    {
+      "question": "What are the 'three Vs' commonly used in the chapter to describe big data?",
+      "options": [
+        "Value, velocity, variety",
+        "Volume, validity, value",
+        "Verification, volume, velocity",
+        "Velocity, variety, volume"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter names velocity, variety, and volume."
+    },
+    {
+      "question": "Why are Google's 2003 Google File System paper and 2004 MapReduce paper called a 'big bang' for data engineering?",
+      "options": [
+        "They directly created AWS",
+        "They formally created the data-engineer job title",
+        "They introduced the modern data stack",
+        "They provided cultural and technical roots that inspired later large-scale data technologies such as Hadoop"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter acknowledges earlier antecedents but describes the Google papers as a major catalyst for data technologies and the cultural roots of modern data engineering."
+    },
+    {
+      "question": "What was the significance of Yahoo's response to the Google papers?",
+      "options": [
+        "Yahoo became the first public cloud",
+        "Yahoo created and later open sourced Apache Hadoop in 2006",
+        "Yahoo invented SQL",
+        "Yahoo launched Snowflake"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter traces Hadoop to engineers at Yahoo inspired by the Google papers."
+    },
+    {
+      "question": "Which set of technologies did Amazon create for its own exploding data needs and later expose through AWS?",
+      "options": [
+        "BigQuery, Spanner, and Dataflow",
+        "Spark, Flink, and Beam",
+        "EC2, S3, and DynamoDB",
+        "HDFS, YARN, and Hive"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter specifically names EC2, S3, DynamoDB, and other core building blocks."
+    },
+    {
+      "question": "What was a defining characteristic of AWS's resource model in the chapter?",
+      "options": [
+        "It required customers to maintain Hadoop clusters",
+        "It was limited to internal Amazon use",
+        "Customers had to buy and install physical hardware",
+        "It offered a pay-as-you-go marketplace for virtualized commodity hardware"
+      ],
+      "correctIndex": 3,
+      "explanation": "AWS is described as an ultra-flexible pay-as-you-go resource marketplace."
+    },
+    {
+      "question": "What major processing shift occurred during the 2000s and 2010s?",
+      "options": [
+        "From event streaming to batch",
+        "From cloud computing to physical data centers",
+        "From batch computing to event streaming",
+        "From relational databases to spreadsheets"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter describes the transition from batch computing to event streaming as another major revolution."
+    },
+    {
+      "question": "Why did the chapter say code-first engineering became fashionable during the big-data era?",
+      "options": [
+        "Data warehouses stopped existing",
+        "GUI tools became mandatory",
+        "SQL disappeared permanently",
+        "MapReduce and related tools shifted work toward programming and low-level engineering"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says the ascendance of MapReduce helped make code-first engineering fashionable."
+    },
+    {
+      "question": "What was a common misuse of big-data technology during its hype period?",
+      "options": [
+        "Using Hadoop clusters for very small data problems",
+        "Using SQL for analytics",
+        "Using public clouds for large workloads",
+        "Using open source tools in enterprises"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter gives the example of companies standing up Hadoop clusters to process only a few gigabytes."
+    },
+    {
+      "question": "According to the chapter, what was the central reason the term 'big data' lost steam?",
+      "options": [
+        "Data volumes decreased",
+        "Hadoop became illegal to use",
+        "Simplification made large-scale processing accessible without the same administrative burden",
+        "Companies stopped collecting data"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says, 'One word: simplification.' Managed and abstracted services reduced the overhead of operating big-data systems."
+    },
+    {
+      "question": "What did big-data engineers often spend excessive time doing?",
+      "options": [
+        "Delivering business insights",
+        "Maintaining complicated tooling and clusters",
+        "Building dashboards",
+        "Training AI researchers"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter contrasts platform maintenance with delivering business insights and value."
+    },
+    {
+      "question": "How does the chapter characterize the relationship between 'big data engineering' and today's data engineering?",
+      "options": [
+        "Big-data engineering is now only an academic field",
+        "Big-data processing became accessible enough that big-data engineers are now simply data engineers",
+        "They are unrelated disciplines",
+        "Big data engineering replaced data engineering"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter explicitly says big-data engineers are now simply data engineers."
+    },
+    {
+      "question": "What trend characterizes data engineering in the 2020s according to the chapter?",
+      "options": [
+        "A move toward decentralized, modularized, managed, highly abstracted tools",
+        "Elimination of third-party products",
+        "A return to monolithic, low-level frameworks",
+        "Less interoperability between systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter describes a trend away from low-level monolithic frameworks toward managed, modular, abstracted tools."
+    },
+    {
+      "question": "What does the chapter mean by describing data engineering as increasingly a discipline of 'interoperation'?",
+      "options": [
+        "Data engineers build one giant platform",
+        "They avoid using third-party tools",
+        "They connect diverse technologies and sources to serve business goals",
+        "They focus only on interoperability testing"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter compares connecting technologies to LEGO bricks in service of ultimate business goals."
+    },
+    {
+      "question": "How does the chapter position data engineering relative to data science and analytics?",
+      "options": [
+        "They are identical roles",
+        "Data science is upstream of data engineering",
+        "Data engineering is a subdiscipline of analytics",
+        "They are separate but complementary, with data engineering upstream of data science"
+      ],
+      "correctIndex": 3,
+      "explanation": "The authors explicitly argue that data engineering is distinct from data science and analytics and sits upstream of them."
+    },
+    {
+      "question": "What does 'upstream' mean in the chapter's description of data engineering and data science?",
+      "options": [
+        "Data engineers provide inputs that data scientists use to create useful outputs",
+        "Data engineers report to data scientists",
+        "Data scientists maintain source systems",
+        "Data engineers only work before software is written"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter uses upstream/downstream to describe data engineers providing inputs to downstream data scientists."
+    },
+    {
+      "question": "According to the chapter's discussion of Monica Rogati's hierarchy, where do data scientists spend an estimated 70–80% of their time?",
+      "options": [
+        "Gathering, cleaning, and processing data",
+        "Executive presentations",
+        "Model deployment only",
+        "Analysis and ML"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says an estimated 70–80% is spent on the bottom three levels: gathering, cleaning, and processing data."
+    },
+    {
+      "question": "What does the chapter say companies should do before tackling AI and ML?",
+      "options": [
+        "Build a solid data foundation",
+        "Hire only AI researchers",
+        "Adopt the newest cloud technology",
+        "Eliminate data analysts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says the bottom three levels of the hierarchy form a foundation that should be built before AI/ML."
+    },
+    {
+      "question": "What should data engineers automate for data scientists when the engineering foundation is working well?",
+      "options": [
+        "Model interpretation",
+        "The scientists' research agenda",
+        "All business decisions",
+        "Collecting, cleaning, and preparing data after initial exploratory work"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says data scientists should not have to spend their time on these tasks after initial exploration and data engineers should automate them as much as possible."
+    },
+    {
+      "question": "What broader role does data engineering play between raw data and business value?",
+      "options": [
+        "It eliminates the need for analytics",
+        "It replaces business leadership",
+        "It sits at the divide between getting data and getting value from data",
+        "It focuses only on data storage"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says data engineering straddles the divide between getting data and getting value from data."
+    },
+    {
+      "question": "Which set of axes does the chapter say data engineers must constantly balance?",
+      "options": [
+        "Accuracy, recall, precision, F1, and AUC",
+        "Latency, bandwidth, uptime, CPU, and RAM only",
+        "Cost, agility, scalability, simplicity, reuse, and interoperability",
+        "Revenue, hiring, marketing, sales, and growth"
+      ],
+      "correctIndex": 2,
+      "explanation": "Those six dimensions are explicitly listed as the balancing act of data engineering."
+    },
+    {
+      "question": "How has the nature of data-engineering work changed as tools have become more abstract?",
+      "options": [
+        "Engineers now maintain larger Hadoop clusters",
+        "Engineers spend more time on hardware installation",
+        "Engineers focus more on balancing simple, cost-effective best-of-breed services and agile architectures",
+        "Engineers no longer need software engineering skills"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says modern tooling reduces management complexity and shifts attention toward selecting services that deliver business value."
+    },
+    {
+      "question": "What does the chapter say about coding for data engineers?",
+      "options": [
+        "Data engineers should have production-grade software engineering chops",
+        "Coding is optional if the engineer knows SQL",
+        "Only ML engineers need production-grade coding skills",
+        "Managed services eliminate the need to code"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter's short answer is yes: data engineers should have production-grade software engineering skills."
+    },
+    {
+      "question": "What is the effect of managed services and plug-and-play SaaS on data-engineering work?",
+      "options": [
+        "They force all pipelines into batch processing",
+        "They eliminate architecture decisions",
+        "They make software engineering irrelevant",
+        "They replace much low-level programming effort and encourage higher-level abstractions"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says fully managed services replace a great deal of low-level effort while engineers increasingly write pipelines as code within orchestration frameworks."
+    },
+    {
+      "question": "Why does the chapter still value deep software-engineering and architectural knowledge in an abstracted world?",
+      "options": [
+        "It is needed only for writing dashboards",
+        "It allows engineers to avoid managed services entirely",
+        "It replaces data architecture",
+        "It provides a competitive advantage when specific technical needs require deeper intervention"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says engineers who can dive into deep architectural details give their companies an edge when particular technical needs arise."
+    },
+    {
+      "question": "What does the chapter mean by data maturity?",
+      "options": [
+        "The amount of data stored",
+        "The age of a company's data platform",
+        "The number of data engineers employed",
+        "Progression toward higher data utilization, capabilities, and integration across the organization"
+      ],
+      "correctIndex": 3,
+      "explanation": "That is the chapter's definition, and it explicitly says maturity does not simply depend on age or revenue."
+    },
+    {
+      "question": "Which statement best captures the chapter's point about company age/revenue and data maturity?",
+      "options": [
+        "A young startup can be more data-mature than a large old company; what matters is how data is leveraged as competitive advantage",
+        "Revenue determines maturity",
+        "Only technology companies can reach high maturity",
+        "Older companies are always more mature"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter explicitly contrasts an early-stage startup with a century-old billion-dollar company."
+    },
+    {
+      "question": "Which situation most closely matches Stage 1, 'Starting with data'?",
+      "options": [
+        "Formal data practices and specialized lifecycle teams",
+        "Custom data systems built around a mature competitive advantage",
+        "Fuzzy goals, early architecture, low adoption, a small team, and many ad hoc requests",
+        "Automated pipelines, self-service analytics, and seamless source onboarding"
+      ],
+      "correctIndex": 2,
+      "explanation": "Those characteristics define Stage 1 in the chapter."
+    },
+    {
+      "question": "What is the primary goal of a data engineer in Stage 1?",
+      "options": [
+        "Maximize cluster size",
+        "Create a large specialized data organization",
+        "Build advanced ML infrastructure first",
+        "Move fast, get traction, and add value"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter states that a Stage 1 engineer's goal is to move fast, get traction, and add value."
+    },
+    {
+      "question": "Why does the chapter caution against jumping headfirst into ML in Stage 1?",
+      "options": [
+        "Stage 1 companies are prohibited from using ML",
+        "ML always costs more than data engineering",
+        "ML is never useful for startups",
+        "There may not be sufficient data or a scalable, repeatable means to deploy models"
+      ],
+      "correctIndex": 3,
+      "explanation": "Without a solid data foundation, reliable training data and scalable, repeatable production deployment are unlikely."
+    },
+    {
+      "question": "Which is a recommended Stage 1 activity?",
+      "options": [
+        "Deploy data catalogs enterprise-wide before defining goals",
+        "Build custom infrastructure regardless of available managed tools",
+        "Optimize cluster capacity as the primary objective",
+        "Get stakeholder buy-in and design architecture around business goals"
+      ],
+      "correctIndex": 3,
+      "explanation": "The Stage 1 recommendations include stakeholder buy-in and defining architecture around business goals."
+    },
+    {
+      "question": "Why should quick wins in Stage 1/early Stage 2 be handled carefully?",
+      "options": [
+        "Quick wins eliminate the need for stakeholder communication",
+        "Quick wins require abandoning architecture",
+        "Quick wins never create value",
+        "Quick wins can establish the importance of data but are likely to create technical debt"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says quick wins can build organizational support but likely create technical debt that should be reduced."
+    },
+    {
+      "question": "What is the danger of a data team working in a silo during the early maturity stages?",
+      "options": [
+        "The team may spend time building things that are of little use to people",
+        "The team will automatically overfit ML models",
+        "The team will hire too many analysts",
+        "The data warehouse will become relational"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter emphasizes talking to stakeholders to avoid building low-value solutions."
+    },
+    {
+      "question": "What is the chapter's rule for deciding when to build custom solutions?",
+      "options": [
+        "Build custom solutions and code when doing so creates competitive advantage",
+        "Build custom systems whenever a Silicon Valley company does",
+        "Never write custom code",
+        "Always build custom systems for control"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter repeatedly recommends off-the-shelf solutions for undifferentiated work and customization where it creates competitive advantage."
+    },
+    {
+      "question": "What marks the transition into Stage 2, 'Scaling with data'?",
+      "options": [
+        "The company moves away from ad hoc requests and establishes formal data practices",
+        "The company eliminates data architecture",
+        "The company returns to ad hoc requests",
+        "The company stops using data scientists"
+      ],
+      "correctIndex": 0,
+      "explanation": "Stage 2 is characterized by moving away from ad hoc data requests toward formal practices and scalable architectures."
+    },
+    {
+      "question": "Which pair represents the stated goals for Stage 2?",
+      "options": [
+        "Establish formal data practices and create scalable, robust data architectures",
+        "Focus exclusively on external-facing systems",
+        "Build AI research labs and eliminate technical debt completely",
+        "Replace all managed services and maximize custom code"
+      ],
+      "correctIndex": 0,
+      "explanation": "Those are the two explicit goals listed for Stage 2."
+    },
+    {
+      "question": "What organizational change does the chapter associate with Stage 2?",
+      "options": [
+        "All engineers become AI researchers",
+        "Data engineering roles generally move from generalists toward specialists",
+        "Data engineers stop collaborating with analysts",
+        "The data team becomes smaller by definition"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says roles move from generalists to specialists as the company formalizes and scales data practices."
+    },
+    {
+      "question": "Which practice does the chapter recommend adopting in Stage 2?",
+      "options": [
+        "Avoid all automation",
+        "Avoid stakeholder communication",
+        "Use only Hadoop",
+        "Adopt DevOps and DataOps practices"
+      ],
+      "correctIndex": 3,
+      "explanation": "Stage 2 goals include adopting DevOps and DataOps practices and building systems that support ML."
+    },
+    {
+      "question": "According to the chapter, what is the main bottleneck for scaling data engineering?",
+      "options": [
+        "The number of SQL queries",
+        "Storage capacity",
+        "Cluster nodes",
+        "The data engineering team"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter explicitly says the main bottleneck is the data engineering team, not infrastructure resources."
+    },
+    {
+      "question": "How should a Stage 2 organization respond to the temptation to adopt bleeding-edge tools used by famous companies?",
+      "options": [
+        "Avoid all new technology",
+        "Adopt them immediately to stay competitive",
+        "Use only tools older than five years",
+        "Choose technology based on the value it will deliver to customers"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter warns against social-proof-driven technology choices and says customer value should drive decisions."
+    },
+    {
+      "question": "Which set best describes Stage 3, 'Leading with data'?",
+      "options": [
+        "A data-driven organization with automated pipelines, self-service analytics/ML, seamless new-source introduction, and tangible value",
+        "Formal practices without automation",
+        "Ad hoc requests, low adoption, and a tiny generalist team",
+        "A company focused mainly on cluster administration"
+      ],
+      "correctIndex": 0,
+      "explanation": "These are defining characteristics of Stage 3."
+    },
+    {
+      "question": "Which activity is specifically added to a Stage 3 data engineer's responsibilities?",
+      "options": [
+        "Return to manual data requests",
+        "Create automation for seamless introduction and usage of new data",
+        "Stop collaborating with business teams",
+        "Avoid governance and quality work"
+      ],
+      "correctIndex": 1,
+      "explanation": "Stage 3 explicitly adds automation for seamless new-data introduction and usage."
+    },
+    {
+      "question": "What 'enterprisey' aspects does Stage 3 emphasize?",
+      "options": [
+        "Only dashboard design",
+        "Only server procurement",
+        "Only ML model tuning",
+        "Data management, including governance and quality, plus DataOps"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter explicitly names data management, governance, quality, and DataOps."
+    },
+    {
+      "question": "Which tools are specifically mentioned as ways to expose and disseminate data in Stage 3?",
+      "options": [
+        "Firewalls, load balancers, and CDNs",
+        "Data catalogs, data lineage tools, and metadata management systems",
+        "Compilers, IDEs, and version-control servers",
+        "Spreadsheets, slide decks, and email"
+      ],
+      "correctIndex": 1,
+      "explanation": "Those three tool categories are explicitly listed."
+    },
+    {
+      "question": "What is a major danger once an organization reaches Stage 3?",
+      "options": [
+        "Using SQL effectively",
+        "Complacency and expensive technology hobby projects that fail to deliver business value",
+        "Automating new data sources",
+        "Having too much stakeholder communication"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter warns that Stage 3 organizations must continuously maintain and improve and avoid expensive hobby projects."
+    },
+    {
+      "question": "Why does the chapter say data engineering should be viewed through both business and technical lenses?",
+      "options": [
+        "Because business responsibilities replace engineering responsibilities",
+        "Because technical skills are no longer important",
+        "Because the role exists only in business departments",
+        "Because engineers must understand both downstream requirements and technical systems/trade-offs"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter describes data engineering as holistic, requiring understanding of data consumers and broader organizational implications alongside technical architecture."
+    },
+    {
+      "question": "Which behavior is recommended for understanding an organization's human side?",
+      "options": [
+        "Communicate only with engineers",
+        "Pay attention to hierarchies, reporting relationships, interactions, and silos",
+        "Ignore reporting lines and silos",
+        "Let technology determine organizational structure"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter recommends observing organizational hierarchies, interactions, and silos to build trust and navigate the organization."
+    },
+    {
+      "question": "What should a data engineer accomplish when scoping business and product requirements?",
+      "options": [
+        "Choose a tool before understanding the problem",
+        "Avoid discussing requirements with stakeholders",
+        "Determine what to build and ensure stakeholders agree with the assessment",
+        "Optimize only for technical elegance"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says engineers need to know what to build and ensure stakeholder agreement, while understanding business impact."
+    },
+    {
+      "question": "How does the chapter characterize Agile, DevOps, and DataOps?",
+      "options": [
+        "Fundamentally cultural practices requiring organizational buy-in",
+        "Methods used only by project managers",
+        "Practices that eliminate the need for communication",
+        "Primarily tool categories"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter explicitly says these practices are fundamentally cultural and require buy-in across the organization."
+    },
+    {
+      "question": "Which three cost concepts does the chapter specifically say data engineers should optimize?",
+      "options": [
+        "Hiring cost, office rent, and travel",
+        "Revenue, gross margin, and tax rate",
+        "CPU time, RAM, and disk space only",
+        "Time to value, total cost of ownership, and opportunity cost"
+      ],
+      "correctIndex": 3,
+      "explanation": "Those three are explicitly named under cost control."
+    },
+    {
+      "question": "What does the chapter advise about continuous learning?",
+      "options": [
+        "Chase every new tool",
+        "Focus on fundamentals while monitoring developments and filtering useful advances from immature ideas and fads",
+        "Ignore new developments",
+        "Specialize permanently in one framework"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter recommends strong fundamentals plus awareness and filtering of new developments."
+    },
+    {
+      "question": "What is the chapter's high-level technical architecture responsibility for a data engineer?",
+      "options": [
+        "Always choose the most expensive tool",
+        "Optimize architectures for performance and cost using prepackaged or homegrown components",
+        "Build every component from scratch",
+        "Avoid architectural decisions"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says engineers must understand how to build architectures that optimize performance and cost using appropriate components."
+    },
+    {
+      "question": "Which four are identified as the primary programming languages of data engineering 'at the time of this writing'?",
+      "options": [
+        "Java, Scala, C#, and PowerShell",
+        "SQL, Python, a JVM language such as Java or Scala, and bash",
+        "SQL, Go, C++, and Julia",
+        "Python, R, JavaScript, and Rust"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter explicitly lists SQL, Python, a JVM language, and bash."
+    },
+    {
+      "question": "Why does the chapter describe Python as a bridge between data engineering and data science?",
+      "options": [
+        "Python replaces SQL in databases",
+        "Many data-engineering tools are written in Python or expose Python APIs, and Python connects components",
+        "Python is the only language used by data scientists",
+        "Python is required by AWS"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter calls Python a bridge because of its widespread role in data tools and APIs."
+    },
+    {
+      "question": "Why are JVM languages such as Java and Scala useful to data engineers?",
+      "options": [
+        "They replace bash on Linux",
+        "They are prevalent in Apache projects and can provide performance and lower-level access beyond Python APIs",
+        "They are the only languages used for dashboards",
+        "They are required for all SQL queries"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter points to Spark, Hive, and Druid and notes JVM performance/lower-level access."
+    },
+    {
+      "question": "What role does bash play in the chapter's list of primary languages?",
+      "options": [
+        "It is mainly a database query language",
+        "It is a JVM language",
+        "It supports CLI scripting and OS operations, including pipeline and orchestration tasks",
+        "It is used to train ML models"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter emphasizes bash/CLI productivity, scripting, OS operations, awk/sed, and orchestration calls."
+    },
+    {
+      "question": "How did SQL's role change from the MapReduce era to the modern data landscape described in the chapter?",
+      "options": [
+        "SQL disappeared entirely",
+        "SQL became useful only for small datasets",
+        "SQL was replaced by bash",
+        "SQL was briefly sidelined by custom MapReduce code but reemerged as the lingua franca of data"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter explicitly describes SQL's reemergence after the MapReduce era."
+    },
+    {
+      "question": "Which modern technologies are given as examples of systems that can process massive data using SQL semantics?",
+      "options": [
+        "Only Hadoop HDFS",
+        "Only Python notebooks",
+        "Only Excel and spreadsheets",
+        "BigQuery, Snowflake, Spark SQL, and Hive"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter lists Spark SQL, BigQuery, Snowflake, Hive, and others."
+    },
+    {
+      "question": "Which statement best captures the chapter's position on SQL?",
+      "options": [
+        "SQL is useful only for reporting",
+        "SQL should never be used for streaming",
+        "SQL is powerful and should be mastered, but engineers should recognize when another tool is more suitable",
+        "SQL is the only language a data engineer needs"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter strongly advocates SQL proficiency while explicitly rejecting the idea that SQL is the be-all and end-all."
+    },
+    {
+      "question": "Why might native Spark be preferable to SQL for some NLP preprocessing?",
+      "options": [
+        "SQL is not declarative",
+        "A complex text-stemming/tokenization task can be more naturally and effectively implemented in native Spark than as an awkward SQL query",
+        "Spark is always cheaper",
+        "SQL cannot access data lakes"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter uses text stemming/tokenization as an example of recognizing when SQL is not the right tool."
+    },
+    {
+      "question": "Which of the following is listed as a secondary language that may be needed depending on company or domain tooling?",
+      "options": [
+        "COBOL",
+        "Fortran",
+        "Go",
+        "Pascal"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter lists R, JavaScript, Go, Rust, C/C++, C#, and Julia as possible secondary languages."
+    },
+    {
+      "question": "What language is specifically noted as popular for user-defined functions in cloud data warehouses?",
+      "options": [
+        "JavaScript",
+        "Bash",
+        "C#",
+        "Rust"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter gives JavaScript as an example."
+    },
+    {
+      "question": "What should engineers prioritize when keeping skills current?",
+      "options": [
+        "Fundamentals that are unlikely to change, while monitoring developments and understanding how new technologies help the lifecycle",
+        "Avoiding all emerging technology",
+        "Only certifications",
+        "Only the newest tools"
+      ],
+      "correctIndex": 0,
+      "explanation": "That is the chapter's explicit advice for staying effective in a fast-moving field."
+    },
+    {
+      "question": "What does 'A' stand for in Type A data engineer?",
+      "options": [
+        "Analysis",
+        "Automation",
+        "Abstraction",
+        "Architecture"
+      ],
+      "correctIndex": 2,
+      "explanation": "Type A means abstraction: avoiding undifferentiated heavy lifting and unnecessary reinvention."
+    },
+    {
+      "question": "What does 'B' stand for in Type B data engineer?",
+      "options": [
+        "Benchmark",
+        "Build",
+        "Business",
+        "Batch"
+      ],
+      "correctIndex": 1,
+      "explanation": "Type B means build: creating custom data tools and systems where they provide competitive advantage."
+    },
+    {
+      "question": "Which behavior best describes a Type A data engineer?",
+      "options": [
+        "Build every platform internally",
+        "Avoid all vendor products",
+        "Use off-the-shelf products and managed services while keeping architecture abstract and straightforward",
+        "Focus exclusively on ML research"
+      ],
+      "correctIndex": 2,
+      "explanation": "Type A engineers avoid undifferentiated heavy lifting and mainly use off-the-shelf products, managed services, and tools."
+    },
+    {
+      "question": "Which behavior best describes a Type B data engineer?",
+      "options": [
+        "Use only SaaS products",
+        "Avoid custom engineering",
+        "Work only at Stage 1 companies",
+        "Build tools and systems that scale and leverage the company's core competency or competitive advantage"
+      ],
+      "correctIndex": 3,
+      "explanation": "That is the chapter's description of Type B."
+    },
+    {
+      "question": "Where is a Type B data engineer more commonly found according to the chapter?",
+      "options": [
+        "Only in academic institutions",
+        "More commonly in Stages 2 and 3, or in a unique mission-critical use case requiring custom tools",
+        "Only in companies with no data architecture",
+        "Only in Stage 1"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter associates Type B more commonly with scaling/leading organizations or unique mission-critical use cases."
+    },
+    {
+      "question": "Which statement about Type A and Type B engineers is explicitly supported?",
+      "options": [
+        "A Type A engineer can never become Type B",
+        "They are mutually exclusive job titles",
+        "Type B is always more senior",
+        "They may work in the same company and can even be the same person"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says they may work together and may even be the same person; the distinction is about approach, not seniority."
+    },
+    {
+      "question": "What is the central organizational position of the data engineer described in the chapter?",
+      "options": [
+        "A replacement for business leadership",
+        "A purely downstream reporting role",
+        "A hub between data producers upstream and data consumers downstream",
+        "A role isolated from software engineering"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter describes data engineers as a hub between producers such as software engineers/architects/DevOps and consumers such as analysts/data scientists/ML engineers."
+    },
+    {
+      "question": "Which group is primarily upstream of data engineering in the chapter?",
+      "options": [
+        "Executives and product managers only",
+        "Data analysts, data scientists, ML engineers",
+        "Data architects, software engineers, and DevOps/SREs",
+        "Customers and traders only"
+      ],
+      "correctIndex": 2,
+      "explanation": "These are the chapter's named upstream stakeholders."
+    },
+    {
+      "question": "What do data architects primarily provide?",
+      "options": [
+        "The blueprint for organizational data management, processes, architecture, and systems",
+        "Only ML infrastructure",
+        "Only dashboards",
+        "Only software application code"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter describes architects as designing the blueprint and guiding data management, governance, and major initiatives."
+    },
+    {
+      "question": "How has cloud computing affected the boundary between data architecture and data engineering?",
+      "options": [
+        "It eliminated architecture",
+        "It made data engineers unable to do architecture",
+        "Cloud architectures are more fluid, so decisions that once required long lead times can often be made during implementation",
+        "It made on-premises architecture more fluid than cloud"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says cloud architecture decisions are often made during implementation rather than through long hardware/procurement cycles."
+    },
+    {
+      "question": "Why must data engineers work closely with software engineers?",
+      "options": [
+        "Software engineers replace analysts",
+        "Software engineers own all data governance",
+        "Software engineers generate application data and logs, and coordination is needed around volume, frequency, format, security, and compliance",
+        "They are both downstream consumers"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter emphasizes collaboration from project inception and understanding the properties and constraints of source-system data."
+    },
+    {
+      "question": "How are DevOps engineers and SREs characterized in relation to data engineering?",
+      "options": [
+        "They replace data architects",
+        "They are never connected to data engineering",
+        "They may produce operational data and can be upstream or downstream depending on the work",
+        "They only build ML models"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter classifies them as upstream through operational monitoring data while noting they may also consume data downstream or coordinate operations."
+    },
+    {
+      "question": "What is the typical temporal focus of data scientists versus data analysts in the chapter?",
+      "options": [
+        "Data scientists are forward-looking; analysts typically focus on past or present",
+        "Both focus only on real-time systems",
+        "Analysts focus only on ML",
+        "Data scientists focus on the past; analysts on the future"
+      ],
+      "correctIndex": 0,
+      "explanation": "That distinction is explicitly made."
+    },
+    {
+      "question": "Which activity is characteristic of data analysts according to the chapter?",
+      "options": [
+        "Running SQL queries in warehouses/lakes and using spreadsheets or BI tools to understand business performance and trends",
+        "Maintaining ML infrastructure",
+        "Designing cloud architectures",
+        "Training deep-learning models for production"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter describes analysts as business/domain-focused users of SQL, spreadsheets, and BI tools."
+    },
+    {
+      "question": "How do data analysts contribute to data engineering?",
+      "options": [
+        "They only create software applications",
+        "They administer Hadoop clusters",
+        "They replace data engineers",
+        "Their subject-matter knowledge can help identify definitions, characteristics, and quality problems and improve data quality"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says analysts frequently collaborate with engineers on data quality and pipelines for needed sources."
+    },
+    {
+      "question": "What is a primary responsibility of ML engineers?",
+      "options": [
+        "Managing organizational data governance",
+        "Designing and maintaining infrastructure for ML processes at production scale, as well as developing/training advanced ML techniques",
+        "Replacing all data engineers",
+        "Creating executive dashboards only"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter describes ML engineers as overlapping with data engineering/data science and responsible for production ML infrastructure and advanced ML work."
+    },
+    {
+      "question": "How does the chapter describe the boundaries among data engineering, data science, and ML engineering?",
+      "options": [
+        "They are blurry, with engineers sometimes sharing operational or design responsibilities",
+        "They are rigid and non-overlapping",
+        "They are identical roles",
+        "Only data engineers can work on ML systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter explicitly says the boundaries are blurry and gives examples of overlap."
+    },
+    {
+      "question": "What distinguishes an external-facing data engineer from an internal-facing one?",
+      "options": [
+        "External-facing engineers never use warehouses",
+        "External-facing means working outside the company",
+        "External-facing work supports external applications and their feedback loops; internal-facing work primarily supports business and internal stakeholders",
+        "Internal-facing engineers never work with ML"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter distinguishes the two based on users and end-use cases, not employment location."
+    },
+    {
+      "question": "Which scenario is most clearly external-facing?",
+      "options": [
+        "Creating an internal finance report",
+        "Building an internal HR data mart",
+        "Maintaining a warehouse for executive dashboards",
+        "Building systems that collect application events and feed recommendations back into an ecommerce application"
+      ],
+      "correctIndex": 3,
+      "explanation": "External-facing systems have a feedback loop from application to pipeline and back to application."
+    },
+    {
+      "question": "Why can external-facing query systems require tighter query limits?",
+      "options": [
+        "Because internal data is always larger",
+        "To eliminate security controls",
+        "To reduce the infrastructure impact of any single external user",
+        "Because external users cannot run SQL"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter specifically recommends tight limits to control infrastructure impact."
+    },
+    {
+      "question": "Why is security especially sensitive in external-facing data systems?",
+      "options": [
+        "External systems cannot use encryption",
+        "External systems never have authentication",
+        "External queries may involve multitenant data containing many customers in a shared table",
+        "Internal systems are always public"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter highlights multitenant data as a reason security is especially complex and sensitive."
+    },
+    {
+      "question": "What relationship does the chapter describe between internal- and external-facing data engineering?",
+      "options": [
+        "Internal-facing is obsolete",
+        "They are always completely separate",
+        "External-facing always comes first",
+        "They are often blended, and internal-facing data is usually a prerequisite for external-facing data"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter explicitly says responsibilities are often blended and internal-facing data is usually a prerequisite."
+    },
+    {
+      "question": "What does the chapter say is the CEO's typical role regarding data and technology?",
+      "options": [
+        "Running the data warehouse",
+        "Managing every data pipeline",
+        "Defining a vision with technical C-suite roles and company data leadership rather than handling framework details",
+        "Writing production SQL"
+      ],
+      "correctIndex": 2,
+      "explanation": "CEOs are described as increasingly involved in data/analytics initiatives while generally not dealing with technical nitty-gritty."
+    },
+    {
+      "question": "What is the CIO primarily responsible for in the chapter?",
+      "options": [
+        "External-facing application architecture",
+        "Data science research only",
+        "Internal-facing information technology, policies, and major IT initiatives",
+        "Product management"
+      ],
+      "correctIndex": 2,
+      "explanation": "The CIO is described as the senior executive responsible for IT and as an internal-facing role."
+    },
+    {
+      "question": "What is the CTO's key distinction from the CIO in this chapter?",
+      "options": [
+        "The CTO owns data governance exclusively",
+        "The CTO focuses only on internal ERP systems",
+        "The CTO is always below the CIO",
+        "The CTO focuses on technological strategy and architectures for external-facing applications"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter contrasts the CTO's external-facing technology strategy with the CIO's internal-facing role."
+    },
+    {
+      "question": "What does the Chief Data Officer (CDO) primarily own?",
+      "options": [
+        "Only external application architecture",
+        "Only project schedules",
+        "A company's data assets and strategy, including areas such as data products, master data management, and privacy",
+        "Only software deployment"
+      ],
+      "correctIndex": 2,
+      "explanation": "Those responsibilities are explicitly associated with the CDO."
+    },
+    {
+      "question": "How does the chapter distinguish a Chief Analytics Officer (CAO) from a CDO when both exist?",
+      "options": [
+        "The CAO is a project manager",
+        "The CAO owns cloud infrastructure and the CDO owns dashboards",
+        "The CAO focuses on analytics, strategy, and business decision-making, while the CDO focuses on the technology and organization required to deliver data",
+        "They are always identical roles"
+      ],
+      "correctIndex": 2,
+      "explanation": "That is the distinction given in the chapter."
+    },
+    {
+      "question": "What is the unusual focus of a Chief Algorithms Officer (CAO-2)?",
+      "options": [
+        "Project traffic management",
+        "Data governance only",
+        "Internal IT operations",
+        "Highly technical leadership focused specifically on data science and ML"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter describes CAO-2 as a recent, highly technical C-suite role focused specifically on data science and ML."
+    },
+    {
+      "question": "What is the difference between project managers and data engineers described in the chapter?",
+      "options": [
+        "They have identical responsibilities",
+        "Data engineers own all product lines",
+        "Project managers write all pipelines",
+        "Data engineers provide infrastructure/service delivery, while project managers direct traffic, prioritize deliverables, and manage project cadence"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter contrasts engineering/service delivery with project management's coordination and prioritization role."
+    },
+    {
+      "question": "How do data engineers typically interact with project managers?",
+      "options": [
+        "By planning sprints and standups, communicating progress/blockers, and balancing technical cadence with changing business needs",
+        "By replacing project management entirely",
+        "By managing only databases",
+        "By avoiding business stakeholders"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter explicitly describes this two-way interaction."
+    },
+    {
+      "question": "What is a 'data product' in the chapter's discussion of product managers?",
+      "options": [
+        "A product built from scratch or an incremental improvement to an existing product in the data-centric context",
+        "A database backup",
+        "Only an ML model",
+        "Any spreadsheet"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says data products may be built from the ground up or incrementally improved."
+    },
+    {
+      "question": "What two organizational service models are highlighted in the conclusion?",
+      "options": [
+        "Batch and streaming",
+        "Services/centralized and cross-functional models",
+        "Waterfall and Scrum",
+        "Type A and Type B"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says data engineers either serve incoming requests as a centralized team or work as a resource assigned to a manager, project, or product in a cross-functional arrangement."
+    },
+    {
+      "question": "What broad lesson does the chapter's conclusion give about being an engineer?",
+      "options": [
+        "Engineers should understand the problems, tools, and people they work with and serve",
+        "Data engineers should avoid organizational concerns",
+        "Engineering is mainly isolated coding",
+        "Technology choices matter more than business problems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The conclusion emphasizes understanding problems, technology, and people rather than hacking on code in isolation."
+    }
+  ]
+}

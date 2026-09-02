@@ -1,0 +1,1856 @@
+{
+  "title": "Chapter 8 — Queries, Modeling, and Transformation: Quality Question Bank",
+  "source_file": "chapter-8-queries-modeling-and-transformation.md",
+  "original_question_file": "chapter-8.json",
+  "question_count": 168,
+  "questions": [
+    {
+      "question": "What are DDL, DML, DCL, and TCL, and what's one example command from each?",
+      "options": [
+        "DDL defines database objects (CREATE, DROP); DML manipulates data (SELECT, INSERT); DCL controls access (GRANT, REVOKE); TCL controls transactions (COMMIT, ROLLBACK)",
+        "DDL manipulates data; DML defines objects; DCL controls transactions; TCL controls access",
+        "All four acronyms refer to the same set of SQL commands under different vendor names",
+        "DCL and TCL are deprecated terms no longer used in modern SQL databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book walks through each in turn: DDL (CREATE/DROP/UPDATE for objects), DML (SELECT/INSERT/UPDATE/DELETE for data), DCL (GRANT/DENY/REVOKE for access), and TCL (COMMIT/ROLLBACK for transactions)."
+    },
+    {
+      "question": "In the \"life of a query,\" what does the query optimizer do?",
+      "options": [
+        "After the SQL is compiled into bytecode, the optimizer analyzes it to determine the most efficient execution plan, reordering and refactoring steps to use resources efficiently",
+        "It converts SQL directly into a data warehouse's storage engine, skipping compilation entirely",
+        "It runs only after query execution completes, purely to log statistics",
+        "It exists solely to enforce access control permissions (DCL)"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book's four-step summary places the optimizer after compilation: it \"analyzes the bytecode to determine how to execute the query, reordering and refactoring steps to use available resources as efficiently as possible.\""
+    },
+    {
+      "question": "A join key value repeats 5 times in table A and 10 times in table B, producing far more output rows than expected for that value alone. What's this called, and why is it dangerous?",
+      "options": [
+        "Row explosion — the many-to-many match creates a cross-join effect (5×10=50 rows for that key), which can consume massive resources or crash a query, especially before a filtering predicate is applied",
+        "This is called \"normalization drift\" and only affects storage costs, not query resources",
+        "It's called a \"broadcast join\" and is always beneficial for performance",
+        "It only happens in row-oriented databases, never in columnar ones"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines this exactly: \"This creates 5 × 10 = 50 rows in the output... Row explosion often generates enough rows to consume a massive quantity of database resources or even cause a query to fail.\""
+    },
+    {
+      "question": "How do BigQuery's and PostgreSQL's commit/consistency models differ for analytics queries, per the book?",
+      "options": [
+        "PostgreSQL uses row locking with ACID transactions, which can block reads/writes and isn't optimized for huge scans; BigQuery uses point-in-time full-table snapshots (no locking) but allows only one write operation at a time",
+        "PostgreSQL uses point-in-time snapshots while BigQuery uses row locking",
+        "Both databases use an identical commit model",
+        "PostgreSQL allows unlimited concurrent writes while BigQuery allows none, ever, under any condition"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts PostgreSQL's row-locking ACID transactions (\"not optimized for large scans\") with BigQuery's snapshot reads plus \"no write concurrency whatsoever\" for a single table at a time."
+    },
+    {
+      "question": "Why does the book describe MongoDB's high-write-performance mode as risky for some applications?",
+      "options": [
+        "Under heavy load, it can silently and unceremoniously discard writes — fine for tolerant use cases like some IoT measurements, but bad for applications needing exact data capture",
+        "MongoDB always requires manual conflict resolution for every single write operation",
+        "MongoDB cannot support any write concurrency at all in any configuration",
+        "MongoDB silently duplicates every write rather than discarding any of them"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"the database will unceremoniously and silently discard writes if it gets overwhelmed with traffic... not a great fit for applications that need to capture exact data and statistics.\""
+    },
+    {
+      "question": "What is \"vacuuming\" in a database, and why does it matter beyond freeing disk space?",
+      "options": [
+        "Vacuuming removes dead/obsolete records left behind by updates and deletes — it also keeps query plans accurate (stale records can mislead the optimizer) and keeps indexes performant",
+        "Vacuuming only ever affects disk space and has no other meaningful side effects",
+        "Vacuuming is a required step before any SELECT query can be executed",
+        "Vacuuming permanently disables any future updates to the affected table"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists three reasons: freeing space for faster queries, \"query plans are more accurate\" since outdated records mislead the optimizer, and cleaning up indexes for better performance."
+    },
+    {
+      "question": "What's the \"fast-follower\" CDC pattern for streaming queries, and what's its key limitation compared to the Kappa architecture?",
+      "options": [
+        "Fast-follower sets up an analytics database as a lagging CDC-fed replica, queried with ordinary SELECTs; its limitation is it doesn't let you trigger events directly off stream changes, unlike Kappa, which treats the stream itself as the queryable store",
+        "Fast-follower requires no production database at all to function",
+        "Kappa architecture cannot support any historical queries, only fast-follower can",
+        "Fast-follower and Kappa are simply two names for the identical architecture"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states fast-follower \"doesn't fundamentally rethink batch query patterns... missing the opportunity to dynamically trigger events off changes in the stream,\" unlike Kappa's stream-as-database approach."
+    },
+    {
+      "question": "What's the difference between a fixed-time (tumbling) window and a sliding window in stream processing?",
+      "options": [
+        "A tumbling window processes all data since the previous window closed with no overlap; a sliding window has fixed-length windows that can overlap (e.g. a new 60-second window every 30 seconds)",
+        "Tumbling windows always overlap, while sliding windows never do",
+        "Both window types are identical, just named differently by different streaming vendors",
+        "Tumbling windows only apply to batch data, never to true streaming data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes tumbling windows as running \"on a fixed schedule and process[ing] all data since the previous window is closed,\" versus sliding windows where \"separate windows might overlap,\" giving the 60-second/30-second example."
+    },
+    {
+      "question": "What is a \"watermark\" in stream processing, and what does it determine?",
+      "options": [
+        "A threshold a window uses to decide whether incoming data falls within its time interval or should be treated as late-arriving",
+        "A security label applied automatically to sensitive streaming data",
+        "A checkpoint used only for exactly-once delivery guarantees",
+        "A compression marker inserted periodically into Kafka topics"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines it directly: \"A watermark is a threshold used by a window to determine whether data in a window is within the established time interval or whether it's considered late.\""
+    },
+    {
+      "question": "What are the three levels of the data modeling continuum, and what does each add?",
+      "options": [
+        "Conceptual (business logic/entities via an ER diagram) → logical (adds types, primary/foreign keys) → physical (adds concrete databases, schemas, tables, and configuration)",
+        "Physical → logical → conceptual, moving from concrete implementation toward abstract business rules",
+        "Logical → physical → conceptual, with conceptual as the final implementation stage",
+        "There are only two levels in the book's continuum: conceptual and physical"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines this continuum explicitly in that order: conceptual (business logic, ER diagrams), logical (adds types and keys), then physical (adds concrete database implementation details)."
+    },
+    {
+      "question": "The book advises modeling data \"at the lowest level of grain possible,\" even when the immediate request is for a coarse daily summary. Why?",
+      "options": [
+        "You can always aggregate up from fine-grained data, but detail generally can't be recovered once it's been aggregated away — so fine grain preserves flexibility for future requests",
+        "Fine-grained data is always cheaper to store than any aggregated summary table",
+        "Coarse-grained data cannot be queried using SQL at all",
+        "The book actually recommends the opposite: always model at the coarsest grain first"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"you should strive to model your data at the lowest level of grain possible. From here, it's easy to aggregate this highly granular dataset. The reverse isn't true.\""
+    },
+    {
+      "question": "In the book's normalization walkthrough, \"Sku determines ProductName\" even though ProductName isn't part of the composite primary key. What problem is this, and what normal form fixes it?",
+      "options": [
+        "A transitive dependency (a nonkey field depends on another nonkey field) — resolved by splitting the table further to reach third normal form (3NF)",
+        "A partial dependency, which is fixed simply by reaching first normal form (1NF)",
+        "This isn't a normalization issue at all, just a naming-convention choice",
+        "It's fixed by denormalizing the table further, moving away from 3NF entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book identifies exactly this: \"Sku depends on the composite key, and ProductName depends on Sku. This is a transitive dependency,\" resolved by splitting into further tables to reach 3NF."
+    },
+    {
+      "question": "How does Inmon's data warehouse approach fundamentally differ from Kimball's, in structure and direction?",
+      "options": [
+        "Inmon integrates data from across the business into a highly normalized (3NF) central warehouse first, then serves department-specific star schemas via downstream data marts; Kimball is bottom-up, serving analytics directly in the warehouse via denormalized star schemas",
+        "Kimball integrates all business data into a normalized warehouse first, while Inmon builds star schemas directly with no central warehouse",
+        "Both approaches are functionally identical, differing only in publication decade",
+        "Inmon's model has no concept of a data mart at all — only Kimball uses data marts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts them directly: Inmon's warehouse is highly normalized with department analytics served via data marts, while \"the Kimball model is bottom-up... effectively mak[ing] the data mart the data warehouse itself.\""
+    },
+    {
+      "question": "In Kimball's star schema, what's the difference between a fact table and a dimension table?",
+      "options": [
+        "Fact tables hold immutable, quantitative, event-level data (narrow, many rows, append-only, lowest grain); dimension tables hold descriptive, denormalized reference attributes (wide, fewer rows) that give context to facts",
+        "Fact tables are always denormalized, while dimension tables are always strictly normalized",
+        "Both table types are functionally identical within a star schema",
+        "Dimension tables hold quantitative data, while fact tables hold descriptive attributes"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states fact tables are \"factual, quantitative, and event-related... narrow and long,\" while dimension tables \"provide the reference data, attributes, and relational context... typically wide and short.\""
+    },
+    {
+      "question": "What's a Type 2 slowly changing dimension (SCD), and how does it differ from Type 1?",
+      "options": [
+        "Type 2 inserts a new row with updated attributes (closing the old row's effective end date) to preserve full history; Type 1 simply overwrites the existing record, losing history",
+        "Type 1 preserves full history via new rows, while Type 2 overwrites records in place",
+        "Type 1 always uses more storage than Type 2, since it retains every historical version",
+        "Type 2 is usable only for date dimensions, never for customer dimensions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines Type 1 as \"overwrite existing dimension records... no access to the deleted historical records\" and Type 2 as keeping \"a full history of dimension records\" via new inserted rows."
+    },
+    {
+      "question": "In a Data Vault model, what are hubs, links, and satellites respectively responsible for?",
+      "options": [
+        "Hubs store unique business keys; links track many-to-many relationships between hubs; satellites hold descriptive attributes/context tied to a hub or link",
+        "Hubs store descriptive attributes; links store business keys; satellites track relationships between hubs",
+        "Satellites store business keys; hubs hold descriptive context; links are purely optional metadata",
+        "All three table types serve the exact same purpose in a Data Vault"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states directly: \"a hub stores business keys, a link maintains relationships among business keys, and a satellite represents a business key's attributes and context.\""
+    },
+    {
+      "question": "Why do wide, sparse denormalized tables work well in columnar databases but poorly in traditional relational databases?",
+      "options": [
+        "Columnar databases only read the columns actually selected and store nulls essentially for free, while relational databases allocate fixed space per field and must read each row's full contents",
+        "Wide tables are equally efficient in both database types, with no real difference",
+        "Wide tables can only exist in relational databases, never in columnar ones",
+        "Nulls are more expensive to store in columnar databases than in relational databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains: \"nulls take up virtually no space in a columnar database\" while a wide schema in a relational database \"dramatically slows reading because each row must allocate all the space specified by the wide schema.\""
+    },
+    {
+      "question": "What's the difference between a broadcast join and a shuffle hash join in distributed query processing?",
+      "options": [
+        "A broadcast join sends a small table to every node to join against a large distributed table (cheap); a shuffle hash join repartitions both tables by join key across the cluster when neither is small enough to broadcast (more resource-intensive)",
+        "Broadcast joins are always more expensive to run than shuffle hash joins",
+        "Shuffle hash joins only work on a single node and cannot be distributed",
+        "Broadcast joins require both tables to be equally large before they can run"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains broadcast joins as sending a small table to all nodes (\"far less compute intensive\"), while shuffle hash joins repartition both tables by key when \"neither table is small enough to fit on a single node.\""
+    },
+    {
+      "question": "What's the difference between a \"hard delete\" and a \"soft delete,\" and when might \"insert deletion\" be used instead?",
+      "options": [
+        "A hard delete permanently removes a record; a soft delete marks it as deleted but keeps it in place; insert deletion adds a new record flagged as deleted without touching the previous version, at the cost of a more complex current-state query",
+        "Hard deletes are always reversible, while soft deletes are permanent and irreversible",
+        "Insert deletion physically removes all prior versions of a record immediately",
+        "Soft deletes and hard deletes are two names for exactly the same operation"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines a hard delete as permanently removing a record and a soft delete as marking it deleted while filtering it from results, then describes insert deletion as inserting \"a new record with a deleted flag without modifying the previous version.\""
+    },
+    {
+      "question": "Why does the book warn against running near-real-time merge/upsert operations against a columnar cloud data warehouse at the same frequency that worked on an old row-based system?",
+      "options": [
+        "Columnar systems rely on copy-on-write, so frequent small merges force expensive file rewrites — teams that tried this saw systems \"fall weeks behind,\" and a less frequent cadence (e.g. hourly) usually works far better",
+        "Columnar warehouses cannot perform merges under any circumstances whatsoever",
+        "Merge frequency has no meaningful performance implications in any database type",
+        "This concern only applies to row-based databases, never to columnar ones"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states plainly: \"No matter how good your CDC system is, this approach will bring most columnar data warehouses to their knees. We've seen systems fall weeks behind on updates.\""
+    },
+    {
+      "question": "What's the difference between a (nonmaterialized) view and a materialized view?",
+      "options": [
+        "A view is a stored query definition recomputed every time it's selected from; a materialized view precomputes and stores the result in advance, refreshed as source data changes, trading storage/freshness for faster reads",
+        "Materialized views never need to be refreshed once they're initially created",
+        "Views can reference only a single table, while materialized views can reference many tables",
+        "A materialized view and a regular view are functionally identical concepts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains: a view \"is just a query that references other tables\" recomputed on selection, while \"a materialized view does some or all of the view computation in advance,\" saving results as source tables change."
+    },
+    {
+      "question": "What's the practical difference between micro-batching and \"true streaming\" processing, and how does the book suggest choosing between them?",
+      "options": [
+        "Micro-batching applies a batch-oriented framework at short, frequent intervals, while true streaming processes one event at a time with more overhead — the choice should be driven by actual latency requirements and team expertise, not by dismissing micro-batch as inherently inferior",
+        "True streaming is always slower than micro-batching, regardless of the use case",
+        "Micro-batching is physically incapable of running more often than once per day",
+        "The book insists true streaming is always the objectively correct engineering choice"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"The term micro-batch has often been used to dismiss competing technologies, but it may work just fine for your use case,\" and recommends matching the choice to acceptable latency and existing team expertise."
+    },
+    {
+      "question": "How does the book define a query, and how does it relate to CRUD?",
+      "options": [
+        "A query allows you to retrieve and act on data; retrieving is the R (read) in CRUD, and queries can also create, mutate, or destroy existing records (the CUD)",
+        "A query can only ever read data, never modify it",
+        "Queries have no relationship to CRUD operations",
+        "A query is the same thing as a database index"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says a query retrieves data (R in CRUD) and can also create, mutate, or destroy records (CUD), e.g. SELECT * FROM foo WHERE id=1."
+    },
+    {
+      "question": "What is the purpose of data definition language (DDL), and what example does the book give?",
+      "options": [
+        "DDL performs operations on database objects such as the database, schemas, tables, or users, defining the state of objects — e.g. CREATE DATABASE bar or DROP TABLE bar_table",
+        "DDL controls user access permissions",
+        "DDL manages transactions and rollbacks",
+        "DDL only runs SELECT queries"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says DDL defines the state of objects in your database with commands like CREATE, DROP, and UPDATE, giving CREATE DATABASE bar as an example."
+    },
+    {
+      "question": "What DML commands does the book list for a data engineer?",
+      "options": [
+        "SELECT, INSERT, UPDATE, DELETE, COPY, and MERGE",
+        "CREATE, DROP, ALTER, and RENAME",
+        "GRANT, DENY, and REVOKE",
+        "COMMIT and ROLLBACK"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists SELECT, INSERT, UPDATE, DELETE, COPY, and MERGE as common DML commands."
+    },
+    {
+      "question": "What is data control language (DCL), and what example does the book give?",
+      "options": [
+        "DCL controls access to database objects or data using commands such as GRANT, DENY, and REVOKE — e.g. GRANT SELECT ON data_science_db TO Sarah, then later REVOKE SELECT when she leaves",
+        "DCL defines table structures",
+        "DCL inserts and updates rows",
+        "DCL commits and rolls back transactions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book uses the Sarah example of granting then revoking read-only access with GRANT/REVOKE."
+    },
+    {
+      "question": "What is transaction control language (TCL), and what do its commands do?",
+      "options": [
+        "TCL supports commands controlling transaction details, defining commit checkpoints and conditions when actions roll back — common commands are COMMIT and ROLLBACK",
+        "TCL defines database schemas",
+        "TCL grants database access",
+        "TCL runs analytical SELECT queries"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says TCL defines commit checkpoints and rollback conditions with COMMIT and ROLLBACK."
+    },
+    {
+      "question": "What is the first step in the \"life of a query\"?",
+      "options": [
+        "The database engine compiles the SQL, parsing the code to check for proper semantics, ensuring referenced objects exist, and confirming the current user has appropriate access",
+        "The optimizer reorders the query steps",
+        "Results are produced immediately",
+        "The storage engine scans the entire table"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book's first step is compilation/parsing with semantics, object-existence, and access checks."
+    },
+    {
+      "question": "What happens in the second step of the \"life of a query\"?",
+      "options": [
+        "The SQL code is converted into bytecode expressing the steps to be executed on the database engine in an efficient, machine-readable format",
+        "The query results are cached",
+        "The query optimizer analyzes the bytecode",
+        "Access permissions are revoked"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the SQL is converted into bytecode in step two."
+    },
+    {
+      "question": "What is the query optimizer's job, and what factors does it assess?",
+      "options": [
+        "To optimize query performance and minimize costs by breaking the query into appropriate steps in an efficient order, assessing joins, indexes, data scan size, and other factors",
+        "To enforce database security permissions",
+        "To physically write data to disk",
+        "To render query results in a dashboard"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the optimizer attempts to execute the query in the least expensive manner, assessing joins, indexes, and scan size."
+    },
+    {
+      "question": "What does the book recommend about understanding your database's query optimizer?",
+      "options": [
+        "You won't directly work with the optimizer, but understanding its functionality helps you write more performant queries, using tools like an explain plan or query analysis",
+        "You must rewrite the optimizer yourself",
+        "The optimizer is irrelevant to query performance",
+        "Optimizers are identical across all databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says engineers won't work with the optimizer directly but should understand it and use explain plans."
+    },
+    {
+      "question": "What performance technique does the book recommend when analytics queries join the same data repeatedly?",
+      "options": [
+        "Prejoin the data in advance and have queries read the prejoined version, possibly widening tables and using arrays or structs, or maintaining normalized schemas with prejoined tables for common use cases",
+        "Never prejoin data",
+        "Always query the raw source directly",
+        "Prejoining is always slower"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends prejoining repeatedly joined data to avoid repeating computationally intensive work."
+    },
+    {
+      "question": "How does the book say PostgreSQL can index computed results, and why is this useful?",
+      "options": [
+        "PostgreSQL allows creating an index on a string field converted to lowercase; when a query uses lower() in a predicate, the optimizer can apply the index",
+        "PostgreSQL cannot index computed results",
+        "Indexes can only be created on primary keys",
+        "Computed indexes always slow queries down"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives the lowercase-string index as an example of indexing computed results."
+    },
+    {
+      "question": "Why does the book recommend common table expressions (CTEs) over nested subqueries or temporary tables?",
+      "options": [
+        "CTEs allow composing complex queries in a readable fashion, helping you understand query flow, and in many cases deliver better performance than creating intermediate tables",
+        "CTEs are always slower than temporary tables",
+        "CTEs cannot be composed into complex queries",
+        "Readability is unimportant for complex queries"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends CTEs for readability and often better performance than intermediate tables."
+    },
+    {
+      "question": "What does an explain plan show, and how is it accessed?",
+      "options": [
+        "It shows how the optimizer determined its optimum lowest-cost query, the database objects used, and resource/performance statistics per stage; some databases provide it visually and others via SQL with the EXPLAIN command",
+        "It shows only the query's syntax errors",
+        "It is a security audit log",
+        "It cannot be accessed by users"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the explain plan's contents and the EXPLAIN command/visual access."
+    },
+    {
+      "question": "What metrics does the book suggest monitoring for query performance?",
+      "options": [
+        "Usage of key resources (disk, memory, network), data loading vs processing time, query execution time/records/scan size/data shuffled, competing queries causing contention, and concurrent connections used vs available",
+        "Only the number of tables",
+        "Only the database version number",
+        "Query performance cannot be monitored"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these monitoring areas, including oversubscribed concurrent connections."
+    },
+    {
+      "question": "Why is running SELECT * with no predicates inefficient, especially on pay-as-you-go databases?",
+      "options": [
+        "It scans the entire table retrieving every row and column, which is expensive when the database charges for bytes scanned or compute resources utilized",
+        "SELECT * is always the fastest query",
+        "Scanning is always free",
+        "It returns only the columns you need"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says SELECT * scans everything and is very inefficient and expensive on pay-as-you-go databases."
+    },
+    {
+      "question": "What pruning strategies does the book recommend for columnar versus row-oriented databases?",
+      "options": [
+        "Columnar: select only needed columns and use tools like cluster keys (Snowflake/BigQuery) and partitioning; row-oriented: create table indexes for performance-sensitive queries without overloading the table",
+        "Columnar databases use indexes; row-oriented use cluster keys",
+        "Pruning is never recommended",
+        "Both database types use identical pruning"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts columnar column-selection/cluster-key/partitioning pruning with row-oriented index strategies."
+    },
+    {
+      "question": "What is a database commit, and what is the purpose of a transaction?",
+      "options": [
+        "A commit is a change such as creating, updating, or deleting a record or object; transactions commit several operations simultaneously to maintain a consistent state and handle isolation during concurrent reads/writes/deletes",
+        "A commit only deletes data",
+        "Transactions cannot maintain consistency",
+        "Isolation is handled without transactions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines commits/transactions and their role in consistency and isolation."
+    },
+    {
+      "question": "What is a dirty read, and why should engineers know if their database allows them?",
+      "options": [
+        "A dirty read happens when a row is read after an uncommitted transaction has altered it — engineers should know if this is expected behavior and how to handle it, since queries may return unexpected results without ACID compliance",
+        "A dirty read is a performance optimization",
+        "Dirty reads never happen in databases",
+        "Dirty reads guarantee consistent results"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns about dirty reads from uncommitted transactions and non-ACID behavior."
+    },
+    {
+      "question": "What does the book say about BigQuery's point-in-time full-table commit model?",
+      "options": [
+        "A read query reads from the latest committed snapshot and will not see subsequent changes even if it runs for hours; BigQuery does not lock the table, and write operations create new commits/snapshots",
+        "BigQuery locks the table during reads",
+        "Reads see all future changes",
+        "BigQuery has no snapshots"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes BigQuery's snapshot-read model with no locking and new snapshots on writes."
+    },
+    {
+      "question": "How does BigQuery handle concurrent write operations?",
+      "options": [
+        "It allows only one write operation at a time — providing no write concurrency in that sense — and queues write queries in order of arrival if multiple clients write simultaneously",
+        "It allows unlimited concurrent writes",
+        "It rejects all writes",
+        "It merges all concurrent writes instantly"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says BigQuery allows one write at a time and queues simultaneous writes."
+    },
+    {
+      "question": "Why does the book call MongoDB a \"variable-consistency\" database?",
+      "options": [
+        "Engineers have various configurable consistency options, both for the database and at the level of individual queries",
+        "It is always eventually consistent with no options",
+        "It is always strongly consistent with no options",
+        "Consistency cannot be configured in MongoDB"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes MongoDB's configurable consistency options at database and query levels."
+    },
+    {
+      "question": "How do object-storage-backed databases like BigQuery, Snowflake, and Databricks handle vacuuming differently?",
+      "options": [
+        "In these databases the only downside of old data retention is storage cost: Snowflake users control a time-travel interval before auto-vacuuming, BigQuery uses a fixed seven-day history window, and Databricks retains data indefinitely until manually vacuumed to control S3 costs",
+        "They all vacuum automatically with no user control",
+        "They cannot vacuum at all",
+        "They retain data forever with no cost"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes each database's retention/vacuuming behavior, including Snowflake time-travel and BigQuery's seven-day window."
+    },
+    {
+      "question": "Why is vacuuming especially critical for relational databases like PostgreSQL and MySQL?",
+      "options": [
+        "Large numbers of transactional operations can cause a rapid accumulation of dead records, so engineers must understand vacuuming's details and impact",
+        "They never accumulate dead records",
+        "Vacuuming is not supported in these databases",
+        "Transactions prevent dead records entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says rapid dead-record accumulation makes vacuuming critical for PostgreSQL and MySQL."
+    },
+    {
+      "question": "What does the book say about query results caching, and what example does it give?",
+      "options": [
+        "Many cloud OLAP databases cache query results; a cold query that took 40 seconds might return in 1 second or less on rerun, reducing database pressure and improving user experience",
+        "Query caching never helps",
+        "Cached results are always stale and unusable",
+        "Databases never cache query results"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes query results caching with the 40-second-to-1-second example."
+    },
+    {
+      "question": "Why is querying an analytics database as a fast follower preferable to running analytics directly on the production database?",
+      "options": [
+        "Production databases generally aren't equipped to handle production workloads and simultaneously run large analytics scans — such queries can slow the production application or even cause it to crash",
+        "Production databases are always faster for analytics",
+        "Analytics queries never affect production systems",
+        "Fast followers are always slower overall"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says production databases can be slowed or crashed by large analytics scans, so the fast-follower pattern minimizes production impact."
+    },
+    {
+      "question": "What advantages does the book cite for using a proper OLAP-oriented system as a fast follower?",
+      "options": [
+        "Both Druid and BigQuery combine a streaming buffer with long-term columnar storage in a Lambda-like setup, working extremely well for computing trailing statistics on vast historical data with near real-time updates",
+        "OLAP systems cannot act as followers",
+        "OLAP systems are always slower than transactional databases",
+        "Streaming buffers have no analytics value"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Druid/BigQuery's streaming-buffer-plus-columnar-storage fast-follower pattern."
+    },
+    {
+      "question": "What is the principal idea of the Kappa architecture?",
+      "options": [
+        "Handle all data like events and store them as a stream rather than a table, retaining events for extended periods (months or years) and querying them directly from streaming storage",
+        "Store all data in normalized tables",
+        "Treat streaming storage only as a short-term buffer",
+        "Reject all event-based data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says Kappa's big idea is treating streaming storage as a real-time transport layer and a database for querying historical data."
+    },
+    {
+      "question": "What tools does the book mention for querying data in the Kappa architecture?",
+      "options": [
+        "Kafka KSQL supports aggregation, statistics, and sessionization; for more complex needs, external tools like Spark read a time range of data from Kafka; streaming storage can also feed Flink or Beam",
+        "Only SQL tables can be queried",
+        "Kappa architecture cannot be queried",
+        "Only batch tools work with Kappa"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Kafka KSQL and external tools like Spark, Flink, and Beam for Kappa querying."
+    },
+    {
+      "question": "What fundamental limitation of traditional batch queries does the book describe, and how do streaming systems differ?",
+      "options": [
+        "Batch queries generally treat the query engine as an external observer triggered by an actor (e.g. a cron job or dashboard), while most streaming systems support computations triggered directly from the data itself, emitting statistics when conditions are met",
+        "Batch queries can trigger themselves",
+        "Streaming systems never emit triggered statistics",
+        "Both paradigms are identical"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts external-observer batch queries with data-triggered streaming computations."
+    },
+    {
+      "question": "What is a session window, and how does it work in a streaming context?",
+      "options": [
+        "It groups events that occur close together and filters out periods of inactivity; e.g. a session is any interval with no inactivity gap of five minutes or more, and session windows are per key",
+        "It is a fixed-length window with no gaps",
+        "It processes all data continuously without boundaries",
+        "Session windows are not per key"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes session windows as inactivity-gap-based, per-key groupings, like a five-minute no-activity session timeout."
+    },
+    {
+      "question": "What benefit does the book describe for making sessionization dynamic and near real-time?",
+      "options": [
+        "With retrospective sessionization, actions could be automated a day or hour after a session closes; with dynamic sessionization, a user could get an immediately useful mobile alert based on their activity in the last 15 minutes",
+        "Dynamic sessionization is always slower",
+        "Retrospective sessionization is real-time",
+        "Sessionization has no business value"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts retrospective and dynamic sessionization benefits."
+    },
+    {
+      "question": "How does the book relate fixed-time (tumbling) windows to traditional batch ETL?",
+      "options": [
+        "A tumbling window runs on a fixed schedule and processes all data since the previous window closed, similar to batch ETL jobs but generated more frequently with lower latency — batch is a special case of streaming",
+        "Tumbling windows have nothing to do with batch processing",
+        "Tumbling windows are always slower than daily ETL",
+        "Batch ETL cannot be described as windows"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says tumbling windows are similar to traditional batch ETL but more frequent and lower latency."
+    },
+    {
+      "question": "How does the book describe a continuously sliding window with triggers?",
+      "options": [
+        "The window may slide continuously but emit statistics only when certain conditions are met — e.g. a 30-second continuously sliding window that calculates a statistic only when a user clicks a particular banner, producing high output during clicks and none during lulls",
+        "Triggers are irrelevant to sliding windows",
+        "Continuously sliding windows always emit statistics",
+        "Sliding windows cannot use triggers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes trigger-based emission on a continuously sliding window using the banner-click example."
+    },
+    {
+      "question": "What is the most basic approach to combining streams with other data, and how does enrichment differ?",
+      "options": [
+        "The most basic approach is joining tables in a database where a stream feeds one or both tables; enrichment joins a stream to other data (e.g. a retailer enhancing partner events with product details and demographics via a serverless function looking up an in-memory database)",
+        "Enrichment never adds data to events",
+        "Streams can never be combined with tables",
+        "Joining tables is not possible"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes table joins fed by streams and the enrichment pattern with a serverless function and in-memory cache."
+    },
+    {
+      "question": "Where can the enrichment source for a stream originate, according to the book?",
+      "options": [
+        "Almost anywhere — a table in a cloud data warehouse or RDBMS, or a file in object storage; it's a question of reading from the source and storing the enrichment data for retrieval by the stream",
+        "Only from a single hardcoded file",
+        "Only from the stream itself",
+        "Enrichment sources cannot exist"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the enrichment source could originate almost anywhere."
+    },
+    {
+      "question": "What complications does the book describe for stream-to-stream joining?",
+      "options": [
+        "Streams may have significantly different latencies (e.g. an ad platform with a five-minute delay), and certain events may be delayed (e.g. a session-close event or an event from an offline phone), so typical architectures rely on streaming buffers with configurable retention",
+        "Stream-to-stream joins are trivial",
+        "All streams arrive with identical latency",
+        "Buffers are never needed for stream joins"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes latency differences and streaming buffers for stream-to-stream joins."
+    },
+    {
+      "question": "What is a data model, and what does a good one capture?",
+      "options": [
+        "A data model represents the way data relates to the real world, reflecting how data must be structured and standardized to reflect the organization's processes, definitions, workflows, and logic — a good model captures how communication and work naturally flow",
+        "A data model is just a list of tables",
+        "Data models never reflect business logic",
+        "A good data model is haphazard and confusing"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines a data model as representing how data relates to the real world and the organization's logic."
+    },
+    {
+      "question": "How does the book illustrate that a good data model should correlate with business decisions?",
+      "options": [
+        "A customer might mean different things to different departments — e.g. someone who bought in the last 30 days versus six months — and carefully defining this can massively impact customer-behavior reports or churn models where time since last purchase is critical",
+        "Business definitions are irrelevant to models",
+        "All departments define customers identically",
+        "Churn models never use purchase timing"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book uses the customer-definition example to show modeling's business impact."
+    },
+    {
+      "question": "What does the conceptual data model contain, and what tool is often used to visualize it?",
+      "options": [
+        "Business logic and rules describing the system's data, such as schemas, tables, and fields; it's often visualized in an entity-relationship (ER) diagram encoding connections among entities like customers, orders, and products",
+        "Only physical storage configuration",
+        "Only SQL query syntax",
+        "Nothing — it is an empty placeholder"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the conceptual model's business logic and ER-diagram visualization."
+    },
+    {
+      "question": "What does the logical data model add to the conceptual model?",
+      "options": [
+        "Details how the conceptual model will be implemented, adding types for fields and mapping out primary and foreign keys",
+        "The final database configuration",
+        "Specific cloud regions",
+        "Nothing new"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the logical model adds types and primary/foreign key mapping."
+    },
+    {
+      "question": "What does the physical data model add?",
+      "options": [
+        "How the logical model is implemented in a database system, adding specific databases, schemas, and tables including configuration details",
+        "Business rules and ER diagrams",
+        "Field types only",
+        "Nothing — it is identical to the conceptual model"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the physical model adds concrete database implementation details."
+    },
+    {
+      "question": "Who should be involved at the inception of data modeling, and what kind of activity does the book call it?",
+      "options": [
+        "Business stakeholders should be involved to obtain definitions and business goals; modeling should be a full-contact sport whose goal is providing quality data for actionable insights and intelligent automation",
+        "Only data engineers should be involved",
+        "Stakeholders should be excluded",
+        "Modeling should happen without any business input"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says modeling is a full-contact sport involving business stakeholders from the start."
+    },
+    {
+      "question": "What is grain in data modeling, and at what level is it typically set?",
+      "options": [
+        "The resolution at which data is stored and queried, typically at the level of a primary key (customer ID, order ID, product ID), often accompanied by a date or timestamp for increased fidelity",
+        "The physical size of the database",
+        "The number of tables in the model",
+        "The network bandwidth of the warehouse"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines grain as the resolution of stored/queried data at the primary-key level."
+    },
+    {
+      "question": "What is normalization, and who first introduced it?",
+      "options": [
+        "A database data modeling practice enforcing strict control over table/column relationships to remove data redundancy and ensure referential integrity — basically DRY applied to data — first introduced by Edgar Codd in the early 1970s",
+        "A technique for duplicating all data",
+        "A method for deleting tables",
+        "Introduced by Bill Inmon in 1989"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines normalization as removing redundancy with referential integrity, introduced by Codd in the early 1970s."
+    },
+    {
+      "question": "What are Codd's four main objectives of normalization?",
+      "options": [
+        "Free relations from undesirable insertion/update/deletion dependencies, reduce the need for restructuring as new data types are introduced, make the relational model more informative to users, and make relations neutral to query statistics",
+        "Duplicate all data for safety",
+        "Reduce the number of tables",
+        "Eliminate primary keys"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists Codd's four normalization objectives."
+    },
+    {
+      "question": "What do the first three normal forms require?",
+      "options": [
+        "1NF: each column is unique with a single value and a unique primary key exists; 2NF: 1NF plus partial dependencies removed; 3NF: 2NF plus no transitive dependencies and only relevant fields related to the primary key",
+        "1NF requires denormalization",
+        "2NF adds transitive dependencies",
+        "3NF allows redundant data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the sequential requirements of 1NF, 2NF, and 3NF."
+    },
+    {
+      "question": "What is a partial dependency, and when can it occur?",
+      "options": [
+        "A partial dependency occurs when a subset of fields in a composite key can determine a nonkey column; it can occur only when the primary key is composite",
+        "It occurs only with single-column keys",
+        "It is the same as a transitive dependency",
+        "It never occurs in normalized databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines partial dependency as a subset of a composite key determining a nonkey column."
+    },
+    {
+      "question": "What does the book say about denormalized data and the first normal form?",
+      "options": [
+        "Denormalized data allows nested and redundant data; converting to 1NF removes repeats and nested data so fields contain single values",
+        "Denormalized data always satisfies 1NF",
+        "1NF allows nested objects",
+        "Denormalization is never mentioned"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes denormalized as allowing nesting/redundancy and 1NF as removing them."
+    },
+    {
+      "question": "By what convention does the book consider a database normalized?",
+      "options": [
+        "A database is usually considered normalized if it's in third normal form, which is the convention used in the book",
+        "A database must reach 6NF",
+        "Any normal form counts as normalized",
+        "Databases are never considered normalized"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book uses 3NF as the convention for normalized databases."
+    },
+    {
+      "question": "What does the book say about denormalization as a performance strategy?",
+      "options": [
+        "The degree of normalization depends on the use case, and although denormalization may seem like an antipattern, it's common in many OLAP systems storing semistructured data",
+        "Denormalization is always bad",
+        "All OLAP systems are fully normalized",
+        "Use case never affects normalization decisions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says denormalization is common in OLAP semistructured systems despite seeming an antipattern."
+    },
+    {
+      "question": "What was the goal of the data warehouse that Inmon created, and when?",
+      "options": [
+        "Created in 1989, its goal was to separate the source system from the analytical system, since analysis on source systems bogged down production transactional databases with long-running queries",
+        "It was created to replace all source systems",
+        "It ran analytics directly on source systems",
+        "It was created in the 1970s"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says Inmon created the approach in 1989 to separate source and analytical systems."
+    },
+    {
+      "question": "How does Inmon define a data warehouse, and what are its four critical parts?",
+      "options": [
+        "A subject-oriented, integrated, nonvolatile, and time-variant collection of data in support of management's decisions",
+        "A collection of denormalized star schemas",
+        "A real-time operational store",
+        "A single table of all data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book quotes Inmon's definition with the four characteristics: subject-oriented, integrated, nonvolatile, and time-variant."
+    },
+    {
+      "question": "What does the \"integrated\" characteristic of Inmon's data warehouse emphasize?",
+      "options": [
+        "Data is fed from multiple disparate sources and converted, reformatted, resequenced, and summarized so the warehouse has a single physical corporate image — integration is the most important aspect",
+        "Each department keeps its own incompatible data",
+        "Data is never consolidated",
+        "Integration is the least important aspect"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says integration is the most important aspect, producing a single corporate image."
+    },
+    {
+      "question": "How does Inmon's approach integrate and serve data, and what does it emphasize?",
+      "options": [
+        "Data is integrated from across the organization into a granular, highly normalized (3NF) ER model with a relentless emphasis on ETL, then served to departments via business-specific data marts which may be denormalized",
+        "Data is served directly from source systems",
+        "It uses no data marts",
+        "It avoids ETL entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Inmon's 3NF warehouse with ETL and downstream data marts."
+    },
+    {
+      "question": "How does the book characterize Kimball's model relative to Inmon's in terms of integration and redundancy?",
+      "options": [
+        "Kimball's bottom-up approach may enable faster iteration and modeling than Inmon, with the trade-off of potential looser data integration, data redundancy, and duplication",
+        "Kimball guarantees tighter integration than Inmon",
+        "Kimball eliminates all data redundancy",
+        "Kimball is always slower to iterate"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says Kimball enables faster iteration but with looser integration and more redundancy."
+    },
+    {
+      "question": "What are the key properties of a fact table in a star schema?",
+      "options": [
+        "Fact tables contain factual, quantitative, event-related data that is immutable and append-only, typically narrow and long, at the lowest grain possible, with each row representing the grain, and they reference only dimensions, not other fact tables",
+        "Fact tables are mutable and updated in place",
+        "Fact tables are wide and short",
+        "Fact tables reference other fact tables"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes fact tables' quantitative, immutable, append-only, narrow-and-long, lowest-grain properties."
+    },
+    {
+      "question": "Why are the data types in the book's example fact table all numeric?",
+      "options": [
+        "Fact tables contain quantitative data and reference dimensions via keys, so strings describing events live in dimension tables rather than the fact table",
+        "Facts must never reference dimensions",
+        "Strings are forbidden in all databases",
+        "Fact tables can only store dates"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book's example fact table uses integer/float keys and amounts, with attributes in dimensions."
+    },
+    {
+      "question": "What do dimension tables provide, and what shape do they typically take?",
+      "options": [
+        "Dimension tables provide reference data, attributes, and relational context for events, are smaller than fact tables, typically wide and short, and are denormalized with the possibility of duplicate data",
+        "They are narrow and long like facts",
+        "They must be strictly normalized",
+        "They contain only numeric values"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says dimensions are wide and short reference data, denormalized and possibly duplicated."
+    },
+    {
+      "question": "What is a date dimension useful for, and what is its beauty?",
+      "options": [
+        "It allows referencing a date key between fact and dimension tables to answer questions like total sales in a quarter or which weekday has more customers; its beauty is that you can add as many new fields as make sense",
+        "It can only store a single date per row",
+        "It cannot answer time-based questions",
+        "It is identical to a fact table"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the date dimension's analytic value and extensibility."
+    },
+    {
+      "question": "What does an effective end date of 9999-01-01 in a Type 2 SCD indicate?",
+      "options": [
+        "The customer record is active and hasn't changed",
+        "The customer was deleted",
+        "The record expired in the year 9999",
+        "The customer never existed"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says a 9999-01-01 end date means the record is active and unchanged."
+    },
+    {
+      "question": "What are the three most common types of slowly changing dimensions?",
+      "options": [
+        "Type 1 overwrites existing records losing history; Type 2 keeps a full history by inserting new records; Type 3 is similar to Type 2 but creates a new field rather than a new row",
+        "Type 1 keeps full history; Type 2 overwrites; Type 3 deletes records",
+        "All three types are identical",
+        "Type 3 creates a new table each change"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes SCD Types 1, 2, and 3, with Type 1 the default and Type 2 most common in practice."
+    },
+    {
+      "question": "What is a star schema, and what advantages does it offer?",
+      "options": [
+        "A fact table surrounded by the necessary dimensions representing the data model of the business; it results in fewer joins than highly normalized models (speeding up queries) and is arguably easier for business users to understand and use",
+        "A single normalized table",
+        "A model requiring many joins",
+        "A schema that is hard for business users to use"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the star schema's fewer joins and business-user-friendliness."
+    },
+    {
+      "question": "What is a conformed dimension, and why does the book recommend reducing the number of dimensions?",
+      "options": [
+        "A dimension reused across multiple star schemas sharing the same fields, allowing multiple fact tables to be combined; reducing dimensions helps reuse reference data and avoid replicating dimensions, which can drift business definitions",
+        "A dimension unique to one star schema",
+        "A dimension that cannot be shared",
+        "Replicating dimensions is always best"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines conformed dimensions and warns against replicating dimensions to avoid definition drift."
+    },
+    {
+      "question": "What does the book say about applying the Kimball data model to streaming data?",
+      "options": [
+        "The Kimball model is appropriate only for batch data and not for streaming data",
+        "Kimball works perfectly for streaming",
+        "Kimball is the recommended streaming model",
+        "All models work for streaming equally"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says Kimball is appropriate only for batch, not streaming."
+    },
+    {
+      "question": "What is the Data Vault methodology, and how does it load data?",
+      "options": [
+        "Created in the 1990s by Dan Linstedt, it separates the structural aspects of source data from its attributes and simply loads data from source systems directly into purpose-built tables in an insert-only manner, with no notion of good, bad, or conformed data",
+        "It models business logic in facts and dimensions",
+        "It overwrites data in place",
+        "It was created by Ralph Kimball"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the Data Vault's insert-only loading and lack of conformed data notions."
+    },
+    {
+      "question": "What standard fields does a hub in a Data Vault always contain?",
+      "options": [
+        "Hash key, load date, record source, and business key(s)",
+        "Only a business key",
+        "Descriptive attributes only",
+        "A foreign key to a satellite"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists the hub's standard fields: hash key, load date, record source, and business keys."
+    },
+    {
+      "question": "Why is a hub insert-only, and how do queries typically proceed?",
+      "options": [
+        "Once data is loaded into a hub it's permanent and not altered; a user will query a hub, which links to a satellite table containing the query's relevant attributes",
+        "Hubs are constantly updated in place",
+        "Queries never touch hubs",
+        "Hubs contain descriptive context"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says hubs are insert-only and queries flow from hub to satellite for attributes."
+    },
+    {
+      "question": "What do link tables do in a Data Vault, and what shape are they?",
+      "options": [
+        "They track the relationships of business keys between hubs, ideally at the lowest possible grain, and are many-to-many; creating a new link represents a new relationship",
+        "They store descriptive attributes",
+        "They are one-to-one only",
+        "They cannot change over time"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes links as many-to-many relationship tables between hubs."
+    },
+    {
+      "question": "What are the only required fields in a satellite?",
+      "options": [
+        "A primary key consisting of the business key of the parent hub and a load date",
+        "Descriptive attributes only",
+        "A hash key and record source",
+        "Nothing is required"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says satellites require only the parent hub business key and a load date."
+    },
+    {
+      "question": "What other Data Vault table types does the book mention but not cover in depth?",
+      "options": [
+        "Point-in-time (PIT) and bridge tables",
+        "Fact and dimension tables",
+        "Star and snowflake tables",
+        "Broadcast and shuffle tables"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book mentions PIT and bridge tables as other comprehensive Data Vault components."
+    },
+    {
+      "question": "When is business logic applied in a Data Vault, and how can the model be used with other techniques?",
+      "options": [
+        "Business logic is created and interpreted when data is queried; the Data Vault is often a landing zone for analytical data that is later modeled in a warehouse, commonly using a star schema, and can also be adapted for NoSQL and streaming",
+        "Business logic is enforced at load time",
+        "The Data Vault cannot combine with other techniques",
+        "It only works with Kimball models"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says Data Vault business logic is applied at query time and it can precede star schemas or adapt to NoSQL/streaming."
+    },
+    {
+      "question": "Why are relaxed modeling approaches like wide tables becoming more common?",
+      "options": [
+        "Cloud storage is dirt cheap — cheaper to store data than agonize over the optimum representation — and the popularity of nested data like JSON means schemas are flexible",
+        "Cloud storage is expensive",
+        "Nested data forces rigid schemas",
+        "Modeling rigor is now free"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book cites cheap storage and flexible nested schemas as reasons for relaxed modeling."
+    },
+    {
+      "question": "How do wide tables typically arise, and how does schema evolution differ between relational and columnar databases?",
+      "options": [
+        "Wide tables generally arise through schema evolution as engineers gradually add fields; adding a field in a relational database is slow and resource-heavy, while in a columnar database it's initially just a metadata change with new files added to the column",
+        "Wide tables are always designed up front",
+        "Schema evolution is fast in relational databases",
+        "Columnar databases cannot add fields"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts schema evolution's cost in relational versus columnar databases."
+    },
+    {
+      "question": "Why do analytics queries on wide tables often run faster than equivalent queries on normalized data?",
+      "options": [
+        "Removing joins can have a huge impact on scan performance since the wide table contains all the data that would have been joined in a more rigorous approach, with facts and dimensions in the same table",
+        "Wide tables require more joins",
+        "Normalized data is always faster to scan",
+        "Joins never affect scan performance"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says wide tables speed analytics by eliminating joins."
+    },
+    {
+      "question": "What criticisms does the book list for wide denormalized tables?",
+      "options": [
+        "The biggest criticism is that as you blend data you lose business logic in analytics, and another downside is the performance of updates to elements like an array field can be very painful",
+        "Wide tables preserve all business logic",
+        "Array updates are always fast",
+        "There are no criticisms"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists losing business logic and painful array-element updates as criticisms."
+    },
+    {
+      "question": "When does the book suggest using a wide table?",
+      "options": [
+        "When you don't care about data modeling, or when you have a lot of data needing more flexibility than traditional rigor provides; wide tables also lend themselves to streaming data",
+        "Only for strictly governed datasets",
+        "Never — wide tables are always wrong",
+        "Only for tiny datasets"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book suggests wide tables when modeling rigor isn't needed or flexibility is required."
+    },
+    {
+      "question": "What questions should you consider if you choose not to model your data and query source systems directly?",
+      "options": [
+        "How do I know query results are consistent? Do I have proper definitions of business logic in the source system? What query load am I putting on my source systems and how does this impact their users?",
+        "How much does modeling cost?",
+        "Which modeling tool is best?",
+        "None — direct querying is always ideal"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists consistency, business definitions, and source-system query load as considerations."
+    },
+    {
+      "question": "Why is translating batch modeling techniques like Kimball to streaming tricky or impossible?",
+      "options": [
+        "Because of the unbounded and continuous nature of streaming data — e.g. how would you continuously update a Type-2 SCD without bringing your warehouse to its knees?",
+        "Streaming data is bounded and discrete",
+        "Kimball works perfectly for streaming",
+        "SCDs never need updating in streaming"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says streaming's unbounded nature makes batch techniques like Kimball tricky, using the Type-2 SCD example."
+    },
+    {
+      "question": "What do streaming data experts overwhelmingly suggest for modeling streaming data?",
+      "options": [
+        "Anticipate changes in source data and keep a flexible schema — assume source systems provide correct data with the right business definitions as they exist today, store recent and historical data so they can be queried together, and create automation that responds to anomalies",
+        "Use a rigid fixed schema",
+        "Ignore schema changes entirely",
+        "Never store historical streaming data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book summarizes expert advice: flexible schema, assume correct sources, combined storage, and anomaly automation."
+    },
+    {
+      "question": "How does a transformation differ from a query?",
+      "options": [
+        "A query retrieves data based on filtering and join logic; a transformation persists results for consumption by additional transformations or queries, and transformations also differ in complexity, combining data from multiple sources and reusing intermediate results",
+        "Transformations never persist results",
+        "Queries persist all their results",
+        "They are identical operations"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts queries (retrieve) with transformations (persist + complex pipelines)."
+    },
+    {
+      "question": "What undercurrent do transformations critically rely on?",
+      "options": [
+        "Orchestration — it combines many discrete operations such as intermediate transformations that store data temporarily or permanently for downstream consumption",
+        "Security",
+        "Only networking",
+        "No undercurrent is involved"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says transformations critically rely on orchestration."
+    },
+    {
+      "question": "What is the basic idea behind distributed joins, and when is a broadcast join possible?",
+      "options": [
+        "Break a logical join into much smaller node joins on individual servers; in the best case one side of the join is small enough to fit on a single node, enabling a broadcast join, otherwise a more resource-intensive shuffle hash join is required",
+        "Distributed joins always run on one node",
+        "Broadcast joins require both tables to be large",
+        "Shuffle hash joins are always cheapest"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes splitting joins into node joins, with broadcast when a side fits on one node."
+    },
+    {
+      "question": "What are top priorities in query optimizers for join performance, and what can prefiltering achieve?",
+      "options": [
+        "Join reordering — applying filters early and moving small tables to the left for left joins can dramatically reduce processed data; prefiltering data to create broadcast joins where possible can dramatically improve performance and reduce resource consumption",
+        "Filters should be applied as late as possible",
+        "Join reordering is unimportant",
+        "Prefiltering always hurts performance"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends early filters and join reordering to reduce processed data."
+    },
+    {
+      "question": "How does a shuffle hash join work?",
+      "options": [
+        "When neither table fits on a single node, a hashing scheme repartitions both tables by join key across the cluster, reshuffles data to the appropriate nodes, and joins the new partitions",
+        "It sends one table to all nodes",
+        "It joins data on a single node",
+        "It avoids all data movement"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the hashing/repartition/reshuffle mechanics of shuffle hash joins."
+    },
+    {
+      "question": "Why was the traditional ETL pattern developed, and what drove it?",
+      "options": [
+        "It was driven by the limitations of both source and target systems: the extract phase tended to be a major bottleneck with source RDBMS constraints, and transformation ran in a dedicated system because the target was extremely resource-constrained in storage and CPU",
+        "It was driven by unlimited resources",
+        "Target systems were powerful enough to transform",
+        "ETL required no extraction"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book attributes ETL to source extraction bottlenecks and resource-constrained targets."
+    },
+    {
+      "question": "What is ELT, and how did the data-lake version of it differ from the warehouse version?",
+      "options": [
+        "As warehouses grew in performance, ELT extracts raw data, imports it with minimal transformation, and transforms in the warehouse; the data-lake version loads massive quantities with no preparation or plan, assuming transformation happens later — a great recipe for a data swamp",
+        "ELT always transforms before loading",
+        "The data-lake version transforms immediately",
+        "ELT is never used in data lakes"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes both ELT versions and the swamp risk of unplanned lake loading, citing Inmon."
+    },
+    {
+      "question": "How does the book say ETL and ELT should be applied today?",
+      "options": [
+        "The terms should be applied only at the micro level within individual transformation pipelines rather than at the macro level for a whole organization, since organizations can apply the proper technique case by case",
+        "Every organization must choose one macro pattern",
+        "ETL and ELT are never applied at the micro level",
+        "The terms are meaningless"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends applying ETL/ELT at the micro level per pipeline."
+    },
+    {
+      "question": "What does the book say about SQL being declarative and its ability to build complex workflows?",
+      "options": [
+        "SQL is declarative — writers stipulate final data characteristics and the compiler/optimizer determine steps — but it can effectively build complex DAGs using common table expressions, SQL scripts, or an orchestration tool",
+        "Declarative languages cannot build complex pipelines",
+        "SQL is a procedural language",
+        "SQL cannot use CTEs or orchestration"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says SQL is declarative but can build complex DAGs with CTEs, scripts, or orchestration."
+    },
+    {
+      "question": "What three questions does the book suggest asking to decide between native Spark and Spark SQL?",
+      "options": [
+        "How difficult is it to code the transformation in SQL? How readable and maintainable will the resulting SQL code be? Should some of the transformation code be pushed into a custom library for future reuse?",
+        "How many nodes should the cluster use?",
+        "Which cloud provider is cheapest?",
+        "SQL questions are irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these three questions for choosing between Spark SQL and native Spark."
+    },
+    {
+      "question": "What example does the book give of a transformation better suited to a procedural language than SQL?",
+      "options": [
+        "Word stemming — it could be implemented in SQL by joining against a suffix table and using parsing/substring functions, but this is extremely complex with numerous edge cases and neither readable nor maintainable",
+        "Simple column selection",
+        "Counting rows in a table",
+        "Filtering by a date range"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book uses word stemming as an example where native Spark is better than awkward SQL."
+    },
+    {
+      "question": "What does the book say about SQL's notion of libraries and reusable code?",
+      "options": [
+        "SQL doesn't include a natural notion of libraries or reusable code, though some engines allow UDFs as objects inside a database; reusable libraries are easy to create in Spark and PySpark, and SQL can be recycled by committing results to tables/views or via dbt templating",
+        "SQL has excellent library support",
+        "UDFs can be committed to Git automatically",
+        "Spark has no reusable libraries"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes SQL's library limitations and the recycling options of tables/views, orchestration, and dbt."
+    },
+    {
+      "question": "What top-level recommendations does the book give for coding in native Spark?",
+      "options": [
+        "Filter early and often, rely heavily on the core Spark API and understand the native way of doing things, be careful with UDFs, and consider intermixing SQL",
+        "Filter late, avoid the core API",
+        "Use UDFs for everything",
+        "Never use SQL with Spark"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these four recommendations for native Spark coding."
+    },
+    {
+      "question": "Why should PySpark users be especially careful with Python UDFs?",
+      "options": [
+        "PySpark is an API wrapper for Scala Spark, and running Python UDFs forces data to be passed to Python where processing is less efficient; if you must use UDFs, consider rewriting them in Scala or Java to improve performance",
+        "Python UDFs are always the fastest option",
+        "PySpark doesn't use a JVM at all",
+        "Python UDFs never pass data to Python"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains PySpark's Scala-wrapper architecture and the cost of Python UDFs."
+    },
+    {
+      "question": "What is one benefit of using SQL with Spark?",
+      "options": [
+        "SQL allows taking advantage of the Spark Catalyst optimizer, which may squeeze out more performance than native Spark code, and SQL is often easier to write and maintain for simple operations",
+        "SQL disables the optimizer",
+        "Native Spark is always faster than SQL",
+        "SQL cannot be combined with native Spark"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says SQL leverages the Catalyst optimizer and is simpler for basic operations."
+    },
+    {
+      "question": "What is the truncate-and-reload update pattern?",
+      "options": [
+        "Truncate wipes the old data without updating anything, and transformations are rerun and loaded into the cleared table, effectively generating a new table version",
+        "It updates individual records in place",
+        "It inserts new records without clearing",
+        "It deletes only expired records"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes truncate-and-reload as clearing a table and rerunning transformations."
+    },
+    {
+      "question": "What are the downsides of an insert-only update pattern, and what alternative does the book suggest?",
+      "options": [
+        "Finding the latest record at query time can be extremely computationally expensive; alternatively, use a materialized view, an insert-only table maintaining all records, and a truncate-and-reload target table holding the current state for serving",
+        "Insert-only is always cheap at query time",
+        "Materialized views cannot help",
+        "There are no alternatives"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the expensive latest-record lookup and the materialized-view/truncate-reload alternative."
+    },
+    {
+      "question": "What does the book say about single-row inserts into columnar OLAP databases?",
+      "options": [
+        "It is an antipattern that puts a massive load on the system, causes data to be written in many separate files inefficient for reads, and requires reclustering later; load data in a periodic micro-batch or batch fashion instead",
+        "Single-row inserts are ideal for columnar databases",
+        "Single-row inserts write efficient files",
+        "Batching is never recommended"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book calls single-row inserts an antipattern and recommends micro-batch/batch loading."
+    },
+    {
+      "question": "What exception does the book mention to the advice not to insert frequently?",
+      "options": [
+        "The enhanced Lambda architecture used by BigQuery and Apache Druid, which hybridizes a streaming buffer with columnar storage",
+        "No exceptions exist",
+        "All databases should avoid streaming buffers",
+        "The exception is single-row inserts in row databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book cites BigQuery/Druid's streaming-buffer-plus-columnar hybrid as the exception."
+    },
+    {
+      "question": "Why are deletes more expensive in columnar systems and data lakes?",
+      "options": [
+        "In columnar systems and data lakes, deletes are more expensive than inserts",
+        "Deletes are free in all systems",
+        "Columnar systems delete instantly",
+        "Deletes are cheaper than inserts everywhere"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states deletes are more expensive than inserts in columnar systems and data lakes."
+    },
+    {
+      "question": "Why does the book say upsert/merge patterns cause the most trouble for teams transitioning from row-based to columnar cloud systems?",
+      "options": [
+        "Upsert/merge was designed for row-based databases where updates look up and change records in place, while file-based systems use copy on write (COW), so if one record in a file changes, the whole file must be rewritten with the new changes",
+        "Row-based databases also use copy on write",
+        "File-based systems support in-place updates",
+        "COW never rewrites files"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains the mismatch between row-based in-place updates and file-based copy-on-write."
+    },
+    {
+      "question": "How does copy-on-write (COW) actually operate in modern columnar systems, and when are merges performant?",
+      "options": [
+        "COW seldom entails rewriting the whole table — it can operate at various resolutions (partition, cluster, block) — and merges can be extremely performant for large update sets, even outperforming transactional databases",
+        "COW always rewrites the entire table",
+        "Merges are never performant",
+        "COW resolution is always whole-table"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes COW at partition/cluster/block resolution and large-merge performance."
+    },
+    {
+      "question": "What approaches does the book mention to bring columnar databases closer to real time?",
+      "options": [
+        "BigQuery allows streaming inserts into a table with specialized materialized views presenting an efficient near real-time deduplicated view; Druid uses two-tier storage and SSDs to support ultrafast real-time queries",
+        "Columnar databases cannot approach real time",
+        "Druid has no real-time capability",
+        "BigQuery disallows streaming inserts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes BigQuery streaming-plus-materialized-view and Druid's two-tier SSD approach."
+    },
+    {
+      "question": "Why does the book say updating the schema is easier in columnar systems than row-based ones?",
+      "options": [
+        "Columns can typically be added, deleted, and renamed easily, and adding a field in a columnar database is initially just a metadata change",
+        "Columnar schemas are fixed forever",
+        "Row-based databases update schemas instantly",
+        "Schema changes are equally hard everywhere"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says columnar systems make schema updates easier."
+    },
+    {
+      "question": "What organizational challenges does the book raise about schema management, and what is a table fork?",
+      "options": [
+        "Will schema updates be automated (like Fivetran) risking downstream breaks? Is there a straightforward review process? Will SELECT * queries break? How long will changes take? A table fork is a new table version specific to a project",
+        "Schema management is always automatic",
+        "SELECT * is good practice in columnar databases",
+        "Table forks are not mentioned"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book raises these schema-management questions and defines the table fork."
+    },
+    {
+      "question": "What new option does the book describe for semistructured JSON data in cloud data warehouses?",
+      "options": [
+        "Store raw JSON in a field while storing frequently accessed data in adjacent flattened fields, taking extra storage but allowing flattened convenience with semistructured flexibility; frequently accessed JSON data can be added into the schema over time",
+        "Store only flattened columns and discard JSON",
+        "JSON cannot be stored in warehouses",
+        "Flattened fields are forbidden"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the raw-JSON-plus-flattened-fields hybrid approach."
+    },
+    {
+      "question": "What is data wrangling, and how does the book describe the typical process?",
+      "options": [
+        "Data wrangling takes messy, malformed data and turns it into useful, clean data, generally as a batch transformation — e.g. ingesting EDI data, often as a single text-field table, then writing queries to parse and break it apart, discovering anomalies over time",
+        "Data wrangling only compresses data",
+        "Data wrangling is always real-time",
+        "Wrangled data needs no parsing"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the messy-to-clean wrangling process with the EDI example."
+    },
+    {
+      "question": "How does the book suggest thinking about data-wrangling tools, and what features do they typically have?",
+      "options": [
+        "Think of them as integrated development environments (IDEs) for malformed data; they present a sample of data in a visual interface with inferred types, statistics, distributions, anomalies, and nulls, letting users add processing steps and push jobs to scalable systems like Spark",
+        "They are always no-code toys with no value",
+        "They cannot push jobs to Spark",
+        "They never show data statistics"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book reframes wrangling tools as IDEs for malformed data with visual/statistical features."
+    },
+    {
+      "question": "What business logic example does the book give for derived data, and what criticism does it address?",
+      "options": [
+        "The example is nuanced profit calculations (before/after marketing costs) integrating an attribution model; critics say maintaining consistency in derived metrics is hard since attribution changes must be merged into many ETL scripts, but the alternative — analysts running reporting queries with profit logic — is even more impractical",
+        "Derived data needs no maintenance",
+        "Attribution models never change",
+        "ETL scripts never break the DRY principle"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the profit/attribution derived-data example and the criticism trade-off."
+    },
+    {
+      "question": "What alternative does the book mention for pushing business logic into a dedicated layer?",
+      "options": [
+        "Push business logic into a metrics layer that encodes business logic and lets analysts build analytics from a library of defined metrics, while still leveraging the data warehouse for computational heavy lifting",
+        "Remove all business logic from analytics",
+        "Metrics layers replace data warehouses entirely",
+        "Analysts should write raw queries with logic each time"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the metrics layer approach for business logic."
+    },
+    {
+      "question": "What is MapReduce, and what does a simple job consist of?",
+      "options": [
+        "A batch transformation pattern introduced by Google consisting of map tasks that read data blocks, a shuffle that redistributes results by key across the cluster, and a reduce step that aggregates data on each node",
+        "A single-node processing framework",
+        "A streaming-only pattern",
+        "A database index structure"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes MapReduce's map/shuffle/reduce stages, introduced by Google."
+    },
+    {
+      "question": "Why is the map portion of a MapReduce job described as embarrassingly parallel?",
+      "options": [
+        "Each map task runs a query on a single data block independently, so the data scan rate across the cluster scales essentially linearly with the number of nodes",
+        "Map tasks must coordinate globally",
+        "Map tasks run sequentially",
+        "The scan rate never scales"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says map tasks on individual blocks scale linearly with nodes."
+    },
+    {
+      "question": "Why is Google's original MapReduce model viewed as excessively rigid?",
+      "options": [
+        "It utilizes numerous short-lived ephemeral tasks that read from and write to disk, with no intermediate state preserved in memory — all data is transferred between tasks by disk or network, driving high disk bandwidth and increasing processing time",
+        "It preserves all state in memory",
+        "It avoids disk entirely",
+        "It is the fastest possible model"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes MapReduce's disk-heavy ephemeral-task model as rigid."
+    },
+    {
+      "question": "How does post-MapReduce processing differ from the original model?",
+      "options": [
+        "It retains map, shuffle, and reduce elements but relaxes constraints to allow in-memory caching, dramatically speeding up specific tasks; Spark and BigQuery treat data as a distributed set residing in memory, spilling to disk as a second-class layer when memory overflows",
+        "It discards map and reduce entirely",
+        "It forbids in-memory caching",
+        "It treats disk as the primary processing layer"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes post-MapReduce in-memory caching and disk-as-second-class processing."
+    },
+    {
+      "question": "What three roles do (nonmaterialized) views play in a database, per the book?",
+      "options": [
+        "Security (selecting specific columns/filtering rows for restricted access), providing a current deduplicated picture of data for insert-only patterns, and presenting common data access patterns like prejoined wide tables",
+        "Storing raw data",
+        "Enforcing primary keys",
+        "Only dashboard rendering"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes views' security, deduplication, and common-pattern roles."
+    },
+    {
+      "question": "How can materialized views serve a query optimization role even for queries that don't reference them?",
+      "options": [
+        "Many query optimizers can identify queries that look like a materialized view and rewrite the query to select from the precomputed results",
+        "Materialized views are never used by optimizers",
+        "Optimizers cannot rewrite queries",
+        "Materialized views only serve when directly referenced"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes optimizers rewriting similar queries to use materialized view results."
+    },
+    {
+      "question": "What is composable materialized views, and what Databricks feature supports it?",
+      "options": [
+        "In general materialized views don't allow composition (a materialized view can't select from another), but Databricks introduced live tables where each table is updated as data arrives and data flows down to subsequent tables asynchronously",
+        "All materialized views support composition",
+        "Live tables never update",
+        "Databricks does not support live tables"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Databricks live tables as composable materialized views."
+    },
+    {
+      "question": "What are federated queries, and what example does the book give?",
+      "options": [
+        "A database feature allowing an OLAP database to select from external data sources such as object storage or RDBMS; e.g. a data warehouse issues a federated query to object storage, MySQL, and PostgreSQL and returns combined results",
+        "Queries that only read local tables",
+        "A security protocol for queries",
+        "A type of index"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes federated queries across object storage and RDBMS sources."
+    },
+    {
+      "question": "What are Snowflake external tables, and how do they work?",
+      "options": [
+        "External tables are defined on S3 buckets with an external data location and file format; data is not ingested into the table, but when queried Snowflake reads from S3 and processes based on the creation parameters, and the S3 data can even be joined to internal tables",
+        "External tables copy all data into Snowflake",
+        "External tables cannot be joined",
+        "External tables store data only in memory"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Snowflake's external tables reading from S3 without ingestion."
+    },
+    {
+      "question": "What is data virtualization, and which systems exemplify it?",
+      "options": [
+        "A data processing and query system that doesn't store data internally — Trino (e.g. Starburst) and Presto are examples par excellence; the most significant considerations are supported external sources and performance",
+        "A system that stores all data internally",
+        "A system with no external sources",
+        "A physical storage array"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines data virtualization with Trino/Presto examples."
+    },
+    {
+      "question": "What is query pushdown, and what two purposes does it serve?",
+      "options": [
+        "Moving as much work as possible to source databases, e.g. pushing filtering predicates into source queries; it offloads computation from the virtualization layer and reduces the quantity of data that must cross the network",
+        "Moving all work to the virtualization layer",
+        "Increasing network data transfer",
+        "Disabling source query performance"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes query pushdown's computation offload and network reduction benefits."
+    },
+    {
+      "question": "Why should data virtualization not be used haphazardly, and how can it be used as an ingestion component?",
+      "options": [
+        "Virtualizing a production MySQL database doesn't solve the problem of analytics queries impacting production since Trino pulls from MySQL every time; it can instead be used to select from MySQL once a day at midnight, saving results to S3 for downstream transformations and protecting MySQL",
+        "Data virtualization always solves production load issues",
+        "Trino caches data between queries",
+        "Data virtualization cannot be used in pipelines"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns about virtualization's production impact and describes the ingestion-component usage."
+    },
+    {
+      "question": "How does data virtualization relate to the data mesh concept?",
+      "options": [
+        "Virtualization expands the data lake to many more sources by abstracting away barriers that silo data, and can serve as a critical access layer for practical sharing in a data mesh where small teams prepare and share data",
+        "Virtualization prevents data sharing",
+        "Data mesh never uses virtualization",
+        "Virtualization and data mesh are unrelated"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book connects virtualization to data mesh sharing."
+    },
+    {
+      "question": "What is the difference between streaming queries and streaming transformations?",
+      "options": [
+        "Streaming queries run dynamically to present a current view of data, while streaming transformations aim to prepare data for downstream consumption — e.g. enriching IoT events with device metadata from a separate database",
+        "They are identical concepts",
+        "Streaming transformations present current views",
+        "Streaming queries prepare downstream data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts streaming queries (current view) with streaming transformations (prepare downstream)."
+    },
+    {
+      "question": "What is a streaming DAG, and how do Pulsar and Kafka/Flink differ in supporting it?",
+      "options": [
+        "A streaming DAG enriches, merges, and splits multiple streams in real time (e.g. combining clickstream and IoT data); building one with Kafka and Flink long meant a complex Rube Goldberg machine of topics and jobs, while Pulsar treats DAGs as a core streaming abstraction defined as code inside a single system",
+        "Streaming DAGs are only for batch",
+        "Kafka treats DAGs as a core abstraction",
+        "Pulsar cannot define DAGs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes streaming DAGs and contrasts Kafka+Flink complexity with Pulsar's native DAG support."
+    },
+    {
+      "question": "What are the characteristics of micro-batching, and how often might it run?",
+      "options": [
+        "Micro-batching takes a batch-oriented framework and applies it in a streaming situation, running anywhere from every two minutes to every second; frameworks like Spark Streaming are designed for this and perform well with appropriate resources at high frequency",
+        "Micro-batching runs once a day maximum",
+        "Micro-batching processes one event at a time",
+        "Micro-batching cannot use batch frameworks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes micro-batching's frequency range and Spark Streaming suitability."
+    },
+    {
+      "question": "How does the book describe true streaming systems and their trade-offs?",
+      "options": [
+        "True streaming systems like Beam and Flink are designed to process one event at a time, but this comes with significant overhead, and even in true streaming systems many processes still occur in batches such as windows and triggers",
+        "True streaming processes only batches",
+        "True streaming has no overhead",
+        "Beam and Flink never use windows"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes event-at-a-time processing with overhead and residual batching."
+    },
+    {
+      "question": "What examples does the book give for choosing micro-batching versus true streaming?",
+      "options": [
+        "For Black Friday sales metrics published every few minutes, micro-batches are probably fine; if an ops team is computing metrics every second to detect DDoS attacks, true streaming may be in order",
+        "DDoS detection should always use micro-batches",
+        "Black Friday metrics need true streaming",
+        "Use case never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts the Black Friday (micro-batch) and DDoS (true streaming) scenarios."
+    },
+    {
+      "question": "What does the book say about vendor benchmarks in the micro-batch versus streaming debate?",
+      "options": [
+        "Watch out for spurious vendor benchmarks — vendors are notorious for cherry-picking benchmarks and artificial examples that don't match reality, showing massive advantages that fail to deliver in the real world for your use case",
+        "Vendor benchmarks are always reliable",
+        "All benchmarks are identical",
+        "Vendors never run benchmarks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns against cherry-picked vendor benchmarks."
+    },
+    {
+      "question": "Who does the book identify as upstream stakeholders for transformations, and how do they split?",
+      "options": [
+        "Upstream stakeholders split into those who control the business definitions and those who control the systems generating data; engineers must know data sources, their use, and the business logic involved",
+        "Only data engineers",
+        "Only business stakeholders",
+        "Only downstream consumers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book splits upstream stakeholders into business-definition and data-system controllers."
+    },
+    {
+      "question": "What do upstream stakeholders want regarding your queries and transformations?",
+      "options": [
+        "They want to make sure your queries and transformations minimally impact their systems, and they expect bidirectional communication about data model changes like column and index changes that can affect queries and transformations",
+        "They want maximum query load on their systems",
+        "They never communicate schema changes",
+        "They want no communication at all"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says upstream stakeholders want minimal impact and bidirectional schema-change communication."
+    },
+    {
+      "question": "Who are the downstream stakeholders, and what do they expect from transformed data?",
+      "options": [
+        "Data analysts, data scientists, ML engineers, and the business; queries should execute as quickly as possible cost-effectively, and users should be confident data is high quality and complete so it can be integrated into workflows and data products",
+        "Only executives",
+        "Only the data engineering team",
+        "Nobody — data is self-serve"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes downstream stakeholders' performance and quality expectations."
+    },
+    {
+      "question": "What security considerations does the book raise for the transformation stage?",
+      "options": [
+        "Control who has access to new combined datasets including column, row, and cell-level access; monitor read/write privileges and query-time attack vectors; keep credentials hidden from code; and never allow unsecured data to traverse the public internet",
+        "Security is only relevant at ingestion",
+        "Credentials can be pasted into code",
+        "Public internet data needs no encryption"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes dataset access control, credential hygiene, and encrypted transit."
+    },
+    {
+      "question": "Why is data management especially critical at the transformation stage?",
+      "options": [
+        "Transformation inherently creates new datasets that need to be managed; naming conventions must align with business definitions, data catalogs provide clarity on fields, and definitional accuracy ensures transformations adhere to expected business logic",
+        "Transformations create no new data",
+        "Naming conventions are unimportant",
+        "Data catalogs are not used for clarity"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book emphasizes new-dataset management, naming conventions, catalogs, and definitional accuracy."
+    },
+    {
+      "question": "How do MDM and data lineage tools support transformations?",
+      "options": [
+        "MDM preserves data's original integrity and ground truth for conformed dimensions and transformations; data lineage tools help engineers understand previous transformation steps and help analysts understand where data came from",
+        "MDM and lineage are unrelated to transformations",
+        "Lineage only helps analysts, never engineers",
+        "MDM corrupts data integrity"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes MDM's ground-truth role and lineage tools' benefits."
+    },
+    {
+      "question": "What regulatory questions does the book raise about data models and transformations?",
+      "options": [
+        "Are sensitive fields masked or obfuscated? Can you delete data in response to deletion requests? Does lineage tracking let you see data derived from deleted data and rerun transformations to remove it downstream?",
+        "Regulations never affect transformations",
+        "Deletion requests can be ignored",
+        "Lineage is not needed for deletions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book raises masking, deletion, and downstream-lineage compliance questions."
+    },
+    {
+      "question": "What are the two areas of concern for DataOps with queries and transformations?",
+      "options": [
+        "Data and systems — monitor and alert on changes or anomalies in both, with the field of data observability exploding and even a job title of data reliability engineer",
+        "Only data quality",
+        "Only system uptime",
+        "Only security"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says DataOps has data and systems areas of concern."
+    },
+    {
+      "question": "What data-side checks does the book recommend for DataOps at the query/transformation stage?",
+      "options": [
+        "Run data-quality tests on input and transformed datasets checking schema, shape, min/max values, and null counts; if there's a quality issue, flag it, roll back the changes, and investigate root cause",
+        "Only check query syntax",
+        "Data-quality tests are unnecessary",
+        "Rollbacks are never possible"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes input/output data-quality tests and rollback capability."
+    },
+    {
+      "question": "What ops-side metrics does the book say to monitor for query and transformation systems?",
+      "options": [
+        "Query queue length, query concurrency, memory usage, storage utilization, network latency, and disk I/O — use metric data to spot bottlenecks and poor-performing queries for refactoring and tuning",
+        "Only CPU temperature",
+        "Only the number of tables",
+        "System metrics are irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these ops metrics for spotting bottlenecks."
+    },
+    {
+      "question": "How does the shift toward SaaS-based analytical databases change the cost profile of data consumption?",
+      "options": [
+        "On-premises warehouses were purchased up front with no usage cost, while cloud warehouses charge on a consumption basis, so engineers must focus on cost management and cost optimization — the practice of FinOps",
+        "Cloud warehouses are always cheaper with no monitoring",
+        "Cost management is unnecessary in the cloud",
+        "Consumption pricing has no cost implications"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts up-front on-premises costs with consumption-based cloud costs and FinOps."
+    },
+    {
+      "question": "What architecture example does the book give of using the wrong pipelines and databases?",
+      "options": [
+        "A data team might connect a real-time data pipeline to an RDBMS or Elasticsearch and use it as their data warehouse — these systems are not optimized for high-volume aggregated OLAP queries and will implode under the workload",
+        "RDBMS systems are ideal OLAP warehouses",
+        "Elasticsearch handles OLAP aggregates well",
+        "Architecture choices never affect query performance"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns about using transactional/search systems as OLAP warehouses."
+    },
+    {
+      "question": "What does the book say about managing transformation pipelines with time-based schedules versus orchestration?",
+      "options": [
+        "Simple time-based schedules like cron work reasonably well at first but turn into a nightmare as workflows grow; use orchestration to manage complex pipelines with a dependency-based approach, since orchestration is the glue spanning multiple systems",
+        "Cron jobs scale perfectly forever",
+        "Orchestration only works for single systems",
+        "Dependency-based scheduling is worse than cron"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends dependency-based orchestration over time-based schedules."
+    },
+    {
+      "question": "What does the book say about UDFs versus native functions in transformation code?",
+      "options": [
+        "Know the best practices of your tools — e.g. are you using a UDF when a native function might work much better? Poorly written, sluggish UDFs can be replaced by a built-in SQL command with instant dramatic improvement",
+        "UDFs are always the best choice",
+        "Native functions never outperform UDFs",
+        "UDFs need no optimization"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends native functions over poorly written UDFs."
+    },
+    {
+      "question": "What is analytics engineering, and what role does the data engineer play in it?",
+      "options": [
+        "Analytics engineering brings software engineering practices to end users with analytics as code; tools like dbt let analysts write in-database transformations in SQL without a DBA, and the data engineer is responsible for setting up the code repository and CI/CD pipeline used by analysts and scientists",
+        "Analytics engineering replaces data engineers entirely",
+        "dbt requires no SQL",
+        "Data engineers never set up CI/CD"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes analytics engineering and the data engineer's CI/CD role."
+    },
+    {
+      "question": "What does the book caution about GUI-based low-code transformation tools?",
+      "options": [
+        "They generate SQL or another language behind the scenes, and while the point is to avoid low-level details, understanding the generated code helps with debugging and performance optimization — blindly assuming the tool generates performant code is a mistake",
+        "Generated code is always performant",
+        "Low-code tools need no understanding",
+        "The generated code can never be inspected"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns against blindly trusting low-code tool-generated code."
+    },
+    {
+      "question": "What final advice does the book give about the purpose of transformations?",
+      "options": [
+        "Engineers are not hired to play with the latest technological toys but to serve their customers — transformations are where data adds value and ROI to the business",
+        "Technological toys are the priority",
+        "Customer value is secondary",
+        "Transformations never add business value"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book emphasizes serving customers and business ROI as transformations' purpose."
+    },
+    {
+      "question": "What does the book say about identifying streaming use cases before choosing technologies?",
+      "options": [
+        "Engineering teams that think about real-time data as technology for its own sake will repeat the mistakes of the big data era; the majority of organizations have a business use case that would benefit from streaming, so identify the value before choosing technologies and complex systems",
+        "Choose technology first, find use cases later",
+        "Streaming has no business use cases",
+        "Value identification is unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book advises identifying streaming value before technology choices."
+    }
+  ]
+}

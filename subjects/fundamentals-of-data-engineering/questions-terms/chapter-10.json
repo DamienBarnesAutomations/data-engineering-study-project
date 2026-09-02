@@ -1,0 +1,337 @@
+{
+  "title": "Chapter 10 — Security and Privacy: Key Terms",
+  "source_file": "chapter-10-security-and-privacy.md",
+  "question_count": 30,
+  "questions": [
+    {
+      "question": "What is 'security theater'?",
+      "options": [
+        "Running security training and policy review at least once a month to ingrain security into the team",
+        "Encrypting all data both in transit and at rest across every system",
+        "Security performed only to satisfy the letter of compliance, such as SOC-2 or ISO 27001 audits, without real commitment",
+        "Deploying scheduled simulated phishing attacks to test employees"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter describes security theater as security done 'in the letter of compliance (SOC-2, ISO 27001, and related) without real commitment,' such as hundreds of pages of security policy nobody reads or an annual review people immediately forget."
+    },
+    {
+      "question": "What does 'active security' entail?",
+      "options": [
+        "Thinking about and researching security threats in a dynamic and changing world, including your organization's specific vulnerabilities",
+        "Simply deploying scheduled simulated phishing attacks",
+        "Simply adopting a standard compliance checklist",
+        "Encrypting all data backups for archival purposes"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts active security with deploying scheduled simulated phishing attacks or adopting a standard compliance checklist; instead, it means researching successful phishing attacks and thinking through your organizational security vulnerabilities."
+    },
+    {
+      "question": "What is the principle of least privilege?",
+      "options": [
+        "Granting administrative access to everyone who might need it someday",
+        "Monitoring all user activity to detect unauthorized access",
+        "Sharing credentials among team members to speed up work",
+        "Giving a person or system only the privileges and data they need to complete the task at hand and nothing more"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter defines least privilege as giving a person or system only the privileges and data needed for the task at hand, and only for the timespan when needed, treating humans and machines the same way."
+    },
+    {
+      "question": "What is the shared responsibility model in the cloud?",
+      "options": [
+        "The cloud vendor is responsible for all security, including your applications and data",
+        "The cloud vendor is responsible for the physical security of its data centers and hardware, while you are responsible for the security of the applications and systems you build and maintain",
+        "You are responsible for physical data center security, while the vendor secures your applications",
+        "Both parties share responsibility for the physical security of the data center"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says the cloud vendor is responsible for physical security of its data centers and hardware, while you are responsible for the applications and systems you build and maintain, noting most cloud breaches are caused by end users, not the cloud."
+    },
+    {
+      "question": "What is a 'broken glass' process?",
+      "options": [
+        "A procedure for physically destroying hard drives that contain sensitive data",
+        "A policy for backing up data before a major system migration",
+        "A quarterly security audit that checks compliance with internal rules",
+        "A process where certain data is accessible only through an emergency approval process, with access revoked immediately once the work is done"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says some data must be retained but accessed only in an emergency, behind a broken glass process: users access it only after an emergency approval process to fix a problem or query critical historical information, and access is revoked immediately once the work is done."
+    },
+    {
+      "question": "What is single sign-on (SSO)?",
+      "options": [
+        "A method of encrypting credentials in version control",
+        "A mechanism the chapter recommends using for everything to avoid passwords wherever possible",
+        "A tool for remotely wiping lost devices",
+        "A process for granting users temporary IAM roles"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter's credential ground rules say to use SSO for everything, avoid passwords whenever possible, and use SSO as the default."
+    },
+    {
+      "question": "What is multifactor authentication (MFA)?",
+      "options": [
+        "A single password shared across multiple systems",
+        "A way of granting admin access to an entire team",
+        "An authentication method the book recommends using with SSO and on all devices",
+        "An encryption standard for data at rest"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter's security policy rules instruct you to use multifactor authentication together with SSO and to use MFA for all devices."
+    },
+    {
+      "question": "What is a secrets manager?",
+      "options": [
+        "A tool for handling secrets such as credentials as configuration, rather than putting them in code or committing them to version control",
+        "A manager responsible for monitoring employee access",
+        "A device management tool that supports remote wiping",
+        "A tool for backing up databases and object storage buckets"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter advises: 'Don't put your credentials in code. Handle secrets as configuration and never commit them to version control. Use a secrets manager where possible.'"
+    },
+    {
+      "question": "What does it mean for data to be encrypted 'at rest'?",
+      "options": [
+        "The data is encrypted while being transmitted over a network",
+        "The data is encrypted only during archival backups",
+        "The data is encrypted only in application memory",
+        "The data is encrypted on a storage device, such as via full-disk or server-side encryption"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says to be sure data is encrypted when it is at rest (on a storage device), including full-disk encryption on laptops, server-side encryption for servers, filesystems, databases, and object storage, and encryption of backups."
+    },
+    {
+      "question": "What does 'encryption over the wire' (encryption in transit) mean?",
+      "options": [
+        "Encrypting data while it is transmitted across a network, as HTTPS does for modern cloud APIs",
+        "Encrypting data when it is stored on a disk or in object storage",
+        "Encrypting data only while it sits in CPU cache",
+        "Encrypting data only during archival backups"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter notes encryption over the wire is now the default for current protocols, and HTTPS is generally required for modern cloud APIs."
+    },
+    {
+      "question": "What is a man-in-the-middle attack?",
+      "options": [
+        "An attack whereby an attacker intercepts downloaded data and changes it before it arrives at the client, such as against FTP on a public network",
+        "An attack where a bad actor locks away your data and demands payment",
+        "An attack that overloads a server with traffic",
+        "An attack that tricks a user into giving up credentials via email"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter warns FTP is vulnerable to man-in-the-middle attacks, 'whereby an attacker intercepts downloaded data and changes it before it arrives at the client,' and recommends simply avoiding FTP."
+    },
+    {
+      "question": "What is data masking?",
+      "options": [
+        "Deleting sensitive data as soon as it has been used",
+        "Encrypting data while it is stored at rest",
+        "Obscuring sensitive data such as PII so only the needed information is visible to a viewer",
+        "Backing up data regularly for disaster recovery"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter recommends masking PII and other sensitive data and creating views that contain only the information the viewer needs to access."
+    },
+    {
+      "question": "What are column, row, and cell-level access controls?",
+      "options": [
+        "Network firewall rules that restrict which IPs can reach a database",
+        "Granular access controls applied around sensitive data that restrict what specific columns, rows, or cells a viewer can see",
+        "Device management policies for company devices",
+        "Encryption keys managed per cloud region"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter advises implementing column, row, and cell-level access controls around sensitive data, which is critical to the principle of least privilege and privacy."
+    },
+    {
+      "question": "What does zero-trust security mean?",
+      "options": [
+        "A security model in which every action requires authentication, and which the cloud generally follows more closely",
+        "A model that trusts all traffic inside the corporate network",
+        "A model that relies on air-gapping all servers",
+        "A model in which only external users must authenticate"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter recalls the difference between a hardened perimeter and zero-trust security, noting the cloud is generally closer to zero-trust because every action requires authentication."
+    },
+    {
+      "question": "What is a hardened security perimeter?",
+      "options": [
+        "A security model where every action requires authentication",
+        "A security model that relies entirely on cloud-managed services",
+        "A security approach that secures the network boundary, with air-gapped servers as its ultimate example",
+        "A security model based on secrets management"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter describes air-gapped servers, not connected to any networks, as 'the ultimate example of a hardened security perimeter,' while noting they remain vulnerable to human security failings."
+    },
+    {
+      "question": "What are air-gapped servers?",
+      "options": [
+        "Servers that use only encrypted wireless connections",
+        "Servers protected by full-disk encryption",
+        "Servers with automated monitoring and alerting",
+        "Servers that are not connected to any networks, the ultimate example of a hardened security perimeter"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says air-gapped servers are not connected to any networks and represent the ultimate hardened security perimeter, though even they are vulnerable to human failings."
+    },
+    {
+      "question": "What is the 'power of negative thinking' in security?",
+      "options": [
+        "Assuming your organization will never be attacked so you can focus on work",
+        "Thinking through disastrous scenarios and acting to prevent them, rather than being blinded by positive thinking",
+        "Focusing mainly on passing compliance checklists",
+        "Delegating all security thinking to dedicated security engineers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Drawing on an Atul Gawande op-ed, the chapter argues positive thinking can blind us to emergencies, while negative thinking allows us to consider disastrous scenarios and act to prevent them."
+    },
+    {
+      "question": "What does it mean to make security a habit?",
+      "options": [
+        "Regularly practicing real security so that it becomes part of the job and is baked into your culture",
+        "Running an annual security policy review to check a box for an audit",
+        "Relying on hundreds of pages of security policy",
+        "Holding a single security training session each year"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says when people follow regular security processes, security becomes part of the job; it urges making security a habit, practicing real security, and baking a security mindset into your culture."
+    },
+    {
+      "question": "What is compliance in the security context the chapter discusses?",
+      "options": [
+        "Researching security threats in a changing world",
+        "Encrypting all data in transit",
+        "Whitelisting IP addresses for network access",
+        "Following internal rules, laws, and recommendations from standards bodies such as SOC-2 and ISO 27001"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter notes a pervasive focus on compliance with internal rules, laws, and standards-body recommendations, but warns it can create an illusion of security while leaving gaping holes."
+    },
+    {
+      "question": "What is GDPR?",
+      "options": [
+        "A US law from the 1970s protecting educational records",
+        "A European privacy statute passed in the mid-2010s whose penalties for violation can be devastating to a business",
+        "A US law from the 1990s protecting health information",
+        "A security standard for managing cloud credentials"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says GDPR was passed in Europe in the mid-2010s and is part of a growing list of privacy statutes whose penalties for violation can be significant, even devastating, to a business."
+    },
+    {
+      "question": "What is FERPA?",
+      "options": [
+        "A European privacy regulation passed in the mid-2010s",
+        "A US law from the 1990s protecting health insurance records",
+        "The Family Educational Rights and Privacy Act, a US law that went into effect in the 1970s",
+        "A cloud security compliance standard"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter notes the Family Educational Rights and Privacy Act (FERPA) went into effect in the US in the 1970s, protecting educational records."
+    },
+    {
+      "question": "What is HIPAA?",
+      "options": [
+        "The Health Insurance Portability and Accountability Act, a US law that followed in the 1990s",
+        "A US law from the 1970s protecting educational records",
+        "A European privacy regulation from the mid-2010s",
+        "A compliance framework for cloud security"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says HIPAA, the Health Insurance Portability and Accountability Act, followed FERPA in the US in the 1990s."
+    },
+    {
+      "question": "What is automatic anomaly detection, as recommended in the chapter's monitoring guidance?",
+      "options": [
+        "Manually reviewing access logs once a quarter",
+        "Encrypting all network traffic",
+        "Backing up data for disaster recovery",
+        "Automated monitoring that flags peculiar, out-of-the-ordinary events in your systems"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says data engineers should set up automated monitoring, logging, and alerting to be aware of peculiar events when they happen, and if possible set up automatic anomaly detection."
+    },
+    {
+      "question": "What does 'whitelisting IPs' mean in the chapter's network access guidance?",
+      "options": [
+        "Opening all ports to 0.0.0.0/0 so any IP can connect",
+        "Allowing only the incoming IP addresses of the systems and users that will access your ports, avoiding broadly open connections",
+        "Encrypting all connections to SaaS tools",
+        "Removing unused permissions from service accounts"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter recommends understanding what IPs and ports are open, allowing only the incoming IP addresses of the systems and users that will access those ports, and avoiding broadly open connections."
+    },
+    {
+      "question": "What is ransomware?",
+      "options": [
+        "Malware that intercepts and changes data in transit",
+        "Malware that overloads a server with traffic",
+        "Malware in which a bad actor locks away your data and holds it hostage for payment",
+        "A phishing email that asks for your credentials"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter describes ransomware attacks as widespread; a bad actor can lock away data and hold it hostage, which is why regular backups and testing of restoration are essential."
+    },
+    {
+      "question": "What is an incident response plan?",
+      "options": [
+        "A plan to manage security breaches when they occur, which should be run through regularly so you are prepared",
+        "A policy for backing up data nightly",
+        "A list of IAM roles assigned to each user",
+        "A procedure for wiping lost devices"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter recommends coupling monitoring with an effective incident response plan to manage security breaches when they occur, and running through the plan on a regular basis."
+    },
+    {
+      "question": "What is device management for employee devices?",
+      "options": [
+        "Using only full-disk encryption on company laptops",
+        "Installing monitoring dashboards on every device",
+        "Using SSO for every login",
+        "Managing all employee devices so that if an employee leaves or a device is lost, the device can be remotely wiped"
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter's security policy says to use device management for all devices used by employees, so if an employee leaves or a device is lost, the device can be remotely wiped."
+    },
+    {
+      "question": "What is phishing, as the chapter warns against?",
+      "options": [
+        "Automated monitoring of system logs",
+        "Deceptive attempts, such as scam calls or emails, to get you to give out passwords or credentials",
+        "A network attack that intercepts data in transit",
+        "An attack that locks away data for ransom"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter warns to beware of phishing and scam calls and never give passwords out; a quick chat or phone call is cheaper than a ransomware attack triggered through an email click."
+    },
+    {
+      "question": "Why does the chapter say encryption is 'not a magic bullet'?",
+      "options": [
+        "Because it is too expensive for most organizations",
+        "Because it only works with legacy protocols",
+        "Because it will do little to protect you in the event of a human security breach that grants access to credentials",
+        "Because it removes the need for data backups"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says encryption is a baseline requirement that protects against basic attacks like network traffic interception, but it will do little in the event of a human security breach that grants access to credentials."
+    },
+    {
+      "question": "What do tools that monitor for excess permissions do?",
+      "options": [
+        "They monitor for permissions not utilized by a user or service account over time and can automatically alert an administrator or remove the permissions",
+        "They encrypt data at rest",
+        "They whitelist IP addresses for network access",
+        "They back up data for disaster recovery"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter notes vendors increasingly provide tools that monitor for permissions not utilized over time, and these tools can automatically alert an admin or remove the permissions after a specified elapsed time."
+    }
+  ]
+}

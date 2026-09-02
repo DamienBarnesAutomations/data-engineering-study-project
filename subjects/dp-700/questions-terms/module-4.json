@@ -1,0 +1,326 @@
+{
+  "title": "Module 4 — Key Terms",
+  "source_file": "M4.2.md, M4.3.md, M4.4.md, M4.5.md, M4.6.md, M4.7.md",
+  "question_count": 29,
+  "questions": [
+    {
+      "question": "What is OneLake in Microsoft Fabric?",
+      "options": [
+        "Fabric's centralized data storage architecture that unifies data across regions and clouds into a single logical lake",
+        "A separate cloud storage service that requires data to be copied before analysis",
+        "A compute engine used exclusively for real-time data streaming",
+        "A governance tool for managing Power BI reports"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.1 states: \"OneLake is Fabric's centralized data storage architecture that enables collaboration by eliminating the need to move or copy data between systems. OneLake unifies your data across regions and clouds into a single logical lake without moving or duplicating data.\""
+    },
+    {
+      "question": "OneLake is built on which underlying storage technology?",
+      "options": [
+        "Azure Blob Storage",
+        "Azure Data Lake Storage Gen2 (ADLS Gen2)",
+        "Amazon S3",
+        "Azure SQL Database"
+      ],
+      "correctIndex": 1,
+      "explanation": "M4.1 states: \"OneLake is built on Azure Data Lake Storage Gen2 (ADLS Gen2) and supports various formats, including Delta, Parquet, CSV, and JSON.\""
+    },
+    {
+      "question": "What is a Shortcut in Microsoft Fabric?",
+      "options": [
+        "A reference to files or storage locations within OneLake or external data sources that lets you access data without copying it",
+        "A copy of data stored in a separate location for backup purposes",
+        "A PowerShell script that automates data ingestion",
+        "A security policy applied to workspace items"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.1 defines Shortcuts as \"references to files or storage locations within OneLake or external data sources, such as Azure Data Lake Storage, Amazon S3, or Dataverse. Shortcuts allow you to access existing data without copying it, ensuring data consistency and enabling Fabric to stay in sync with the source.\""
+    },
+    {
+      "question": "In Microsoft Fabric, what are workspaces?",
+      "options": [
+        "Logical containers that help you organize and manage your data, reports, and other assets",
+        "Physical storage servers that hold copied data",
+        "Virtual machines used to run analytics workloads",
+        "SQL databases that store only transactional data"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.1 states: \"In Microsoft Fabric, workspaces serve as logical containers that help you organize and manage your data, reports, and other assets. They provide a clear separation of resources, making it easier to control access and maintain security.\""
+    },
+    {
+      "question": "Which role has implicit Fabric admin rights through organization-wide permissions?",
+      "options": [
+        "Fabric administrator",
+        "Power Platform administrator",
+        "Global administrator",
+        "Workspace viewer"
+      ],
+      "correctIndex": 2,
+      "explanation": "M4.1 lists the roles needed to enable Fabric and states that a \"Global administrator: Has implicit Fabric admin rights through organization-wide permissions.\""
+    },
+    {
+      "question": "What is the core item of the Fabric IQ workload?",
+      "options": [
+        "The semantic model",
+        "The ontology",
+        "The dataflow",
+        "The warehouse"
+      ],
+      "correctIndex": 1,
+      "explanation": "M4.1 states: \"Fabric IQ (preview) is a Fabric workload for unifying data across OneLake and organizing it according to the language of your business. Its core item is the ontology, which defines your business concepts, relationships, and rules.\""
+    },
+    {
+      "question": "What is a data warehouse?",
+      "options": [
+        "A centralized, structured store designed for analytical queries and reporting",
+        "A transactional database optimized for day-to-day business operations",
+        "A streaming service for real-time event processing",
+        "A file share used to store raw log files"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.2 states: \"A data warehouse is a centralized, structured store designed for analytical queries and reporting. Unlike operational databases that handle day-to-day business transactions, a data warehouse consolidates data from multiple sources into a format optimized for analysis.\""
+    },
+    {
+      "question": "What do fact tables contain in a dimensional model?",
+      "options": [
+        "The numerical data that you want to analyze",
+        "Descriptive information about the data in dimension tables",
+        "Only surrogate key columns",
+        "Security policies for the warehouse"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.2 states: \"Fact tables contain the numerical data that you want to analyze. Fact tables typically have a large number of rows and are the primary source of data for analysis.\""
+    },
+    {
+      "question": "What do dimension tables contain in a dimensional model?",
+      "options": [
+        "Descriptive information about the data in the fact tables",
+        "The measurable, quantitative business data",
+        "Staging copies of source system data",
+        "Masking rules for sensitive columns"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.2 states: \"Dimension tables contain descriptive information about the data in the fact tables. Dimension tables typically have a few rows and provide context for the data in the fact tables.\""
+    },
+    {
+      "question": "What is a surrogate key in a dimension table?",
+      "options": [
+        "A unique identifier for each row in the dimension table, often an integer generated automatically when a new row is inserted",
+        "A natural or business key that identifies an entity in the transactional source system",
+        "A column that stores descriptive text about the customer",
+        "A foreign key that references the fact table"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.2 states: \"A surrogate key is a unique identifier for each row in the dimension table. It's often an integer value that the database management system generates automatically when you insert a new row.\""
+    },
+    {
+      "question": "What is an alternate key in a dimension table?",
+      "options": [
+        "An automatically generated integer unique to the data warehouse",
+        "A natural or business key that identifies a specific instance of an entity in the transactional source system",
+        "A masked version of the primary key used for security",
+        "A key used only for column-level security"
+      ],
+      "correctIndex": 1,
+      "explanation": "M4.2 states: \"An alternate key is often a natural or business key that identifies a specific instance of an entity in the transactional source system - such as a product code or a customer ID.\" Alternate keys are specific to the source system and maintain traceability."
+    },
+    {
+      "question": "Which schema design has a fact table relating directly to dimension tables in the shape of a star?",
+      "options": [
+        "Star schema",
+        "Snowflake schema",
+        "Normalized schema",
+        "Galaxy schema"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.2 states: \"Often, a data warehouse uses a star schema, in which a fact table relates directly to the dimension tables.\" In contrast, a snowflake schema splits dimension tables into further normalized tables."
+    },
+    {
+      "question": "In a snowflake schema, what happens to dimension tables?",
+      "options": [
+        "Dimensions are split into separate, normalized dimension tables",
+        "Dimensions are merged into the fact table",
+        "All data is stored in a single table",
+        "Dimensions are eliminated entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.2 states: \"If there are lots of levels or attributes shared by different things, it might make sense to use a snowflake schema instead. In this case, the DimProduct table splits (normalizes) into separate dimension tables for product categories and suppliers.\""
+    },
+    {
+      "question": "What are slowly changing dimensions (SCDs)?",
+      "options": [
+        "Dimensions that track changes to dimension attributes over time",
+        "Dimensions that are loaded only once during initial setup",
+        "Dimensions that contain only surrogate keys",
+        "Dimensions used exclusively for streaming data"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.2 states: \"Slowly changing dimensions track changes to dimension attributes over time, like changes to a customer's address or a product's price. They're significant in a data warehouse because they enable you to analyze and understand changes to data over time.\""
+    },
+    {
+      "question": "Which type of slowly changing dimension overwrites existing data and does not keep history?",
+      "options": [
+        "Type 1 SCD",
+        "Type 2 SCD",
+        "Type 3 SCD",
+        "Type 0 SCD"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.3 states: \"Type 1 SCD: Overwrites existing data, doesn't keep history.\" Type 2 SCD adds new records and keeps full history for a given natural key."
+    },
+    {
+      "question": "Which type of slowly changing dimension adds new records for changes and keeps full history for a given natural key?",
+      "options": [
+        "Type 1 SCD",
+        "Type 2 SCD",
+        "Type 4 SCD",
+        "Type 6 SCD"
+      ],
+      "correctIndex": 1,
+      "explanation": "M4.3 states: \"Type 2 SCD: Adds new records for changes, keeps full history for a given natural key.\" In a Type 2 SCD, the old version is expired and the new one becomes active."
+    },
+    {
+      "question": "What does the COPY INTO T-SQL command do in a Fabric data warehouse?",
+      "options": [
+        "Bulk loads data from external files such as CSV or Parquet into warehouse tables",
+        "Creates a clone of an existing table",
+        "Deletes all rows from a table",
+        "Defines a new measure in the semantic model"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.2 states: \"COPY INTO - Bulk load data from external files (CSV, Parquet) in Azure storage into warehouse tables.\" M4.3 adds that COPY is the main method for importing data into the Warehouse and allows specifying source file format, error file location, and skipping header rows."
+    },
+    {
+      "question": "Which statement can you use to create a new table based on the output of a SELECT statement when loading data?",
+      "options": [
+        "CREATE TABLE AS SELECT (CTAS)",
+        "INSERT...SELECT",
+        "OPENROWSET",
+        "ALTER TABLE"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.3 states: \"CREATE TABLE AS SELECT: Allows you to create a new table based on the output of a SELECT statement. This operation is often used for creating a copy of a table or for transforming and loading the results of complex queries.\""
+    },
+    {
+      "question": "What are zero-copy table clones in a Fabric data warehouse?",
+      "options": [
+        "Clones that copy table metadata while referencing the same underlying data files in OneLake without duplicating the data",
+        "Copies of tables that duplicate all data into a separate storage account",
+        "Views that only contain a subset of columns",
+        "Temporary tables deleted at the end of each session"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.2 states: \"You can create zero-copy table clones in a Fabric data warehouse. Clones copy table metadata while still referencing the same underlying data files in OneLake. The data itself isn't duplicated, which keeps storage costs low.\""
+    },
+    {
+      "question": "What is a view in a data warehouse?",
+      "options": [
+        "A saved query that you can reference like a table",
+        "A stored procedure that executes T-SQL on demand",
+        "A physical copy of table data",
+        "A security predicate function"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.2 states: \"Views define a saved query that you can reference like a table. Use views to standardize how analysts access data, such as combining fact and dimension tables into a reporting-friendly format.\""
+    },
+    {
+      "question": "What is a measure in DAX?",
+      "options": [
+        "A reusable DAX expression that defines a calculation like a total, average, ratio, or count",
+        "A saved T-SQL query that returns rows",
+        "A column that stores masked values",
+        "A table of descriptive attributes"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.2 states: \"Measures provide the same consistency for DAX calculations. A measure is a reusable DAX expression that defines a calculation like a total, average, ratio, or count.\""
+    },
+    {
+      "question": "What is Direct Lake mode in Power BI semantic models created from a Fabric warehouse?",
+      "options": [
+        "A mode that reads data directly from OneLake Parquet files without copying data into Power BI memory",
+        "A mode that imports data into Power BI memory and requires scheduled refreshes",
+        "A mode that streams data in real time from IoT devices",
+        "A mode that stores data in Azure SQL Database"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.2 states: \"Semantic models created from a Fabric warehouse use Direct Lake mode. Unlike traditional import mode, which copies data into Power BI memory, Direct Lake reads data directly from OneLake Parquet files. This means reports reflect the latest warehouse data without requiring scheduled refreshes.\""
+    },
+    {
+      "question": "How does cross-database querying in Fabric combine warehouse and lakehouse tables?",
+      "options": [
+        "By copying all data into a single staging table",
+        "By using three-part naming (database.schema.table) in a single query",
+        "By exporting data to CSV files",
+        "By using the COPY INTO statement"
+      ],
+      "correctIndex": 1,
+      "explanation": "M4.2 states: \"Cross-database querying - Query data across warehouses and lakehouses without copying data. Use three-part naming (database.schema.table) to join warehouse tables with lakehouse tables in a single query.\""
+    },
+    {
+      "question": "Which function provides an approximate count using the HyperLogLog algorithm?",
+      "options": [
+        "APPROX_COUNT_DISTINCT",
+        "COUNT(DISTINCT)",
+        "ROW_NUMBER",
+        "DENSE_RANK"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.4 states: \"The APPROX_COUNT_DISTINCT function uses a HyperLogLog algorithm to retrieve an approximate count. The result is guaranteed to have a maximum error rate of 2% with 97% probability.\""
+    },
+    {
+      "question": "How does DENSE_RANK differ from RANK in T-SQL ranking functions?",
+      "options": [
+        "DENSE_RANK ranks rows without gaps, so ties don't consume extra positions",
+        "DENSE_RANK skips positions after ties, consuming extra positions",
+        "DENSE_RANK returns the percentile in which the row falls",
+        "DENSE_RANK returns the ordinal position of each row"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.4 states: \"DENSE_RANK ranks rows in a partition the same way as RANK, but when multiple rows have the same rank, subsequent rows are ranked without gaps — ties don't consume extra positions.\" RANK, by contrast, reflects the number of rows with higher values, including ties."
+    },
+    {
+      "question": "What does the NTILE function return for each row in a partition?",
+      "options": [
+        "The specified percentile in which the row falls, such as the quartile",
+        "The ordinal position of the row within the partition",
+        "A masked version of the row's value",
+        "The approximate count of distinct values"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.4 states: \"NTILE returns the specified percentile in which the row falls. For example, in a partition of stores ordered by sales volume, NTILE(4) returns the quartile in which a store's sales volume places it.\""
+    },
+    {
+      "question": "What does the full (initial) load involve in a data warehouse load strategy?",
+      "options": [
+        "Truncating and reloading all tables, where old data is lost",
+        "Updating tables with changes since the last update while preserving history",
+        "Loading only new rows into dimension tables",
+        "Replicating data to a secondary region"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.3 states for full (initial) load: \"All the tables are truncated and reloaded, and the old data is lost.\" It is typically used when setting up a new data warehouse or when a complete refresh of the data is required."
+    },
+    {
+      "question": "What is an incremental load in a data warehouse?",
+      "options": [
+        "Updating the data warehouse with the changes since the last update while preserving history",
+        "Truncating all tables and reloading from source",
+        "Deleting expired dimension records",
+        "Copying the entire warehouse to another workspace"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.3 states: \"Incremental load: The process of updating the data warehouse with the changes since the last update. The history is preserved, and tables are updated with new information.\" It requires mechanisms to track changes in the source data since the last load."
+    },
+    {
+      "question": "What is a business key in a data warehouse?",
+      "options": [
+        "An identifier that comes from the source system and has business meaning",
+        "A system-generated integer with no business meaning",
+        "A surrogate key assigned by the data warehouse",
+        "A key used only for column-level security"
+      ],
+      "correctIndex": 0,
+      "explanation": "M4.3 states: \"A business key, also known as a natural key, is an identifier that comes from the source system and has business meaning. It's used to uniquely identify a record in the source system. Examples of business keys include product codes, customer IDs, and employee numbers.\""
+    }
+  ]
+}

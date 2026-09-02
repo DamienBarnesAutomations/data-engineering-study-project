@@ -1,0 +1,502 @@
+{
+  "title": "Module 3 — Quality Question Bank",
+  "source_file": "M3.1.md, M3.2.md, M3.4.md",
+  "question_count": 45,
+  "questions": [
+    {
+      "question": "Because there is always some degree of processing and network latency involved, real-time analytics is also known as what?",
+      "options": [
+        "Batch analytics",
+        "Near real-time analytics",
+        "Snapshot analytics",
+        "Historical analytics"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.1 states that real-time analytics is also known as near real-time analytics, since there is always some degree of processing and network latency involved."
+    },
+    {
+      "question": "In Real-Time Intelligence, what is a stream?",
+      "options": [
+        "A static snapshot of historical data stored in a database",
+        "A single digital record or log entry that documents an activity",
+        "A sequence of events, typically ordered by the time an event occurred",
+        "A scheduled batch job that processes data overnight"
+      ],
+      "correctIndex": 2,
+      "explanation": "M3.1 defines a stream as essentially a sequence of events, typically ordered by the time an event occurred, that flows continuously as events occur."
+    },
+    {
+      "question": "Which Real-Time Intelligence component is used to store streaming data in KQL (Kusto Query Language) databases?",
+      "options": [
+        "Eventhouse",
+        "Real-Time hub",
+        "Activator",
+        "KQL Queryset"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.1 says Real-Time Intelligence stores data in KQL databases in Eventhouses, which are designed for time-series data and fast ingestion of streaming data."
+    },
+    {
+      "question": "What is the primary purpose of the Real-Time hub in Microsoft Fabric?",
+      "options": [
+        "To store KQL databases for real-time analytics",
+        "To discover and manage all of the data-in-motion you have access to",
+        "To run automated actions when rule thresholds are met",
+        "To transform streaming data before routing it to destinations"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.1 describes the Fabric Real-Time hub as a central location where you can discover and manage all of the data-in-motion you have access to, serving as a streaming data catalog."
+    },
+    {
+      "question": "According to M3.1, what can Eventstreams do with data as it flows through the system?",
+      "options": [
+        "Only store data, with no processing capabilities",
+        "Filter, enrich, and transform data and route it to different destinations",
+        "Run management commands such as update policies",
+        "Visualize data in interactive dashboards"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.1 states that Eventstreams capture streaming data from various sources and apply real-time transformations, allowing them to filter, enrich, and transform data and route it to different destinations."
+    },
+    {
+      "question": "In addition to Kusto Query Language (KQL), which query language does the KQL Queryset support for data analysis?",
+      "options": [
+        "Spark SQL",
+        "DAX",
+        "T-SQL",
+        "M Query"
+      ],
+      "correctIndex": 2,
+      "explanation": "M3.1 states that the KQL Queryset also supports T-SQL queries, allowing you to use familiar SQL syntax alongside KQL for data analysis."
+    },
+    {
+      "question": "Which of the following can Activator trigger when configured rule conditions are met?",
+      "options": [
+        "Only email notifications",
+        "Send notifications, trigger workflows in Power Automate, and execute Fabric data pipelines or notebooks",
+        "Create new KQL databases in Eventhouses",
+        "Ingest data from Azure Event Hubs"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.1 says Activator can send notifications, trigger workflows in Power Automate, and execute Fabric data pipelines or notebooks when conditions are met."
+    },
+    {
+      "question": "What do Real-Time Dashboards connect to directly, and how do they update?",
+      "options": [
+        "They connect to Lakehouses and update on a nightly schedule",
+        "They connect to KQL databases and refresh automatically as new data arrives",
+        "They connect to the Real-Time hub and require manual refresh",
+        "They connect to Power BI datasets and update hourly"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.1 states Real-Time Dashboards connect directly to KQL databases and refresh automatically as new data arrives, letting you explore data interactively and monitor current conditions and historical trends."
+    },
+    {
+      "question": "According to M3.1, when are update policies in a KQL database triggered, and what do they do?",
+      "options": [
+        "They run on a scheduled interval and delete old data",
+        "They are triggered when new data is written to a table, running a query that transforms the ingested data and saves the result to a destination table",
+        "They are applied during eventstream transformations before routing to a destination",
+        "They trigger external workflows in Power Automate"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.1 says update policies are automation mechanisms triggered when new data is written to a table; they run a query to transform ingested data and save the result to a destination table."
+    },
+    {
+      "question": "What is the eventstream canvas in Microsoft Fabric?",
+      "options": [
+        "A command-line tool for writing stream processing code",
+        "A visual editor where you design pipelines by dragging and dropping nodes such as sources, transformations, and destinations",
+        "A storage container for KQL databases",
+        "A dashboard for visualizing streaming data"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.2 says you can use the eventstream canvas, a visual editor, to design your pipeline by dragging and dropping different nodes, such as sources, transformations, and destinations, without writing code."
+    },
+    {
+      "question": "Which of the following is NOT listed as a no-code transformation available in Eventstream?",
+      "options": [
+        "Filter",
+        "Manage fields",
+        "Aggregate",
+        "Machine learning model training"
+      ],
+      "correctIndex": 3,
+      "explanation": "M3.2 lists no-code transformations including Filter, Manage fields, Aggregate, Group by, Union, Join, Expand, and SQL code; machine learning model training is not one of them."
+    },
+    {
+      "question": "What is the purpose of a derived stream destination in an eventstream?",
+      "options": [
+        "To store processed data in Delta Lake format",
+        "To enable content-based routing of subsets of data to different destinations",
+        "To trigger actions based on detected patterns in streaming data",
+        "To ingest data from external systems outside Microsoft Fabric"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.2 says derived streams are transformed versions of your original data stream that enable content-based routing, letting you route subsets of data to different destinations based on the content of data."
+    },
+    {
+      "question": "Which of the following is a valid eventstream destination in Microsoft Fabric?",
+      "options": [
+        "Azure Blob Storage event",
+        "Custom endpoint",
+        "Kafka topic",
+        "Real-Time hub"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.2 lists eventstream destinations as Eventhouse, Lakehouse, derived stream, Fabric Activator, and custom endpoint. Azure Blob Storage events and Kafka topics are sources, not destinations."
+    },
+    {
+      "question": "How does the Union transformation handle events from two or more nodes?",
+      "options": [
+        "It combines events with shared fields of the same name and data type, dropping fields that don't match",
+        "It joins events based on a matching condition between streams",
+        "It creates a new row for each value within an array",
+        "It aggregates events over time windows"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.2 says the union transformation connects two or more nodes and adds events with shared fields (with the same name and data type) into one table; fields that don't match are dropped."
+    },
+    {
+      "question": "Which operations does the Aggregate transformation in Eventstream support?",
+      "options": [
+        "Sum, Minimum, Maximum, or Average",
+        "Count and distinct only",
+        "Union and join",
+        "Filter and manage fields"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.2 states the aggregate transformation calculates an aggregation (Sum, Minimum, Maximum, or Average) every time a new event occurs over a period of time."
+    },
+    {
+      "question": "What time window types does the Group by transformation support?",
+      "options": [
+        "Fixed intervals only",
+        "Overlapping intervals only",
+        "Tumbling windows (fixed intervals) and sliding windows (overlapping intervals)",
+        "Sliding windows and event-time windows only"
+      ],
+      "correctIndex": 2,
+      "explanation": "M3.2 says the group by transformation supports various time windows including tumbling windows (fixed intervals) and sliding windows (overlapping intervals)."
+    },
+    {
+      "question": "When routing real-time data to a Lakehouse destination in an eventstream, what happens to the events?",
+      "options": [
+        "They are stored as raw JSON files",
+        "They are converted into Delta Lake format and then stored in designated lakehouse tables",
+        "They are loaded directly into a KQL database",
+        "They are sent to a custom endpoint outside Fabric"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.2 says with a Lakehouse destination, real-time events are converted into Delta Lake format and then stored in designated lakehouse tables."
+    },
+    {
+      "question": "Which eventstream destination is useful when you want to direct real-time data to an external system or custom application outside Microsoft Fabric?",
+      "options": [
+        "Eventhouse",
+        "Derived stream",
+        "Fabric Activator",
+        "Custom endpoint"
+      ],
+      "correctIndex": 3,
+      "explanation": "M3.2 explains the custom endpoint destination lets you route real-time events to a custom endpoint, useful when directing real-time data to an external system or custom application outside Microsoft Fabric."
+    },
+    {
+      "question": "How do KQL databases in an Eventhouse organize incoming data for query performance?",
+      "options": [
+        "By partitioning data by ingestion time",
+        "By partitioning data alphabetically by table name",
+        "By storing all data in a single unpartitioned store",
+        "By partitioning data by data type"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.3 says KQL databases automatically partition data by ingestion time, making recent data quickly accessible while storing historical data for trend analysis."
+    },
+    {
+      "question": "Why is real-time data in an Eventhouse described as time-series data?",
+      "options": [
+        "Because it is frequently updated and deleted",
+        "Because events are immutable and permanently tied to when they happened, following an append-only pattern",
+        "Because data is randomly reordered after ingestion",
+        "Because timestamps are optional metadata"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.3 explains that real-time data represents immutable events that happened at specific moments; since each event is permanently tied to when it happened, data follows an append-only pattern where it is rarely updated or deleted."
+    },
+    {
+      "question": "Which of the following statements about KQL is true?",
+      "options": [
+        "KQL is case-insensitive for table names and column names",
+        "KQL is case-sensitive for everything including table names, column names, function names, operators, keywords, and string values",
+        "KQL only supports table names and not operators",
+        "KQL treats TaxiTrips, taxitrips, and TAXITRIPS as the same identifier"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.3 notes that KQL is case-sensitive for everything including table names, column names, function names, operators, keywords, and string values, so TaxiTrips is different from taxitrips."
+    },
+    {
+      "question": "What do database shortcuts to KQL databases in other eventhouses or Azure Data Explorer allow you to do?",
+      "options": [
+        "Copy data into your eventhouse for local storage",
+        "Query data from external KQL databases as if the data were stored locally, without actually copying the data",
+        "Merge external data into your local tables",
+        "Create materialized views from external data"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.3 says database shortcuts let you query data from external KQL databases as if the data were stored locally in your eventhouse, without actually copying the data."
+    },
+    {
+      "question": "What does enabling OneLake availability for a KQL database or table enable?",
+      "options": [
+        "Automated alerting with Activator",
+        "Cross-workload integration with Power BI, Warehouse, Lakehouse, and other Fabric services",
+        "Direct ingestion from Apache Kafka",
+        "Querying data with T-SQL"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.3 says you can enable OneLake availability for individual KQL databases or tables, making your data accessible throughout the Fabric ecosystem for cross-workload integration with Power BI, Warehouse, Lakehouse, and other Fabric services."
+    },
+    {
+      "question": "What are the two parts of a materialized view that work together to provide always-current results?",
+      "options": [
+        "A source table and a destination table",
+        "A materialized part (precomputed aggregations) and a delta (new data since the last background update)",
+        "An update policy and a stored function",
+        "A tumbling window and a sliding window"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.3 says a materialized view consists of a materialized part with precomputed aggregation results and a delta containing new data that has arrived since the last background update."
+    },
+    {
+      "question": "How are materialized views created in a KQL database?",
+      "options": [
+        "With a .create materialized-view command that encapsulates a KQL summarize statement",
+        "With a .create-or-alter function command",
+        "With a T-SQL SELECT statement",
+        "By dragging a transformation onto the eventstream canvas"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.3 shows that a materialized view is created with the .create materialized-view command and encapsulates a KQL summarize statement that automatically updates as new data arrives."
+    },
+    {
+      "question": "What is the main benefit of stored functions in an eventhouse?",
+      "options": [
+        "They precompute aggregation results for faster queries",
+        "They encapsulate a query so common filtering or transformation logic can be defined once and reused consistently across queries",
+        "They automatically partition data by ingestion time",
+        "They provide real-time visualizations"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.3 says stored functions let you encapsulate a query, optionally with parameters, so you can define filtering or transformation logic once and reuse it, ensuring calculations are performed consistently."
+    },
+    {
+      "question": "What is the key principle of query optimization in KQL databases described in M3.3?",
+      "options": [
+        "The more columns you project, the faster the query",
+        "The less data your query needs to process, the faster it runs",
+        "Joins should always start with the largest table",
+        "Aggregations should always be performed before filtering"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.3 states the key principle is that the less data your query needs to process, the faster it runs, and advises filtering early and reducing columns to improve performance."
+    },
+    {
+      "question": "What data source do Real-Time Dashboards in Microsoft Fabric connect to?",
+      "options": [
+        "Power BI semantic models",
+        "KQL databases in eventhouses",
+        "OneLake Delta tables only",
+        "Lakehouse warehouses"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.4 says Real-Time Dashboards connect to KQL databases in eventhouses and display visualizations that refresh automatically to show current data."
+    },
+    {
+      "question": "What are the two identity options you can specify when connecting a Real-Time Dashboard to a data source?",
+      "options": [
+        "Pass-through identity and dashboard editor's identity",
+        "Read-only identity and write identity",
+        "Service principal and user identity",
+        "Anonymous identity and authenticated identity"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.4 describes two authorization options: pass-through identity, where each viewer accesses data using their own permissions, and the dashboard editor's identity, where everyone uses the creator's permissions."
+    },
+    {
+      "question": "How does a newly created tile display the results of its KQL query by default?",
+      "options": [
+        "As a bar chart",
+        "As a map",
+        "As a table",
+        "As a line chart"
+      ],
+      "correctIndex": 2,
+      "explanation": "M3.4 states that initially the tile displays the results of the query as a table, and you can later edit the tile to define a chart, map, or other visualization."
+    },
+    {
+      "question": "What are pages used for in a Real-Time Dashboard?",
+      "options": [
+        "To store multiple base queries",
+        "To organize related tiles into logical groups, such as separate pages for different data sources or subject areas",
+        "To define parameters for filtering data",
+        "To set the automatic refresh rate"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.4 says you can add more pages as containers for more tiles, helping you organize related content into logical groups such as different data sources or subject areas."
+    },
+    {
+      "question": "How are dashboard parameters referenced within tile queries?",
+      "options": [
+        "With a dollar sign prefix",
+        "With an underscore prefix on the variable name",
+        "With curly braces around the variable name",
+        "With an @ symbol prefix"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.4 says each parameter has a variable name that you reference in tile queries using an underscore prefix, such as _selected_neighbourhoods."
+    },
+    {
+      "question": "How does auto refresh work in a Real-Time Dashboard?",
+      "options": [
+        "Viewers always use the editor's default refresh rate",
+        "Editors set a default refresh rate, viewers can adjust it during their session, and editors can set a minimum rate to manage system performance",
+        "Refresh happens only once per day",
+        "Only the dashboard editor can trigger refresh manually"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.4 says editors can set a default refresh rate, viewers can adjust the rate during their session, and editors can set a minimum refresh rate to manage system performance."
+    },
+    {
+      "question": "What is the purpose of base queries in a Real-Time Dashboard?",
+      "options": [
+        "To define multiple parameters for filtering",
+        "To retrieve a general set of records relevant for multiple tiles, avoiding duplicate query logic across tiles",
+        "To set the dashboard refresh rate",
+        "To configure pass-through identity"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.4 says base queries retrieve a general set of records relevant for multiple tiles, and tile-specific queries filter or group this data, helping avoid duplicating the same logic."
+    },
+    {
+      "question": "Besides data visualization tiles, what other type of tile can you add to a Real-Time Dashboard?",
+      "options": [
+        "Text tiles to provide additional information",
+        "KQL queryset tiles",
+        "Eventstream source tiles",
+        "Activator rule tiles"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.4 states you can add multiple tiles to a dashboard and arrange them, and you can also add text tiles to provide additional information."
+    },
+    {
+      "question": "In the example tile query from M3.4, what does the arg_max(ingestion_time(), *) summarize expression retrieve for each neighborhood?",
+      "options": [
+        "The sum of all bike observations in the last 30 minutes",
+        "The most recent observation (the latest record ingested) within the last 30 minutes for each neighborhood",
+        "The average number of empty docks across all neighborhoods",
+        "The total count of records ingested in the last hour"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.4 explains that the example query retrieves the most recent observation (the latest record ingested into the source table) within the last 30 minutes for each neighborhood."
+    },
+    {
+      "question": "What does Activator refer to in Microsoft Fabric?",
+      "options": [
+        "A data visualization tool for dashboards",
+        "Microsoft Fabric's event detection and rules engine within Real-Time Intelligence",
+        "A KQL query editor",
+        "A data ingestion connector"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.5 defines Activator as Microsoft Fabric's event detection and rules engine within Real-Time Intelligence."
+    },
+    {
+      "question": "Which of the following is NOT one of the four types of actions offered by Activator?",
+      "options": [
+        "Email actions",
+        "Teams actions",
+        "Power Automate actions",
+        "SMS text message actions"
+      ],
+      "correctIndex": 3,
+      "explanation": "M3.5 lists the four action types as Email, Teams, Power Automate, and Fabric item actions; SMS text messages are not listed as an Activator action type."
+    },
+    {
+      "question": "In the Activator business objects model, what do objects, properties, and events represent?",
+      "options": [
+        "Objects are data attributes, properties are instances, and events contain rules",
+        "Objects represent individual instances, properties represent data attributes for each instance, and events contain the actual data values that flow in from data sources",
+        "Objects are eventstreams, properties are destinations, and events are transformations",
+        "Objects are alerts, properties are actions, and events are thresholds"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.5 explains that objects represent individual instances (like Package001), properties represent data attributes for each instance (like Temperature), and events contain the actual data values that flow in from data sources."
+    },
+    {
+      "question": "When creating business objects from an eventstream, which field should you select as the unique identifier?",
+      "options": [
+        "The timestamp field",
+        "The field that uniquely identifies the object, such as PackageId or DeviceID",
+        "The temperature field",
+        "The city field"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.5 says during object creation you choose your unique identifier by selecting the field that uniquely identifies the object, like PackageId or DeviceID."
+    },
+    {
+      "question": "Which summarization options does Activator offer when monitoring an attribute?",
+      "options": [
+        "Average, Minimum/Maximum, Count, and Total",
+        "Sum, Percentile, Median, and Standard deviation",
+        "Filter, Group by, Union, and Join",
+        "Window size and step size only"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.5 lists the summarization options as Average, Minimum/Maximum, Count, and Total, used to smooth out noise in raw readings."
+    },
+    {
+      "question": "Which of the following is a detection approach offered in the Condition section of an Activator rule?",
+      "options": [
+        "Pattern recognition",
+        "Missing data",
+        "Anomaly scoring",
+        "Forecast comparison"
+      ],
+      "correctIndex": 1,
+      "explanation": "M3.5 lists detection approaches including threshold monitoring, change detection, range monitoring, and missing data (for catching sensor failures)."
+    },
+    {
+      "question": "In an Activator rule, what is the difference between the 'Every time' and 'When it has been true for' occurrence behaviors?",
+      "options": [
+        "'Every time' triggers for immediate alerts, while 'When it has been true for' identifies persistent problems",
+        "'Every time' identifies persistent problems, while 'When it has been true for' sends immediate alerts",
+        "Both always trigger the same way",
+        "'Every time' is only used for email actions"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.5 says 'Every time' is used for immediate alerts, while 'When it has been true for' is used to identify persistent problems, such as a condition staying high for 15 minutes."
+    },
+    {
+      "question": "How many filters can you combine in the Property filter section of an Activator rule?",
+      "options": [
+        "One",
+        "Two",
+        "Three",
+        "Five"
+      ],
+      "correctIndex": 2,
+      "explanation": "M3.5 says you can combine up to three filters in the Property filter section to create precise targeting of which events get evaluated."
+    },
+    {
+      "question": "Besides the business objects model, which alternative alerting approaches does the Activator engine support?",
+      "options": [
+        "Dashboard alerts, system event alerts, and query alerts",
+        "Power BI alerts, dataflow alerts, and pipeline alerts",
+        "Email alerts, Teams alerts, and SMS alerts",
+        "Eventstream alerts, KQL database alerts, and lakehouse alerts"
+      ],
+      "correctIndex": 0,
+      "explanation": "M3.5 says the Activator engine also supports creating dashboard alerts from Real-Time Dashboard visualizations, system event alerts for Fabric workspace activities and OneLake file operations, and query alerts from KQL Queryset results."
+    }
+  ]
+}

@@ -1,0 +1,502 @@
+{
+  "title": "Chapter 7 — Ingestion: Key Terms",
+  "source_file": "chapter-7-ingestion.md",
+  "question_count": 45,
+  "questions": [
+    {
+      "question": "What is data ingestion?",
+      "options": [
+        "Combining data from disparate sources into a single new dataset.",
+        "The process of moving data from one place to another, typically from source systems into storage in the data engineering lifecycle.",
+        "The process of transforming raw data into a format suitable for analytics.",
+        "Copying data within a single system, such as between two tables in a database."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter defines data ingestion as the process of moving data from one place to another, with ingestion as an intermediate step in the data engineering lifecycle."
+    },
+    {
+      "question": "What is data integration, and how does it differ from data ingestion?",
+      "options": [
+        "Combining data from disparate sources into a new dataset, such as combining CRM and web analytics data to create a user profile.",
+        "Moving data from a single source system directly into a destination storage system.",
+        "The process of copying data between tables within the same database.",
+        "Sending processed data back to the source system for downstream use."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter distinguishes data integration, which combines data from disparate sources into a new dataset, from data ingestion, which is simply movement from point A to point B."
+    },
+    {
+      "question": "What is a data pipeline?",
+      "options": [
+        "A single automated script that extracts data from one database and loads it into another.",
+        "A system specifically for transforming data from one schema into another.",
+        "The combination of architecture, systems, and processes that move data through the stages of the data engineering lifecycle.",
+        "A storage layer that holds data between the source and the destination."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter defines a data pipeline as the combination of architecture, systems, and processes that move data through the stages of the data engineering lifecycle."
+    },
+    {
+      "question": "What is bounded data?",
+      "options": [
+        "Data that flows continuously as events happen in the real world.",
+        "Data that is limited by the size of the payload in bytes.",
+        "Data that arrives strictly in the order in which events occurred.",
+        "Data bucketed across some sort of boundary, such as time, as a convenient way of processing it."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter calls bounded data a convenient way of bucketing data across some sort of boundary, such as time."
+    },
+    {
+      "question": "What is unbounded data?",
+      "options": [
+        "Data that has been cut into discrete batches for processing.",
+        "Data as it exists in reality, as events happen, either sporadically or continuously, ongoing and flowing.",
+        "Data stored in an unlimited object storage system.",
+        "Data with no defined schema or data types."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter describes unbounded data as data as it exists in reality, as events happen, either sporadically or continuously, ongoing and flowing."
+    },
+    {
+      "question": "What is batch ingestion?",
+      "options": [
+        "Ingesting data in bulk by taking a subset of data from a source system, based either on a time interval or the size of accumulated data.",
+        "Ingesting each event one by one as it arrives from the source.",
+        "Continuously querying a source database for changes every few minutes.",
+        "Using a CDC tool to capture every write to a database as an event."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter defines batch ingestion as processing data in bulk by taking a subset of data from a source system based on a time interval or the size of accumulated data."
+    },
+    {
+      "question": "What is a micro-batch in the context of ingestion?",
+      "options": [
+        "A batch of events smaller than a single row of data.",
+        "A batch that contains only changes since the last read (differential updates).",
+        "A batch over a concise time interval, used in near real-time ingestion patterns to process events.",
+        "A batch ingested only during off-hours, such as overnight."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter refers to micro-batches as batches over concise time intervals, used to process events in near real-time patterns."
+    },
+    {
+      "question": "What does the chapter say about 'real-time' ingestion?",
+      "options": [
+        "Real-time ingestion delivers events to the destination with zero latency.",
+        "No ingestion system is genuinely real-time; the term is used loosely for near real-time, where events are processed as they arrive or in micro-batches without an explicit update frequency.",
+        "Real-time ingestion always requires a streaming platform and never any batch components.",
+        "Real-time ingestion means processing data once per day on a fixed schedule."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter notes that no ingestion system is genuinely real-time; it is more accurate to speak of near real-time, where events are processed as they arrive or in micro-batches."
+    },
+    {
+      "question": "What is synchronous ingestion?",
+      "options": [
+        "An ingestion pattern where each stage processes data items as they become available, in parallel.",
+        "An ingestion pattern that buffers events to smooth out rate spikes.",
+        "An ingestion pattern where events are immediately available in storage as soon as they are ingested individually.",
+        "An ingestion pattern where the source, ingestion, and destination have complex dependencies and are tightly coupled, so downstream processes cannot start until all data in the batch has been ingested."
+      ],
+      "correctIndex": 3,
+      "explanation": "With synchronous ingestion, the source, ingestion, and destination have complex dependencies and are tightly coupled, so downstream processes cannot start until all data in the batch has been ingested."
+    },
+    {
+      "question": "What is asynchronous ingestion?",
+      "options": [
+        "An ingestion pattern where dependencies operate at the level of individual events, so individual events become available in storage as soon as they are ingested.",
+        "An ingestion pattern where each stage of the pipeline must complete before the next can begin.",
+        "An ingestion pattern that only processes data in nightly batches.",
+        "An ingestion pattern where the source must push all data before the destination begins reading."
+      ],
+      "correctIndex": 0,
+      "explanation": "With asynchronous ingestion, dependencies operate at the level of individual events, and events become available in storage as soon as they are ingested individually."
+    },
+    {
+      "question": "What is serialization in the context of ingestion?",
+      "options": [
+        "Decoding data that has been received from a source system.",
+        "Splitting a large payload into smaller chunks for transmission.",
+        "Encoding data from a source and preparing data structures for transmission and intermediate storage stages.",
+        "The process of combining data from multiple sources into a new dataset."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter reminds us that serialization means encoding the data from a source and preparing data structures for transmission and intermediate storage stages."
+    },
+    {
+      "question": "What is deserialization in the context of ingestion?",
+      "options": [
+        "Encoding data into a format suitable for transmission.",
+        "Compressing data to reduce its size before storage.",
+        "Validating data quality before it is loaded into a destination.",
+        "Decoding the data a destination receives so it can be properly used, the inverse of serialization."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter warns engineers to ensure that the destination can deserialize the data it receives, or the ingested data sits inert and unusable."
+    },
+    {
+      "question": "What does the chapter say about throughput and scalability for ingestion?",
+      "options": [
+        "Throughput is fixed by the source system and cannot be adjusted by the ingestion pipeline.",
+        "Data throughput and system scalability become critical as data volumes grow, and systems should be designed to scale and shrink to flexibly match the desired throughput.",
+        "Scalability only matters for batch ingestion, not streaming ingestion.",
+        "Throughput is determined solely by the number of events per second the destination can store."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter states that data throughput and system scalability become critical as data volumes grow, and systems should scale to flexibly match the desired throughput."
+    },
+    {
+      "question": "What is reliability in the context of ingestion systems?",
+      "options": [
+        "A property of ingestion systems entailing high uptime and proper failover.",
+        "Making sure that data is not lost or corrupted.",
+        "Ensuring that events are processed in the exact order they occurred.",
+        "Ensuring that ingested data is never duplicated."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter distinguishes reliability, which entails high uptime and proper failover, from durability, which ensures data is not lost or corrupted."
+    },
+    {
+      "question": "What is durability in the context of ingestion systems?",
+      "options": [
+        "Entailing high uptime and proper failover for ingestion systems.",
+        "Guaranteeing that every event is delivered exactly once.",
+        "Making sure that data is not lost or corrupted once ingested.",
+        "Ensuring the ingestion system can handle sudden spikes in event rate."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter defines durability as making sure that data is not lost or corrupted, while reliability entails high uptime and proper failover."
+    },
+    {
+      "question": "What is a payload in the context of data ingestion?",
+      "options": [
+        "The network connection used to move data from source to destination.",
+        "The metadata that describes the data being ingested.",
+        "The destination storage system where ingested data is loaded.",
+        "The dataset being ingested, with characteristics such as kind, shape, size, schema and data types, and metadata."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter defines a payload as the dataset being ingested, with characteristics such as kind, shape, size, schema and data types, and metadata."
+    },
+    {
+      "question": "What is a schema?",
+      "options": [
+        "The number of rows and columns in a dataset.",
+        "A description of the fields and types of data within those fields.",
+        "The byte size of a payload.",
+        "A metadata repository for tracking schema versions and history."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter defines a schema as describing the fields and types of data within those fields; tabular and semistructured data have schemas while unstructured text, images, and audio do not."
+    },
+    {
+      "question": "What is a schema registry?",
+      "options": [
+        "A metadata repository used to maintain schema and data type integrity in the face of changing schemas, describing the data model for messages to allow consistent serialization and deserialization between producers and consumers.",
+        "A database that stores all the data ingested from source systems.",
+        "A log of every schema change made by the source application.",
+        "A tool that automatically transforms data into the destination's schema."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter defines a schema registry as a metadata repository used to maintain schema and data type integrity in the face of constantly changing schemas, describing the data model for messages."
+    },
+    {
+      "question": "What is schema evolution?",
+      "options": [
+        "The process of migrating a database from one system to another.",
+        "Automatically updating the destination table to match the source's current state.",
+        "The common process by which event schemas change over time, with fields added or removed or value types changed, potentially impacting downstream pipelines.",
+        "Storing multiple versions of a payload in object storage."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter describes schema evolution as common with event data, with fields added or removed or value types changing, all of which can impact downstream pipelines."
+    },
+    {
+      "question": "What is metadata?",
+      "options": [
+        "The main dataset being ingested from a source system.",
+        "The schema of a destination database.",
+        "The binary encoding used to serialize data for transmission.",
+        "Data about data, which can be as critical as the data itself."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter defines metadata as data about data and notes that it can be as critical as the data itself."
+    },
+    {
+      "question": "What is a push ingestion pattern?",
+      "options": [
+        "A strategy in which a target reads data directly from a source.",
+        "A strategy in which a source system sends data to a target.",
+        "A strategy of periodically checking a source for changes.",
+        "A strategy in which the consumer provides an endpoint for the provider to call."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says a push strategy involves a source system sending data to a target, while a pull strategy entails a target reading data directly from a source."
+    },
+    {
+      "question": "What is a pull ingestion pattern?",
+      "options": [
+        "A strategy in which a target reads data directly from a source.",
+        "A strategy in which a source system sends data to a target.",
+        "A strategy of periodically checking a source for changes before pulling.",
+        "A strategy in which the data provider makes API calls to the consumer."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says a pull strategy entails a target reading data directly from a source, whereas a push strategy involves the source sending data to the target."
+    },
+    {
+      "question": "What is polling in the context of ingestion?",
+      "options": [
+        "A source system pushing data to a destination on a fixed schedule.",
+        "A continuous stream of events sent one at a time from the source.",
+        "Periodically checking a data source for changes; when changes are detected, the destination pulls the data as it would in a regular pull.",
+        "Reading the database's binary log to capture every change as an event."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter defines polling as periodically checking a data source for any changes; when changes are detected, the destination pulls the data as it would in a regular pull."
+    },
+    {
+      "question": "What is a snapshot extraction pattern?",
+      "options": [
+        "Pulling only the updates and changes since the last read from the source.",
+        "Reading the source's binary log to capture every change as an event.",
+        "Extracting data only during off-hours to reduce load.",
+        "Grabbing the entire current state of the source system on each update read."
+      ],
+      "correctIndex": 3,
+      "explanation": "With full snapshots, engineers grab the entire current state of the source system on each update read."
+    },
+    {
+      "question": "What is a differential (incremental) extraction pattern?",
+      "options": [
+        "Grabbing the entire current state of the source system on each read.",
+        "Pulling only the updates and changes since the last read from the source system, minimizing network traffic and target storage.",
+        "Extracting data in a fixed file format such as CSV.",
+        "Reading data from the destination back to the source system."
+      ],
+      "correctIndex": 1,
+      "explanation": "With the differential update pattern, engineers can pull only the updates and changes since the last read from the source system, minimizing network traffic and target storage."
+    },
+    {
+      "question": "What is file-based export and ingestion?",
+      "options": [
+        "Serializing data into files in an exchangeable format and providing those files to an ingestion system, considered a push-based pattern because the export work happens on the source side.",
+        "Querying a source database directly over a network connection.",
+        "A pull-based pattern where the destination reads data directly from the source.",
+        "Capturing database changes from the binary log as events."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter treats file-based export as a push-based pattern because the data export and preparation work is done on the source system side."
+    },
+    {
+      "question": "What does ETL stand for and what does it describe?",
+      "options": [
+        "Extract, Load, Transform, loading data into storage before transforming it.",
+        "Extract, Transfer, Log, moving raw events into a streaming log.",
+        "Extract, Transform, Load, extracting data from a source, transforming it before loading it into a storage destination.",
+        "Encrypt, Transfer, Load, securing data before loading it."
+      ],
+      "correctIndex": 2,
+      "explanation": "In ETL, data is transformed before being loaded into a storage destination; the chapter covers ETL and ELT in greater detail in Chapter 8."
+    },
+    {
+      "question": "What does ELT stand for and what does it describe?",
+      "options": [
+        "Extract, Transform, Load, transforming data before loading it into a destination.",
+        "Extract, Load, Test, loading data and then testing its quality.",
+        "Encrypt, Load, Transform, encrypting data before loading.",
+        "Extract, Load, Transform, loading extracted data into storage for future transformation."
+      ],
+      "correctIndex": 3,
+      "explanation": "In ELT, data is simply loaded into storage for future transformation rather than being transformed before loading."
+    },
+    {
+      "question": "What is data migration?",
+      "options": [
+        "Continuously copying changes from a source database to a streaming platform.",
+        "Moving data in bulk to a new database or environment, sometimes hundreds of terabytes or larger, often involving specific tables or entire databases.",
+        "Splitting a large payload into chunks for faster transmission.",
+        "Moving data between two tables within the same database."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter notes that migrating data to a new database or environment is not usually trivial and data must be moved in bulk, sometimes in sizes of hundreds of terabytes or larger."
+    },
+    {
+      "question": "What is late-arriving data?",
+      "options": [
+        "Events that occurred in a similar time frame but arrive later than others due to circumstances such as internet latency, requiring a cutoff time for processing.",
+        "Events that arrive in a different order than they were produced.",
+        "Events that fail to be ingested and are sent to a dead-letter queue.",
+        "Events that have expired past their time to live before being processed."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter warns that a group of events might occur in the same time frame but some arrive later than others, and you should set a cutoff time for when late-arriving data will no longer be processed."
+    },
+    {
+      "question": "What is replay in a streaming platform?",
+      "options": [
+        "Deleting messages after all subscribers have consumed them.",
+        "Automatically resending failed messages to a dead-letter queue.",
+        "The ability for readers to request a range of messages from history, rewinding the event history to a particular point in time for reingestion or reprocessing.",
+        "Buffering events during rate spikes to prevent loss."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says replay allows readers to request a range of messages from history, which is useful for reingesting and reprocessing data for a specific time range."
+    },
+    {
+      "question": "What is time to live (TTL) in event ingestion?",
+      "options": [
+        "The maximum size a message can be before it is rejected.",
+        "The time it takes a message to travel from source to destination.",
+        "The interval between polling checks on a source system.",
+        "The maximum message retention time, or how long events live before they are acknowledged and ingested; unacknowledged events disappear once the TTL expires."
+      ],
+      "correctIndex": 3,
+      "explanation": "TTL is the maximum message retention time, set for how long events live before they are acknowledged and ingested; any unacknowledged event that is not ingested after its TTL expires automatically disappears."
+    },
+    {
+      "question": "What is a dead-letter queue?",
+      "options": [
+        "A queue where messages wait while their TTL expires.",
+        "A separate location where events that cannot be ingested, such as events sent to a nonexistent topic, too-large messages, or expired events, are rerouted and stored so they do not block other messages.",
+        "A buffer that collects events during rate spikes.",
+        "A queue of messages that have been successfully consumed by subscribers."
+      ],
+      "correctIndex": 1,
+      "explanation": "Events that cannot be ingested need to be rerouted and stored in a separate location called a dead-letter queue, which segregates problematic events so they do not block other messages."
+    },
+    {
+      "question": "What is ODBC?",
+      "options": [
+        "A database connection standard using a driver hosted by the client to translate commands issued to the standard ODBC API into commands issued to the database.",
+        "A Java-specific database driver for the JVM.",
+        "A file-exchange protocol that runs over an SSH connection.",
+        "A cloud API for direct file export to object storage."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter describes ODBC as using a driver hosted by a client accessing the database to translate commands issued to the standard ODBC API into commands issued to the database."
+    },
+    {
+      "question": "What is JDBC?",
+      "options": [
+        "A database driver hosted by the client that works with any programming language via a generic C API.",
+        "A file-export format used to move data between databases.",
+        "A Java driver that connects to a remote database and serves as a translation layer between the standard JDBC API and the native network interface of the target database.",
+        "A protocol for secure file transfer over SSH."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter describes JDBC as a Java driver that connects to a remote database and serves as a translation layer between the standard JDBC API and the native network interface of the target database."
+    },
+    {
+      "question": "What is change data capture (CDC)?",
+      "options": [
+        "The process of capturing a full snapshot of the source on each read.",
+        "The process of moving data by transferring physical hard drives.",
+        "The process of scraping web pages for data.",
+        "The process of ingesting changes from a source database system, such as periodically or continuously ingesting table changes for analytics."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter defines change data capture as the process of ingesting changes from a source database system, such as periodically or continuously ingesting table changes for analytics."
+    },
+    {
+      "question": "What is batch-oriented CDC?",
+      "options": [
+        "Capturing every write to the database as an event in near real time.",
+        "Running queries, for example using an updated_at field, to find all rows changed since a specified time and pulling those changes to differentially update a target table.",
+        "Reading the database binary log to capture all table history.",
+        "Replicating the entire database to a second system in sync."
+      ],
+      "correctIndex": 1,
+      "explanation": "In batch-oriented CDC, a query finds all rows changed since a specified time and differentially updates the target table, but intermediate changes to the same row may be missed."
+    },
+    {
+      "question": "What is continuous CDC?",
+      "options": [
+        "A form of CDC that captures all table history and can support near real-time ingestion by treating each write to the database as an event.",
+        "A form of CDC that runs periodic queries to get batches of table changes.",
+        "A form of CDC that only captures the current state of each row.",
+        "A form of CDC that requires synchronous replication between databases."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says continuous CDC captures all table history and can support near real-time data ingestion by treating each write to the database as an event."
+    },
+    {
+      "question": "What is log-based CDC?",
+      "options": [
+        "A CDC approach that queries an updated_at column to find changed rows.",
+        "A CDC approach that captures only full snapshots of the database.",
+        "A common approach where a CDC tool reads the database's binary log, which records every change sequentially, and sends the events to a target such as a streaming platform.",
+        "A CDC approach that requires the source and target to be the same database type."
+      ],
+      "correctIndex": 2,
+      "explanation": "In log-based CDC, the database binary log records every change to the database sequentially, and a CDC tool reads this log and sends the events to a target."
+    },
+    {
+      "question": "What is a read replica?",
+      "options": [
+        "A copy of the database used only for failover in case the primary goes down.",
+        "A streaming buffer that holds database changes as events.",
+        "A physical hard-drive device used to transfer data to the cloud.",
+        "A secondary database that stays in sync with the primary and offloads work by handling read queries, often used for large scans without overloading the primary."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says a synchronous replica can offload work from the primary database by acting as a read replica, with read queries redirected to it, and it is often used in batch ingestion for large scans."
+    },
+    {
+      "question": "What is a message in the context of message queues and streams?",
+      "options": [
+        "A unit of data appended to an ordered log that persists indefinitely.",
+        "A unit of data handled at the individual event level and meant to be transient; once consumed, it is acknowledged and removed from the queue.",
+        "A batch of events processed together on a fixed schedule.",
+        "A range of historical events that can be replayed."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says a message is handled at the individual event level and is meant to be transient; once consumed, it is acknowledged and removed from the queue."
+    },
+    {
+      "question": "What is a stream in an event-streaming platform?",
+      "options": [
+        "An ordered log into which events are ingested; the log persists for as long as you wish, allowing events to be queried, aggregated, and combined with other streams.",
+        "A transient message that is removed once consumed and acknowledged.",
+        "A batch of data cut into discrete blocks for a data lake.",
+        "A pull-based subscription where the consumer reads and confirms each message."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says a stream ingests events into an ordered log that persists for as long as you wish, allowing events to be queried, aggregated, and combined with other streams."
+    },
+    {
+      "question": "What are managed data connectors?",
+      "options": [
+        "Open-source libraries that engineers build, maintain, and operate themselves.",
+        "Protocols such as JDBC and ODBC for direct database access.",
+        "Third-party services or platforms that provide a standard set of connectors available out of the box to spare engineers from building custom plumbing to connect to a source.",
+        "File-export tools that serialize data into exchangeable formats."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter says managed connectors provide a standard set of connectors available out of the box and outsource the creation and management of connectors to a third party."
+    },
+    {
+      "question": "What is a webhook?",
+      "options": [
+        "A REST API where the consumer makes requests and receives data in responses.",
+        "A web interface where a user manually generates and downloads reports.",
+        "A protocol for secure file transfer over an SSH connection.",
+        "Often called a reverse API: the data provider defines the API request specification but makes the API calls to an endpoint that the consumer provides."
+      ],
+      "correctIndex": 3,
+      "explanation": "With a webhook, the data provider defines an API request specification but makes the API calls; the consumer is responsible for providing the endpoint and ingesting each request."
+    },
+    {
+      "question": "What is a transfer appliance?",
+      "options": [
+        "A managed connector that synchronizes data between a source and a target.",
+        "A physical storage device, such as a box of hard drives, that you load with data and send to a cloud vendor for uploading, often the fastest way to move very large data (100 TB or more).",
+        "A streaming platform that buffers events during rate spikes.",
+        "A bastion host used to securely connect to a private database."
+      ],
+      "correctIndex": 1,
+      "explanation": "For massive quantities of data, the fastest and most efficient way to move it is not over the wire but by truck, using a physical transfer appliance loaded with data and sent to the cloud vendor."
+    }
+  ]
+}

@@ -1,0 +1,557 @@
+{
+  "title": "Chapter 6 — Storage: Key Terms",
+  "source_file": "chapter-6-storage.md",
+  "question_count": 50,
+  "questions": [
+    {
+      "question": "What is a magnetic disk drive (HDD)?",
+      "options": [
+        "A storage device that stores data as electrical charges in flash memory cells and reads it by purely electronic means.",
+        "A storage device that uses spinning platters coated with a ferromagnetic film, on which a read/write head magnetizes bits during writes and detects the magnetic field during reads.",
+        "A volatile type of memory attached to a CPU that loses its contents when power is removed.",
+        "A key-value store that holds immutable objects referenced by a bucket name and key."
+      ],
+      "correctIndex": 1,
+      "explanation": "Magnetic disks encode binary data on spinning platters via a read/write head and remain the backbone of bulk storage because they are far cheaper per gigabyte than SSDs (roughly 3 cents per GB)."
+    },
+    {
+      "question": "What is a solid-state drive (SSD)?",
+      "options": [
+        "A storage device that stores data as charges in flash memory cells and reads it by purely electronic means, with no mechanical parts.",
+        "A storage device that uses spinning platters coated with a ferromagnetic film.",
+        "A volatile memory that stores code and data directly in CPU address space.",
+        "A network-based filesystem service that exposes storage through a file-sharing protocol like NFS."
+      ],
+      "correctIndex": 0,
+      "explanation": "SSDs eliminate the mechanical components of magnetic drives; they can look up random data in less than 0.1 ms and are the accepted standard for commercial OLTP deployments."
+    },
+    {
+      "question": "What is random access memory (RAM)?",
+      "options": [
+        "Nonvolatile storage that retains data even when the device is powered off.",
+        "A distributed filesystem that combines compute and storage on the same cluster nodes.",
+        "Volatile memory attached to a CPU and mapped into CPU address space that stores the code CPUs execute and the data they directly process.",
+        "A storage tier that provides inferior access characteristics in exchange for very low costs."
+      ],
+      "correctIndex": 2,
+      "explanation": "Unlike magnetic disks and SSDs, RAM is volatile—it loses data in less than a second when unpowered—and offers far higher transfer speeds at much higher cost (roughly $10/GB)."
+    },
+    {
+      "question": "What is serialization?",
+      "options": [
+        "The process of making data smaller so it takes up less disk space and scans faster.",
+        "Storing frequently accessed data in a fast access layer to reduce latency.",
+        "The practice of splitting a table into subtables on a designated field to reduce the amount of data scanned.",
+        "The process of flattening and packing data into a standard format that a reader will be able to decode, providing a standard of data exchange."
+      ],
+      "correctIndex": 3,
+      "explanation": "Data in system memory is generally not suitable for disk or network; serialization encodes it into a standard format (e.g., XML, JSON, CSV, Parquet) that another reader can decode, with rules for types, structure, and exceptions."
+    },
+    {
+      "question": "What is compression?",
+      "options": [
+        "The process of flattening data into a standard format a reader can decode.",
+        "A technique that makes data smaller, which reduces disk usage and increases effective scan speed and network bandwidth.",
+        "Organizing data into a directory tree so the OS can locate files by following pointers.",
+        "Copying a new object by creating new pointers to the same underlying raw data files."
+      ],
+      "correctIndex": 1,
+      "explanation": "Compression's three main advantages are less disk space, faster practical scan speed (e.g., from 200 MB/s to an effective 2 GB/s at 10:1), and higher effective network bandwidth—though it costs extra time and resources to compress and decompress."
+    },
+    {
+      "question": "What is caching?",
+      "options": [
+        "Storing frequently or recently accessed data in a fast access layer so it can be retrieved much more quickly.",
+        "Making data smaller through algorithmic encoding to save space.",
+        "Writing data once as a stream of bytes that then becomes immutable.",
+        "Guaranteeing that reads against a database return consistent values through consensus."
+      ],
+      "correctIndex": 0,
+      "explanation": "The core idea of caching is that frequently or recently accessed data lives in a fast layer; the faster the cache, the higher the cost and the less storage space available."
+    },
+    {
+      "question": "What is archival storage?",
+      "options": [
+        "A fast access layer for frequently accessed data such as query results.",
+        "A storage system that replicates data across multiple availability zones for high availability.",
+        "A low-cost storage tier with inferior access characteristics, generally used for data backups and compliance retention and accessed only in an emergency.",
+        "A system that merges real-time streams into a columnar buffer for near-real-time querying."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book calls archival storage a 'reverse cache': it provides inferior access characteristics for low costs, typically for backups and data-retention compliance, with data accessed only in an emergency."
+    },
+    {
+      "question": "What is distributed storage?",
+      "options": [
+        "A single server's operating system filesystem on a local disk partition.",
+        "A key-value store for immutable data objects referenced by bucket and key.",
+        "A type of memory directly attached to a CPU in the same package as the processor.",
+        "A distributed system that stores data across multiple servers to process it faster and at larger scale while providing redundancy."
+      ],
+      "correctIndex": 3,
+      "explanation": "Distributed storage coordinates multiple servers to store, retrieve, and process data faster and at larger scale with built-in redundancy; object storage, Spark, and cloud data warehouses rely on it."
+    },
+    {
+      "question": "What is eventual consistency?",
+      "options": [
+        "A consistency model in which writes are first distributed with a consensus so any read returns consistent values.",
+        "A model that guarantees every transaction is atomic, consistent, isolated, and durable.",
+        "A consistency model in which reads may briefly return stale data but will return consistent values once enough time has passed for updates to propagate.",
+        "A model in which the system is always available because data is replicated to multiple availability zones."
+      ],
+      "correctIndex": 2,
+      "explanation": "Eventual consistency is the basis of BASE—'at some point, reading data will return consistent values.' It is often the price you pay for horizontal scaling in large-scale distributed systems."
+    },
+    {
+      "question": "What is strong consistency?",
+      "options": [
+        "A model in which reads return the latest values only after enough time has passed for updates to propagate.",
+        "A consistency model in which the database ensures writes are distributed with a consensus and any reads return consistent values.",
+        "A model based on basically available, soft-state behavior with best-effort writes.",
+        "A model in which data is stored immutably and versioned to avoid stale reads."
+      ],
+      "correctIndex": 1,
+      "explanation": "With strong consistency, writes to any node are first distributed via consensus and reads always return consistent values; use it when you require correct data every time and can tolerate higher query latency."
+    },
+    {
+      "question": "What does BASE stand for?",
+      "options": [
+        "Basically available, soft-state, eventual consistency.",
+        "Basically available, strong-state, eventual consistency.",
+        "Build, aggregate, scan, and evaluate.",
+        "Bulk access, single-tenant, always-available."
+      ],
+      "correctIndex": 0,
+      "explanation": "BASE stands for basically available, soft-state, eventual consistency and is often described as the opposite of ACID; it is the basis of eventual consistency."
+    },
+    {
+      "question": "According to the book, what are the defining characteristics of a file?",
+      "options": [
+        "An immutable stream of bytes that supports only finite length, with no appends or random access.",
+        "A key-value entry referenced by a bucket name and a unique key.",
+        "A fixed-size block of data that is the smallest addressable unit on a disk.",
+        "A data entity with finite length, support for append operations, and support for random access reads and writes."
+      ],
+      "correctIndex": 3,
+      "explanation": "A file is a finite-length stream of bytes that supports appends (up to host limits) and random access reads and writes. Object storage supports only the finite-length characteristic."
+    },
+    {
+      "question": "What is network-attached storage (NAS)?",
+      "options": [
+        "A system that provides virtualized block-level access to a storage pool over a network without a filesystem abstraction.",
+        "A key-value store for immutable objects referenced by key.",
+        "A system that provides a file storage service to clients over a network, offering storage pooling and file sharing across multiple machines.",
+        "An operating system filesystem on a local disk partition such as NTFS or ext4."
+      ],
+      "correctIndex": 2,
+      "explanation": "NAS systems provide file storage over a network, with advantages such as redundancy and reliability, storage pooling across multiple disks, and file sharing across machines; unlike SAN, they keep a filesystem abstraction."
+    },
+    {
+      "question": "What is a storage area network (SAN)?",
+      "options": [
+        "A system that provides virtualized block-level storage devices over a network, typically from a storage pool.",
+        "A system that provides file-level storage over a network with a filesystem abstraction.",
+        "An array of disks managed by a controller to improve durability and performance.",
+        "A filesystem that organizes files into a directory tree on a local disk."
+      ],
+      "correctIndex": 0,
+      "explanation": "SAN systems provide block-level access over a network without the filesystem abstraction, unlike NAS, and can enhance performance, availability, and durability."
+    },
+    {
+      "question": "What is block storage?",
+      "options": [
+        "A key-value store of immutable data objects referenced by key.",
+        "The raw storage provided by SSDs and magnetic disks, in which a block is the smallest addressable unit of data.",
+        "A file service exposed to clients over a network.",
+        "A type of volatile memory mapped into CPU address space."
+      ],
+      "correctIndex": 1,
+      "explanation": "A block is the smallest addressable unit of data supported by a disk (often 4,096 bytes on current disks), and transactional database systems access disks at the block level for optimal performance."
+    },
+    {
+      "question": "What does RAID stand for and what does it do?",
+      "options": [
+        "Redundant array of integrated disks; it merges disks into a single logical key-value store.",
+        "Random access I/O device; a raw disk that supports seeking to any location.",
+        "Reliable allocation of independent data; a storage tier for archival data.",
+        "Redundant array of independent disks; it controls multiple disks to improve data durability, enhance performance, and combine capacity."
+      ],
+      "correctIndex": 3,
+      "explanation": "RAID simultaneously controls multiple disks to improve durability, enhance performance, and combine capacity, with encoding and parity schemes balancing effective bandwidth against fault tolerance."
+    },
+    {
+      "question": "What is cloud virtualized block storage such as Amazon Elastic Block Store (EBS)?",
+      "options": [
+        "A fully managed filesystem service exposed over NFS that scales automatically.",
+        "A key-value store of immutable objects referenced by bucket and key.",
+        "Virtualized block storage volumes that persist independently of a VM, replicate data to multiple hosts, and support features like snapshots.",
+        "A distributed filesystem that combines compute and storage on the same nodes."
+      ],
+      "correctIndex": 2,
+      "explanation": "EBS is the default storage for EC2 VMs; volumes persist when an instance shuts down or is deleted, replicate data to at least two separate host machines, and support instantaneous point-in-time snapshots."
+    },
+    {
+      "question": "What is object storage?",
+      "options": [
+        "A key-value store for immutable data objects that are written once as a stream of bytes and cannot be modified in place.",
+        "A filesystem that organizes files into a directory tree with metadata at each level.",
+        "A volatile memory that loses data when power is removed.",
+        "A storage pool that provides block-level access to VMs over a network."
+      ],
+      "correctIndex": 0,
+      "explanation": "An object store is a key-value store for immutable objects; objects don't support random writes or appends—to change data you rewrite the full object. Amazon S3, Azure Blob Storage, and GCS are examples."
+    },
+    {
+      "question": "What is object versioning in object storage?",
+      "options": [
+        "Automatically deleting old object versions when they reach a certain age or too many versions exist.",
+        "Adding metadata that stipulates a version for an object so prior versions remain referenced and retrievable rather than being garbage collected.",
+        "Replicating objects across multiple availability zones to improve durability.",
+        "Encoding objects with a compression algorithm to reduce storage cost."
+      ],
+      "correctIndex": 1,
+      "explanation": "With versioning turned on, the key and version metadata together form a unique reference to a particular immutable object; old versions stay referenced (so the garbage collector doesn't clean them up), and the main overhead is storage cost."
+    },
+    {
+      "question": "What are storage classes (or tiers) in cloud object storage?",
+      "options": [
+        "Levels of cache hierarchy ranging from CPU cache to archival storage.",
+        "Replication factors that determine how many copies of data are stored.",
+        "Consistency models that govern whether reads return the latest version.",
+        "Discounted storage pricing levels offered in exchange for reduced access or reduced durability, such as Infrequent Access and Glacier."
+      ],
+      "correctIndex": 3,
+      "explanation": "Cloud vendors offer storage classes that discount storage pricing in exchange for reduced access or durability—e.g., S3 Standard-Infrequent Access and the archival S3 Glacier tiers, where faster retrieval costs more."
+    },
+    {
+      "question": "What is Memcached?",
+      "options": [
+        "A key-value store supporting complex data types like lists and sets with built-in persistence.",
+        "A key-value store designed for caching database query results and API call responses, supporting simple string or integer data types with very low latency.",
+        "A distributed filesystem that breaks files into blocks replicated across nodes.",
+        "A columnar object storage system with automated metadata management."
+      ],
+      "correctIndex": 1,
+      "explanation": "Memcached is a key-value store for caching database query results and API call responses; it uses simple data structures (string or integer) and delivers very low latency while taking load off backend systems."
+    },
+    {
+      "question": "What is Redis?",
+      "options": [
+        "A key-value store that supports more complex data types (such as lists and sets) and includes persistence mechanisms like snapshotting and journaling.",
+        "A key-value cache supporting only string and integer data types.",
+        "A block storage service that provides persistent volumes to virtual machines.",
+        "A filesystem service exposed over NFS with automatic scaling."
+      ],
+      "correctIndex": 0,
+      "explanation": "Like Memcached, Redis is a key-value store, but it supports more complex data types and builds in persistence (snapshotting and journaling), writing data roughly every two seconds in a typical configuration."
+    },
+    {
+      "question": "What is the Hadoop Distributed File System (HDFS)?",
+      "options": [
+        "A key-value store for immutable objects that supports no in-place updates.",
+        "A fully managed filesystem service exposed over NFS.",
+        "A distributed filesystem based on Google File System that combines compute and storage on the same nodes and breaks files into replicated blocks.",
+        "A volatile memory layer used to cache frequently accessed query results."
+      ],
+      "correctIndex": 2,
+      "explanation": "HDFS is based on Google File System, combines compute and storage on the same nodes, breaks large files into blocks (each typically replicated to three nodes), and is managed by the NameNode."
+    },
+    {
+      "question": "What is replay in streaming storage?",
+      "options": [
+        "Writing streamed data out to multiple consumers for real-time and batch processing.",
+        "Pushing old, infrequently accessed messages down to object storage.",
+        "The process of reserializing a streaming buffer into columnar object storage.",
+        "The ability of a streaming system to return a range of historical stored data, the standard data-retrieval mechanism for streaming storage."
+      ],
+      "correctIndex": 3,
+      "explanation": "Replay allows a streaming system to return a range of historical stored data; it is the standard data-retrieval mechanism for streaming storage and can be used to run batch queries over a time range or reprocess data."
+    },
+    {
+      "question": "What are indexes in a database?",
+      "options": [
+        "A map of the table for particular fields that allows extremely fast lookup of individual records without scanning the entire table.",
+        "A scheme that sorts data by one or a few fields to colocate similar values within partitions.",
+        "Splitting a table into multiple subtables on a designated field.",
+        "A metadata store of micro-partition descriptions used to prune queries."
+      ],
+      "correctIndex": 0,
+      "explanation": "Indexes provide a map of the table for particular fields and allow extremely fast lookup of individual records; without them a database would need to scan the entire table to satisfy a WHERE condition."
+    },
+    {
+      "question": "What is row-oriented storage?",
+      "options": [
+        "Organizing data into column files to optimize compression and fast scans of large volumes.",
+        "Sorting rows within partitions to colocate similar values.",
+        "A serialization approach that organizes data as rows on disk to support speedy lookups and in-place updates, typical of transactional relational databases.",
+        "A key-value layout with objects referenced by a bucket and key."
+      ],
+      "correctIndex": 2,
+      "explanation": "Row-oriented relational databases organize data as rows on disk to support speedy lookups and in-place updates, and row-based MPP systems were an early data warehouse approach."
+    },
+    {
+      "question": "What is columnar (column-oriented) storage?",
+      "options": [
+        "Organizing data as rows on disk to support fast in-place updates.",
+        "Organizing data into column files so a query scans only the needed columns, while similar values packed together yield high compression ratios.",
+        "Storing data as immutable objects in a key-value store.",
+        "Sorting rows by a few fields to colocate similar values within partitions."
+      ],
+      "correctIndex": 1,
+      "explanation": "Columnar serialization lets a database scan only the columns a query requires and packs similar values together for high compression; it performs poorly for transactional lookups but extremely well for large scans."
+    },
+    {
+      "question": "What is partitioning a table?",
+      "options": [
+        "Sorting data by one or a few fields to colocate similar values within a table.",
+        "Creating a map of the table for particular fields to speed up lookups.",
+        "Replicating table data across multiple nodes for durability.",
+        "Splitting a table into multiple subtables on a designated field to reduce the amount of data scanned for a query."
+      ],
+      "correctIndex": 3,
+      "explanation": "To reduce the amount of data scanned beyond column pruning, a table can be partitioned into multiple subtables by splitting on a field; date- and time-based partitioning is extremely common in analytics."
+    },
+    {
+      "question": "What is a clustering scheme in a columnar database?",
+      "options": [
+        "Finer-grained organization of data within partitions that sorts data by one or a few fields, colocating similar values to improve filtering, sorting, and joining.",
+        "Splitting a table into multiple subtables on a designated field.",
+        "A map of the table for particular fields that enables fast record lookup.",
+        "Storing data as immutable objects referenced by key."
+      ],
+      "correctIndex": 0,
+      "explanation": "Clusters allow finer-grained organization of data within partitions by sorting on one or a few fields, which colocates similar values and improves performance for filtering, sorting, and joining."
+    },
+    {
+      "question": "What is Snowflake micro-partitioning?",
+      "options": [
+        "Partitioning every table on a single designated field such as a date.",
+        "A row-oriented layout that writes rows as continuous streams on disk.",
+        "An approach that breaks tables into small groups of rows (50–500 MB uncompressed) and algorithmically clusters similar rows together rather than partitioning on a single designated field.",
+        "A form of zero-copy cloning that creates new pointers to the same files."
+      ],
+      "correctIndex": 2,
+      "explanation": "Micro partitions are sets of rows between 50 and 500 MB in uncompressed size; Snowflake uses an algorithmic approach to cluster similar rows, enabling aggressive pruning of queries based on predicates, and calls this hybrid columnar storage."
+    },
+    {
+      "question": "What is a data warehouse?",
+      "options": [
+        "A massive store that retains data in raw, unprocessed form.",
+        "An architecture that combines a data warehouse and a data lake on object storage.",
+        "A key-value cache for frequently accessed query results.",
+        "A standard OLAP data architecture used to centralize data and serve analytics, historically built on row-based and columnar MPP systems and now on cloud data platforms."
+      ],
+      "correctIndex": 3,
+      "explanation": "The term data warehouse refers to technology platforms, an architecture for data centralization, and an organizational pattern; it evolved from transactional databases to row-based and columnar MPP systems to cloud data warehouses."
+    },
+    {
+      "question": "What is a data lake?",
+      "options": [
+        "A central store of processed, curated data organized for analytics.",
+        "A small cache of frequently accessed data stored in memory.",
+        "A filesystem that organizes files into a directory tree.",
+        "A storage area for massive amounts of unprocessed raw data, originally conceived by James Dixon and historically built on Hadoop systems."
+      ],
+      "correctIndex": 3,
+      "explanation": "A data lake is a storage area for massive amounts of unprocessed raw data; cloud data warehouses can't handle truly unstructured data such as images and video, unlike a true data lake."
+    },
+    {
+      "question": "What is a data lakehouse?",
+      "options": [
+        "An architecture that combines the data lake (object storage) with data warehouse features such as table/schema support, update/delete management, and table history and rollback.",
+        "A data warehouse built on a conventional transactional database.",
+        "A raw data store with no imposed table structure at all.",
+        "A key-value cache for frequently accessed data."
+      ],
+      "correctIndex": 0,
+      "explanation": "The lakehouse stores data in object storage like a lake but adds warehouse-like features—robust table/schema support, incremental updates and deletes, and table history/rollback by retaining old versions of files and metadata. Delta Lake is a leading implementation."
+    },
+    {
+      "question": "What is a data platform?",
+      "options": [
+        "A raw storage area for unprocessed data with no query layer.",
+        "A single database that serves both OLTP and OLAP workloads.",
+        "A distributed filesystem that combines compute and storage.",
+        "An ecosystem of interoperable vendor tools with tight integration into a core data storage layer, often closely integrated with object storage."
+      ],
+      "correctIndex": 3,
+      "explanation": "Vendors increasingly style their products as data platforms—ecosystems of interoperable tools tightly integrated with the core storage layer, though the book notes the concept is still being fleshed out."
+    },
+    {
+      "question": "What is the stream-to-batch storage architecture?",
+      "options": [
+        "An architecture that stores all data in a single transactional database.",
+        "An architecture that keeps compute and storage colocated on the same nodes.",
+        "An architecture that only stores cold archival data.",
+        "An architecture similar to the Lambda architecture in which streamed data is written to multiple consumers: real-time processing systems and batch storage for long-term retention and batch queries."
+      ],
+      "correctIndex": 3,
+      "explanation": "Stream-to-batch storage is similar to the Lambda architecture: data flowing through a topic is written out to multiple consumers, including batch storage such as Kinesis Firehose or a streaming buffer reserialized into columnar object storage."
+    },
+    {
+      "question": "What is a data catalog?",
+      "options": [
+        "A key-value store for immutable data objects.",
+        "A centralized metadata store for all data across an organization that integrates data lineage, relationships, and user-editable data descriptions.",
+        "A filesystem that organizes data into a directory tree.",
+        "A storage tier for infrequently accessed data."
+      ],
+      "correctIndex": 1,
+      "explanation": "A data catalog is a centralized metadata store for all data across an organization; it integrates data lineage and data relationships, typically relies on automated scanning, and provides a human access layer with a social/Wiki layer."
+    },
+    {
+      "question": "What is data sharing?",
+      "options": [
+        "Allowing organizations and individuals to share specific data with carefully defined permissions to specific entities.",
+        "Replicating data across multiple availability zones for durability.",
+        "Moving data to a warm or cold storage tier automatically.",
+        "Rewriting an object under the same key to update it."
+      ],
+      "correctIndex": 0,
+      "explanation": "Data sharing allows sharing specific data with carefully defined permissions—within an organization (e.g., from a sandbox with collaborators) or across organizations (e.g., an ad tech company sharing advertising data with customers)."
+    },
+    {
+      "question": "According to the book, what is a schema?",
+      "options": [
+        "A map of the table for particular fields used for fast lookups.",
+        "A set of rows stored in object storage with a metadata catalog.",
+        "Information about the expected form of data—format, structure, data types, and how it fits into a larger hierarchy—that functions like a Rosetta stone for reading the data.",
+        "A consistency model for distributed databases."
+      ],
+      "correctIndex": 2,
+      "explanation": "Schema describes the expected form of the data—whether structured, semistructured, or unstructured, its file format and data types, and how it fits into a larger hierarchy—and acts as instructions (a 'Rosetta stone') for how to read it; it need not be relational."
+    },
+    {
+      "question": "What does 'schema on write' mean?",
+      "options": [
+        "A pattern in which the schema is dynamically created when data is written and a reader must determine it.",
+        "A pattern in which no schema information is stored with the data.",
+        "A pattern in which schemas are inferred from CSV files at read time.",
+        "The traditional data warehouse pattern in which a table has an integrated schema and any writes to the table must conform to it."
+      ],
+      "correctIndex": 3,
+      "explanation": "Schema on write is the traditional data warehouse pattern: a table has an integrated schema and any writes must conform. Its principal advantage is enforcing data standards, making data easier to consume in the future."
+    },
+    {
+      "question": "What does 'schema on read' mean?",
+      "options": [
+        "A pattern in which writes must conform to an integrated table schema.",
+        "A pattern in which the schema is dynamically created when data is written and a reader must determine the schema when reading the data.",
+        "A pattern in which schemas are enforced by a metastore at write time.",
+        "A pattern in which no schema can ever be determined from the data."
+      ],
+      "correctIndex": 1,
+      "explanation": "With schema on read, the schema is dynamically created and a reader must determine it when reading; it emphasizes flexibility at the cost of greater difficulty consuming data later, and file formats with built-in schema info like Parquet are ideal."
+    },
+    {
+      "question": "What is the separation of compute from storage?",
+      "options": [
+        "A standard cloud pattern in which data lives durably in object storage and temporary compute capacity is spun up on demand to read and process it.",
+        "Locating data blocks near compute so map jobs can process them locally.",
+        "Storing data in the same nodes that process it.",
+        "Replicating data across multiple availability zones."
+      ],
+      "correctIndex": 0,
+      "explanation": "Data lakes store data in object stores and spin up temporary compute capacity to read and process it; this has become a standard pattern, and most fully managed OLAP products rely on object storage behind the scenes."
+    },
+    {
+      "question": "What is colocation of compute and storage?",
+      "options": [
+        "Storing data in object storage and spinning up ephemeral compute.",
+        "Replicating data to multiple zones to improve availability.",
+        "A standard approach that locates data near compute for fast, low-latency access, as with HDFS and MapReduce where map jobs are pushed to the nodes holding the data blocks.",
+        "Moving infrequently accessed data to cheaper storage tiers."
+      ],
+      "correctIndex": 2,
+      "explanation": "Colocation has long been a standard method to improve performance—for transactional databases via fast, low-latency local disk reads and for analytics by pushing map jobs to the nodes that hold the data blocks being scanned."
+    },
+    {
+      "question": "What is hybrid object storage?",
+      "options": [
+        "Object storage replicated across multiple cloud providers.",
+        "Object storage that supports random writes and appends.",
+        "A single storage tier used for all data regardless of access frequency.",
+        "Object storage that is tightly integrated with compute, combining clean object-storage abstractions with some advantages of colocating compute and storage (e.g., Google Colossus and S3 Select)."
+      ],
+      "correctIndex": 3,
+      "explanation": "Hybrid object storage combines the clean abstractions of object storage with advantages of colocation; Google's Colossus colocates customer tables in one location, and S3 Select filters data directly in S3 clusters."
+    },
+    {
+      "question": "What is zero-copy cloning?",
+      "options": [
+        "Physically copying all underlying data objects into a new location.",
+        "Creating a new virtual copy of an object (e.g., a new table) by pointing at the existing raw data files without physically copying the underlying data.",
+        "Rewriting an object under the same key to create a new version.",
+        "Replicating data to multiple availability zones for durability."
+      ],
+      "correctIndex": 1,
+      "explanation": "Zero-copy cloning creates new pointers to the raw data files—a 'shallow' copy. Engineers must understand its limits: deleting the original files might wipe out the clone, and deep copying is the more robust but expensive alternative."
+    },
+    {
+      "question": "What is data retention?",
+      "options": [
+        "The practice of deciding what data you need to keep and how long to keep it, balancing value, time, compliance, and cost.",
+        "The frequency with which data must be accessed by downstream users.",
+        "The process of moving data between hot, warm, and cold tiers automatically.",
+        "The practice of keeping every piece of data in case it's needed later."
+      ],
+      "correctIndex": 0,
+      "explanation": "Data retention asks 'how long should I keep this data?', weighing value, the age of data, compliance regulations (HIPAA and PCI), and cost; unchecked hoarding of data leads to data swamps."
+    },
+    {
+      "question": "What is hot data?",
+      "options": [
+        "Data accessed semi-regularly, roughly once per month.",
+        "Infrequently accessed data meant mainly for long-term archival.",
+        "Data that must be deleted for compliance reasons.",
+        "Data with instant or frequent access requirements, stored on fast hardware such as SSD or memory—the most expensive tier to store but cheap to retrieve."
+      ],
+      "correctIndex": 3,
+      "explanation": "Hot data has instant or frequent access requirements (e.g., product recommendations and query results caches) and is stored on the fastest, most expensive hardware, so storing it is costly but retrieval is often inexpensive."
+    },
+    {
+      "question": "What is warm data?",
+      "options": [
+        "Data with instant or frequent access requirements.",
+        "Infrequently accessed data used mainly for archival.",
+        "Data that lives only in CPU cache.",
+        "Data accessed semi-regularly (e.g., about once per month), stored in tiers like S3 Infrequent Access or Google Nearline—cheaper than hot data with slightly more expensive retrieval."
+      ],
+      "correctIndex": 3,
+      "explanation": "Warm data is accessed semi-regularly with no hard and fast rules; major cloud providers offer object storage tiers for it, such as S3 Infrequently Accessed and Google Cloud's Nearline, with cheaper storage but slightly more expensive retrieval."
+    },
+    {
+      "question": "What is cold data?",
+      "options": [
+        "Data accessed instant or frequently and stored in memory.",
+        "Infrequently accessed data meant mainly for long-term archival on cheap, durable hardware like HDDs, tape, and cloud archival systems.",
+        "Data accessed about once per month.",
+        "Data that must be replicated across many availability zones."
+      ],
+      "correctIndex": 1,
+      "explanation": "Cold data is infrequently accessed and mainly meant for long-term archival; storing it is cheap but retrieving it is often expensive, and cloud archival tiers like S3 Glacier serve it."
+    },
+    {
+      "question": "What is single-tenant storage?",
+      "options": [
+        "An architecture in which each group of tenants gets its own dedicated set of storage resources, with data totally isolated (e.g., each customer gets their own database).",
+        "An architecture in which multiple tenants share the same database schemas or tables.",
+        "An architecture in which compute and storage are separated in the cloud.",
+        "An architecture in which storage is replicated across multiple zones."
+      ],
+      "correctIndex": 0,
+      "explanation": "With single-tenant storage, every tenant gets dedicated storage with no data shared—e.g., each customer's data in its own isolated database—but schema variation across tenants complicates unified queries."
+    },
+    {
+      "question": "What is multitenant storage?",
+      "options": [
+        "An architecture in which each tenant gets its own dedicated, isolated database.",
+        "An architecture in which data is stored on a single local disk.",
+        "An architecture that shares storage resources among groups of users, storing multiple tenants within a single database, schema, or table.",
+        "An architecture in which all data is kept in cold archival tiers."
+      ],
+      "correctIndex": 2,
+      "explanation": "Multitenant storage inverts single-tenancy: multiple customers may reside in the same database schemas or tables, sharing the underlying storage resources among groups of users."
+    }
+  ]
+}

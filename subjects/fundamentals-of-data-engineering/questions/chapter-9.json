@@ -1,0 +1,1614 @@
+{
+  "title": "Chapter 9 — Serving Data for Analytics, Machine Learning, and Reverse ETL: Quality Question Bank",
+  "source_file": "chapter-9-serving-data-for-analytics-machine-learning-and-reverse-etl.md",
+  "original_question_file": "chapter-9.json",
+  "question_count": 146,
+  "questions": [
+    {
+      "question": "The book calls trust \"the root consideration\" in serving data. Why does it matter so much, and how hard is it to recover once lost?",
+      "options": [
+        "Without trust, even the most sophisticated architecture is irrelevant — a loss of trust often silently kills a data project long before it's officially canceled, and it's very difficult to earn back",
+        "Trust mainly matters for compliance audits, not day-to-day data usage",
+        "Trust is only relevant for external-facing data products, not internal ones",
+        "The book says trust can be rebuilt instantly once an underlying bug is fixed"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"A loss of trust is often a silent death knell for a data project, even if the project isn't officially canceled until months or years later... Once trust is gone, earning it back is insanely difficult.\""
+    },
+    {
+      "question": "Why does the book say self-service BI/data science mostly fails in practice, even with good intentions?",
+      "options": [
+        "Success depends on matching the tool to the actual user — executives usually just want a predefined dashboard, while power users like analysts are often already self-serving via SQL; picking the wrong audience dooms it",
+        "Self-service always fails because BI tools are technically incapable of supporting it",
+        "Self-service succeeds reliably as long as the company has enough budget",
+        "The book claims self-service should never be attempted under any circumstances"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains an executive \"will likely ignore any self-serve tools\" while an analyst \"might already be pursuing self-service analytics via more powerful tools such as SQL\" — in both extremes, a self-service BI layer is \"the wrong tool for the job.\""
+    },
+    {
+      "question": "What's the core difference between business analytics and operational analytics, as the book frames it?",
+      "options": [
+        "Business analytics is about actionable insights over a longer time horizon; operational analytics is about taking immediate action, often in real time",
+        "Business analytics is always real-time, while operational analytics is always based on historical data",
+        "They are identical concepts, just described with different vocabulary in different departments",
+        "Business analytics only applies to external users, while operational analytics only applies to internal users"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states this directly: \"Operational analytics versus business analytics = immediate action versus actionable insights... Data used in business analytics takes a longer view.\""
+    },
+    {
+      "question": "A third-party ecommerce platform gives sellers a real-time dashboard on their own sales and inventory within the platform's own app. What category of analytics is this, and what three performance concerns does the book highlight for it?",
+      "options": [
+        "Embedded analytics — low data latency, fast query performance, and high concurrency (serving many customers/dashboards at once)",
+        "Operational analytics — the only concern is internal server uptime",
+        "Business analytics — the only concern is historical trend accuracy",
+        "Embedded analytics — the only concern is dashboard color scheme consistency"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives this exact example under embedded analytics, then lists \"data latency,\" \"fast query performance,\" and \"high concurrency\" as the three key performance problems it poses."
+    },
+    {
+      "question": "What does the book say a data engineer should understand about ML, even without being an ML expert?",
+      "options": [
+        "Foundational concepts like supervised/unsupervised/semisupervised learning, classification vs. regression, when classical techniques suffice vs. deep learning, and how data must be converted to numbers for training",
+        "A data engineer must be capable of designing novel deep learning architectures from scratch",
+        "A data engineer doesn't need any ML knowledge at all, per the book's explicit advice",
+        "A data engineer only needs to know how to provision GPUs, with no need to understand ML concepts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists exactly these foundational areas as things \"a data engineer should be familiar with,\" while explicitly not expecting deep ML expertise."
+    },
+    {
+      "question": "What's the difference between query federation and data sharing as ways to serve data, per the book?",
+      "options": [
+        "Query federation pulls data live from multiple source systems at query time (e.g. via Trino/Presto) without centralizing it; data sharing exposes data through a multitenant platform where the consumer runs their own queries against a shared copy or access grant",
+        "Both terms describe exactly the same underlying serving mechanism",
+        "Query federation requires copying all data into a single warehouse first, unlike data sharing",
+        "Data sharing only works for streaming data, while query federation only works for batch data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes federation as pulling \"data from multiple sources... without going through the trouble of centralizing data,\" while data sharing works \"through massively multitenant storage systems in a cloud environment.\""
+    },
+    {
+      "question": "Why does the book warn that hardcoding credentials directly in data science notebooks is a major security risk?",
+      "options": [
+        "Embedded credentials often leak into version control repositories or get passed around via messages and email — the book recommends credential managers or CLI tools instead",
+        "Because notebooks cannot technically store credentials at all, making the warning purely theoretical",
+        "Because credentials embedded in notebooks always expire automatically within one hour",
+        "Because notebooks are incapable of connecting to any remote data source"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"It is common to embed credentials directly in code, where they often leak into version control repos... ideally, data scientists use credential managers or CLI tools to manage access.\""
+    },
+    {
+      "question": "What's the purpose of a \"semantic\" or \"metrics\" layer (e.g. via Looker's LookML or dbt), per the book?",
+      "options": [
+        "To define business logic and metric calculations once, in a reusable way, so downstream queries and reports don't reimplement (and potentially inconsistently reimplement) the same logic",
+        "To physically replicate all source data into a new proprietary storage format",
+        "To replace the need for any database or query engine entirely",
+        "To enforce row-level security exclusively, with no role in metric definitions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes it as \"a tool for maintaining and computing business logic... Write once, use anywhere,\" solving \"the traditional problem of repetition and inconsistency in traditional ETL scripts.\""
+    },
+    {
+      "question": "The book describes a flawed bid-optimization model that keeps feeding higher and higher ad bids back into a platform via reverse ETL. What risk does this illustrate, and what does the book recommend?",
+      "options": [
+        "Reverse ETL creates feedback loops that can spiral out of control if something (like a buggy model) goes wrong — the book recommends building in monitoring and guardrails",
+        "This illustrates that reverse ETL should never be used under any circumstances",
+        "The risk described is purely a legal one, unrelated to monitoring",
+        "The book claims this kind of runaway loop is theoretically impossible with reverse ETL"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states directly: \"Reverse ETL inherently creates feedback loops... you can quickly waste massive amounts of money! Be careful, and build in monitoring and guardrails.\""
+    },
+    {
+      "question": "Why does the book say serving \"presents the largest security surface\" of any stage in the data engineering lifecycle?",
+      "options": [
+        "It's the stage where data actually reaches many different people and systems (analysts, executives, ML pipelines, reverse ETL targets, external users), so mismanaged access here has the broadest blast radius",
+        "Because serving is the only stage of the lifecycle where data is ever stored on disk",
+        "Because serving never involves any authentication mechanisms of any kind",
+        "Because serving happens before any of the lifecycle's other security controls exist"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"Of all the lifecycle stages, serving presents the largest security surface,\" precisely because this is where data reaches its widest range of consumers."
+    },
+    {
+      "question": "The book recommends checking whether existing dashboards/reports are still being used, and killing off unused ones. What's the security-related reason given, beyond tidiness?",
+      "options": [
+        "Every unused data product that still exists is an unnecessary security vulnerability/access surface serving no value — removing it reduces risk at no real cost",
+        "Unused dashboards automatically corrupt the underlying source data over time",
+        "Removing unused dashboards is purely a cosmetic UI concern with no security angle",
+        "The book says unused dashboards should always be kept indefinitely, just in case"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states plainly: \"If not, kill off the data product. This means one less security vulnerability floating around.\""
+    },
+    {
+      "question": "What does the book mean by \"data logic\" as distinct from \"data definition\"?",
+      "options": [
+        "Data definition is the meaning of a term (e.g. what counts as a \"customer\"); data logic is the formula/rules for deriving a metric from data (e.g. which expenses are subtracted to calculate net profit)",
+        "They are identical concepts, simply described using two different words",
+        "Data logic refers only to programming language syntax and has nothing to do with business metrics",
+        "Data definition refers to formulas, while data logic refers to the meaning of terms"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book distinguishes them exactly: \"Data definition refers to the meaning of data... Data logic stipulates formulas for deriving metrics from data,\" giving the net-profit example."
+    },
+    {
+      "question": "Why does the book suggest data engineers stay cautious about SQL generated by tools like LookML, dbt's Jinja templating, or ORMs, even though these tools help analysts?",
+      "options": [
+        "Programmatically generated SQL doesn't always perform as well as carefully handwritten SQL, so engineers should understand the underlying patterns and be ready to suggest optimizations",
+        "Generated SQL is always faster than handwritten SQL, so no review is ever needed",
+        "These tools cannot produce valid SQL at all without manual correction afterward",
+        "Generated SQL always bypasses the database's query optimizer entirely, per the book"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book asks: \"When these programmatic layers compile to SQL, how will this SQL perform? A data engineer can suggest optimizations where the SQL code might not perform as well as handwritten SQL.\""
+    },
+    {
+      "question": "What scaling path does the book recommend when a data scientist's local Jupyter notebook workflow outgrows their laptop's available memory?",
+      "options": [
+        "Move to a cloud-based notebook with flexible compute/memory first, then to distributed execution systems (Dask, Ray, Spark) or managed ML platforms as needs grow further",
+        "Buy the data scientist a physically larger laptop, as the book's only recommended fix",
+        "Switch entirely away from notebooks to raw SQL, per the book's explicit advice",
+        "There is no recommended path — the book calls this an unsolvable constraint"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lays out this exact progression: \"move to a cloud-based notebook where the underlying storage and memory... can be flexibly scaled. Upon outgrowing this option, look at distributed execution systems,\" naming Dask, Ray, and Spark."
+    },
+    {
+      "question": "What two questions does the book say to always ask when seeking data use cases?",
+      "options": [
+        "\"What action will this data trigger, and who will be performing this action?\" followed by \"Can this action be automated?\"",
+        "\"How many tables do we need?\" and \"Which SQL dialect should we use?\"",
+        "\"How much will the cluster cost?\" and \"What's the data size?\"",
+        "\"Which vendor is cheapest?\" and \"What's the retention policy?\""
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to always ask what action the data will trigger and who performs it, then whether that action can be automated."
+    },
+    {
+      "question": "What does the book say about prioritizing use cases, and what common failing does it describe in engineers?",
+      "options": [
+        "Prioritize use cases with the highest possible ROI; engineers love to obsess over technical implementation details while ignoring the basic question of purpose",
+        "Prioritize the most technically complex use cases regardless of ROI",
+        "Engineers should ignore business value entirely",
+        "Use cases should be chosen by tool popularity"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to prioritize high-ROI use cases and warns engineers against obsessing over technical details while ignoring purpose."
+    },
+    {
+      "question": "What does the book recommend when starting a new data project, and what questions does it suggest asking?",
+      "options": [
+        "Work backward from the use case and users — ask who will use the data and how, what stakeholders expect, and how to collaborate with data stakeholders to understand usage",
+        "Start by choosing the tools first",
+        "Focus exclusively on technical implementation",
+        "Never involve stakeholders in project planning"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends starting with use case and users and working backward, listing these questions."
+    },
+    {
+      "question": "How does the book define a data product, citing D. J. Patil?",
+      "options": [
+        "A product that facilitates an end goal through the use of data",
+        "A dashboard created by the data team",
+        "Any SQL query written by an analyst",
+        "A physical server that stores data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book quotes Patil: \"A good definition of a data product is a product that facilitates an end goal through the use of data.\""
+    },
+    {
+      "question": "Why does the book say data products aren't created in a vacuum?",
+      "options": [
+        "Making data products is a full-contact sport involving a mix of product and business alongside technology, and key stakeholders must be involved in development",
+        "Data products are purely a technology exercise",
+        "Stakeholder involvement makes products worse",
+        "Data products need no business input"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says making data products is a full-contact sport involving product, business, and technology."
+    },
+    {
+      "question": "What is the \"jobs to be done\" concept, and what classic engineering mistake does the book warn against?",
+      "options": [
+        "A user \"hires\" a product for a \"job to be done,\" so you must understand their motivation; the classic mistake is building without understanding requirements or product/market fit, creating data products nobody wants to use",
+        "Products should be built without any user understanding",
+        "Jobs to be done only applies to marketing",
+        "Building products nobody wants is acceptable"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes jobs to be done and warns against building without understanding requirements."
+    },
+    {
+      "question": "What does a good data product's positive feedback loop look like?",
+      "options": [
+        "More usage of a data product generates more useful data, which is used to improve the data product — rinse and repeat",
+        "More usage always degrades the product",
+        "Data products cannot improve over time",
+        "Feedback loops only apply to software"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the positive feedback loop of usage generating data that improves the product."
+    },
+    {
+      "question": "What considerations does the book list for building data products?",
+      "options": [
+        "What the user hopes to accomplish, whether the product serves internal or external users, and the outcomes and ROI of the product",
+        "Only the number of dashboards",
+        "Only the database vendor",
+        "Only the color scheme"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists outcome, internal/external users, and outcomes/ROI as data product considerations."
+    },
+    {
+      "question": "What ruins the adoption of a data product, according to the book?",
+      "options": [
+        "Unwanted utility and loss of trust in the data outputs",
+        "Too many users",
+        "Excessive adoption",
+        "Clear user feedback"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says unwanted utility and loss of trust ruin adoption."
+    },
+    {
+      "question": "What audience does the book identify as ideal for self-service data, and what other group could realize value?",
+      "options": [
+        "A group of executives with a data background who want to slice and dice data themselves without dusting off SQL skills; business leaders willing to invest time in data training could also realize significant value",
+        "Only entry-level analysts",
+        "Only people who already know SQL deeply",
+        "No audience is ever a good fit"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book identifies data-background executives and trainable business leaders as ideal self-service audiences."
+    },
+    {
+      "question": "What balance does the book say self-service providers must understand?",
+      "options": [
+        "The fine balance between flexibility and guardrails that help the audience find value and insights without incorrect results and confusion",
+        "The balance between storage and compute",
+        "The balance between SQL and Python",
+        "No balance is needed"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to balance flexibility and guardrails for self-service users."
+    },
+    {
+      "question": "How can data definitions be served implicitly, and where does data modeling help?",
+      "options": [
+        "Data definitions are mostly served implicitly — anytime you serve data for a query, dashboard, or ML model, data and derived metrics are presented consistently, and data modeling captures definitions and logic understandably for multiple end users",
+        "Definitions are only ever served explicitly",
+        "Data modeling makes definitions less understandable",
+        "Implicit serving is never used"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes implicit definition serving and data modeling's role in capturing them."
+    },
+    {
+      "question": "What does the book say about institutional knowledge versus formally declaring data definitions and logic?",
+      "options": [
+        "Definitions and logic are often passed around as institutional knowledge that takes on a life of its own, at the expense of anecdotes replacing data-driven insights; formally declaring them in a data catalog and within lifecycle systems ensures correctness, consistency, and trustworthiness",
+        "Institutional knowledge is always better than formal declarations",
+        "Anecdotes should replace data-driven decisions",
+        "Formal declarations reduce correctness"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns about institutional knowledge and recommends formally declaring definitions/logic."
+    },
+    {
+      "question": "How does data mesh change the way data is served within an organization?",
+      "options": [
+        "Instead of siloed data teams serving internal constituents, every domain team takes on decentralized, peer-to-peer data serving — serving data to other teams and running its own dashboards/analytics for self-service",
+        "Data mesh centralizes all serving in one team",
+        "Domain teams never serve other teams",
+        "Data mesh eliminates all dashboards"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes data mesh's decentralized serving model with two aspects per domain team."
+    },
+    {
+      "question": "How does the book define analytics as a practice?",
+      "options": [
+        "Discovering, exploring, identifying, and making visible key insights and patterns within data, carried out using statistical methods, reporting, BI tools, and more",
+        "Only creating dashboards",
+        "Only running SQL queries",
+        "A synonym for machine learning"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines analytics as discovering, exploring, identifying, and making visible insights and patterns."
+    },
+    {
+      "question": "What does the book say you need to identify before serving data for analytics, and what differences does it highlight?",
+      "options": [
+        "Identify the end use case — is the user looking at historical trends, should they be immediately notified of an anomaly like a fraud alert, or consuming a real-time dashboard — highlighting differences between business, operational, and embedded analytics",
+        "Identify the cheapest database",
+        "Identify the most popular BI tool",
+        "Use case identification is unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to identify the end use case, which highlights the analytics categories."
+    },
+    {
+      "question": "What does business analytics use, and what do its decisions tend to factor in?",
+      "options": [
+        "Historical and current data to make strategic and actionable decisions; decisions tend to factor in longer-term trends and involve a mix of statistical and trend analysis, domain expertise, and human judgment — it's as much an art as a science",
+        "Only real-time data",
+        "Only automated decisions with no judgment",
+        "Only external data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes business analytics' data and decision characteristics."
+    },
+    {
+      "question": "What is a dashboard, and what analogy does the book give?",
+      "options": [
+        "It concisely shows decision makers how an organization performs against a handful of core metrics like sales and retention, presented as visualizations, summary statistics, or a single number — similar to a car dashboard",
+        "A dashboard is a full-length report",
+        "Dashboards cannot show metrics",
+        "A dashboard is a database index"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines dashboards with the car-dashboard analogy."
+    },
+    {
+      "question": "How does the book describe dashboard hierarchy in an organization?",
+      "options": [
+        "C-level executives use an overarching dashboard while their direct reports use dashboards with their particular metrics, KPIs, or OKRs; analysts help create and maintain them",
+        "Every user has an identical dashboard",
+        "Only executives have dashboards",
+        "Dashboards are never hierarchical"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the executive/direct-report dashboard hierarchy with analysts maintaining them."
+    },
+    {
+      "question": "Which BI platforms does the book name for creating dashboards?",
+      "options": [
+        "Tableau, Looker, Sisense, Power BI, or Apache Superset/Preset",
+        "Only Excel",
+        "Only Google Sheets",
+        "Only custom code"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these BI platforms."
+    },
+    {
+      "question": "What is the goal of a report, and what example does the book give?",
+      "options": [
+        "To use data to drive insights and action — e.g. an analyst investigating why women's running shorts have a high return rate discovers the fabric wears out and notifies manufacturing and quality control",
+        "To display a single number",
+        "To store raw data",
+        "To enforce access control"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes reports' insight/action goal with the running shorts example."
+    },
+    {
+      "question": "What is ad hoc analysis, and how does it relate to reports and dashboards?",
+      "options": [
+        "Reports typically start as ad hoc requests; if the results of ad hoc analysis are impactful, they often end up in a report or dashboard, using tools like Excel, Python, R notebooks, and SQL queries",
+        "Ad hoc analysis always stays informal forever",
+        "Reports never start as ad hoc requests",
+        "Ad hoc analysis uses no tools"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the ad-hoc-to-report/dashboard progression."
+    },
+    {
+      "question": "How do good analysts engage with the business and with data engineers?",
+      "options": [
+        "They constantly engage with the business to answer questions and uncover hidden trends, and work with data engineers to provide feedback on data quality and reliability issues and request new datasets",
+        "They work in isolation",
+        "They never provide feedback to data engineers",
+        "They only run dashboards"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes analysts' business engagement and feedback to data engineers."
+    },
+    {
+      "question": "What supply-chain discovery does the book describe in the running shorts example?",
+      "options": [
+        "After ingesting supply-chain data, analysts correlated garment serial numbers with the fabric supplier and discovered most failures tied to one of three suppliers, so the factory stopped using that fabric",
+        "All suppliers were equally good",
+        "The failure was unrelated to suppliers",
+        "The factory kept using the bad supplier"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes correlating serial numbers with suppliers to find the bad one."
+    },
+    {
+      "question": "How is data for business analytics frequently served, and what does the ingestion frequency set?",
+      "options": [
+        "Frequently served in batch mode from a data warehouse or data lake with frequencies varying from every second to once a week; the frequency of ingestion sets a ceiling on downstream frequency",
+        "Always served in real time",
+        "Frequency is irrelevant to serving",
+        "Served directly from source systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says business analytics is often batch-served and ingestion frequency caps downstream frequency."
+    },
+    {
+      "question": "What does the book advise if streaming applications exist for data?",
+      "options": [
+        "The data should be ingested as a stream even if some downstream processing and serving steps are handled in batches",
+        "Always use batch ingestion instead",
+        "Streaming should never be used",
+        "Streaming and batch are incompatible"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends stream ingestion when streaming applications exist, even with batch downstream steps."
+    },
+    {
+      "question": "What are the trade-offs between BI tools that store data internally versus those that run queries on your data lake or warehouse?",
+      "options": [
+        "Running queries on your lake/warehouse lets you take full advantage of your OLAP database's power; the downside is cost, access control, and latency",
+        "Internal storage is always better in every way",
+        "Running on the warehouse is always cheaper",
+        "There are no trade-offs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts internal-storage BI with warehouse-querying BI's power and cost/access/latency downsides."
+    },
+    {
+      "question": "What example of operational analytics does the book give, and what actions can it trigger?",
+      "options": [
+        "Real-time application monitoring with a dashboard showing requests per second and database I/O; certain conditions can trigger scaling events and send alerts via text, chat, and email",
+        "A weekly executive report",
+        "A quarterly financial summary",
+        "A nightly batch job"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes real-time application monitoring with scaling and alerting."
+    },
+    {
+      "question": "How does the book say the line between business and operational analytics is blurring?",
+      "options": [
+        "As streaming and low-latency data become pervasive, operational approaches are applied to business problems — e.g. an online retailer could analyze and present sales, revenue, and ad campaign impact in real time alongside monitoring Black Friday performance",
+        "The two types are moving apart",
+        "Business analytics will never use streaming",
+        "Operational analytics is becoming historical"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the blurring line with the Black Friday retail example."
+    },
+    {
+      "question": "What central question does the book say to always ask stakeholders about streaming data, and what warning does it give?",
+      "options": [
+        "If you have streaming data, what are you going to do with it — what action should you take? Correct action creates impact and value; real-time data without action is an unrelenting distraction",
+        "How much storage will it consume?",
+        "Which tool should process it?",
+        "Real-time data needs no action"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to ask what action streaming data will drive, warning that data without action is a distraction."
+    },
+    {
+      "question": "What long-term prediction does the book make about streaming versus batch?",
+      "options": [
+        "Streaming will supplant batch, and data products over the next 10 years will likely be streaming-first with the ability to seamlessly blend historical data, while data can still be consumed and processed in batches after real-time collection",
+        "Batch will always dominate",
+        "Streaming will disappear",
+        "Data products will never use historical data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book predicts streaming will supplant batch with streaming-first data products."
+    },
+    {
+      "question": "What real-time factory example does the book give for operational analytics?",
+      "options": [
+        "Using an off-the-shelf cloud machine vision tool to automatically identify defects in real time, tying defect data to item serial numbers and streaming events, so line workers can remove defective boxes and charge them back to suppliers",
+        "Technicians manually watch footage",
+        "Defects are never detected",
+        "Machine vision is forbidden"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the machine vision defect-detection factory example."
+    },
+    {
+      "question": "Why does the book say data engineers are probably not creating the embedded analytics frontend, and what must they understand?",
+      "options": [
+        "Application developers handle the frontend, but since data engineers are responsible for the databases serving the embedded analytics, they need to understand the speed and latency requirements",
+        "Data engineers always build the frontend",
+        "Frontends need no data support",
+        "Latency is irrelevant to embedded analytics"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says app developers build the frontend while data engineers must understand speed/latency requirements."
+    },
+    {
+      "question": "Why are users of data apps less tolerant of infrequent batch processing, per the book?",
+      "options": [
+        "Users want low data latency — e.g. users of a recruiting SaaS platform may expect to see a change in their statistics as soon as they upload a new resume",
+        "Users prefer batch processing",
+        "Users never expect fresh data",
+        "Latency is irrelevant to app users"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives the recruiting SaaS example to illustrate users' low data latency expectations."
+    },
+    {
+      "question": "What does the book say about new startups building data applications?",
+      "options": [
+        "The default is conventional transactional databases, but as customer bases expand they outgrow this, and they have access to a new generation of databases combining high performance — fast queries, high concurrency, near real-time updates — with relative ease of use",
+        "Startups should always use mainframes",
+        "Transactional databases never become bottlenecks",
+        "New databases are harder to use"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes startups outgrowing transactional databases and the new generation of databases."
+    },
+    {
+      "question": "How does the book describe the boundary between ML, data science, data engineering, and ML engineering?",
+      "options": [
+        "The boundary is increasingly fuzzy and varies dramatically between organizations — ML engineers may take over after data collection or form a parallel data organization, data engineers may handle all data processing and hand off for training, or even handle featurization",
+        "The boundary is fixed and identical everywhere",
+        "Data engineers never touch ML data",
+        "ML engineers do no data processing"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the fuzzy, organization-dependent boundary between these roles."
+    },
+    {
+      "question": "In the loom-parameters example, what responsibilities do data engineers take on?",
+      "options": [
+        "Data and ML engineers work together to design a featurization pipeline, and data engineers implement and maintain the pipeline, while ML engineers automate model training and loom tuning",
+        "Data engineers only train models",
+        "ML engineers implement featurization pipelines",
+        "Data engineers have no role in ML"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the featurization pipeline design/implementation split between data and ML engineers."
+    },
+    {
+      "question": "What does the book say about a data engineer's need for deep learning knowledge?",
+      "options": [
+        "A data engineer doesn't need a deep understanding of ML, but it helps tremendously to know the basics of how classical ML works and the fundamentals of deep learning to work alongside data scientists",
+        "Deep ML expertise is mandatory",
+        "No ML knowledge is ever useful",
+        "Only deep learning knowledge matters"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says basics help tremendously without requiring deep expertise."
+    },
+    {
+      "question": "Why does the book say data engineers' basic ML knowledge can help spot inappropriate techniques?",
+      "options": [
+        "Data scientists often immediately jump to deep learning when it's overkill; a data engineer's basic knowledge can help spot whether an ML technique is appropriate and scales the data needed",
+        "Data scientists never overuse deep learning",
+        "ML technique choice is irrelevant",
+        "Engineers should always defer blindly"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says engineers' basic knowledge helps spot when deep learning is overkill."
+    },
+    {
+      "question": "What does the book say about all data used for ML?",
+      "options": [
+        "All data that is used for ML is converted to numbers — if serving structured or semistructured data, ensure it can be properly converted during the feature-engineering process",
+        "ML can use raw text directly",
+        "Data conversion is optional",
+        "Numbers are never used in ML"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says all ML data is converted to numbers, requiring proper feature engineering."
+    },
+    {
+      "question": "What does the book say about batch and streaming data in training ML models?",
+      "options": [
+        "Batch data often fits well with offline model training, while streaming data works with online training",
+        "Batch data requires online training",
+        "Streaming data requires offline training",
+        "Training mode never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book connects batch/offline and streaming/online training."
+    },
+    {
+      "question": "What are data cascades, and what question about them does the book raise?",
+      "options": [
+        "The book asks what data cascades are and how they might impact ML models",
+        "Data cascades are not mentioned",
+        "Data cascades only affect batch systems",
+        "Data cascades improve all models"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists data cascades among the ML areas a data engineer should be familiar with."
+    },
+    {
+      "question": "What example does the book give of real-time versus batch ML results?",
+      "options": [
+        "A batch speech transcription model might process samples and return text after an API call, while a product recommendation model might need to operate in real time as the customer interacts with an online retail site",
+        "All ML returns results in real time",
+        "All ML returns results in batch",
+        "Result timing never varies"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts batch speech transcription with real-time product recommendations."
+    },
+    {
+      "question": "What purposes does the book say a file might serve in data serving?",
+      "options": [
+        "A data scientist might load a text file of customer messages for sentiment analysis, a business unit might receive invoice CSVs for statistical analysis, or a data vendor might provide competitor product images for computer vision classification",
+        "Files are only used for storage",
+        "Files have a single fixed purpose",
+        "Files cannot carry unstructured data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives these three distinct file-serving purposes."
+    },
+    {
+      "question": "What factors does the book list for how you serve files?",
+      "options": [
+        "Use case, the data consumer's data-handling processes, the size and number of individual files, who is accessing the file, and data type (structured, semistructured, or unstructured)",
+        "Only the file size",
+        "Only the storage vendor",
+        "Only the network speed"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these file-serving factors, with the consumer's data-handling processes as a main consideration."
+    },
+    {
+      "question": "Why might it be necessary to serve data through files rather than data sharing?",
+      "options": [
+        "The data consumer cannot use a sharing platform",
+        "Files are always faster",
+        "Data sharing is illegal",
+        "Files are the only secure option"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says files are necessary when the consumer can't use a sharing platform."
+    },
+    {
+      "question": "What problems does the book describe with emailing an Excel file?",
+      "options": [
+        "Each recipient gets their own version, edits diverge among files, and if you no longer want a recipient to have access you have very little recourse to retrieve the file",
+        "Email files are always consistent",
+        "Recipients cannot edit files",
+        "Access can always be revoked easily"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes version divergence and inability to recall emailed files."
+    },
+    {
+      "question": "What does the book suggest for serving a coherent, consistent version of a file?",
+      "options": [
+        "Use a collaboration platform such as Microsoft 365 or Google Docs",
+        "Keep emailing files",
+        "Print and mail copies",
+        "Never share files"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends collaboration platforms for consistent file versions."
+    },
+    {
+      "question": "How does the book say file serving scales beyond simple cloud file storage?",
+      "options": [
+        "Grow into an object storage bucket if you have a handful of large files, or a data lake if you have a steady supply of files; object storage is especially useful for semistructured or unstructured files",
+        "Continue emailing individual files",
+        "Stop sharing files entirely",
+        "Use only local disk"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes scaling from single files to object storage buckets or data lakes."
+    },
+    {
+      "question": "How does the book classify file exchange through object storage?",
+      "options": [
+        "File exchange through object storage (data lake) generally lands under \"data sharing\" rather than file exchange, since the process can be significantly more scalable and streamlined than ad hoc file exchange",
+        "It is always simple file exchange",
+        "It cannot be considered data sharing",
+        "It is neither sharing nor exchange"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book classifies object-storage file exchange under data sharing."
+    },
+    {
+      "question": "What benefits does the book list for serving data from a database?",
+      "options": [
+        "A database imposes order and structure through schema, offers fine-grained permission controls at the table, column, and row level for complex access policies, and offers high serving performance for large computationally intensive queries and high query concurrency",
+        "Databases have no permissions",
+        "Databases cannot enforce schemas",
+        "Databases are always slow"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists schema, fine-grained permissions, and high performance as database serving benefits."
+    },
+    {
+      "question": "How do Tableau and Looker differ in where they process data?",
+      "options": [
+        "A Tableau server pulls data into a local store and runs slicing/dicing on the server; Looker uses query pushdown, encoding logic in LookML to generate SQL that runs against the source database",
+        "Both store all data locally",
+        "Both push all queries to the database",
+        "Neither processes queries anywhere"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts Tableau's local processing with Looker's query pushdown."
+    },
+    {
+      "question": "How does the book describe the data scientist workflow with a database?",
+      "options": [
+        "The data scientist connects to a database, extracts data, performs feature engineering and selection, feeds the converted dataset into an ML model, and trains the offline model to produce predictive results",
+        "Data scientists never connect to databases",
+        "Feature engineering happens after training",
+        "Models are trained online only"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the extract-featurize-train workflow."
+    },
+    {
+      "question": "How does compute/storage separation change database-serving management, and what does the book recommend?",
+      "options": [
+        "It's now possible to spin up a new Spark cluster or Snowflake warehouse per workload; it's generally recommended to split out clusters by major use cases such as ETL and serving, and often teams assign one warehouse per major area so teams can budget query costs under data engineering supervision",
+        "Compute/storage separation has no effect on management",
+        "One fixed cluster should serve all workloads",
+        "Clusters should never be split by use case"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes per-workload clusters and splitting by major use case or area."
+    },
+    {
+      "question": "How can systems lower data latency and enhance query performance/concurrency for embedded analytics?",
+      "options": [
+        "A system that can ingest directly from a stream can lower data latency, and many database architectures rely on SSD or memory caching to enhance query performance and concurrency",
+        "Streaming ingestion increases latency",
+        "SSD caching degrades performance",
+        "Concurrency cannot be enhanced"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book connects stream ingestion to latency and SSD/memory caching to performance/concurrency."
+    },
+    {
+      "question": "What advantage do data platforms like Snowflake and Databricks offer for analysts and data scientists?",
+      "options": [
+        "Analysts and data scientists can operate under a single environment with SQL editors and notebooks under one roof; because compute and storage are separated, they can consume underlying data in various ways without interfering with each other",
+        "They must use separate environments",
+        "Compute/storage separation causes interference",
+        "Notebooks are not supported"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the single-environment benefit of separated compute/storage."
+    },
+    {
+      "question": "How does the book describe serving data through streaming systems?",
+      "options": [
+        "Streaming analytics serving may involve emitted metrics, which differ from traditional queries; operational analytics databases play a growing role, allowing queries across large historical data and up-to-the-second current data, essentially combining OLAP with stream processing",
+        "Streaming serving uses only traditional queries",
+        "Emitted metrics are identical to queries",
+        "Streaming cannot serve analytics"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes emitted metrics and operational analytics databases combining OLAP with streaming."
+    },
+    {
+      "question": "What OSS options and managed services does the book name for query federation?",
+      "options": [
+        "OSS options like Trino and Presto and managed services such as Starburst",
+        "Only proprietary tools",
+        "Only on-premises systems",
+        "Query federation has no tools"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names Trino, Presto, and Starburst for query federation."
+    },
+    {
+      "question": "What challenge does serving data for federated queries pose if they touch live production source systems?",
+      "options": [
+        "You must ensure the federated query won't consume excessive resources in the source, since the end user might be querying several systems each with its own usage patterns, quirks, and nuances",
+        "Federated queries never touch source systems",
+        "Resource consumption in sources is irrelevant",
+        "All systems behave identically"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns about resource consumption in live sources and the challenge of multiple systems."
+    },
+    {
+      "question": "When are federated queries ideally suited, and what do they allow?",
+      "options": [
+        "They're ideal when you want flexibility in analyzing data or the source data needs to be tightly controlled; they allow ad hoc exploratory analysis blending data from various systems without the complexity of setting up pipelines or ETL, letting you determine if performance is sufficient or you need to centralize via ingestion",
+        "They're ideal for fully centralized pipelines",
+        "They require heavy ETL setup",
+        "They cannot do exploratory analysis"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes federation's ideal use cases and exploratory flexibility."
+    },
+    {
+      "question": "What access characteristic do federated queries provide, and when are they a great option?",
+      "options": [
+        "Federated queries provide read-only access to source systems, so the end user reads only the version of the data they're supposed to access and nothing more — a great option where access and compliance are critical",
+        "Federated queries provide full write access",
+        "Federated queries serve data dumps",
+        "Access control is not a federation concern"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book highlights federated queries' read-only, access/compliance-friendly nature."
+    },
+    {
+      "question": "How does data sharing turn data serving into a security and access control problem?",
+      "options": [
+        "The actual queries are handled by the data consumers rather than the engineers sourcing the data, so serving becomes about carefully controlling what consumers can access",
+        "Data sharing eliminates access control needs",
+        "Engineers run all consumer queries",
+        "Security is irrelevant to sharing"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says data sharing generally turns serving into a security and access control problem."
+    },
+    {
+      "question": "How is data sharing used within and between organizations, and where is it a core feature?",
+      "options": [
+        "It can serve within a data mesh, to the public, or to partner businesses, and is increasingly a core feature of major data platforms like Snowflake, Redshift, and BigQuery for sharing data safely and securely",
+        "Data sharing only works within one team",
+        "Data sharing is not supported by major platforms",
+        "Data sharing cannot be secured"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes data sharing's uses and its core-feature status in major platforms."
+    },
+    {
+      "question": "How does the book distinguish data quality from query quality?",
+      "options": [
+        "Data quality focuses on characteristics of the data itself and techniques to filter or improve bad data; query quality is building a query with appropriate logic that returns accurate answers to business questions",
+        "They are identical concepts",
+        "Query quality is about data characteristics",
+        "Data quality is about query logic"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book distinguishes data quality (data characteristics) from query quality (query logic)."
+    },
+    {
+      "question": "Why don't powerful query engines inherently make for quality business analytics?",
+      "options": [
+        "When fed poor-quality data or poor-quality queries, powerful query engines quickly return bad results",
+        "Powerful engines always fix bad data",
+        "Query quality is guaranteed by fast engines",
+        "Bad queries always return good results"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says powerful engines quickly return bad results when given poor data or queries."
+    },
+    {
+      "question": "How does the book describe LookML's role in Looker?",
+      "options": [
+        "LookML allows users to define virtual, complex business logic; reports and dashboards point to specific LookML for computing metrics, standard metrics are referenced in many downstream queries, and LookML generates SQL queries pushed down to the database with results persisted in the Looker server or database",
+        "LookML only defines dashboards visually",
+        "LookML cannot generate SQL",
+        "LookML replaces the database entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes LookML's business-logic definition and SQL generation."
+    },
+    {
+      "question": "How does dbt compare to Looker?",
+      "options": [
+        "dbt allows defining complex SQL data flows with standard definitions of business metrics, runs exclusively in the transform layer (including pushing queries into views computed at query time), and can serve as a robust data pipeline orchestration tool for analytics engineers",
+        "dbt only serves reports",
+        "dbt runs in the serving layer only",
+        "dbt cannot orchestrate pipelines"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts dbt's transform-layer focus with Looker's serving focus."
+    },
+    {
+      "question": "What central analytics question do metrics layer tools help solve?",
+      "options": [
+        "\"Are these numbers correct?\" — a question that has plagued organizations since people began analyzing data",
+        "\"Which tool is fastest?\"",
+        "\"How many dashboards should we have?\"",
+        "\"What is the cluster size?\""
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says metrics layers help solve the \"Are these numbers correct?\" question."
+    },
+    {
+      "question": "What does the book say about the Jupyter notebook platform?",
+      "options": [
+        "Jupyter Notebook and JupyterLab are the most popular notebook platforms; Jupyter is open source, hosted locally, on a server, or through cloud-managed services, and stands for Julia, Python, and R",
+        "Jupyter is proprietary",
+        "Jupyter can only run locally",
+        "Jupyter stands for Java and C++"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Jupyter's popularity, open-source nature, hosting options, and name origin."
+    },
+    {
+      "question": "How do data scientists programmatically connect to data sources from notebooks?",
+      "options": [
+        "They connect to an API, database, data warehouse, or data lake using the appropriate built-in or imported libraries to load a file from a filepath, connect to an API endpoint, or make an ODBC connection to a database",
+        "Notebooks cannot connect to data sources",
+        "Only databases can be connected to",
+        "Connections require no libraries"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes programmatic notebook connections to various data sources."
+    },
+    {
+      "question": "What is the common pandas workflow in notebooks, and where does pandas store data?",
+      "options": [
+        "Pandas loads a dataset (e.g. a CSV) into a Jupyter notebook and stores the dataset in memory",
+        "Pandas stores data on disk only",
+        "Pandas cannot load CSV files",
+        "Pandas is not a Python library"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes pandas loading data into memory."
+    },
+    {
+      "question": "How does the book suggest data engineers handle data science security practices?",
+      "options": [
+        "Audit data science security practices and work collaboratively on improvements, setting standards — credentials should never be embedded in code, and data scientists should use credential managers or CLI tools",
+        "Ignore data science security",
+        "Require credentials embedded in code",
+        "Disallow all data science work"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends auditing, collaborative improvement, and credential standards."
+    },
+    {
+      "question": "What distributed execution systems does the book name as notebook scaling options?",
+      "options": [
+        "Dask, Ray, and Spark",
+        "Only Hadoop MapReduce",
+        "Only single-node pandas",
+        "Only Excel"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names Dask, Ray, and Spark as popular Python distributed execution options."
+    },
+    {
+      "question": "What cloud-managed ML offerings and open source ML workflow options does the book name?",
+      "options": [
+        "Amazon SageMaker, Google Cloud Vertex AI, and Microsoft Azure Machine Learning; open source options like Kubeflow and MLflow for scaling ML workloads in Kubernetes and Spark",
+        "Only on-premises tools",
+        "Only open source options",
+        "No ML platforms exist"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these managed and open source ML workflow options."
+    },
+    {
+      "question": "What role do data engineers and ML engineers play in moving data scientists to cloud infrastructure?",
+      "options": [
+        "They take the lead in setting up cloud infrastructure, overseeing management of environments, and training data scientists on cloud-based tools; cloud environments require significant operational work like managing versions, controlling access, and maintaining SLAs",
+        "They have no role in infrastructure",
+        "Data scientists manage all infrastructure",
+        "Cloud setup requires no operations"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the lead role in cloud setup and the operational work involved."
+    },
+    {
+      "question": "What does the book say about productionized notebooks, and what hybrid does it suggest?",
+      "options": [
+        "Productionized notebooks let data scientists get work into production faster but are inherently a substandard form of production; a hybrid may be ideal, with notebooks for light production and a full productionization process for high-value projects",
+        "Productionized notebooks are always perfect",
+        "All production should use notebooks",
+        "Notebooks can never be used in production"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes notebooks' faster-but-substandard production and the hybrid approach."
+    },
+    {
+      "question": "How does the book define reverse ETL, and how did it grow in popularity?",
+      "options": [
+        "Reverse ETL is serving data by loading it from an OLAP database back into a source system; it grew in popularity in the late 2010s/early 2020s and is increasingly recognized as a formal data engineering responsibility",
+        "Reverse ETL loads data from source to warehouse",
+        "Reverse ETL only works for batch systems",
+        "Reverse ETL is a new term for ETL"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines reverse ETL and its recent growth in popularity."
+    },
+    {
+      "question": "Why does the book recommend reverse ETL for serving scored leads to a sales team?",
+      "options": [
+        "Dashboards and emailed Excel files are not connected to the CRM where salespeople do their work; loading scored leads back into the CRM reduces friction with the end user and is the easiest and best approach for this data product",
+        "Dashboards are always the best approach",
+        "Emailing Excel files integrates with CRM",
+        "Sales teams never use CRMs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes why reverse ETL into the CRM beats dashboards and email."
+    },
+    {
+      "question": "What term do the authors half-jokingly use for reverse ETL, and what do they say about it?",
+      "options": [
+        "Bidirectional load and transform (BLT) — the term reverse ETL doesn't quite accurately describe the process, but it has stuck, and the practice of loading data from OLAP systems back into source systems will remain important",
+        "Unidirectional load and transform (ULT)",
+        "Forward ETL (FETL)",
+        "The authors reject the practice entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book suggests BLT as a more accurate term while noting reverse ETL has stuck."
+    },
+    {
+      "question": "What does the book recommend about building versus buying reverse ETL?",
+      "options": [
+        "Many off-the-shelf reverse ETL options exist; use open source or a commercial managed service, but the space is changing extremely quickly with no clear winners, so choose carefully",
+        "Always build your own from scratch",
+        "Reverse ETL has no vendor options",
+        "The market is settled"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends off-the-shelf options with careful selection."
+    },
+    {
+      "question": "Who does the book list as the stakeholders a data engineer interfaces with at the serving stage?",
+      "options": [
+        "Data analysts, data scientists, MLOps/ML engineers, and the business — nondata or nontechnical stakeholders, managers, and executives",
+        "Only executives",
+        "Only data engineers",
+        "Only external customers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these serving-stage stakeholders."
+    },
+    {
+      "question": "How does the book describe the data engineer's responsibility relative to stakeholders' use of data?",
+      "options": [
+        "The data engineer operates in a support role and is not necessarily responsible for the end uses of data — e.g. supplying data for a report that analysts interpret — but is responsible for producing the highest-quality data products possible",
+        "Data engineers are responsible for all interpretations",
+        "Data engineers control how data is used",
+        "Data quality is not the engineer's concern"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the support role and responsibility for high-quality data products."
+    },
+    {
+      "question": "Why does the book emphasize separation of duties and concerns at the serving stage?",
+      "options": [
+        "At an early-stage company a data engineer may also be an ML engineer or data scientist, which is not sustainable; as the company grows, a clear division of duties with other data team members must be established",
+        "Separation of duties is never needed",
+        "One person can sustainably fill every role",
+        "Division of duties reduces quality"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the unsustainable early-stage multi-role situation and the need for clear division."
+    },
+    {
+      "question": "How does adopting a data mesh reorganize team responsibilities?",
+      "options": [
+        "Every domain team takes on aspects of serving, and for a data mesh to succeed each team must work effectively on its data-serving responsibilities and collaborate to ensure organizational success",
+        "Data mesh centralizes all responsibilities",
+        "Domain teams stop serving data",
+        "Collaboration becomes unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes data mesh's reorganization of serving responsibilities."
+    },
+    {
+      "question": "Why does the book call serving a \"final chance\" for data quality, and how do the undercurrents come to a head there?",
+      "options": [
+        "Serving is your final chance to make sure data is in great shape before it gets into the hands of end users — the undercurrents come to finality with serving, and serving often highlights something missed earlier in the lifecycle",
+        "Serving has no data quality concerns",
+        "Undercurrents end before serving",
+        "Data quality is only checked at ingestion"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says serving is the final chance for data quality and where undercurrents come to a head."
+    },
+    {
+      "question": "What catastrophic results does the book associate with indiscriminate data sharing?",
+      "options": [
+        "A data breach and the resulting fines, bad press, and lost jobs",
+        "No consequences at all",
+        "Only slower queries",
+        "Higher storage costs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists fines, bad press, and lost jobs as consequences of indiscriminate sharing."
+    },
+    {
+      "question": "How does the book apply the principle of least privilege at the serving stage?",
+      "options": [
+        "Exercise least privilege for both people and systems, providing only the access required for the purpose at hand and job to be done — executives, analysts, ML pipelines, and reverse ETL processes all have different data needs",
+        "Give everyone carte blanche permissions",
+        "All users need identical access",
+        "Least privilege only applies to executives"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends least privilege with role-appropriate access."
+    },
+    {
+      "question": "What does the book recommend about read-only access and IAM roles for serving data?",
+      "options": [
+        "Serving data is often read-only unless a person or process needs to update data; give read-only access to specific databases and datasets unless a role requires more, accomplished by combining groups of users with IAM roles or custom IAM roles, with service accounts for systems",
+        "Everyone should have write access",
+        "IAM roles are unnecessary",
+        "Service accounts should not exist"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes read-only defaults and IAM role-based access."
+    },
+    {
+      "question": "How does the book recommend mediating access in a multitenant serving environment?",
+      "options": [
+        "Make sure users can access only their data, mediating access through filtered views to alleviate the security risks of sharing a common table, and consider data sharing for read-only granular controls",
+        "Give all tenants access to everything",
+        "Use unfiltered common tables",
+        "Access control is irrelevant to multitenancy"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends filtered views and data sharing for multitenant access."
+    },
+    {
+      "question": "Why does the book say access control and security should be viewed as enablers rather than impediments?",
+      "options": [
+        "Many advanced data systems were built but languished because security wasn't implemented correctly and few people could access the data; fine-grained robust access control means more interesting analytics and ML can be done while protecting the business",
+        "Security always limits analytics",
+        "Languishing data is fine",
+        "Access control reduces data value"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes how poor access control led to underused data systems."
+    },
+    {
+      "question": "How does the book say to make data trust an active process?",
+      "options": [
+        "Provide feedback loops — as users interact with data they can report problems and request improvements, and engineers should actively communicate back as changes are made",
+        "Trust is built passively",
+        "User feedback should be ignored",
+        "Improvements need no communication"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends active feedback loops for data trust."
+    },
+    {
+      "question": "What role does data obfuscation play in serving data with regulatory concerns?",
+      "options": [
+        "Serve synthetic, scrambled, or anonymized data so analysts get the necessary signal while making it difficult to identify protected information; though not perfect since datasets can be de-anonymized, it reduces the risk of data leakage",
+        "Obfuscation makes data unusable",
+        "Raw data should always be served directly",
+        "De-anonymization is impossible"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes obfuscation's risk reduction despite de-anonymization possibility."
+    },
+    {
+      "question": "How do semantic and metrics layers plus rigorous data modeling contribute to serving?",
+      "options": [
+        "They provide a single source of truth, whether for analytics, ML, reverse ETL, or other serving uses",
+        "They create multiple conflicting definitions",
+        "They replace all data management",
+        "They only apply to reverse ETL"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says they provide a single source of truth."
+    },
+    {
+      "question": "What does the book say about DataOps and data management in serving?",
+      "options": [
+        "DataOps operationalizes data management — the steps you take in data quality, governance, and security are monitored in DataOps",
+        "DataOps replaces data management",
+        "DataOps and data management are unrelated",
+        "DataOps only monitors infrastructure"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says DataOps operationalizes data management."
+    },
+    {
+      "question": "What things does the book say to monitor for DataOps in serving?",
+      "options": [
+        "Data health and downtime, latency of serving systems, data quality, data and system security and access, data and model versions being served, and uptime to achieve an SLO",
+        "Only CPU usage",
+        "Only dashboard colors",
+        "Only the number of users"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these DataOps monitoring items."
+    },
+    {
+      "question": "What do data observability tools aim to do, and how can they cross over to ML?",
+      "options": [
+        "They aim to minimize data downtime and maximize data quality, and may cross over from data to ML, supporting monitoring of models and model performance; conventional DevOps monitoring of stable connections is also critical",
+        "They only monitor model accuracy",
+        "They replace all DevOps monitoring",
+        "They cannot monitor data quality"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes observability tools' goals and ML crossover."
+    },
+    {
+      "question": "What does the book recommend for version control and deployment at the serving stage?",
+      "options": [
+        "Version-control code and operationalize deployment for analytical code, data logic code, ML scripts, and orchestration jobs, using multiple deployment stages (dev, test, prod) for reports and models",
+        "Skip version control for reports",
+        "Deploy directly to production only",
+        "Version control is unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends version control and multi-stage deployment."
+    },
+    {
+      "question": "What architectural consideration does the book emphasize for the serving stage?",
+      "options": [
+        "Feedback loops must be fast and tight — users should access the data they need as quickly as possible when they need it",
+        "Feedback loops are slow by design",
+        "Users should wait for data",
+        "Architecture is irrelevant at serving"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says feedback loops must be fast and tight at serving."
+    },
+    {
+      "question": "Why does the book encourage migrating data scientists' local workflows to cloud environments?",
+      "options": [
+        "Data scientists are notorious for developing on local machines; migrating to common cloud systems lets data teams collaborate in dev, test, and production environments and create proper production architectures",
+        "Local development is always superior",
+        "Cloud environments prevent collaboration",
+        "Data scientists should stay on laptops"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends migrating local workflows to cloud systems for collaboration."
+    },
+    {
+      "question": "How does the book characterize orchestration at the serving stage?",
+      "options": [
+        "Serving is downstream of so many processes that it's an area of extremely complex overlap; orchestration is not just organizing and automating work but a means of coordinating data flow across teams so data is made available to consumers at the promised time",
+        "Orchestration only schedules one system",
+        "Serving needs no coordination",
+        "Orchestration stops at serving"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes orchestration's role in coordinating data flow across teams."
+    },
+    {
+      "question": "What are the trade-offs of decentralized versus centralized orchestration ownership?",
+      "options": [
+        "Decentralized lets small teams manage their data flows but increases cross-team coordination burden, requiring teams to pass messages or queries between systems; centralized makes work easier to coordinate but requires significant gatekeeping to protect a single production asset",
+        "Decentralized is always better",
+        "Centralized requires no gatekeeping",
+        "Both approaches are identical"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts decentralized coordination burden with centralized gatekeeping needs."
+    },
+    {
+      "question": "What risk does the book describe for centralized orchestration, and what does it require?",
+      "options": [
+        "A poorly written DAG can bring Airflow to a halt, taking down data processes and serving across the whole organization; centralized management requires high standards, automated testing of DAGs, and gatekeeping",
+        "Centralized orchestration has no risks",
+        "DAG failures are always isolated",
+        "No testing is needed for DAGs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the centralized failure risk and required standards/testing/gatekeeping."
+    },
+    {
+      "question": "If orchestration is centralized, who does the book say usually owns it?",
+      "options": [
+        "When a company has a DataOps team, orchestration usually lands there; often a team involved in serving is a natural fit because it has a fairly holistic view of all lifecycle stages — possibly DBAs, analytics engineers, data engineers, or ML engineers",
+        "Nobody owns orchestration",
+        "Only executives own it",
+        "ML engineers always want it"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes DataOps and serving teams as natural orchestration owners."
+    },
+    {
+      "question": "How has serving data changed compared to a few years ago, per the book?",
+      "options": [
+        "Serving has become simpler — the need to write code has been drastically simplified, and data has become more code-first with the proliferation of open source frameworks focused on simplifying the serving of data",
+        "Serving has become much harder",
+        "More code is always required",
+        "Open source frameworks made serving harder"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes serving's simplification and code-first direction."
+    },
+    {
+      "question": "What code-related responsibility does the book describe for data engineers even as serving simplifies?",
+      "options": [
+        "If code is involved, a data engineer should understand how the main serving interfaces work, e.g. translating the code a data scientist runs locally on a notebook and converting it into a report or basic ML model to operate",
+        "Data engineers never touch code",
+        "Notebook code needs no translation",
+        "Serving interfaces are irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes translating notebook code into production-serving artifacts."
+    },
+    {
+      "question": "What does the rise of analytics and ML infrastructure as code (IaC) mean for the data engineer's role?",
+      "options": [
+        "The role of writing code moves toward building the systems that support data scientists and analysts — data engineers may set up CI/CD pipelines and build processes for their data team, and train/support them in using the Data/MLOps infrastructure so the teams can be as self-sufficient as possible",
+        "Data engineers write all analyst code",
+        "Data engineers stop supporting data teams",
+        "IaC eliminates the data engineer role"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the shift toward building supporting systems and CI/CD pipelines."
+    },
+    {
+      "question": "How should data engineers work with application developers for embedded analytics?",
+      "options": [
+        "Data engineers may need to work with application developers to ensure queries are returned quickly and cost-effectively; the developer controls the frontend code while the data engineer ensures developers receive the correct payloads as requested",
+        "Data engineers control the frontend",
+        "Application developers handle all data",
+        "Queries never matter to app developers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the split between frontend control and correct payload delivery."
+    },
+    {
+      "question": "How does the book describe the lifecycle feedback loop at the serving stage?",
+      "options": [
+        "The serving stage is a chance to learn what's working and what can be improved — listen to stakeholders, don't take offense at issues they raise, and use them as an opportunity to improve what you've built, following a build, learn, improve loop",
+        "Feedback at serving should be ignored",
+        "Serving is the end with no feedback",
+        "Stakeholder issues should be taken personally"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the build-learn-improve feedback loop at serving."
+    },
+    {
+      "question": "What processes does the book say are needed to realize data quality and build stakeholder trust?",
+      "options": [
+        "Data validation — analyzing data to ensure it accurately represents financial information, customer interactions, and sales — and data observability, an ongoing view of data and data processes, applied throughout the lifecycle and combined with visually inspecting and confirming validity with stakeholders",
+        "Only quarterly audits",
+        "Only data compression",
+        "Only access control lists"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes data validation and data observability as trust-building processes applied throughout the lifecycle."
+    },
+    {
+      "question": "Why does the book say engineers must also build trust in SLAs and SLOs with end users?",
+      "options": [
+        "Once users depend on data for business processes, they require data to be consistently available and up-to-date per commitments; high-quality data is of little value if it isn't available when it's time for a critical decision",
+        "SLAs are only for external customers",
+        "Data availability never matters",
+        "SLOs are purely cosmetic"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says availability commitments matter once users depend on data."
+    },
+    {
+      "question": "What is an SLA, and what is an SLO within it?",
+      "options": [
+        "An SLA tells users what to expect from your data product — a contract between you and your stakeholders (e.g. \"data will be reliably available and of high quality\"); an SLO describes how you'll measure performance against the agreement (e.g. \"99% uptime, with 95% of data free of defects\")",
+        "An SLA is a storage contract",
+        "An SLO defines the data schema",
+        "SLOs are unrelated to SLAs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines SLA as the expectations contract and SLO as the measurable performance targets."
+    },
+    {
+      "question": "What does the book say is a central feature of a good SLA beyond simply agreeing on it?",
+      "options": [
+        "Ongoing communication — have you communicated possible issues that might affect your SLA or SLO expectations, and what's your process for remediation and improvement?",
+        "Never revisiting the agreement",
+        "Ignoring issues until they escalate",
+        "Remediation without communication"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says ongoing communication is central to a good SLA."
+    },
+    {
+      "question": "What caching configuration do BI systems like Tableau and Looker offer?",
+      "options": [
+        "Both have various configuration options for caching results to reduce the processing burden for frequently run queries",
+        "Neither supports caching",
+        "Only Tableau caches",
+        "Caching always increases processing burden"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says both Tableau and Looker have caching configuration options."
+    },
+    {
+      "question": "How might an analyst or data scientist consume data served from a database?",
+      "options": [
+        "Query a database with a SQL editor and export results to a CSV file for a downstream application, or analyze the results in a notebook",
+        "Only by printing reports",
+        "Only through dashboards",
+        "Databases cannot be queried"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes SQL-editor CSV export and notebook analysis as consumption paths."
+    },
+    {
+      "question": "How does the book say to handle data definitions that vary across departments?",
+      "options": [
+        "When the definition of a term like customer varies, these variations must be documented and made available to everyone who uses the data",
+        "Variations should be hidden",
+        "Only one department's definition may be used",
+        "Definitions never vary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says variable definitions must be documented and made available."
+    },
+    {
+      "question": "What ML-related technologies might a data engineer be responsible for interfacing with or supporting?",
+      "options": [
+        "Feature stores or ML observability",
+        "Only GPUs",
+        "Only data warehouses",
+        "ML technologies are outside the engineer's scope"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists feature stores and ML observability as technologies a data engineer might support."
+    },
+    {
+      "question": "What does the book say about deciding where to train ML models and when to use GPU over CPU?",
+      "options": [
+        "Know when it's appropriate to train locally, on a cluster, or at the edge; the type of hardware (GPU vs CPU) largely depends on the ML problem, the technique used, and the size of the dataset",
+        "Always train locally with CPUs",
+        "GPU choice is random",
+        "Hardware never depends on the problem"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes training-location and hardware decisions based on problem, technique, and dataset size."
+    },
+    {
+      "question": "What does the book say a data engineer should know about encoding categorical data and embeddings?",
+      "options": [
+        "How to encode categorical data and the embeddings for various types of data",
+        "Embeddings are never used in ML",
+        "Categorical data cannot be encoded",
+        "Encoding is only for text files"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists categorical encoding and embeddings among the ML areas to know."
+    },
+    {
+      "question": "What does the book say about AutoML versus handcrafting an ML model?",
+      "options": [
+        "Know when you'd use automated machine learning versus handcrafting a model, and the trade-offs of each regarding the data being used",
+        "AutoML is always superior",
+        "Handcrafting is always superior",
+        "The choice never depends on data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists AutoML-versus-handcrafted as an area to understand with data trade-offs."
+    },
+    {
+      "question": "What time-series techniques does the book say a data engineer should be familiar with?",
+      "options": [
+        "The various techniques for handling time-series data, including time-series analysis as well as time-series forecasting",
+        "Only time-series storage",
+        "Time-series techniques are irrelevant",
+        "Only forecasting, never analysis"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists time-series analysis and forecasting as areas to know."
+    },
+    {
+      "question": "How does the book describe the simplest file serving approach, and what are its limitations?",
+      "options": [
+        "The simplest file to serve is something like emailing a single Excel file, still a common workflow, but it leads to version divergence and little recourse to recall access",
+        "Emailing is the most robust approach",
+        "Emailing files prevents divergence",
+        "Emailed files can always be recalled"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes emailed Excel files as simple but problematic."
+    },
+    {
+      "question": "What does the book say about some query federation offerings and data mesh?",
+      "options": [
+        "Some offerings describe themselves as ways to enable the data mesh; time will tell how that unfolds",
+        "Query federation rejects data mesh",
+        "Federation has no relationship to data mesh",
+        "Data mesh forbids federated queries"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes some federation offerings describe themselves as data mesh enablers."
+    },
+    {
+      "question": "Where does the book say metrics layer tools are likely to move as they grow more popular?",
+      "options": [
+        "Metrics layer tools will grow more popular with wider adoption and more entrants, and move upstream toward the application",
+        "They will disappear",
+        "They will move downstream to storage",
+        "They will never change location"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book predicts metrics layers moving upstream toward the application."
+    },
+    {
+      "question": "What does the book say about ML engineers and orchestration ownership?",
+      "options": [
+        "ML engineers coordinate complex model-training processes but may or may not want to add the operational complexity of managing orchestration to an already crowded docket of responsibilities",
+        "ML engineers always want orchestration ownership",
+        "ML engineers never coordinate training",
+        "Orchestration has no operational complexity"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes ML engineers' mixed interest in orchestration ownership."
+    },
+    {
+      "question": "What feedback loops should a data engineer be aware of between the lifecycle and broader data use?",
+      "options": [
+        "Data is rarely static, and the outside world will influence the data that is ingested, served, reingested, and re-served once it's in the hands of stakeholders",
+        "Data is static once served",
+        "The outside world never affects data",
+        "Feedback loops don't exist"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes ongoing external influence on data in feedback loops."
+    },
+    {
+      "question": "Why should users of data apps expect fast query performance, per the book?",
+      "options": [
+        "When they adjust parameters in an analytics dashboard, they want to see refreshed results appear in seconds",
+        "Users prefer waiting for results",
+        "Parameter changes never refresh results",
+        "Query speed is irrelevant to app users"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says data app users want refreshed results within seconds of adjusting parameters."
+    },
+    {
+      "question": "What does the book say data engineers should pay attention to regarding data product adoption and usage?",
+      "options": [
+        "Pay attention to the adoption and usage of data products and be willing to adjust to make users happy",
+        "Ignore usage patterns",
+        "Never adjust products",
+        "Adoption is irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to pay attention to adoption and adjust products."
+    },
+    {
+      "question": "What operational work does the book say cloud environments require for data science?",
+      "options": [
+        "Managing versions and updates, controlling access, and maintaining SLAs — a significant payoff can result when data science ops are done well",
+        "No operational work at all",
+        "Only paying invoices",
+        "Version management is unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the operational work and payoff of data science ops."
+    },
+    {
+      "question": "What does the book say about notebooks possibly becoming part of production data science?",
+      "options": [
+        "Notebooks are widely deployed at Netflix, an interesting approach with advantages and trade-offs — productionized notebooks let data scientists get work into production much faster but are inherently a substandard form of production",
+        "Notebooks can never be in production",
+        "Production notebooks are always ideal",
+        "Netflix forbids notebooks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Netflix's production notebook usage and its trade-offs."
+    },
+    {
+      "question": "What is the alternative to productionized notebooks, and what burden does it place?",
+      "options": [
+        "Having ML and data engineers convert notebooks for production use places a significant burden on these teams",
+        "There is no alternative",
+        "Converting notebooks is trivial",
+        "Only data scientists convert notebooks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the conversion burden on ML and data engineers."
+    },
+    {
+      "question": "Why is it dangerous to treat the data engineer as an interpreter of reports rather than a producer of data products?",
+      "options": [
+        "The data engineer supplies the data for a report that analysts interpret but isn't responsible for these interpretations — the engineer's responsibility is producing the highest-quality data products possible",
+        "Data engineers should only interpret reports",
+        "Data engineers control all interpretations",
+        "Data quality is not the engineer's concern"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book clarifies the data engineer's support role and product-quality responsibility."
+    },
+    {
+      "question": "How does the book say the data engineering lifecycle should be viewed at its logical ending?",
+      "options": [
+        "As with all lifecycles, a feedback loop occurs — view the serving stage as a chance to learn what's working and what can be improved, listening to stakeholders and using issues as opportunities to improve",
+        "As a fixed endpoint with no feedback",
+        "As a one-way street",
+        "As an opportunity to ignore feedback"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the feedback loop and continuous improvement at the lifecycle's logical ending."
+    }
+  ]
+}

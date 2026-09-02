@@ -1,0 +1,271 @@
+{
+  "title": "Module 1 — Key Terms",
+  "source_file": "M1.1.md, M1.2.md, M1.3.md, M1.4.md",
+  "question_count": 24,
+  "questions": [
+    {
+      "question": "In Microsoft Fabric, what is a dataflow best described as?",
+      "options": [
+        "A type of cloud-based ETL tool for building and executing scalable data transformation processes",
+        "A relational database optimized for storing real-time sensor events",
+        "A dashboarding tool for visualizing analytics data",
+        "A scheduling service that only orchestrates Spark notebooks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source defines dataflows as a type of cloud-based ETL (Extract, Transform, Load) tool for building and executing scalable data transformation processes."
+    },
+    {
+      "question": "Which interface do Dataflows Gen2 use to perform transformations visually?",
+      "options": [
+        "Kusto Query Language editor",
+        "Power Query Online",
+        "Spark SQL editor",
+        "Transact-SQL Management Studio"
+      ],
+      "correctIndex": 1,
+      "explanation": "Dataflows Gen2 use Power Query Online, which provides a visual interface for extracting and transforming data."
+    },
+    {
+      "question": "What are the stated limitations of Dataflows Gen2?",
+      "options": [
+        "Row-level security isn't supported, and they aren't a replacement for a data warehouse",
+        "They cannot be incorporated into data pipelines",
+        "They cannot connect to on-premises data sources",
+        "They only support a single transformation per query"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source lists row-level security not being supported and not being a data warehouse replacement as limitations; a Fabric capacity workspace is also required."
+    },
+    {
+      "question": "Within a Fabric environment, which destinations can a Dataflow Gen2 land data into?",
+      "options": [
+        "Lakehouse, Warehouse, and SQL database",
+        "Only Lakehouse",
+        "Azure Blob, Amazon S3, and Google Cloud Storage",
+        "Only the Power BI default workspace"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Query settings pane lists Lakehouse, Warehouse, and SQL database as data destinations, with additional support for Azure SQL database, Azure Data Explorer, and Azure Synapse Analytics."
+    },
+    {
+      "question": "How can a Dataflow Gen2 be integrated into broader orchestration?",
+      "options": [
+        "By creating a data pipeline and adding the Dataflow Gen2 activity to the orchestration",
+        "Dataflows cannot be orchestrated by pipelines",
+        "By running the dataflow exclusively as a standalone refresh",
+        "Only by exporting the dataflow to Power BI"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states that to perform additional tasks or load to a different destination, you create a data pipeline and add the Dataflow Gen2 activity to your orchestration."
+    },
+    {
+      "question": "What are the executable tasks in a Fabric data pipeline called?",
+      "options": [
+        "Activities",
+        "Triggers",
+        "Dataflows",
+        "Segments"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source defines activities as the executable tasks in a pipeline, which can be connected in a sequence to define a flow."
+    },
+    {
+      "question": "What are the two broad categories of activity in a Fabric pipeline?",
+      "options": [
+        "Data transformation activities and control flow activities",
+        "Source activities and destination activities",
+        "Schedule activities and trigger activities",
+        "Copy activities and paste activities"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes data transformation activities (copy, data flow, notebook, stored procedure) and control flow activities (loops, branching, variable/parameter management)."
+    },
+    {
+      "question": "What enables a pipeline to be reused with different values each time it runs?",
+      "options": [
+        "Parameters",
+        "Notebooks",
+        "Templates",
+        "Querysets"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source says pipelines can be parameterized to provide specific values each run, increasing reusability."
+    },
+    {
+      "question": "When should you use the Copy Data activity in a Fabric pipeline?",
+      "options": [
+        "When you need to copy data directly between a supported source and destination without applying transformations",
+        "When you need to apply complex transformations during ingestion",
+        "When you need to merge data from multiple sources",
+        "When you want to run Spark code on the data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source recommends Copy Data when copying without transformations, and Data Flow activities for transformations or merging multiple sources."
+    },
+    {
+      "question": "What is Apache Spark in Microsoft Fabric?",
+      "options": [
+        "An open source parallel processing framework for large-scale data processing and analytics",
+        "A relational database management system",
+        "A cloud-based ETL-only tool",
+        "A Power BI visualization engine"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source defines Apache Spark as an open source parallel processing framework for large-scale data processing and analytics."
+    },
+    {
+      "question": "What is a Spark pool in Microsoft Fabric?",
+      "options": [
+        "A set of compute nodes that distribute data processing tasks",
+        "A storage location for Parquet files",
+        "A collection of Power BI semantic models",
+        "A type of data pipeline"
+      ],
+      "correctIndex": 0,
+      "explanation": "A Spark pool consists of compute nodes that distribute data processing tasks, coordinating distributed processes."
+    },
+    {
+      "question": "What are the two kinds of node in a Spark pool, and what role does each play?",
+      "options": [
+        "A head node coordinates distributed processes through a driver program, while worker nodes run executor processes that perform the actual data processing",
+        "A head node performs all processing and worker nodes store data",
+        "Worker nodes coordinate while the head node executes tasks",
+        "Both node types perform identical roles"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes the head node coordinating via a driver program and worker nodes running executor processes."
+    },
+    {
+      "question": "What do the terms PySpark and Spark SQL refer to?",
+      "options": [
+        "PySpark is a Spark-specific variant of Python, and Spark SQL is a library enabling SQL expressions to query and manipulate data",
+        "PySpark is a Java library and Spark SQL is a Scala framework",
+        "Both are visualization packages",
+        "PySpark only runs on Hadoop and Spark SQL only in Power BI"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes PySpark as a Spark-specific variant of Python and Spark SQL as the library that enables SQL expressions."
+    },
+    {
+      "question": "What is the most commonly used data structure for working with structured data in Spark?",
+      "options": [
+        "The dataframe, provided as part of the Spark SQL library",
+        "The resilient distributed dataset (RDD)",
+        "The KQL table",
+        "The Power Query table"
+      ],
+      "correctIndex": 0,
+      "explanation": "While Spark natively uses RDDs, the source notes the dataframe is the most commonly used structure for structured data, part of Spark SQL."
+    },
+    {
+      "question": "What is the Spark catalog?",
+      "options": [
+        "A metastore for relational data objects such as views and tables",
+        "A registry of Spark pools",
+        "A billing service for Spark jobs",
+        "A library of Python packages"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source defines the Spark catalog as a metastore for relational data objects such as views and tables."
+    },
+    {
+      "question": "What is the preferred table format in Microsoft Fabric, and what does it support?",
+      "options": [
+        "Delta, the format for Delta Lake, which supports transactions, versioning, and streaming data",
+        "CSV, which supports only static data",
+        "JSONL, which supports no transactions",
+        "Parquet, which has no transaction log"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states the preferred format is delta, which supports relational features including transactions, versioning, and streaming."
+    },
+    {
+      "question": "What does the native execution engine in Microsoft Fabric do?",
+      "options": [
+        "It is a vectorized processing engine that runs Spark operations directly on lakehouse infrastructure, improving query performance on large Parquet or Delta datasets",
+        "It converts Spark code to T-SQL",
+        "It is a Power BI visualization engine",
+        "It replaces Spark pools entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes the native execution engine as a vectorized engine running Spark operations on lakehouse infrastructure."
+    },
+    {
+      "question": "What is an Eventhouse in Microsoft Fabric?",
+      "options": [
+        "A data store container that houses one or more KQL databases optimized for storing and analyzing real-time data",
+        "A lakehouse folder for batch files",
+        "A Power BI report workspace",
+        "A data pipeline template"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source defines an Eventhouse as a container housing KQL databases optimized for real-time data."
+    },
+    {
+      "question": "Why is time-series data described as following an append-only pattern?",
+      "options": [
+        "Because events represent immutable events that happened at specific moments and are rarely updated or deleted",
+        "Because time-series tables forbid all inserts",
+        "Because real-time data is always duplicated",
+        "Because relational databases require append-only data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source says events are immutable — tied to when they happened — so time-series data follows an append-only pattern."
+    },
+    {
+      "question": "What language is used to query data in a KQL database, and what approach does it use?",
+      "options": [
+        "Kusto Query Language (KQL), which uses a pipeline approach where data flows through operators using the pipe (|) character",
+        "T-SQL only, with no operators",
+        "PySpark, using the dataframe API",
+        "Power Query M, using applied steps"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes KQL's pipeline approach using the pipe character, though T-SQL is also supported in querysets."
+    },
+    {
+      "question": "What are materialized views in a KQL database?",
+      "options": [
+        "Precomputed aggregations that automatically update as new data arrives, combining a materialized part and a delta part",
+        "Temporary queries deleted at session end",
+        "Stored KQL scripts with no data",
+        "Views that must be manually refreshed"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes materialized views as precomputed aggregations combining a materialized part and a delta part that update automatically."
+    },
+    {
+      "question": "What are stored functions in a KQL database?",
+      "options": [
+        "Queries encapsulated as functions that can be reused and parameterized for consistent calculations",
+        "Materialized aggregation tables",
+        "Database shortcuts to external eventhouses",
+        "Power BI measures"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes stored functions as encapsulated queries with parameters, enabling reuse and consistent calculations."
+    },
+    {
+      "question": "What are database shortcuts in an Eventhouse?",
+      "options": [
+        "References that let you query external KQL databases as if the data were stored locally, without copying the data",
+        "Copies of the entire KQL database",
+        "Scheduled data ingestion jobs",
+        "Power BI report links"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source says shortcuts let you query data from external KQL databases as if local, without actually copying the data."
+    },
+    {
+      "question": "What does enabling OneLake availability for a KQL database or table do?",
+      "options": [
+        "Makes the data accessible throughout the Fabric ecosystem for cross-workload integration with Power BI, Warehouse, Lakehouse, and other services",
+        "Deletes the table's data from OneLake",
+        "Restricts access to a single workload",
+        "Converts KQL data to CSV files"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source says OneLake availability makes KQL data accessible throughout the Fabric ecosystem for cross-workload integration."
+    }
+  ]
+}

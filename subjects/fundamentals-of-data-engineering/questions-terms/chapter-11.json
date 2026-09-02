@@ -1,0 +1,337 @@
+{
+  "title": "Chapter 11 — The Future of Data Engineering: Key Terms",
+  "source_file": "chapter-11-the-future-of-data-engineering.md",
+  "question_count": 30,
+  "questions": [
+    {
+      "question": "What is the data engineering lifecycle?",
+      "options": [
+        "A single fixed set of technologies that all data engineering teams must adopt",
+        "A job title held only by engineers at large technology companies",
+        "The primary stages of data engineering (such as generation, ingestion, transformation, and serving) that will likely remain intact for many years even as names and tools change",
+        "A certification program for data engineers"
+      ],
+      "correctIndex": 2,
+      "explanation": "The authors emphasize that while the order of operations and names of best practices and technologies might change, the primary stages of the data engineering lifecycle will likely remain intact for many years to come."
+    },
+    {
+      "question": "What is managed open source?",
+      "options": [
+        "Open source software that requires you to download the code and configure it yourself",
+        "Open source data tools offered as managed cloud services that compete directly with proprietary services",
+        "Source code that has been audited and published under a commercial license",
+        "Open source projects maintained exclusively by a single vendor"
+      ],
+      "correctIndex": 1,
+      "explanation": "The cloud has shifted the usage of open source: nowadays many open source data tools are available as managed cloud services that compete directly with proprietary services, and in many cases managed open source is just as easy to use as its proprietary rivals."
+    },
+    {
+      "question": "What is the cloud-scale data OS?",
+      "options": [
+        "A single operating system installed on every cloud server",
+        "An operating system that only runs on smart thermostats and mobile devices",
+        "Simplified cloud data services that resemble operating system services but run across many machines at a much larger scale",
+        "A proprietary product sold by one cloud provider to lock in customers"
+      ],
+      "correctIndex": 2,
+      "explanation": "The authors liken simplified data services such as BigQuery, Azure Blob Storage, Snowflake, and AWS Lambda to operating system services, but at a much larger scale, running across many machines rather than a single server."
+    },
+    {
+      "question": "What does the chapter predict about data interoperability standards?",
+      "options": [
+        "Every company will build proprietary, incompatible data formats",
+        "CSV and raw JSON will remain the dominant formats for cloud data interchange",
+        "Standards will be set only by the legacy Hive Metastore",
+        "Data engineering will gradually coalesce around a handful of data interoperability standards, with object storage growing in importance as a batch interface layer"
+      ],
+      "correctIndex": 3,
+      "explanation": "The authors predict data engineering will gradually coalesce around a handful of data interoperability standards, object storage in the cloud will grow in importance as a batch interface layer, and new file formats like Parquet and Avro are already improving cloud data interchange."
+    },
+    {
+      "question": "What is a metadata catalog?",
+      "options": [
+        "A log of all queries run against a data warehouse",
+        "A tool that encrypts data at rest in cloud storage",
+        "A backup of all database records for disaster recovery",
+        "A system that describes schemas and data hierarchies, playing a crucial role in data interoperability"
+      ],
+      "correctIndex": 3,
+      "explanation": "The authors identify a metadata catalog describing schemas and data hierarchies as a critical ingredient of a data API ecosystem, noting that metadata will play a crucial role in data interoperability and drive automation and simplification."
+    },
+    {
+      "question": "What is the Hive Metastore in this chapter's context?",
+      "options": [
+        "A next-generation streaming database for real-time analytics",
+        "A new metadata catalog standard that will replace all others",
+        "The legacy system that currently largely fills the role of a metadata catalog",
+        "A managed orchestration platform similar to Airflow"
+      ],
+      "correctIndex": 2,
+      "explanation": "The authors note the metadata catalog role is currently largely filled by the legacy Hive Metastore, and expect new entrants will emerge to take its place."
+    },
+    {
+      "question": "How does the chapter describe Apache Airflow?",
+      "options": [
+        "The first truly cloud-oriented data orchestration platform",
+        "A managed cloud data warehouse built on GFS and MapReduce",
+        "A streaming database purpose-built for real-time analytics",
+        "A metadata catalog for schemas and data hierarchies"
+      ],
+      "correctIndex": 0,
+      "explanation": "The authors say Apache Airflow has emerged as the first truly cloud-oriented data orchestration platform, but that we are on the cusp of significant enhancement, with new entrants such as Dagster and Prefect rebuilding orchestration architecture from the ground up."
+    },
+    {
+      "question": "What is Infrastructure as Code (IaC) in the context of next-generation orchestration?",
+      "options": [
+        "Writing infrastructure specifications directly into pipelines so that missing infrastructure is deployed automatically the first time a pipeline runs",
+        "Storing infrastructure on-premises instead of in the cloud",
+        "Manually provisioning cloud resources before writing any pipeline code",
+        "Encrypting pipeline configuration files at rest"
+      ],
+      "correctIndex": 0,
+      "explanation": "The authors predict orchestration platforms will build IaC capabilities similar to Terraform and code deployment features like GitHub Actions, allowing engineers to write infrastructure specifications into their pipelines so missing services are deployed the first time the pipeline runs."
+    },
+    {
+      "question": "What does the chapter mean by \u201centerprisey\u201d data engineering?",
+      "options": [
+        "Engineering constrained by endless red tape and waterfall-managed projects",
+        "The good things larger companies do with data, such as management, operations, and governance",
+        "A certification that data engineers must obtain to work at large enterprises",
+        "Engineering focused only on cutting-edge streaming technology"
+      ],
+      "correctIndex": 1,
+      "explanation": "The authors clarify that they are not referring to Kafkaesque corporate nightmares, but to the good things larger companies do with data\u2014management, operations, governance, and other \u201cboring\u201d stuff\u2014which are now trickling downstream."
+    },
+    {
+      "question": "What is the modern data stack (MDS)?",
+      "options": [
+        "A stack built around the cloud data warehouse paradigm that is basically a repackaging of old data warehouse practices using modern cloud and SaaS technologies",
+        "A stack of streaming databases that treat data as an unbounded continuous stream",
+        "A fully on-premises stack of batch processing tools",
+        "A vendor-specific stack that can only be purchased from one company"
+      ],
+      "correctIndex": 0,
+      "explanation": "The authors argue the MDS is basically a repackaging of old data warehouse practices using modern cloud and SaaS technologies, and because it is built around the cloud data warehouse paradigm it has serious limitations compared to real-time data applications."
+    },
+    {
+      "question": "What is the live data stack?",
+      "options": [
+        "A stack that fuses real-time analytics and ML into applications by using streaming technologies, covering the full data lifecycle",
+        "A stack that relies exclusively on batch ELT pipelines",
+        "A stack built around the cloud data warehouse paradigm",
+        "A dashboarding layer that sits on top of the modern data stack"
+      ],
+      "correctIndex": 0,
+      "explanation": "The authors predict the successor to the modern data stack is the live data stack, which fuses real-time analytics and ML into applications by using streaming technologies, covering the full data lifecycle from application source systems to data processing to ML and back."
+    },
+    {
+      "question": "What are real-time analytical databases?",
+      "options": [
+        "Databases that only support batch ingestion and overnight updates",
+        "Databases that enable both fast ingestion and subsecond queries on streaming data",
+        "Databases that store data as bounded batches for quarterly reporting",
+        "Databases used exclusively for metadata cataloging"
+      ],
+      "correctIndex": 1,
+      "explanation": "Real-time analytical databases enable both fast ingestion and subsecond queries on data, which can be enriched or combined with historical datasets, opening up new possibilities when combined with streaming pipelines and automation."
+    },
+    {
+      "question": "What are streaming pipelines?",
+      "options": [
+        "Pipelines that treat data as bounded and batch-oriented",
+        "Pipelines that only move data between on-premises systems",
+        "Pipelines that treat data as an unbounded, continuous stream",
+        "Pipelines that require a large team and deep pockets to deploy"
+      ],
+      "correctIndex": 2,
+      "explanation": "The authors contrast the MDS, which limits itself to batch techniques that treat data as bounded, with real-time data applications that treat data as an unbounded, continuous stream; streaming pipelines and real-time analytical databases are the two core technologies facilitating this move."
+    },
+    {
+      "question": "What is stream, transform, and load (STL)?",
+      "options": [
+        "A batch-only transformation framework for quarterly reporting",
+        "A replacement for the data engineering lifecycle",
+        "The current practice of extracting, loading, and transforming in the data warehouse",
+        "A provisional term for a shift away from ELT toward something more like ETL, in which extraction is an ongoing, continuous process"
+      ],
+      "correctIndex": 3,
+      "explanation": "The authors predict a back-to-the-future moment in which transformations shift away from ELT toward something more like ETL, provisionally referred to as stream, transform, and load (STL), where extraction is an ongoing, continuous process."
+    },
+    {
+      "question": "What does the chapter predict will replace much of analytics (BI and operational analytics)?",
+      "options": [
+        "More sophisticated dashboards and reports",
+        "Manual spreadsheet analysis",
+        "Quarterly batch reporting",
+        "Automation of repetitive actions triggered by events as they occur"
+      ],
+      "correctIndex": 3,
+      "explanation": "The authors argue that if the action you would take in response to a \u201cwhat or when\u201d question is repetitive, it is a candidate for automation\u2014why look at a report when you can automate the action based on events as they occur?"
+    },
+    {
+      "question": "What are real-time data applications?",
+      "options": [
+        "Applications that deliver actions at the click of a button while performing sophisticated data processing and ML behind the scenes with minuscule latency",
+        "Applications that generate batch reports overnight",
+        "Applications that only display static dashboards",
+        "Applications that run entirely on a single spreadsheet"
+      ],
+      "correctIndex": 0,
+      "explanation": "The authors cite products like TikTok, Uber, Google, and DoorDash as examples of real-time data applications, which deliver the actions you need at the click of a button while performing extremely sophisticated data processing and ML with minuscule latency."
+    },
+    {
+      "question": "What is the predicted fusion of the application and data layers?",
+      "options": [
+        "Applications will remain separate from the data stack, connected by duct tape",
+        "Applications will be replaced entirely by data warehouses",
+        "Applications will integrate real-time automation and decision making, so that application stacks become data stacks and vice versa",
+        "Data will be created with no regard for how it will be used for analytics"
+      ],
+      "correctIndex": 2,
+      "explanation": "The authors predict that application stacks will soon be data stacks and vice versa: applications will integrate real-time automation and decision making powered by streaming pipelines and ML, and the time between lifecycle stages will drastically shorten."
+    },
+    {
+      "question": "Why does the chapter say machine learning (ML) is well-suited for certain scenarios?",
+      "options": [
+        "ML is only useful for small, slow-moving datasets",
+        "ML is well-suited for scenarios where data is generated at such a high rate and volume that humans cannot feasibly process it by hand",
+        "ML eliminates the need for any data engineering",
+        "ML works best when data feedback loops are long and disconnected from applications"
+      ],
+      "correctIndex": 1,
+      "explanation": "The authors state ML is well-suited for scenarios where data is generated at such a high rate and volume that humans cannot feasibly process it by hand, and as data sizes and velocity grow, this applies to every scenario."
+    },
+    {
+      "question": "What is the relationship between applications and ML in the live data stack?",
+      "options": [
+        "Applications and ML remain disjointed systems with no feedback",
+        "ML will be applied only to historical batch data",
+        "Applications will run on the modern data stack while ML runs separately",
+        "As data feedback loops become shorter, most applications will integrate ML, creating a cycle of ever-smarter applications"
+      ],
+      "correctIndex": 3,
+      "explanation": "The authors expect that as data feedback loops become shorter, most applications will integrate ML, and as data moves more quickly the feedback loop between applications and ML will tighten, creating ever-smarter applications and increasing business value."
+    },
+    {
+      "question": "What are data applications (in the context of role evolution)?",
+      "options": [
+        "Applications that blend traditional software applications with analytics",
+        "Applications that run only on cloud data warehouses",
+        "Applications that exclusively process batch data",
+        "Mobile applications that display charts and graphs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The authors say data applications, which blend traditional software applications with analytics, will drive the morphing of roles at the intersection of software engineering and data engineering."
+    },
+    {
+      "question": "What is the new ML-focused engineer role described in the chapter?",
+      "options": [
+        "A role that only writes research papers about new model types",
+        "A role that manages on-premises servers and configurations",
+        "A role that sits between ML engineering and data engineering, creating or using systems that automatically train models, monitor performance, and operationalize the ML process",
+        "A role that exclusively builds dashboards and BI reports"
+      ],
+      "correctIndex": 2,
+      "explanation": "The authors describe a role that sits between ML engineering and data engineering: this engineer knows algorithms, ML techniques, model optimization, and monitoring, but their primary role is to create or utilize systems that automatically train models, monitor performance, and operationalize the full ML process."
+    },
+    {
+      "question": "What does the chapter predict about titles and responsibilities in data engineering?",
+      "options": [
+        "The boundaries between software engineering, data engineering, data science, and ML engineering are increasingly fuzzy, and titles will morph",
+        "Job titles will be standardized and frozen by the industry",
+        "The data engineer title will be replaced by the data scientist title everywhere",
+        "All data roles will be consolidated into a single generic title"
+      ],
+      "correctIndex": 0,
+      "explanation": "The authors note that while the data engineering lifecycle isn't going anywhere, the boundaries between software engineering, data engineering, data science, and ML engineering are increasingly fuzzy, and new roles will emerge as data becomes more tightly embedded in business processes."
+    },
+    {
+      "question": "What is dark matter data?",
+      "options": [
+        "Data stored in legacy mainframe systems that has been deleted",
+        "The analytics that runs in spreadsheets and never makes its way into sophisticated data systems",
+        "Data generated by streaming pipelines in the live data stack",
+        "Encrypted data that cannot be queried"
+      ],
+      "correctIndex": 1,
+      "explanation": "The authors describe spreadsheets as the dark matter of the data world: a good deal of data analytics runs in spreadsheets and never makes its way into the sophisticated data systems described in the book."
+    },
+    {
+      "question": "How does the chapter define a spreadsheet?",
+      "options": [
+        "A purely code-based tool like pandas for scripting procedural data processing",
+        "A database optimized for low-latency streaming queries",
+        "An interactive data application that supports complex analytics and is accessible to a wide spectrum of users",
+        "A BI tool that limits users to slicing and dicing data within guardrails"
+      ],
+      "correctIndex": 2,
+      "explanation": "The authors define a spreadsheet as an interactive data application that supports complex analytics, accessible to a spectrum of users from those who open files to look at reports to power users who script sophisticated procedural data processing."
+    },
+    {
+      "question": "What are off-the-shelf data connectors (such as Fivetran and Airbyte)?",
+      "options": [
+        "Connectors that require engineers to build and maintain custom plumbing for every source",
+        "Managed connectors that outsource the plumbing problem so data engineers can focus on the unique issues that drive their businesses",
+        "Connectors that only work with on-premises databases",
+        "Proprietary connectors locked to a single cloud provider"
+      ],
+      "correctIndex": 1,
+      "explanation": "The authors note the growing popularity of off-the-shelf data connectors, saying API connectors will be an outsourced problem so that data engineers can focus on the unique issues that drive their businesses."
+    },
+    {
+      "question": "What is the upstream definitions layer in data modeling?",
+      "options": [
+        "A layer within the data warehouse where batch transformations run",
+        "A layer of semantics, metrics, lineage, and data definitions that begins where data is generated in the application",
+        "A certification standard for data modeling",
+        "A historical archive of all database schemas"
+      ],
+      "correctIndex": 1,
+      "explanation": "The authors expect data modeling will involve some notion of an upstream definitions layer, including semantics, metrics, lineage, and data definitions, beginning where data is generated in the application rather than within the data warehouse."
+    },
+    {
+      "question": "What role will OLAP databases purpose-built for streaming play?",
+      "options": [
+        "A role limited to slow-moving quarterly reporting",
+        "A role as metadata catalogs for cloud storage",
+        "A role replacing all batch data warehouses entirely",
+        "They will power the backend of the next generation of data applications, with databases like Druid, ClickHouse, Rockset, and Firebolt leading the way"
+      ],
+      "correctIndex": 3,
+      "explanation": "The authors say the live data stack will be powered by OLAP databases purpose-built for streaming, with Druid, ClickHouse, Rockset, and Firebolt leading the way in powering the backend of the next generation of data applications."
+    },
+    {
+      "question": "What does the chapter claim about big data?",
+      "options": [
+        "Big data remains impossible for most companies to adopt",
+        "Big data is a victim of its extraordinary success, with descendants like BigQuery now available to anyone with a cloud account",
+        "Big data has been replaced entirely by streaming databases",
+        "Big data only exists at Google and a few other large companies"
+      ],
+      "correctIndex": 1,
+      "explanation": "The authors say big data is a victim of its extraordinary success: Google BigQuery, a descendant of GFS and MapReduce, can query petabytes of data and is now available to anybody with a GCP account."
+    },
+    {
+      "question": "What role does the chapter predict for object storage in cloud data interoperability?",
+      "options": [
+        "Object storage will grow in importance as a batch interface layer between various data services",
+        "Object storage will be replaced by CSV files",
+        "Object storage will only be used for backups",
+        "Object storage will serve as the primary query engine"
+      ],
+      "correctIndex": 0,
+      "explanation": "The authors predict object storage in the cloud will grow in importance as a batch interface layer between various data services, while new file formats such as Parquet and Avro take over cloud data interchange."
+    },
+    {
+      "question": "What role do feature stores play in the future of ML?",
+      "options": [
+        "They will replace streaming pipelines entirely",
+        "They will serve as metadata catalogs for feature definitions",
+        "They may play a role for ML use cases similar to emerging database technologies that address the mix of OLTP and OLAP",
+        "They will eliminate the need for data engineers"
+      ],
+      "correctIndex": 2,
+      "explanation": "The authors suggest paying attention to emerging database technologies designed to address the mix of OLTP and OLAP use cases, noting feature stores may also play a similar role for ML use cases."
+    }
+  ]
+}

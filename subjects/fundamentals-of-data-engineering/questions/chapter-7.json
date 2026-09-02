@@ -1,0 +1,1636 @@
+{
+  "title": "Chapter 7 — Ingestion: Quality Question Bank",
+  "source_file": "chapter-7-ingestion.md",
+  "original_question_file": "chapter-7.json",
+  "question_count": 148,
+  "questions": [
+    {
+      "question": "How does the book distinguish \"data ingestion\" from \"data integration\"?",
+      "options": [
+        "Data ingestion is movement of data from point A to B; data integration combines data from multiple disparate sources into a new dataset",
+        "Ingestion only applies to streaming data, while integration only applies to batch data",
+        "Ingestion and integration are simply two names for the identical process",
+        "Integration means deleting duplicate records; ingestion means writing new ones"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"Whereas data ingestion is data movement from point A to B, data integration combines data from disparate sources into a new dataset,\" giving a CRM+ads+web-analytics example."
+    },
+    {
+      "question": "The book says \"all data is unbounded until it's bounded.\" What does this mean, and what role do streaming ingestion systems play?",
+      "options": [
+        "Data in reality flows continuously (unbounded); batches are an artificial boundary imposed for convenience — streaming systems exist to preserve that continuous nature through the pipeline",
+        "It means all data eventually disappears if not batched within 24 hours",
+        "It means streaming systems convert unbounded data into a single static file",
+        "It means bounded data can never be converted back into a stream"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains: \"Business processes have long imposed artificial bounds on data by cutting discrete batches... streaming ingestion systems are simply a tool for preserving the unbounded nature of data.\""
+    },
+    {
+      "question": "Why does the book put \"real-time\" in quotation marks and prefer the term \"near real-time\"?",
+      "options": [
+        "No ingestion system is truly instantaneous — every database, queue, or pipeline has inherent latency delivering data to a target system",
+        "Because \"real-time\" systems are always slower than equivalent batch systems",
+        "Because the term \"real-time\" is a trademarked vendor term the authors avoid",
+        "Because near real-time applies only to IoT sensor data, never other data types"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"no ingestion system is genuinely real-time. Any database, queue or pipeline has inherent latency in delivering data to a target system. It is more accurate to speak of near real-time.\""
+    },
+    {
+      "question": "A legacy ETL system runs dozens of tightly coupled steps, where any single failure forces the entire 24+ hour pipeline to restart from scratch. What pattern is this, and what alternative does the book recommend?",
+      "options": [
+        "Synchronous ingestion — tightly coupled, dependent stages; asynchronous ingestion (processing events individually as they arrive) avoids this all-or-nothing fragility",
+        "This describes asynchronous ingestion, with synchronous ingestion being the recommended fix",
+        "This describes push ingestion, with pull ingestion being the recommended fix",
+        "This is an unavoidable property of all batch systems, with no alternative available"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book's own case study describes exactly this synchronous failure mode, then contrasts it with asynchronous ingestion where \"each stage of the asynchronous pipeline can process data items as they become available in parallel.\""
+    },
+    {
+      "question": "What are the two general strategies for extracting data from a source system, and how do they differ?",
+      "options": [
+        "Full snapshot (grab the entire current state each time) versus differential/incremental (pull only what changed since the last read) — snapshots are simpler but use more resources",
+        "\"Hot\" versus \"cold\" extraction, referring to the physical temperature of the source server",
+        "\"Push\" versus \"poll,\" which describe direction rather than extraction scope",
+        "\"Synchronous\" versus \"streaming,\" which are unrelated ingestion concepts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"With full snapshots, engineers grab the entire current state... With the differential update pattern, engineers can pull only the updates and changes since the last read.\""
+    },
+    {
+      "question": "What advantage does file-based export/ingestion offer over a direct database connection, per the book?",
+      "options": [
+        "It avoids exposing backend systems directly — source-system engineers keep full control over what's exported and how it's preprocessed, since export logic runs on the source side",
+        "File-based ingestion is always faster than every direct connection method",
+        "File-based ingestion eliminates the need for any schema information at all",
+        "File-based ingestion is the only method that can support streaming data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes: \"With file-based ingestion, export processes are run on the data-source side, giving source system engineers complete control over what data gets exported and how the data is preprocessed.\""
+    },
+    {
+      "question": "A team performs many single-row INSERT/UPDATE operations against a columnar analytics database and sees performance degrade badly. What's happening, and what's the better approach?",
+      "options": [
+        "Small-batch operations force many small, suboptimal files and force column-file scans on update — batching fewer, larger operations (or using a tool built for high insert rates) performs much better",
+        "Columnar databases cannot perform any inserts or updates under any circumstances",
+        "The problem described is purely a network bandwidth issue, unrelated to batch size",
+        "A row-based database would perform even worse in this exact same scenario"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns single-row inserts force \"many small, suboptimal files,\" and updates are worse still since they \"cause the database to scan each existing column file,\" recommending purpose-built tools like Druid/Pinot instead."
+    },
+    {
+      "question": "In stream ingestion, what's the difference between \"at-least-once\" delivery and message ordering issues, and why do both need handling?",
+      "options": [
+        "At-least-once delivery means a message might be processed more than once; ordering issues mean messages may arrive out of sequence — both are inherent distributed-systems risks needing idempotent or order-aware handling",
+        "At-least-once delivery automatically guarantees strict message ordering, so no extra handling is needed",
+        "Ordering problems only occur in batch pipelines, never in streaming ones",
+        "These are two names describing the exact same underlying issue"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states streaming platforms \"can cause some complications... messages may be delivered out of order and more than once (at-least-once delivery)\" — two distinct risks requiring separate handling strategies."
+    },
+    {
+      "question": "What is \"replay\" in a streaming ingestion platform, and which platform named in the book does NOT support it well?",
+      "options": [
+        "Replay lets you rewind and reread a range of historical events — Kafka, Kinesis, and Pub/Sub support it, but RabbitMQ typically deletes messages once all subscribers have consumed them",
+        "Replay means automatically retrying a failed message exactly once",
+        "Every platform mentioned in the book supports replay identically",
+        "Replay only exists in batch systems, never any streaming platform"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"RabbitMQ typically deletes messages after all subscribers consume them. Kafka, Kinesis, and Pub/Sub all support event retention and replay.\""
+    },
+    {
+      "question": "What is a dead-letter queue, and when does an event typically end up there?",
+      "options": [
+        "A separate location for events that couldn't be successfully ingested (e.g. sent to a nonexistent topic, oversized, or expired past TTL), so they don't block other messages and can be diagnosed later",
+        "A queue that archives every successfully processed message",
+        "A queue reserved exclusively for the highest-priority events",
+        "A synonym for a schema registry that tracks schema version history"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains: \"Events that cannot be ingested need to be rerouted and stored in a separate location called a dead-letter queue,\" citing nonexistent topics, oversized messages, or expired TTL as causes."
+    },
+    {
+      "question": "Why does the book say JDBC/ODBC connections are \"beginning to show their age\" for some modern data engineering use cases?",
+      "options": [
+        "They struggle with nested data (which must be reencoded as strings) and send data row by row, forcing columnar data to be reserialized as rows",
+        "JDBC and ODBC no longer work with any relational databases at all",
+        "JDBC/ODBC connections cannot be used from Python under any circumstances",
+        "JDBC and ODBC require a dedicated physical hardware appliance to function"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"These connection standards struggle with nested data... native nested data must be reencoded as string data... and columns from columnar databases must be reserialized as rows.\""
+    },
+    {
+      "question": "What's the key limitation of batch-oriented CDC that continuous, log-based CDC avoids?",
+      "options": [
+        "Batch CDC only captures the latest state since the last check, missing intermediate changes (e.g. several withdrawals in 24 hours show only the final balance); continuous CDC captures every individual change as an event",
+        "Batch CDC cannot be used with relational databases at all",
+        "Continuous CDC cannot support real-time analytics, only batch reporting",
+        "Batch CDC only works with NoSQL databases, never relational ones"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book's own bank-account example shows this directly: querying changes over 24 hours \"will return only the last account balance recorded... other records over the period won't appear,\" unlike continuous CDC."
+    },
+    {
+      "question": "How does the book distinguish synchronous (tightly coupled) database replication from asynchronous CDC-based replication?",
+      "options": [
+        "Synchronous replication keeps a replica fully in sync with zero data loss on failover but typically requires the same database type on both sides; asynchronous CDC replication is looser, may lag slightly, but can target varied destinations",
+        "Synchronous replication is always cheaper and universally preferred over asynchronous replication",
+        "Asynchronous replication is impossible between two databases of different types",
+        "Synchronous and asynchronous replication are simply two names for the same mechanism"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes synchronous replication \"typically requires that the primary database and the replica are of the same type,\" while async CDC replication is a \"loosely coupled architecture pattern\" that can direct events to varied targets."
+    },
+    {
+      "question": "When might a team consider a physical \"transfer appliance\" (like AWS Snowball) instead of transferring data over the internet?",
+      "options": [
+        "For very large data volumes (roughly 100TB or more), physically shipping storage hardware can be faster and cheaper than internet transfer, especially given egress costs",
+        "Transfer appliances are recommended for all ongoing, continuous ingestion workloads regardless of size",
+        "They are legally required for any dataset that contains personally identifiable information",
+        "They eliminate the need for any further data ingestion pipeline going forward"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"For massive quantities of data (100 TB or more), transferring data directly over the internet may be a slow and costly process,\" recommending appliances at that scale, but not for ongoing workloads."
+    },
+    {
+      "question": "What does the book mean by \"touchless production\" when handling sensitive data, and why is it an ideal worth striving for?",
+      "options": [
+        "Engineers develop and test on simulated or cleansed data in dev/staging, with automated deployments to production — minimizing direct human handling of live sensitive data",
+        "It means production systems should never be monitored by any human at any time",
+        "It means sensitive data should be duplicated across every environment for consistency",
+        "It means production access should be granted permanently to the entire team for convenience"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines it exactly this way: engineers \"develop and test code on simulated or cleansed data in development and staging environments but automated code deployments to production.\""
+    },
+    {
+      "question": "The book suggests asking \"do you need the sensitive data you're trying to encrypt?\" before building elaborate encryption schemes. What's the underlying principle?",
+      "options": [
+        "Data that's never collected in the first place can't leak — dropping unnecessary sensitive fields at ingestion is often better than adding technical protections around data you didn't need to keep",
+        "Encryption is always unnecessary, since cloud storage is inherently secure by default",
+        "Data engineers should never be permitted to touch sensitive data under any policy",
+        "Tokenization should always be applied even to fields that aren't sensitive, for consistency"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states plainly: \"Why not simply drop sensitive fields before data is stored? Data cannot leak if it is never collected.\""
+    },
+    {
+      "question": "What does the book recommend monitoring specifically at the ingestion stage, and why is monitoring especially critical there?",
+      "options": [
+        "Uptime, latency, and data volumes processed — ingestion sits at the start of the pipeline, so an undetected failure there silently starves every downstream stage of fresh data",
+        "Only the CPU temperature of the ingestion servers, per the book's guidance",
+        "Monitoring is described as unnecessary once a managed connector is in use",
+        "The book recommends monitoring only successful runs, never failures"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"Uptime, latency, and data volumes processed are good places to start,\" and cites a real example where \"an ingestion pipeline failure wasn't detected for six months\" due to weak monitoring."
+    },
+    {
+      "question": "How does the book define bounded versus unbounded data?",
+      "options": [
+        "Unbounded data is data as it exists in reality — events happening sporadically or continuously, ongoing and flowing; bounded data is a convenient way of bucketing data across some boundary such as time",
+        "Bounded data is data that cannot be moved; unbounded data can be moved freely",
+        "Unbounded data refers only to video and audio streams",
+        "Bounded data is always more accurate than unbounded data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines unbounded as data in reality and bounded as a convenient bucketing across a boundary such as time."
+    },
+    {
+      "question": "How does the book acknowledge that the mantra \"all data is unbounded until it's bounded\" is not precisely accurate 100% of the time?",
+      "options": [
+        "A grocery list scribbled this afternoon is bounded data, even though it started as a stream of consciousness — but the idea is correct for practical purposes for the vast majority of business data",
+        "It is 100% accurate with no exceptions",
+        "Bounded data never exists in any form",
+        "Only digital data can be bounded"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book uses the grocery-list example to show a true bounded dataset, while noting the mantra holds for the vast majority of business data."
+    },
+    {
+      "question": "What range of ingestion frequencies does the book describe?",
+      "options": [
+        "From a business shipping tax data to an accounting firm once a year, to a CDC system retrieving log updates once a minute, to continuously ingesting IoT sensor events processed within seconds",
+        "All ingestion happens on a fixed daily schedule",
+        "Frequencies range only from seconds to minutes",
+        "Ingestion frequency is irrelevant to pipeline design"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes this spectrum from slow (once a year) to fast (continuous seconds), noting frequencies are often mixed in a company."
+    },
+    {
+      "question": "Even with streaming ingestion, why does the book say batch processing downstream remains relatively standard?",
+      "options": [
+        "ML models are typically trained on a batch basis and rarely can engineers build a purely near real-time pipeline with no batch components — they choose where batch boundaries occur, and batch frequency becomes a bottleneck for downstream processing",
+        "Streaming ingestion always produces batched output automatically",
+        "Batch processing downstream is forbidden",
+        "Batch processing is never needed once streaming is used"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says batch processing downstream is standard, ML training is typically batch, and engineers choose where batch boundaries occur."
+    },
+    {
+      "question": "Why does the book say streaming systems are the best fit for many data source types, such as IoT sensors?",
+      "options": [
+        "The typical pattern is for each sensor to write events or measurements to streaming systems as they happen, which suits event-driven architectures already exchanging messages through queues",
+        "IoT sensors cannot write to any system",
+        "Streaming systems are required by law for IoT",
+        "Databases cannot store IoT data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says sensors writing events to streaming platforms like Kinesis or Kafka is the typical pattern, working well for event-driven architectures."
+    },
+    {
+      "question": "What are the characteristics of synchronous ingestion?",
+      "options": [
+        "Source, ingestion, and destination have complex dependencies and are tightly coupled, with each stage directly dependent on the previous — if one stage fails, downstream stages cannot start and the whole process must be rerun",
+        "Each stage operates independently on individual events",
+        "Stages can all run in parallel with no dependencies",
+        "Failures are isolated to a single stage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes synchronous ingestion as tightly coupled dependent stages, common in older ETL systems, where failure of one stage blocks downstream stages."
+    },
+    {
+      "question": "What is asynchronous ingestion, and how does it relate to microservices architectures?",
+      "options": [
+        "Dependencies operate at the level of individual events, much as they would in a software backend built from microservices — each stage of the pipeline can process data items as they become available in parallel",
+        "It requires all events to be processed in a single batch",
+        "It only works with legacy mainframe systems",
+        "It cannot process individual events"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says with asynchronous ingestion \"dependencies can now operate at the level of individual events,\" processing data items in parallel across a cluster."
+    },
+    {
+      "question": "What AWS example does the book give of asynchronous ingestion, and what role does Kinesis play?",
+      "options": [
+        "A web app emits events into Kinesis Data Streams (a buffer), Apache Beam parses and enriches them, forwarding to a second Kinesis stream, and Kinesis Data Firehose writes objects to S3; the Kinesis Data Stream acts as a shock absorber moderating load spikes",
+        "A database directly streams into S3 with no buffer",
+        "Kinesis is only used for batch processing",
+        "Beam replaces all storage and queues"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes this exact asynchronous AWS architecture, highlighting Kinesis as a shock absorber."
+    },
+    {
+      "question": "What advice does the book give about serialization and deserialization during ingestion?",
+      "options": [
+        "Ensure your destination can deserialize the data it receives — data has been seen ingested from a source but sitting inert and unusable because it can't be deserialized",
+        "Serialization is irrelevant during ingestion",
+        "All data should be stored in its raw format regardless of the destination",
+        "Deserialization happens automatically with no failures"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to ensure the destination can deserialize received data, citing the example of inert unusable data."
+    },
+    {
+      "question": "What does the book say about ingestion as a bottleneck, and what should engineers do about throughput?",
+      "options": [
+        "In theory ingestion should never be a bottleneck, but in practice bottlenecks are pretty standard; design systems to scale and shrink flexibly to match desired data throughput as volumes grow",
+        "Ingestion can never become a bottleneck",
+        "Throughput is fixed and cannot be scaled",
+        "Bottlenecks only occur in batch systems, never streaming"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says in theory ingestion shouldn't bottleneck but in practice it does, so design for flexible scaling."
+    },
+    {
+      "question": "What backfill concern does the book raise about where you're ingesting data from?",
+      "options": [
+        "If a source database goes down and later backfills lapsed data loads, your ingestion must be able to keep up with the sudden influx of backlogged data",
+        "Source databases never go down",
+        "Backfilled data is automatically discarded",
+        "Backlog always flows at a constant rate"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book asks whether ingestion can keep up with a sudden influx of backlogged data after a source recovers."
+    },
+    {
+      "question": "Why is built-in buffering required for bursty data ingestion?",
+      "options": [
+        "Data generation rarely happens at a constant rate and often ebbs and flows; buffering collects events during rate spikes to prevent data loss and bridges the time while the system scales",
+        "Data always arrives at a perfectly constant rate",
+        "Buffering always increases data loss",
+        "Buffering is only needed for batch systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says buffering is required to collect events during rate spikes and allow storage to accommodate bursts."
+    },
+    {
+      "question": "What does the book recommend about throughput scaling of ingestion systems?",
+      "options": [
+        "Whenever possible, use managed services that handle throughput scaling for you, since manually adding servers, shards, or workers is often not value-added and you'll likely miss something",
+        "Always build your own scaling infrastructure",
+        "Never use managed services",
+        "Throughput scaling is unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends managed services for throughput scaling and warns against reinventing the ingestion wheel."
+    },
+    {
+      "question": "How does the book define reliability and durability in the context of ingestion?",
+      "options": [
+        "Reliability entails high uptime and proper failover for ingestion systems; durability entails making sure data isn't lost or corrupted",
+        "Reliability means only the destination is monitored",
+        "Durability means data can be freely deleted",
+        "They are identical concepts with no distinction"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines reliability as uptime/failover and durability as preventing data loss or corruption."
+    },
+    {
+      "question": "Why does the book say some data sources make ingestion reliability directly lead to data durability?",
+      "options": [
+        "Some sources (e.g. IoT devices and caches) may not retain data if it isn't correctly ingested — once lost, it is gone for good",
+        "All sources retain data indefinitely",
+        "Lost data is always recoverable",
+        "Caches never lose data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says IoT devices and caches may not retain data, so ingestion reliability leads directly to the durability of generated data."
+    },
+    {
+      "question": "What does the book advise about the cost-benefit of reliability and durability decisions?",
+      "options": [
+        "Evaluate the risks and build an appropriate level of redundancy and self-healing based on the impact and cost of losing data — high redundancy and 24-hour on-call teams make cloud and labor costs prohibitive, and there's no single correct answer",
+        "Build maximum redundancy with unlimited budget",
+        "Ignore costs entirely",
+        "There is one correct answer for every organization"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to evaluate risk versus cost, noting the direct and indirect costs of high redundancy and that no single correct answer exists."
+    },
+    {
+      "question": "Why does the book caution against assuming you can build a system that reliably ingests data in every possible scenario?",
+      "options": [
+        "Even the nearly infinite budget of the US federal government can't guarantee this; in many extreme scenarios ingesting data won't matter, such as if the internet goes down entirely",
+        "Every scenario can be perfectly handled with enough money",
+        "The internet never goes down",
+        "Reliability guarantees are easy to provide"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book uses the federal government budget example and notes there will be little to ingest if the internet goes down."
+    },
+    {
+      "question": "What is a payload, and what characteristics does the book list for it?",
+      "options": [
+        "The dataset you're ingesting, with characteristics such as kind, shape, size, schema and data types, and metadata",
+        "The physical hardware used for transfer",
+        "The network bandwidth consumed during transfer",
+        "The orchestration schedule of the pipeline"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines a payload as the dataset being ingested with characteristics of kind, shape, size, schema/data types, and metadata."
+    },
+    {
+      "question": "What does \"kind\" of data consist of, and what examples does the book give?",
+      "options": [
+        "Kind consists of type and format — a tabular type may be in formats such as CSV or Parquet with different byte patterns, while an image type has formats like JPG or PNG and is inherently unstructured",
+        "Kind refers only to the file extension",
+        "Kind means the physical storage medium",
+        "Kind describes how often data is ingested"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says kind consists of type and format, with tabular (CSV/Parquet) and image (JPG/PNG) examples."
+    },
+    {
+      "question": "What shapes does the book list for various kinds of data?",
+      "options": [
+        "Tabular as rows/columns, semistructured JSON as key-value pairs and nesting depth, unstructured text as word/character/byte counts, images as width/height/RGB color depth, and audio as channels, sample depth, sample rate, and length",
+        "All data has the same shape",
+        "Shape only applies to images",
+        "Shape is determined by the network protocol"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these shape descriptions for each kind of data."
+    },
+    {
+      "question": "How does the book say payload size can be reduced, and how can a massive payload be moved?",
+      "options": [
+        "Payloads can be compressed into formats such as ZIP and TAR, and a massive payload can be split into chunks — smaller files are easier to transmit over a network and reassembled at the destination",
+        "Payloads cannot be compressed or chunked",
+        "Compression always increases payload size",
+        "Chunking makes transmission slower"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says payloads can be compressed (ZIP/TAR) and split into chunks that are transmitted and reassembled."
+    },
+    {
+      "question": "What does the book say about schemas across different kinds of data?",
+      "options": [
+        "Tabular and semistructured data have schemas describing fields and types, while unstructured text, images, and audio have no explicit schema but may come with technical file descriptions on shape, format, encoding, and size",
+        "All data types have explicit schemas",
+        "Only images have schemas",
+        "Schemas never describe fields or types"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book distinguishes schema-carrying data from unstructured data with technical descriptions."
+    },
+    {
+      "question": "What complication does the book describe regarding object-relational mapping (ORM) and schemas?",
+      "options": [
+        "ORMs automatically generate schemas based on object structure in languages like Java or Python, and natural structures in an object-oriented language often map to something messy in an operational database, so engineers may need to familiarize themselves with the class structure of application code",
+        "ORMs eliminate the need for any schema understanding",
+        "ORMs always produce perfectly clean schemas",
+        "ORMs are only used in NoSQL databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says ORMs generate messy schemas and engineers may need to understand the application's class structure."
+    },
+    {
+      "question": "What examples of schema changes does the book give, and why are they often out of engineers' control?",
+      "options": [
+        "Adding a new column, changing a column type, creating a new table, or renaming a column — changes frequently occur in source systems and are often well out of data engineers' control",
+        "Schema changes only happen at the destination",
+        "Schema changes never occur in source systems",
+        "Only the data engineer can change schemas"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these schema change examples and notes they are often out of the data engineer's control."
+    },
+    {
+      "question": "Why does the book call automated detection of schema changes a \"mixed blessing\"?",
+      "options": [
+        "Automation is excellent, but schema changes can still break pipelines downstream of staging and ingestion, and even accommodated changes may adversely affect the performance of reports and models — so analysts and data scientists must be informed",
+        "Automation always breaks pipelines",
+        "Schema changes never affect reports or models",
+        "Automation eliminates the need for any communication"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says automated schema-change detection is a mixed blessing because changes can still break pipelines and hurt reports/models, so communication is essential."
+    },
+    {
+      "question": "What is a schema registry?",
+      "options": [
+        "A metadata repository used to maintain schema and data type integrity in the face of constantly changing schemas, tracking schema versions and history so producers and consumers can serialize and deserialize consistently",
+        "A physical registry of all databases",
+        "A backup system for schema files",
+        "A queue for failed messages"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines a schema registry as a metadata repository maintaining schema/data-type integrity with version history."
+    },
+    {
+      "question": "Why does the book say metadata can be as critical as the data itself?",
+      "options": [
+        "One significant limitation of the early data lake — or data swamp, which could become a data superfund site — was a complete lack of attention to metadata; without a detailed description of the data, it may be of little value",
+        "Metadata is only useful for billing",
+        "Data lakes never had metadata problems",
+        "Metadata makes data less valuable"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book connects the data swamp problem to a lack of metadata and says without a description data may be of little value."
+    },
+    {
+      "question": "How does the book distinguish push, pull, and polling ingestion patterns?",
+      "options": [
+        "Push has the source system send data to a target; pull has the target read data directly from a source; polling periodically checks a source for changes and then pulls the data as in a regular pull",
+        "Push and pull are identical",
+        "Polling only applies to batch systems",
+        "Push requires the target to initiate"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines push, pull, and polling patterns, noting the lines between strategies are blurry."
+    },
+    {
+      "question": "What is time-interval batch ingestion, and where is it widespread?",
+      "options": [
+        "Data is ingested by taking a subset based on a time interval — widespread in traditional business ETL for data warehousing, often processing data once a day overnight for daily reporting",
+        "Data is ingested only when a customer calls",
+        "It is used only for IoT sensor data",
+        "It processes data continuously with no intervals"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says time-interval batch ingestion is widespread in traditional business ETL for data warehousing, typically daily overnight."
+    },
+    {
+      "question": "What is size-based batch ingestion, and where is it common?",
+      "options": [
+        "Data is cut into discrete blocks based on accumulated size (e.g. total bytes of events) — quite common when moving data from a streaming-based system into object storage for future processing in a data lake",
+        "Data is ingested one event at a time regardless of size",
+        "It only applies to on-premises tapes",
+        "Size never determines batch boundaries"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says size-based batch ingestion is common when moving streaming data into object storage, breaking data into discrete blocks."
+    },
+    {
+      "question": "Why do full snapshot reads remain extremely common even though differential updates are more efficient?",
+      "options": [
+        "Differential updates are ideal for minimizing network traffic and target storage usage, but full snapshot reads remain extremely common because of their simplicity",
+        "Full snapshots use less storage than differential updates",
+        "Differential updates are always slower",
+        "Full snapshots reduce network traffic more effectively"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says full snapshots remain common because of simplicity despite differential updates minimizing traffic and storage."
+    },
+    {
+      "question": "Why does the book consider file-based export to be a push-based ingestion pattern?",
+      "options": [
+        "Data export and preparation work is done on the source system side, so the source drives the process",
+        "The target system pulls files from the source",
+        "File export always requires polling",
+        "Files are never used for ingestion"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says file-based export is a push-based pattern because data export and preparation happens on the source side."
+    },
+    {
+      "question": "What common file-exchange methods does the book list?",
+      "options": [
+        "Object storage, secure file transfer protocol (SFTP), electronic data interchange (EDI), and secure copy (SCP)",
+        "Only email attachments",
+        "Only USB flash drives",
+        "Only direct database connections"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists object storage, SFTP, EDI, and SCP as common file-exchange methods."
+    },
+    {
+      "question": "How does the book define \"extract\" in the ETL/ELT context?",
+      "options": [
+        "Getting data from a source system — while extract seems to imply pulling, it can also be push based, and it may require reading metadata and schema changes",
+        "Only pulling data from databases",
+        "Transforming data into a new format",
+        "Loading data into a destination"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says extract means getting data from a source, can be push or pull, and may involve reading metadata and schema changes."
+    },
+    {
+      "question": "What does the book say about the \"load\" step in ETL and ELT?",
+      "options": [
+        "Once extracted, data can either be transformed (ETL) before loading into a storage destination, or simply loaded into storage for future transformation (ELT); when loading, be mindful of the system type, the data schema, and the performance impact",
+        "Loading always happens before extraction",
+        "Load only applies to ELT, never ETL",
+        "Schema and performance never matter when loading"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines load and its considerations of system type, schema, and performance impact."
+    },
+    {
+      "question": "What does the book say about BigQuery's performance on different insert patterns?",
+      "options": [
+        "BigQuery performs poorly on a high rate of vanilla SQL single-row inserts but extremely well if data is fed in through its stream buffer",
+        "BigQuery handles single-row inserts perfectly",
+        "BigQuery cannot ingest any data",
+        "BigQuery only works with batch loads"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts BigQuery's poor single-row insert performance with excellent stream-buffer performance."
+    },
+    {
+      "question": "Which technologies does the book cite as purpose-built for high insert rates, and what does SingleStore offer?",
+      "options": [
+        "Apache Druid and Apache Pinot can handle high insert rates; SingleStore can manage hybrid workloads that combine OLAP and OLTP characteristics",
+        "Only traditional RDBMSs handle high insert rates",
+        "SingleStore is a columnar-only analytics system",
+        "Druid and Pinot cannot handle inserts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names Druid and Pinot for high insert rates and SingleStore for hybrid OLAP/OLTP workloads."
+    },
+    {
+      "question": "What does the book say about data migration difficulty and schema management?",
+      "options": [
+        "Migrating hundreds of terabytes or more between different database systems involves subtle schema differences (e.g. SQL Server to Snowflake), and it's generally easy to test ingestion of a sample of data to find schema issues before undertaking a complete migration",
+        "Migrations are always trivial",
+        "Schema differences never matter between databases",
+        "Testing sample data before migration is unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says schema management is crucial in migrations and sample testing finds schema issues before full migration."
+    },
+    {
+      "question": "What does the book say is one of the biggest challenges of database migration?",
+      "options": [
+        "Not the movement of the data itself, but the movement of data pipeline connections from the old system to the new one",
+        "The physical shipment of hard drives",
+        "The cost of cloud storage",
+        "The network bandwidth during transfer"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the biggest challenge is moving data pipeline connections, not the data itself."
+    },
+    {
+      "question": "What advice does the book give about automated data migration tools?",
+      "options": [
+        "Many tools automate various types of data migrations, and especially for large and complex migrations you should look at these options before doing this manually or writing your own migration solution",
+        "Always write your own migration code",
+        "Automated migration tools never work",
+        "Manual migration is always better"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends looking at automated migration tools before manual or custom solutions for large migrations."
+    },
+    {
+      "question": "What examples does the book give of schema evolution in event data, and how can it impact downstream capabilities?",
+      "options": [
+        "An IoT device firmware update that adds a new field to transmitted events, or a third-party API introducing changes to its event payload — both potentially impact downstream capabilities",
+        "Event schemas never change",
+        "Only database tables have schemas",
+        "Schema evolution has no downstream impact"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives the IoT firmware and third-party API examples of schema evolution's downstream impacts."
+    },
+    {
+      "question": "What three suggestions does the book make for alleviating schema evolution issues in event processing?",
+      "options": [
+        "Use a schema registry to version schema changes, use a dead-letter queue to investigate improperly handled events, and regularly communicate with upstream stakeholders about potential schema changes",
+        "Ignore schema changes entirely",
+        "Only react to schema changes after breakage",
+        "Reject all events with new schemas"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists the schema registry, dead-letter queue, and proactive communication as the three suggestions."
+    },
+    {
+      "question": "How does the book say to handle late-arriving data?",
+      "options": [
+        "Set a cutoff time for when late-arriving data will no longer be processed, since assuming ingestion time equals event time can produce strange results in reports and analysis",
+        "Ignore late-arriving data entirely",
+        "Assume all data arrives on time",
+        "Process late-arriving data indefinitely without limits"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to set a cutoff time for late-arriving data, which is common in event ingestion."
+    },
+    {
+      "question": "What is time to live (TTL), and what does the book say happens when it expires?",
+      "options": [
+        "The maximum message retention time; any unacknowledged event not ingested after its TTL expires automatically disappears, which helps reduce backpressure and unnecessary event volume",
+        "The amount of time a message stays in the destination",
+        "The total lifetime of the ingestion system",
+        "The delay before the first message is processed"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines TTL as maximum message retention and says unacknowledged events disappear when it expires, reducing backpressure."
+    },
+    {
+      "question": "What trade-offs does the book describe for very short versus very long TTLs?",
+      "options": [
+        "An extremely short TTL (milliseconds or seconds) might cause most messages to disappear before processing; a very long TTL (weeks or months) creates a backlog of unprocessed messages and long wait times",
+        "Shorter TTLs always improve processing",
+        "Longer TTLs always reduce backlogs",
+        "TTL has no effect on the pipeline"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes both extremes: messages vanishing with short TTLs and backlogs with long TTLs."
+    },
+    {
+      "question": "What TTL/retention limits does the book cite for Pub/Sub, Kinesis, and Kafka?",
+      "options": [
+        "Pub/Sub supports retention up to 7 days; Kinesis Data Streams up to 365 days; Kafka can be configured for indefinite retention limited by available disk space, and can write older messages to cloud object storage",
+        "All platforms have the same 7-day limit",
+        "Kafka cannot retain data at all",
+        "Kinesis retention is limited to 1 day"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book cites these specific retention limits for the three platforms."
+    },
+    {
+      "question": "What does the book say about message size limits in streaming frameworks?",
+      "options": [
+        "You must ensure the framework can handle the maximum expected message size — Amazon Kinesis supports a maximum of 1 MB, and Kafka defaults to this but can be configured for 20 MB or more",
+        "Message size is unlimited in all frameworks",
+        "Kinesis supports messages up to 20 MB",
+        "Kafka cannot exceed 1 MB under any configuration"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book cites Kinesis's 1 MB max and Kafka's configurable 20 MB+ maximum."
+    },
+    {
+      "question": "What does a dead-letter queue do for a consumer, and what can engineers do with it?",
+      "options": [
+        "It segregates problematic events from events that can be accepted, preventing erroneous events from blocking other messages; engineers can diagnose why ingestion errors occur and might reprocess some messages after fixing the underlying cause",
+        "It stores all successfully processed events",
+        "It is the main processing queue",
+        "It automatically deletes problematic events"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says a dead-letter queue segregates bad events, enables diagnosis, and allows reprocessing after fixes."
+    },
+    {
+      "question": "Which streaming technologies support only pull subscriptions, and which also support push?",
+      "options": [
+        "Kafka and Kinesis support only pull subscriptions; Pub/Sub and RabbitMQ also support push subscriptions that write messages to a listener",
+        "All platforms support only push",
+        "RabbitMQ supports only pull",
+        "Kafka supports both push and pull"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says Kafka and Kinesis are pull-only, while Pub/Sub and RabbitMQ add push subscriptions."
+    },
+    {
+      "question": "What does the book say about the default choice between pull and push subscriptions for data engineering?",
+      "options": [
+        "Pull subscriptions are the default choice for most data engineering applications, but push capabilities may be worth considering for specialized applications; pull-only systems can still push if you add an extra layer",
+        "Push subscriptions are always preferred",
+        "Pull is never used in data engineering",
+        "The choice makes no difference"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says pull is the default, with push for specialized applications and an extra layer enabling push in pull-only systems."
+    },
+    {
+      "question": "What trade-off does the book describe about ingesting data close to where it originates?",
+      "options": [
+        "The closer your ingestion is to where data originates, the better your bandwidth and latency, but you must balance this against the costs of moving data between regions for combined analytics, since data egress costs can spiral quickly",
+        "Closer ingestion is always more expensive",
+        "Location has no effect on latency or cost",
+        "Egress costs never matter"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the bandwidth/latency benefit of proximity balanced against region-crossing egress costs."
+    },
+    {
+      "question": "How does the book describe the ODBC connection mechanism?",
+      "options": [
+        "A driver hosted by the client translates commands issued to the standard ODBC API into commands to the database; the database returns query results over the wire and the driver translates them back to a standard form the client reads",
+        "The database pushes data to the client without any driver",
+        "ODBC requires a dedicated appliance",
+        "ODBC only works with NoSQL databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the ODBC driver's translation between the standard API and the database."
+    },
+    {
+      "question": "How is JDBC conceptually similar to ODBC, and what motivation does the book give for a language-specific database API?",
+      "options": [
+        "A Java driver connects to a remote database and serves as a translation layer between the JDBC API and the database's native interface; the JVM is standard, portable across hardware and OS, and provides compiled-code performance through a just-in-time (JIT) compiler",
+        "JDBC does not use a driver at all",
+        "The JVM is not portable",
+        "JDBC only works on Windows"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes JDBC's translation layer and the JVM's portability and JIT performance motivations."
+    },
+    {
+      "question": "What portability advantage does JDBC offer over ODBC?",
+      "options": [
+        "ODBC drivers are shipped as OS/architecture native binaries requiring vendor maintenance per version, while vendors can ship a single JDBC driver compatible with any JVM language or JVM data framework such as Spark, and even non-JVM languages like Python via translation tools",
+        "JDBC drivers must be rebuilt for every OS",
+        "ODBC is more portable than JDBC",
+        "JDBC only works with Java, never Spark"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts ODBC's native-binary shipping with JDBC's single-driver portability across JVM languages, frameworks, and Python."
+    },
+    {
+      "question": "What does the book say about using parallel connections to accelerate JDBC/ODBC ingestion?",
+      "options": [
+        "Many data frameworks can parallelize several simultaneous connections and partition queries to pull data in parallel, but nothing is free — parallel connections also increase the load on the source database",
+        "Parallel connections reduce source database load",
+        "Parallel queries are never used",
+        "Partitioning queries has no effect on the source"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes the acceleration benefit and the increased source-load cost of parallel connections."
+    },
+    {
+      "question": "What alternatives to JDBC/ODBC for data export does the book describe?",
+      "options": [
+        "Many databases now support native file export that bypasses JDBC/ODBC and exports directly in formats such as Parquet, ORC, and Avro, and many cloud data warehouses provide direct REST APIs",
+        "JDBC/ODBC are the only export options",
+        "Native export only works for images",
+        "REST APIs cannot export data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes native file export and direct REST APIs as alternatives to JDBC/ODBC."
+    },
+    {
+      "question": "How does the book suggest JDBC connections be integrated with other ingestion technologies?",
+      "options": [
+        "Use a reader process to connect to a database with JDBC, write the extracted data into multiple objects, and then orchestrate ingestion into a downstream system; the reader can run on an ephemeral cloud instance or in an orchestration system",
+        "JDBC should always be used alone",
+        "Reader processes cannot write objects",
+        "Orchestration never interacts with JDBC ingestion"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the reader-process-to-object-storage-then-orchestration pattern."
+    },
+    {
+      "question": "How does batch-oriented CDC work with an updated_at field?",
+      "options": [
+        "Query the table for all updated rows since a specified time, setting the filter timestamp based on when rows were last captured, to pull changes and differentially update a target table",
+        "It deletes the whole table and reloads it",
+        "It reads the entire database every time",
+        "It requires the target to push changes"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes querying by updated_at since the last capture to differentially update the target."
+    },
+    {
+      "question": "How can the bank-withdrawal limitation of batch CDC be mitigated?",
+      "options": [
+        "By utilizing an insert-only schema, where each account transaction is recorded as a new record in the table rather than updating the balance in place",
+        "By running batch CDC more frequently with the same in-place updates",
+        "By disabling CDC entirely",
+        "By storing only the final balance"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says an insert-only schema records each transaction as a new record, mitigating the lost-intermediate-changes limitation."
+    },
+    {
+      "question": "What is continuous CDC, and how is log-based CDC commonly implemented?",
+      "options": [
+        "Continuous CDC treats each write to the database as an event, capturing all table history for near real-time ingestion; with a transactional database such as PostgreSQL, a CDC tool reads the database binary log and sends events to a target such as Apache Kafka's Debezium",
+        "Continuous CDC runs periodic queries",
+        "Log-based CDC cannot capture changes",
+        "PostgreSQL has no binary log"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes continuous CDC as event-based, with log-based CDC reading the binary log, e.g. via Debezium to Kafka."
+    },
+    {
+      "question": "What managed CDC paradigm does the book describe for cloud-hosted databases?",
+      "options": [
+        "Many cloud-hosted databases can be configured to directly trigger a serverless function or write to an event stream every time a change happens, freeing engineers from worrying about how events are captured and forwarded",
+        "Cloud databases require manual log reading",
+        "Serverless functions cannot receive database events",
+        "Managed CDC does not exist"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes managed cloud CDC that triggers serverless functions or writes to event streams on each change."
+    },
+    {
+      "question": "What advantages does synchronous replication provide?",
+      "options": [
+        "The secondary database can offload work from the primary by acting as a read replica, applications can fail over to it if the primary becomes unavailable with no data loss, and batch ingestion can run large scans against the replica without overloading production",
+        "It allows replication between different database types",
+        "It always lags behind the primary",
+        "It cannot support read replicas"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes read-replica offloading, failover with no data loss, and safe large scans against replicas."
+    },
+    {
+      "question": "What considerations does the book raise about CDC's resource consumption?",
+      "options": [
+        "CDC consumes database resources such as memory, disk bandwidth, storage, CPU time, and network bandwidth, so engineers should work with production teams and run tests before turning on CDC on production systems",
+        "CDC is completely free of resource costs",
+        "CDC never affects production systems",
+        "Testing CDC before production is unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists CDC's resource costs and recommends testing with production teams first."
+    },
+    {
+      "question": "What does the book say about running large batch queries for batch CDC against a transactional production system?",
+      "options": [
+        "Running any large batch query against a transactional production system can cause excessive load; run such queries only at off-hours or use a read replica to avoid burdening the primary database",
+        "Large batch queries never affect production",
+        "Batch queries should always run during peak hours",
+        "Read replicas increase production load"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book advises off-hours queries or read replicas for large batch CDC queries."
+    },
+    {
+      "question": "What hard reality does the book describe about APIs as a data source?",
+      "options": [
+        "No proper standard exists for data exchange over APIs, and data engineers can spend significant time reading documentation, communicating with external data owners, and writing and maintaining API connection code",
+        "All APIs follow a universal standard",
+        "APIs never require custom code",
+        "API documentation is always complete"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says no proper API data-exchange standard exists and engineers spend significant time on API connections."
+    },
+    {
+      "question": "What three trends does the book say are slowly changing the API situation?",
+      "options": [
+        "Vendor API client libraries, data connector platforms available as SaaS/open source/managed open source, and the emergence of data sharing through standard platforms",
+        "The decline of APIs entirely",
+        "A single universal API standard",
+        "Automated API documentation"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists client libraries, connector platforms, and data sharing as the three trends."
+    },
+    {
+      "question": "What does the book say about managed services that support custom API connectors?",
+      "options": [
+        "They may provide API technical specifications in a standard format or run connector code in a serverless function framework like AWS Lambda while the managed service handles scheduling and synchronization — a huge time-saver for development and maintenance",
+        "Managed services never support custom connectors",
+        "Custom connectors must always be fully self-managed",
+        "Serverless functions cannot run connector code"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes managed custom-connector support and its time-saving benefits."
+    },
+    {
+      "question": "What two main aspects does the book say handling custom API connections has, and what practices does it recommend?",
+      "options": [
+        "Software development and ops — follow software development best practices such as version control, continuous delivery, and automated testing, and consider an orchestration framework to streamline the operational burden",
+        "Only hardware procurement",
+        "Only legal review",
+        "Only documentation writing"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says custom API work has software development and ops aspects with best-practice recommendations."
+    },
+    {
+      "question": "How does the book contrast batch ingestion workflows with message/stream ingestion?",
+      "options": [
+        "Batch usually involves static workflows (ingest, store, transform, serve), while messages and streams are fluid — ingestion can be nonlinear, with data published, consumed, republished, and reconsumed",
+        "Streaming workflows are always static",
+        "Batch workflows are always nonlinear",
+        "There is no difference between them"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the essential difference: static batch workflows versus fluid, nonlinear streaming."
+    },
+    {
+      "question": "What throughput considerations does the book raise for real-time data pipelines?",
+      "options": [
+        "Provision adequate partition (or shard) bandwidth and throughput, provide sufficient memory/disk/CPU for event processing, and incorporate autoscaling to handle spikes and save money as load decreases",
+        "Provisioning has no effect on real-time pipelines",
+        "Autoscaling is never recommended",
+        "Only CPU resources matter"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists partition/shard bandwidth, resources, and autoscaling for real-time pipelines."
+    },
+    {
+      "question": "What should you ask yourself before writing a data ingestion connector, per the book?",
+      "options": [
+        "Has this already been created? And is there a service that will manage the nitty-gritty details of this connection for me?",
+        "What language should I use?",
+        "Which server should host it?",
+        "How many lines of code can I write?"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends asking whether the connector already exists and whether a service can manage the connection."
+    },
+    {
+      "question": "What options do managed data connector platforms generally allow users to set?",
+      "options": [
+        "Set a target and source, ingest in various ways (e.g. CDC, replication, truncate and reload), set permissions and credentials, configure an update frequency, and begin syncing — with the vendor fully managing and monitoring data syncs",
+        "Only the target database",
+        "Only the sync frequency",
+        "Nothing — connections are automatic"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the configuration options and vendor-managed monitoring of connector platforms."
+    },
+    {
+      "question": "Why does the book recommend using managed connector platforms instead of creating your own?",
+      "options": [
+        "Vendors and OSS projects each typically have hundreds of prebuilt connectors and can easily create custom ones; the creation and management of data connectors is largely undifferentiated heavy lifting that should be outsourced whenever possible",
+        "Custom connectors are always better",
+        "Managed platforms have no prebuilt connectors",
+        "Connector creation is high-value differentiated work"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book calls connector creation and management undifferentiated heavy lifting to outsource."
+    },
+    {
+      "question": "Why does the book say object storage is the most optimal and secure way to handle file exchange?",
+      "options": [
+        "Public cloud storage implements the latest security standards, has a robust track record of scalability and reliability, accepts files of arbitrary types and sizes, and provides high-performance data movement",
+        "Object storage is only used for backups",
+        "Object storage rejects most file types",
+        "Object storage is insecure by default"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists security, scalability, reliability, arbitrary files, and high-performance movement as reasons."
+    },
+    {
+      "question": "What is a signed URL in object storage, and what does it allow?",
+      "options": [
+        "A way to provide short-term access to an object, giving a user temporary permission",
+        "A permanent credential for every user",
+        "An encrypted backup of an object",
+        "A URL that never expires"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says a signed URL provides short-term temporary access to an object."
+    },
+    {
+      "question": "What does the book say about electronic data interchange (EDI)?",
+      "options": [
+        "It's a vague term for any data movement method, usually referring to somewhat archaic means of file exchange such as email or flash drive, often because of archaic IT systems or human process limitations",
+        "It is a modern high-speed protocol",
+        "It only refers to object storage",
+        "It is a type of database"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes EDI as a vague, often archaic file-exchange term."
+    },
+    {
+      "question": "How can engineers enhance EDI through automation?",
+      "options": [
+        "Set up a cloud-based email server that saves files onto company object storage as soon as they are received, triggering orchestration processes to ingest and process data",
+        "EDI cannot be automated",
+        "Employees must manually download and upload files",
+        "Orchestration cannot process object storage files"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes automated EDI via a cloud email server saving to object storage and triggering orchestration."
+    },
+    {
+      "question": "What load concern does the book raise about file export from source databases, and what mitigations does it suggest?",
+      "options": [
+        "Export involves large data scans that significantly load transactional systems; break exports into smaller queries over key ranges or one partition at a time, or use a read replica, especially if exports happen many times a day",
+        "Exports never load the source database",
+        "Exports should always run during peak hours",
+        "Read replicas increase export load"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book suggests key-range/partitioned exports and read replicas to mitigate export load."
+    },
+    {
+      "question": "What does the book say about direct file export from major cloud data warehouses?",
+      "options": [
+        "They are highly optimized for direct file export — for example, Snowflake, BigQuery, Redshift, and others support direct export to object storage in various formats",
+        "Cloud warehouses cannot export files",
+        "Only on-premises systems support export",
+        "Export is limited to CSV only"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says cloud warehouses like Snowflake, BigQuery, and Redshift support direct export to object storage."
+    },
+    {
+      "question": "Why does the book describe CSV as ubiquitous but highly error prone?",
+      "options": [
+        "Its default delimiter is the comma (familiar in English text), it is by no means a uniform format requiring stipulation of delimiter/quote/escaping, doesn't natively encode schema information, and doesn't directly support nested structures",
+        "CSV cannot be read by any tool",
+        "CSV always encodes schemas natively",
+        "CSV supports nested structures natively"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes CSV's delimiter ambiguity, non-uniformity, and lack of schema/nesting support."
+    },
+    {
+      "question": "Why is autodetection of CSV encoding/schema inappropriate for production ingestion?",
+      "options": [
+        "Autodetection is a convenience feature in many cloud environments but is inappropriate for production ingestion; engineers should record CSV encoding and schema details in file metadata as a best practice",
+        "Autodetection is always perfectly accurate",
+        "Autodetection is recommended for production",
+        "CSV metadata is never useful"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends recording CSV encoding/schema details in metadata rather than relying on autodetection in production."
+    },
+    {
+      "question": "What advantages do formats like Parquet, Avro, Arrow, and ORC offer over CSV?",
+      "options": [
+        "They natively encode schema information, handle arbitrary string data with no particular intervention, handle nested data structures natively, and for columnar databases allow more efficient export via direct column transcoding",
+        "They are always smaller than CSV",
+        "They cannot store string data",
+        "They require more manual schema configuration"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes these formats' native schema encoding, nested-structure support, and efficient columnar transcoding."
+    },
+    {
+      "question": "What is special about the Arrow file format according to the book?",
+      "options": [
+        "It is designed to map data directly into processing engine memory, providing high performance in data lake environments",
+        "It can only be used for images",
+        "It is the slowest format available",
+        "It requires manual memory management"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says Arrow maps data directly into processing engine memory for high performance."
+    },
+    {
+      "question": "What disadvantage do newer formats like Parquet, Avro, and Arrow have?",
+      "options": [
+        "Many are not natively supported by source systems, so engineers are often forced to work with CSV and build robust exception handling and error detection to ensure data quality on ingestion",
+        "They are slower than CSV",
+        "They cannot be used for ingestion",
+        "They are all proprietary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says newer formats often lack native source-system support, leaving CSV with added error handling."
+    },
+    {
+      "question": "What does the book say about using the shell for ingestion?",
+      "options": [
+        "The shell can script workflows for virtually any software tool, and shell scripting is still used extensively; a script might read from a database, reserialize to another format, upload to object storage, and trigger a target ingestion — fine for sources that aren't large since single-server storage isn't highly scalable",
+        "Shell scripting cannot ingest data",
+        "Shell is only for batch processing",
+        "Shell scripts are never used in ingestion"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes shell-based ingestion workflows and their suitability for smaller sources."
+    },
+    {
+      "question": "When should engineers move from CLI-based ingestion to a proper orchestration system?",
+      "options": [
+        "As ingestion processes grow more complicated and the SLA grows more stringent, engineers should consider moving to a proper orchestration system",
+        "Never — CLI tools are always sufficient",
+        "Only when the cloud provider requires it",
+        "CLI tools cannot run ingestion at all"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says growing complexity and stringent SLAs warrant a proper orchestration system."
+    },
+    {
+      "question": "How does the book characterize SSH in the context of ingestion?",
+      "options": [
+        "SSH is not an ingestion strategy but a protocol used with other ingestion strategies — for file transfer with SCP and for SSH tunnels providing secure, isolated connections to databases",
+        "SSH is the main ingestion strategy",
+        "SSH cannot transfer files",
+        "SSH tunnels expose databases to the internet"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says SSH is a protocol supporting other strategies, via SCP and tunnels."
+    },
+    {
+      "question": "What is a bastion host, and how is it used?",
+      "options": [
+        "An intermediate host instance that can connect to a database; it is exposed on the internet but locked down to minimal access from specified IP addresses and ports, with remote machines opening an SSH tunnel to it before connecting to the database",
+        "A server that hosts the database directly on the internet",
+        "A host that never connects to databases",
+        "A firewall that blocks all database access"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the bastion host pattern for securely accessing application databases."
+    },
+    {
+      "question": "What does the book say about SFTP and SCP as practical ingestion realities?",
+      "options": [
+        "They are techniques engineers should be familiar with even if not used regularly; SFTP remains a practical reality with partners, requiring security analysis to avoid data leaks, and SCP runs over SSH with network access control (defense in depth) recommended",
+        "SFTP and SCP are always insecure",
+        "They are never used in business",
+        "SCP does not use SSH"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes SFTP/SCP familiarity, security analysis, and defense-in-depth recommendations."
+    },
+    {
+      "question": "How does a webhook differ from a typical REST API call?",
+      "options": [
+        "With a webhook the data provider defines the API request specification but the provider makes the API calls rather than receiving them; it's the data consumer's responsibility to provide an API endpoint for the provider to call",
+        "Webhooks are identical to REST APIs",
+        "The consumer makes requests to the provider",
+        "Webhooks do not use HTTP"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains webhooks as the reverse of typical APIs, with the provider calling the consumer's endpoint."
+    },
+    {
+      "question": "What robust webhook architecture does the book describe for AWS?",
+      "options": [
+        "A serverless function framework (Lambda) to receive incoming events, a managed event-streaming platform (Kinesis) to store and buffer messages, a stream-processing framework (Flink) for real-time analytics, and an object store (S3) for long-term storage",
+        "A single monolithic server",
+        "Lambda alone with no storage",
+        "Only on-premises hardware"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes this AWS webhook architecture combining Lambda, Kinesis, Flink, and S3."
+    },
+    {
+      "question": "What does the book say about webhook-based ingestion architectures and ingestion's entanglement with other lifecycle stages?",
+      "options": [
+        "Webhook architectures can be brittle, difficult to maintain, and inefficient; the AWS architecture does much more than ingest, underscoring that it is often impossible to define your ingestion architecture without making decisions about storage and processing",
+        "Webhooks are always efficient",
+        "Ingestion can always be defined in isolation",
+        "Storage decisions never affect ingestion"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book highlights webhook brittleness and ingestion's entanglement with storage and processing."
+    },
+    {
+      "question": "What drawbacks does the book describe for web interface data access?",
+      "options": [
+        "Someone must manually access the interface, generate a report, and download a file, with drawbacks such as people forgetting to run the report or their laptop dying; where possible, choose tools and workflows that allow automated access",
+        "Web interfaces are fully automated",
+        "Manual access has no drawbacks",
+        "Reports generate themselves"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes manual web-interface drawbacks and recommends automated access."
+    },
+    {
+      "question": "What is web scraping, and what ethical concern does the book raise?",
+      "options": [
+        "Automatically extracting data from web pages, often by combing HTML elements — widespread, but a murky area where ethical and legal lines are blurry",
+        "A fully legal and unambiguous practice",
+        "A technique that only applies to APIs",
+        "A method for database backup"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines web scraping and notes its blurry ethical and legal lines."
+    },
+    {
+      "question": "What top-level advice does the book give before undertaking web scraping?",
+      "options": [
+        "Ask whether you should scrape or whether data is available from a third party; if you scrape, be a good citizen — don't create a denial-of-service attack, don't get your IP blocked, and understand and pace the traffic you generate",
+        "Always scrape as aggressively as possible",
+        "Ignore the impact on target sites",
+        "Data is never available from third parties"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book advises considering third-party data and being a good citizen to avoid DoS and IP blocks."
+    },
+    {
+      "question": "What legal warnings does the book give about web scraping?",
+      "options": [
+        "Generating DoS attacks can entail legal consequences, and actions that violate terms of service may cause headaches for your employer or you personally",
+        "Web scraping has no legal implications",
+        "Terms of service never matter",
+        "DoS attacks are always legal"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns about legal consequences of DoS and terms-of-service violations."
+    },
+    {
+      "question": "What maintenance challenge does the book describe for web scrapers?",
+      "options": [
+        "Web pages constantly change their HTML element structure, making it tricky to keep the scraper updated — ask whether the headache of maintaining these systems is worth the effort",
+        "Web pages never change",
+        "Scrapers never need maintenance",
+        "HTML structure is stable forever"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the maintenance burden of HTML structure changes."
+    },
+    {
+      "question": "What downstream architecture decision does the book say web scraping presents?",
+      "options": [
+        "Whether to pull only required fields from the scraped HTML with Python and write values to a database, or maintain the complete HTML and process it with a framework like Spark — decisions leading to very different architectures downstream of ingestion",
+        "Scraping never affects downstream architecture",
+        "All scraped data must be discarded",
+        "There is only one valid scraping pipeline"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the field-only versus full-HTML processing decision and its architectural implications."
+    },
+    {
+      "question": "What does the book say about AWS's Snowmobile transfer appliance?",
+      "options": [
+        "It is a transfer appliance sent to you in a semitrailer, intended to lift and shift an entire data center, with data sizes in the petabytes or greater",
+        "It is a small portable drive",
+        "It is a standard cloud storage service",
+        "It transfers data over the internet"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Snowmobile as a semitrailer-sized appliance for petabyte-scale data center moves."
+    },
+    {
+      "question": "How are transfer appliances useful for hybrid-cloud or multicloud setups?",
+      "options": [
+        "AWS Snowball supports import and export, so users can export data into a Snowball and import it into a second transfer appliance to move data into GCP or Azure, which is often cheaper than pushing data over the internet due to data egress fees",
+        "Transfer appliances only work within one cloud",
+        "Egress fees never make internet transfer costly",
+        "Snowball cannot export data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes using Snowball for cloud-to-cloud migration as a cheaper alternative to internet transfer."
+    },
+    {
+      "question": "Why are transfer appliances not suggested for ongoing workloads?",
+      "options": [
+        "Transfer appliances and data migration services are one-time data ingestion events; ongoing workloads should batch or stream much smaller data sizes on a continuing basis",
+        "They are ideal for constant data movement",
+        "They are cheaper than streaming for small data",
+        "They should be used for every sync"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says transfer appliances are one-time events, not for ongoing workloads."
+    },
+    {
+      "question": "How does data sharing as a consumption option differ from true ingestion?",
+      "options": [
+        "Datasets are often shared read-only — you can integrate them with your own data but do not own them, and if the provider removes your access you no longer have access; this isn't ingestion where you get physical possession of the dataset",
+        "Data sharing always transfers full ownership",
+        "Shared datasets are always free to keep forever",
+        "Data sharing is identical to ingestion"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts read-only data sharing with ingestion's physical possession."
+    },
+    {
+      "question": "What does the book say about the disconnect between software engineers and data engineers?",
+      "options": [
+        "They usually sit in separate organizational silos; software engineers typically see data engineers as downstream consumers of data exhaust from their application, not as stakeholders",
+        "They always work in the same team",
+        "Software engineers never generate data",
+        "There is no disconnect"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the siloed view of data engineers as mere downstream consumers."
+    },
+    {
+      "question": "How can data engineers improve data quality by engaging software engineers?",
+      "options": [
+        "Invite software engineers to be stakeholders in data engineering outcomes; most are aware of analytics/data science value but don't have aligned incentives to contribute directly, so opening a communication channel encourages them to get data into shape and communicate about changes",
+        "Software engineers should be excluded from data work",
+        "Communication makes quality worse",
+        "Software engineers have no useful data knowledge"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends making software engineers stakeholders and opening communication channels."
+    },
+    {
+      "question": "How does the book suggest involving product managers and executives in data engineering?",
+      "options": [
+        "Highlight software engineers' contributions to team members, executives, and especially product managers; involving product managers in outcomes encourages them to allocate software development to collaboration, and data engineers can provide executives guidance on structuring a data-driven business",
+        "Keep all data work invisible to executives",
+        "Product managers should never be involved",
+        "Executives need no guidance on data culture"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends highlighting contributions and involving product managers and executives."
+    },
+    {
+      "question": "Who are the ultimate customers for data ingestion, and why should engineers remember a broader business circle?",
+      "options": [
+        "Data practitioners and technology leaders such as data scientists, analysts, and CTOs, but also a broader circle such as marketing directors, supply-chain VPs, and CEOs — because basic automation of ingestion for departments like marketing can open up more budget and opportunities",
+        "Only the CTO",
+        "Only data scientists",
+        "Executives never consume data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to view data engineering as a business and recognize all customers, including marketing."
+    },
+    {
+      "question": "What security considerations does the book raise for moving data between locations?",
+      "options": [
+        "Data within your VPC should use secure endpoints and never leave the VPC; use a VPN or dedicated private connection between cloud and on-premises; and if data traverses the public internet, ensure the transmission is encrypted",
+        "Encryption is unnecessary for data movement",
+        "Data can always travel over the public internet unencrypted",
+        "VPCs and VPNs are not security measures"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists VPC endpoints, VPN/private connections, and encryption over the wire as security measures."
+    },
+    {
+      "question": "Why does the book say data management begins at data ingestion?",
+      "options": [
+        "This is the starting point for lineage and data cataloging; from this point on, data engineers need to think about schema changes, ethics, privacy, and compliance",
+        "Data management only applies to storage",
+        "Ingestion has no relation to data management",
+        "Lineage begins at the data warehouse"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says data management begins at ingestion as the starting point for lineage and cataloging."
+    },
+    {
+      "question": "What does the book say about the traditional command-and-control approach to schema changes?",
+      "options": [
+        "It can involve lead times of six months for the addition of a single field at large enterprises, which is an unacceptable impediment to agility",
+        "It is the most agile approach",
+        "Schema changes never require review",
+        "Six-month lead times are ideal"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book cites six-month lead times for a single field as unacceptable."
+    },
+    {
+      "question": "What Git-inspired solution does the book describe for handling schema changes?",
+      "options": [
+        "Since storage is cheap in big data and cloud environments, teams can maintain multiple versions of a table with different schemas and upstream transformations, using orchestration tools like Airflow so schema and code changes appear in development tables before official changes to the main table",
+        "A single official version like CVS",
+        "Centralized schema control",
+        "Deleting all old table versions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book draws on Git's distributed branch/tree model to propose multi-version tables."
+    },
+    {
+      "question": "What does the book recommend about tokenization and hashing of sensitive identities?",
+      "options": [
+        "Where it's necessary to track sensitive identities, tokenization is common to anonymize identities in model training and analytics, but engineers should look at where tokenization is used and, if possible, hash data at ingestion time",
+        "Never hash or tokenize data",
+        "Tokenization is only for images",
+        "Hashing is always unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends tokenization for anonymization and hashing at ingestion time where possible."
+    },
+    {
+      "question": "What is a \"broken-glass process,\" and when is it used?",
+      "options": [
+        "A process for bugs not reproducible without live data: require at least two people to approve access to sensitive data in production, with access tightly scoped to a particular issue and an expiration date",
+        "A process for granting permanent production access",
+        "A process for deleting production data",
+        "A process for testing without any data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the broken-glass process for limited, approved, expiring production sensitive-data access."
+    },
+    {
+      "question": "What does the book warn about \"naive technological solutions to human problems\" like encryption?",
+      "options": [
+        "Encryption and tokenization are often treated like privacy magic bullets, but most cloud storage and databases already encrypt at rest and in motion — the real problems are usually access problems, and one must still tightly manage access to the encryption key, so watch out for ritualistic encryption",
+        "Encryption always solves privacy problems",
+        "Access control is never the issue",
+        "Extra encryption layers are always necessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says data access problems are more common than encryption problems and warns against ritualistic encryption."
+    },
+    {
+      "question": "Why does the book warn about thoughtlessly hashing data without salting?",
+      "options": [
+        "If someone had a customer's email, they could easily hash it and find the customer in your data — hashing without salting and other strategies may not protect privacy as well as you think",
+        "Hashing always protects privacy perfectly",
+        "Salting is never needed",
+        "Hash functions are unbreakable"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says unsalted hashes of known values like emails are trivially reversible."
+    },
+    {
+      "question": "Why is monitoring critical at the ingestion stage, and what should you track?",
+      "options": [
+        "If there's one stage where monitoring is critical it's ingestion, since weak monitoring means pipelines may or may not be working; track the various aspects of time (event creation, ingestion, process, processing times) and monitor uptime, latency, and data volumes processed",
+        "Monitoring is only critical at serving",
+        "Only success counts should be tracked",
+        "Time tracking is unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book emphasizes ingestion monitoring and tracking event/ingestion/process/processing times, uptime, latency, and volumes."
+    },
+    {
+      "question": "What should engineers know about upstream system behavior for monitoring?",
+      "options": [
+        "Be aware of the number of events generated per time interval (events/minute, events/second) and the average size of each event; the pipeline should handle both the frequency and size of ingested events",
+        "Only the total data size matters",
+        "Event frequency and size are irrelevant",
+        "Upstream behavior cannot be measured"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says to know events per interval and average event size."
+    },
+    {
+      "question": "What does the book say about third-party services and incident response?",
+      "options": [
+        "What you gained in lean operational efficiencies is replaced by systems outside your control; know how you'll be alerted if a third party has an outage, have a response plan, and set up failover to other servers in another zone or region if possible",
+        "Third parties never fail",
+        "No response plan is ever needed",
+        "Failover is not possible with third parties"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes alerting, response plans, and failover for third-party dependencies."
+    },
+    {
+      "question": "What does the book say about internally built ingestion processes and deployment automation?",
+      "options": [
+        "Have proper testing and deployment automation to ensure code functions in production, and if the code is buggy or fails, be able to roll it back to a working version",
+        "Deployment automation is unnecessary",
+        "Rollbacks are impossible",
+        "Testing in production is recommended"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends testing, deployment automation, and rollback capability."
+    },
+    {
+      "question": "What does the book mean by calling data a \"silent killer\"?",
+      "options": [
+        "If quality, valid data is the foundation of success, using bad data to make decisions is much worse than having no data — bad data has caused untold damage to businesses, with data disasters sometimes called datastrophes",
+        "Data never causes problems",
+        "Bad data is always better than no data",
+        "Data quality is irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says bad data is worse than no data and calls disasters datastrophes."
+    },
+    {
+      "question": "What inherent difference does the book draw between DevOps and DataOps regarding regressions?",
+      "options": [
+        "We expect software regressions only when we deploy changes, while data often presents regressions independently because of events outside our control; data is entropic and changes in unexpected ways",
+        "Data never regresses",
+        "Software regressions happen randomly",
+        "Both behave identically"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts deployment-triggered software regressions with independent data regressions."
+    },
+    {
+      "question": "How does the book contrast DevOps problem detection with data-space regressions?",
+      "options": [
+        "DevOps engineers typically detect problems with binary conditions (e.g. request failure rate thresholds), while data regressions often manifest as subtle statistical distortions — e.g. is a change in search-term statistics from customer behavior, bot traffic, or a site test tool?",
+        "Data regressions are always binary",
+        "DevOps problems are never binary",
+        "Statistics are irrelevant to data quality"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts binary DevOps checks with subtle statistical data distortions."
+    },
+    {
+      "question": "What example does the book give of a visible data regression?",
+      "options": [
+        "In 2011 Google began withholding search terms in some cases to protect privacy, and analysts quickly saw \"not provided\" bubbling to the tops of their reports",
+        "A silent regression nobody noticed",
+        "A hardware failure",
+        "A network outage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Google's \"not provided\" as an immediately visible data regression."
+    },
+    {
+      "question": "How does the book say to fix data-quality issues whenever possible?",
+      "options": [
+        "Work with software engineers to fix data-quality issues at the source; many issues can be handled by basic software engineering best practices such as logs capturing change history, checks (nulls, etc.), and exception handling (try, catch, etc.)",
+        "Fix issues only in the warehouse",
+        "Ignore source-side fixes",
+        "Data quality cannot be fixed at the source"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends source-side fixes using basic software engineering practices."
+    },
+    {
+      "question": "What does the book say about traditional versus statistical data testing?",
+      "options": [
+        "Traditional data testing tools are generally built on simple binary logic (e.g. nulls in non-nullable fields, unexpected items in categorical columns), while statistical data testing is a new realm likely to grow dramatically in the next five years",
+        "Statistical testing already dominates",
+        "Binary logic covers all data testing",
+        "Data testing is unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts binary traditional tests with the emerging realm of statistical testing."
+    },
+    {
+      "question": "What does the book say about early-stage organizations deploying ingestion as cron jobs?",
+      "options": [
+        "Organizations in an early stage of data maturity may deploy ingestion as simple scheduled cron jobs, but this approach is brittle and can slow the velocity of data engineering deployment and development",
+        "Cron jobs are always ideal",
+        "Cron jobs scale perfectly",
+        "Cron is recommended at every maturity stage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes cron-based ingestion as brittle and velocity-limiting."
+    },
+    {
+      "question": "What does the book mean by \"true orchestration\"?",
+      "options": [
+        "A system capable of scheduling complete task graphs rather than individual tasks, where each ingestion task starts at the appropriate scheduled time and downstream processing begins as ingestion tasks complete",
+        "Scheduling individual cron jobs",
+        "Running tasks manually",
+        "A system that never schedules anything"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines true orchestration as scheduling complete task graphs."
+    },
+    {
+      "question": "What does the book say about the engineering intensity of the ingestion stage?",
+      "options": [
+        "The ingestion stage is engineering intensive, sitting at the edge of the data engineering domain and interfacing with external systems where software and data engineers build a variety of custom plumbing",
+        "Ingestion requires no engineering",
+        "Ingestion only uses off-the-shelf tools",
+        "Ingestion never touches external systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes ingestion as engineering intensive with custom plumbing at the domain edge."
+    },
+    {
+      "question": "What managed data connectors does the book name, and what should engineers develop?",
+      "options": [
+        "Managed data connectors such as Fivetran, Matillion, and Airbyte have simplified ingestion; engineers should take advantage of the best available managed tools and develop high software development competency where it matters, using version control, code review, and tests",
+        "Only open-source connectors exist",
+        "Managed connectors complicate ingestion",
+        "Version control is unnecessary for ingestion code"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names Fivetran, Matillion, and Airbyte and recommends managed tools plus strong software practices."
+    },
+    {
+      "question": "What code design advice does the book give for ingestion software?",
+      "options": [
+        "Your code needs to be decoupled — avoid writing monolithic systems with tight dependencies on the source or destination systems",
+        "Write tightly coupled monolithic code",
+        "Coupling is always preferable",
+        "Dependencies on source systems are fine"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book advises decoupled code avoiding tight source/destination dependencies."
+    },
+    {
+      "question": "How does the book characterize ingestion's role despite its tedious minutiae?",
+      "options": [
+        "At its heart, ingestion is plumbing — connecting pipes to other pipes to ensure data flows consistently and securely to its destination; the exciting data applications like analytics and ML cannot happen without it",
+        "Ingestion is optional",
+        "Analytics can happen without ingestion",
+        "Ingestion only matters for batch systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book calls ingestion the plumbing that analytics and ML depend on."
+    },
+    {
+      "question": "What sea change does the book say is underway, and what opportunity does it present?",
+      "options": [
+        "A movement from batch toward streaming data pipelines, which is an opportunity for data engineers to discover interesting streaming applications, communicate them to the business, and deploy exciting new technologies",
+        "A movement from streaming back to batch",
+        "No change is happening",
+        "Streaming is irrelevant to data engineering"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the batch-to-streaming sea change and its opportunities."
+    }
+  ]
+}

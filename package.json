@@ -1,0 +1,17 @@
+{
+  "name": "fde-quiz-practice",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build:questions": "node scripts/build-questions.mjs",
+    "dev": "npm run build:questions && vite",
+    "build": "npm run build:questions && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2"
+  }
+}

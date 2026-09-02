@@ -1,0 +1,338 @@
+{
+  "title": "Appendix A — Serialization and Compression Technical Details: Quality Question Bank",
+  "source_file": "appendix-a-serialization-and-compression-technical-details.md",
+  "original_question_file": "serialization-and-compression-technical-details.json",
+  "question_count": 30,
+  "questions": [
+    {
+      "question": "Why does the book advise against using CSV in data pipelines despite its ubiquity?",
+      "options": [
+        "CSV is highly error-prone (inconsistent delimiter/quote/escape conventions) and delivers poor performance — switching from CSV to Parquet has improved job performance by up to 100x",
+        "CSV files cannot be opened by any modern software tools",
+        "CSV is illegal to use for cross-organization data exchange under GDPR",
+        "CSV always requires a paid commercial license to use in production"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"Data engineers should avoid using CSV files in pipelines because they are highly error-prone and deliver poor performance,\" citing 100x speedups from switching to Parquet."
+    },
+    {
+      "question": "What's the key structural difference between row-based and columnar serialization?",
+      "options": [
+        "Row-based formats store each record/object as a complete unit written sequentially; columnar formats pivot storage so each column's values are grouped together in their own files",
+        "Row-based formats can only store numeric data, while columnar formats can only store text",
+        "There is no real structural difference — only a naming convention difference",
+        "Columnar formats store each record sequentially, while row-based formats group values by field"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains row-oriented formats write \"complete relations... sequentially,\" while \"with columnar serialization, data organization is essentially pivoted by storing each column into its own set of files.\""
+    },
+    {
+      "question": "Why does columnar storage typically pair so well with compression?",
+      "options": [
+        "Storing similar values next to each other (all of one column's values together) creates high redundancy, which compression algorithms can exploit for strong ratios — e.g. tokenizing frequently repeated values",
+        "Columnar storage is required by law to use compression in most databases",
+        "Compression only works on row-based formats, never on columnar ones",
+        "Columnar storage makes compression entirely unnecessary, so it's rarely used"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains: \"Storing data as columns also puts similar values next to each other, allowing us to encode columnar data efficiently... columnar storage is usually combined with compression.\""
+    },
+    {
+      "question": "Why are single-row updates especially expensive in a columnar storage system?",
+      "options": [
+        "Changing one field means decompressing the relevant column file(s), modifying them, recompressing, and rewriting to storage — expensive compared to a row-oriented system's in-place update",
+        "Columnar systems are physically incapable of performing any updates whatsoever",
+        "Updates are actually cheaper in columnar systems than in row-oriented ones",
+        "Row-oriented systems have an identical update cost to columnar systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"To change one field in one record, we must decompress the column file, modify it, recompress it, and write it back to storage... the overhead for updating a single row is horrendous.\""
+    },
+    {
+      "question": "What key advantage does Parquet offer over a database's proprietary internal columnar format (e.g. BigQuery's or Snowflake's own storage)?",
+      "options": [
+        "Portability/interoperability — Parquet files can be read directly by many tools (Spark, Presto, etc.) without the performance hit of reserializing proprietary formats for external use",
+        "Parquet is always faster for internal queries than any database's own proprietary format",
+        "Parquet is the only known format capable of supporting nested data structures",
+        "Parquet requires no schema information at all, unlike proprietary formats"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes proprietary formats cause \"a huge performance hit... when interoperating with external tools,\" while \"Parquet files in a data lake may be a superior option to proprietary cloud data warehouses in a polyglot tool environment.\""
+    },
+    {
+      "question": "What core idea does Apache Arrow introduce, and what overhead does it eliminate?",
+      "options": [
+        "A single binary columnar format usable both for in-memory processing and export/storage, eliminating separate serialize/deserialize steps when moving data between memory, network, and disk",
+        "Arrow is a row-based format optimized only for CSV interchange between systems",
+        "Arrow eliminates the need for any compression algorithm entirely",
+        "Arrow only works within a single programming language, with no cross-language support"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states Arrow's idea is \"to rethink serialization by utilizing a binary data format that is suitable for both in-memory processing and export... This allows us to avoid the overhead of serialization and deserialization.\""
+    },
+    {
+      "question": "What do \"hybrid serialization\" technologies like Apache Hudi and Iceberg add on top of plain columnar storage?",
+      "options": [
+        "They combine multiple serialization techniques (e.g. row-oriented CDC capture plus columnar bulk storage) with table management features like atomic updates, time travel, and schema evolution",
+        "They replace columnar storage entirely with row-only storage",
+        "They remove the need for any compression or schema tracking whatsoever",
+        "They are simply alternate names for Parquet with no functional difference"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Hudi as combining \"multiple serialization techniques to allow columnar database performance... while also supporting atomic, transactional updates,\" and Iceberg as supporting \"schema evolution\" and \"table time travel.\""
+    },
+    {
+      "question": "What's the difference between lossless and lossy compression, and which does data engineering analytics work typically require?",
+      "options": [
+        "Lossless compression recovers an exact bit-for-bit copy on decompression; lossy compression (audio/images/video) only approximates the original — analytics work requires lossless compression for exact fidelity",
+        "Lossy compression is required for all analytics workloads, per the book",
+        "Lossless and lossy compression produce identical output, differing only in processing speed",
+        "Lossless compression is only usable for audio and video, never for structured data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"Decompressing data encoded with a lossless algorithm recovers a bit-for-bit exact copy... Data engineers might deal with lossy compression... but not in serialization for analytics, where exact data fidelity is required.\""
+    },
+    {
+      "question": "How do newer compression algorithms like Snappy, Zstandard, and LZ4 differ in priority from traditional ones like gzip and bzip2?",
+      "options": [
+        "The newer generation prioritizes speed and CPU efficiency over maximum compression ratio, making them popular for data lakes and columnar databases optimizing for fast query performance",
+        "The newer algorithms always achieve a strictly higher compression ratio than gzip/bzip2, with no speed trade-off",
+        "Snappy and Zstandard are lossy compression algorithms, unlike gzip",
+        "Newer algorithms can only be used with row-oriented formats like CSV"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes this new generation as algorithms that \"prioritize speed and CPU efficiency over compression ratio,\" used to \"optimize for fast query performance\" in data lakes and columnar databases."
+    },
+    {
+      "question": "How does the book frame the abundance of serialization formats, and what is reserialization?",
+      "options": [
+        "The abundance is a significant source of pain but also a massive opportunity for performance improvements; reserialization is the conversion of data from one format to another as it moves through a pipeline",
+        "The abundance of formats has no downsides",
+        "Reserialization means keeping data in a single format forever",
+        "Reserialization is a storage-only concept"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes format abundance as pain plus opportunity and defines reserialization as format conversion in pipelines."
+    },
+    {
+      "question": "How must engineers handle data they are forced to accept in an \"ancient, nasty form\"?",
+      "options": [
+        "Design processes to deserialize the format and handle exceptions, then clean up and convert the data for consistent, fast downstream processing and consumption",
+        "Reject all such data outright",
+        "Store it exactly as-is forever",
+        "Ignore exceptions during processing"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends deserialization with exception handling and cleaning/conversion for downstream use."
+    },
+    {
+      "question": "How does the book describe CSV as a serialization format?",
+      "options": [
+        "The term CSV is essentially a catchall for delimited text with flexibility in escaping, quote characters, and delimiter conventions; engineers are often required to use it to exchange data with systems outside their control, and it's common for archival",
+        "CSV has a single strict standard definition",
+        "CSV cannot be used for archival",
+        "CSV is only used for data already inside a warehouse"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes CSV's flexibility and its forced use for external exchange and archival."
+    },
+    {
+      "question": "What should you include if you use CSV for archival, and why?",
+      "options": [
+        "A complete technical description of the serialization configuration for your files so that future consumers can ingest the data",
+        "A password to protect the files",
+        "Nothing — CSV is self-describing",
+        "Only the file creation date"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says archival CSV should include a complete technical description of the serialization configuration."
+    },
+    {
+      "question": "What does the book say about XML as a serialization format?",
+      "options": [
+        "XML was popular when HTML and the internet were new but is now viewed as legacy; it is generally slow to serialize and deserialize for data engineering, and engineers are often forced to interact with it via legacy systems — JSON has largely replaced it for plain-text object serialization",
+        "XML is the modern standard for object serialization",
+        "XML is always faster than JSON",
+        "XML is never used with legacy systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes XML as legacy, slow, and largely replaced by JSON."
+    },
+    {
+      "question": "How does the book describe JSON's popularity and database support?",
+      "options": [
+        "JSON has emerged as the new standard for data exchange over APIs and become an extremely popular storage format; its popularity grew with MongoDB and document stores, and databases such as Snowflake, BigQuery, and SQL Server offer extensive native support",
+        "JSON is only used for APIs and never storage",
+        "JSON is not supported by cloud databases",
+        "JSON popularity is declining"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes JSON's API/storage popularity and native database support."
+    },
+    {
+      "question": "What is JSON Lines (JSONL), and when is it especially useful?",
+      "options": [
+        "JSONL stores a sequence of JSON objects delimited by line breaks, and is extremely useful for storing data right after it is ingested from APIs or applications — though many columnar formats offer significantly better performance, so consider moving for intermediate pipeline stages and serving",
+        "JSONL stores a single huge JSON document",
+        "JSONL is the fastest format for serving",
+        "JSONL cannot be used for bulk semistructured data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes JSONL's line-delimited objects and its post-ingestion usefulness with a performance caveat."
+    },
+    {
+      "question": "What is Avro, and where is it popular?",
+      "options": [
+        "Avro is a row-oriented data format designed for RPCs and data serialization, encoding data into a binary format with schema metadata specified in JSON; it is popular in the Hadoop ecosystem and supported by various cloud data tools",
+        "Avro is a columnar format for analytics",
+        "Avro stores schema in XML only",
+        "Avro is exclusive to Snowflake"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Avro as a binary, JSON-schema row-oriented format popular in Hadoop."
+    },
+    {
+      "question": "What is one obvious advantage of columnar storage that the book highlights?",
+      "options": [
+        "It allows reading data from only a subset of fields rather than full rows at once — a common scenario in analytics that can dramatically reduce the amount of data scanned to execute a query",
+        "It always reads every field in every row",
+        "It requires full-row reads for all queries",
+        "It makes analytics queries scan more data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book highlights columnar storage's subset-field reads reducing scanned data."
+    },
+    {
+      "question": "What compression technique does the book describe for columns with large numbers of repeated values?",
+      "options": [
+        "Looking for repeated values and tokenizing them — a simple but highly efficient compression method",
+        "Encrypting each value separately",
+        "Storing every value in full with no encoding",
+        "Deleting duplicate rows permanently"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes tokenizing repeated values as an efficient column compression technique."
+    },
+    {
+      "question": "How does the book illustrate high redundancy even in columns without many exact repeated values?",
+      "options": [
+        "Customer support messages organized into a single column likely show the same themes and verbiage again and again, allowing compression algorithms to realize a high ratio",
+        "Support messages never share themes",
+        "Redundancy only occurs with exact duplicates",
+        "Compression cannot exploit thematic similarity"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book uses the customer-support-messages example to show high redundancy in columns."
+    },
+    {
+      "question": "How do columnar databases avoid rewriting full columns on each update, and what remains true about single-row updates?",
+      "options": [
+        "Columns are broken into many files, typically using partitioning and clustering strategies that organize data by query and update patterns — even so, the overhead for updating a single row is horrendous, making columnar databases a terrible fit for transactional workloads",
+        "Full columns are always rewritten on every update",
+        "Single-row updates are cheap in columnar databases",
+        "Columnar databases are ideal for transactional workloads"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes partitioning/clustering to avoid full-column rewrites while still calling single-row updates horrendous."
+    },
+    {
+      "question": "What problems does the book say Parquet solves, and what compression is especially popular with it?",
+      "options": [
+        "Parquet builds in schema information, natively supports nested data unlike CSV, and is portable; speed-optimized compression algorithms such as Snappy are especially popular with it",
+        "Parquet cannot store schema information",
+        "Parquet does not support nested data",
+        "Parquet requires proprietary tools to read"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Parquet's schema/nesting support, portability, and Snappy's popularity."
+    },
+    {
+      "question": "How does the book compare ORC to Parquet, and what limitation do cloud tools have with ORC?",
+      "options": [
+        "ORC is a columnar format similar to Parquet, was very popular for Apache Hive, and is seen much less now with somewhat less support — for example, Snowflake and BigQuery can read ORC files but neither can export to ORC, while they support Parquet import and export",
+        "ORC is a row-based format",
+        "ORC has better cloud support than Parquet",
+        "BigQuery and Snowflake can export to ORC"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts ORC's declining usage and the import-only limitation in cloud tools."
+    },
+    {
+      "question": "How does Apache Arrow handle nested data using shredding?",
+      "options": [
+        "Shredding maps each location in the schema of JSON documents into a separate column",
+        "Shredding deletes nested structures",
+        "Shredding converts all data to row format",
+        "Shredding is exclusive to CSV processing"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes shredding as mapping each JSON schema location into a separate column."
+    },
+    {
+      "question": "What in-memory advantage does Arrow's format enable for querying?",
+      "options": [
+        "A data file can be stored on disk, swapped directly into program address space using virtual memory, and queried without deserialization overhead — chunks can be swapped in and out while scanning to avoid running out of memory for large datasets",
+        "Files must always be fully deserialized before querying",
+        "Virtual memory cannot be used for data files",
+        "Chunk swapping always causes out-of-memory errors"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Arrow's memory-mapped querying without deserialization."
+    },
+    {
+      "question": "How does the Arrow project address the fact that different languages serialize data differently?",
+      "options": [
+        "It provides software libraries for a variety of languages (C, Go, Java, JavaScript, MATLAB, Python, R, and Rust) that interoperate with Arrow data in memory, sometimes using interfaces to low-level code in another language, allowing cross-language interop without serialization overhead",
+        "Arrow only supports one programming language",
+        "Arrow requires serialization between all languages",
+        "Arrow cannot be used with Python"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Arrow's multi-language libraries enabling overhead-free interop."
+    },
+    {
+      "question": "What uptake does the book note for Arrow, and what product is built around it?",
+      "options": [
+        "Arrow is seeing rapid uptake with frameworks like Apache Spark, and has spanned a new data warehouse product — Dremio, a query engine and warehouse built around Arrow serialization",
+        "Arrow has no framework uptake",
+        "Dremio is built around CSV",
+        "Arrow is not used in any warehouse"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes Spark uptake and the Arrow-based Dremio warehouse."
+    },
+    {
+      "question": "What is Hudi, and how does it combine serialization techniques for a typical CDC use case?",
+      "options": [
+        "Hudi (Hadoop Update Delete Incremental) combines multiple serialization techniques so a CDC stream is captured into a row-oriented format while the bulk of the table is retained in a columnar format, with a periodic repacking process combining files into updated columnar files for query efficiency",
+        "Hudi only stores row-oriented data",
+        "Hudi never repacks files",
+        "Hudi cannot be updated from CDC streams"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Hudi's row-oriented CDC capture plus columnar bulk storage and repacking."
+    },
+    {
+      "question": "What does the book say about database storage engines?",
+      "options": [
+        "All databases have an underlying storage engine; many don't expose it as a separate abstraction (e.g. BigQuery, Snowflake), some support pluggable engines (MySQL), and others offer major configuration options like columnar versus row-based storage; the storage engine is typically a separate layer from the query engine managing serialization, physical arrangement, and indexes",
+        "Databases do not have storage engines",
+        "Storage engines are always exposed to users",
+        "Storage engines never manage serialization"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes storage engines' hidden/pluggable/configurable nature and their responsibilities."
+    },
+    {
+      "question": "What storage engine innovations does the book highlight from the 2000s and 2010s?",
+      "options": [
+        "Modern storage engines are better optimized for SSD performance, offer improved support for modern types and structures like variable-length strings, arrays, and nested data, and have shifted toward columnar storage for analytics — with SQL Server, PostgreSQL, and MySQL offering robust columnar support",
+        "Storage engines are still optimized for spinning disks",
+        "Columnar support is exclusive to cloud warehouses",
+        "Modern types are unsupported by storage engines"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes SSD optimization, modern-type support, and columnar shifts in storage engines."
+    }
+  ]
+}

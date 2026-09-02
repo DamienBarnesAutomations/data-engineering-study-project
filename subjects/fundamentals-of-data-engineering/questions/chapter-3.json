@@ -1,0 +1,1372 @@
+{
+  "title": "Chapter 3 — Designing Good Data Architecture: Quality Question Bank",
+  "source_file": "chapter-3-designing-good-data-architecture.md",
+  "original_question_file": "chapter-3.json",
+  "question_count": 124,
+  "questions": [
+    {
+      "question": "Using Bezos's \"one-way door / two-way door\" framework as the book presents it, how would shutting down AWS entirely compare to requiring a new microservice to use DynamoDB?",
+      "options": [
+        "Shutting down AWS is a one-way door (nearly impossible to reverse); mandating DynamoDB for one service is a two-way door (easily reversible)",
+        "Both are one-way doors, since cloud infrastructure decisions are always irreversible",
+        "Shutting down AWS is a two-way door; mandating DynamoDB is a one-way door",
+        "Both are two-way doors, since any technology decision can eventually be undone"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives exactly these two examples: shutting down AWS would be nearly impossible to reverse (one-way door), while requiring DynamoDB for a new service could be reversed by refactoring (two-way door)."
+    },
+    {
+      "question": "What is the book's own working definition of data architecture?",
+      "options": [
+        "A fixed blueprint of all data systems that should not change once approved",
+        "A department responsible for enforcing data governance policy",
+        "The set of ETL tools and pipelines used to move data between systems",
+        "The design of systems to support the evolving data needs of an enterprise, achieved by flexible and reversible decisions reached through careful evaluation of trade-offs"
+      ],
+      "correctIndex": 3,
+      "explanation": "This is stated verbatim as the authors' definition, built on their enterprise architecture definition and emphasizing flexibility, reversibility, and trade-offs — not a static, fixed blueprint."
+    },
+    {
+      "question": "What's the difference between operational and technical data architecture, per the book?",
+      "options": [
+        "Operational and technical architecture are two names for the same concept",
+        "Operational architecture applies only to cloud systems; technical architecture applies only to on-premises systems",
+        "Operational architecture describes the functional requirements (people, process, technology) — what needs to happen; technical architecture describes how data is ingested, stored, transformed, and served",
+        "Operational architecture is the concern of data scientists exclusively; technical architecture is for data engineers exclusively"
+      ],
+      "correctIndex": 2,
+      "explanation": "The book states plainly: \"operational architecture describes what needs to be done, and technical architecture details how it will happen.\""
+    },
+    {
+      "question": "A team sets a five-minute recovery time objective (RTO) for their public e-commerce site, but a one-day RTO for an internal weekly reporting tool. Why does the book consider this appropriate?",
+      "options": [
+        "RTO should reflect actual business impact: a brief e-commerce outage has major revenue impact, while a delayed internal report may be tolerable",
+        "RTO only applies to streaming systems, never to batch reporting tools",
+        "RTO must always be identical across every system for consistency",
+        "A shorter RTO always means lower infrastructure cost, so it should be minimized everywhere"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book's own examples make this exact point: \"An RTO of one day might be fine for an internal reporting system. A website outage of just five minutes could have a significant adverse business impact.\""
+    },
+    {
+      "question": "How does the book distinguish recovery time objective (RTO) from recovery point objective (RPO)?",
+      "options": [
+        "RTO measures data loss; RPO measures downtime",
+        "RTO is the maximum acceptable downtime for a service; RPO is the maximum acceptable amount of data loss after recovery",
+        "RTO applies only to hardware failures; RPO applies only to software bugs",
+        "RTO and RPO measure the same thing, just under different vendor naming conventions"
+      ],
+      "correctIndex": 1,
+      "explanation": "The book defines RTO as \"the maximum acceptable time for a service or system outage\" and RPO as \"the maximum acceptable data loss\" after recovery — two distinct dimensions of failure planning."
+    },
+    {
+      "question": "What does it mean for a system to \"scale to zero,\" as the book describes it?",
+      "options": [
+        "It guarantees zero downtime under all conditions",
+        "It can shut down completely when not in use, as many serverless functions and serverless OLAP databases do automatically",
+        "It requires zero ongoing maintenance from engineers",
+        "Its storage costs are always zero, regardless of data volume"
+      ],
+      "correctIndex": 1,
+      "explanation": "The book gives this exact definition: some scalable systems \"can also scale to zero: they shut down completely when not in use,\" citing serverless functions and serverless OLAP databases as examples."
+    },
+    {
+      "question": "Amazon's 2002 \"API Mandate\" is used in the book as an example of building loosely coupled systems. What was its core rule, and what did it enable?",
+      "options": [
+        "All teams had to standardize on a single programming language for consistency",
+        "All teams had to store their data in one shared central database for simplicity",
+        "All teams needed sign-off from a central architecture committee before shipping",
+        "All teams must expose data/functionality only through service interfaces, with no direct database reads or shared memory allowed — this loose coupling eventually enabled AWS"
+      ],
+      "correctIndex": 3,
+      "explanation": "The mandate required all interprocess communication to go through service interfaces (\"no direct linking, no direct reads of another team's data store... no back-doors whatsoever\"), which the book credits with enabling the loose coupling that led to AWS."
+    },
+    {
+      "question": "How does the book contrast the traditional hardened-perimeter security model with the zero-trust, shared-responsibility approach used in the cloud?",
+      "options": [
+        "Hardened-perimeter assumes everything inside the network boundary is trustworthy (vulnerable to insider threats/phishing); in the cloud, responsibility instead splits between the provider (security ‘of’ the cloud) and the customer (security ‘in’ the cloud)",
+        "The hardened-perimeter model is only relevant to streaming architectures",
+        "Zero trust eliminates any need for encryption",
+        "Zero trust means the cloud provider is solely responsible for all security, with no customer role"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book illustrates the hardened-perimeter model's weakness to insider threats (the Mission Impossible example), then contrasts it with AWS's shared responsibility model splitting security ‘of’ vs ‘in’ the cloud."
+    },
+    {
+      "question": "Why does the book argue \"all data engineers should consider themselves security engineers\"?",
+      "options": [
+        "The cloud pushes security responsibility to engineers outside dedicated security roles, and real breaches (like public S3 buckets) have resulted from this responsibility being ignored",
+        "It means only engineers formally on a security team may configure cloud storage",
+        "It means data engineers must hold a formal security certification before touching any pipeline",
+        "It means data engineers should always encrypt every dataset twice for redundancy"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes the cloud \"pushes this responsibility out to engineers who are not explicitly in security roles,\" and cites real S3-misconfiguration breaches as the consequence of ignoring it."
+    },
+    {
+      "question": "FinOps, as the book describes it, brings engineering together with which discipline, and to manage what?",
+      "options": [
+        "Finance — to manage dynamic, pay-as-you-go cloud spending collaboratively and with data-driven decisions, replacing fixed capital-expenditure budgeting",
+        "HR — to manage data team headcount costs",
+        "Marketing — to manage customer acquisition costs",
+        "Legal — to manage data-privacy compliance costs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book quotes the FinOps Foundation's definition directly: a \"cloud financial management discipline\" enabling engineering, finance, technology, and business teams to collaborate on data-driven spending decisions."
+    },
+    {
+      "question": "A company's sales domain creates invoices, and its accounting domain must track those same invoices to ensure payment. How does the book suggest structuring this?",
+      "options": [
+        "A single centralized \"finance\" domain should absorb both sales and accounting",
+        "Accounting should own all invoice data exclusively, with sales having no access at all",
+        "Sales and accounting each own their respective domain, but share a common \"invoice\" service between them",
+        "Each domain should maintain its own fully duplicated copy of invoice data"
+      ],
+      "correctIndex": 2,
+      "explanation": "This is the book's own worked example: \"the accounting domain shares the invoice service with the sales domain since a sale generates an invoice... Sales and accounting own their respective domains.\""
+    },
+    {
+      "question": "How does the book distinguish vertical from horizontal scaling, and which does it say offers higher availability and reliability?",
+      "options": [
+        "Horizontal scaling adds resources to a single machine; vertical scaling adds more machines",
+        "Vertical scaling adds resources to a single machine with hard limits and a single point of failure; horizontal scaling adds more machines, offering higher availability and reliability through distribution and redundancy",
+        "Both approaches offer identical reliability since they scale the same underlying hardware",
+        "Vertical scaling only applies to streaming systems, horizontal only to batch systems"
+      ],
+      "correctIndex": 1,
+      "explanation": "The book notes single machines (vertical scaling) \"generally can't offer high availability and reliability,\" and that distributed, horizontally-scaled systems achieve this through added machines and built-in redundancy."
+    },
+    {
+      "question": "A startup builds their MVP on a single server hosting both the database and application, to move fast under a deadline. What does the book say about this choice?",
+      "options": [
+        "Single-tier architectures are always production-ready once a load balancer is added",
+        "It's fine for prototyping and development, but not advised for production, since a failure in the server, database, or application takes down the whole architecture",
+        "Single-tier architecture is specifically designed for high-concurrency production analytics",
+        "The book says single-tier architecture is never an acceptable choice at any stage"
+      ],
+      "correctIndex": 1,
+      "explanation": "The book states single-tier architectures \"are good for prototyping and development, [but] they are not advised for production environments because of the obvious failure risks.\""
+    },
+    {
+      "question": "How does the book contrast monolith and microservices architectures in terms of failure behavior?",
+      "options": [
+        "Microservices architectures guarantee zero downtime by design",
+        "Monoliths are always more reliable because there's only one system to monitor",
+        "In a monolith, tight coupling means a change or failure in one area can ripple elsewhere (\"whack-a-mole\"); in microservices, one service going down temporarily doesn't stop other loosely coupled services from functioning",
+        "Monoliths and microservices have identical failure-isolation properties"
+      ],
+      "correctIndex": 2,
+      "explanation": "The book describes improving a monolith as \"a game of whack-a-mole,\" while for microservices: \"If one service temporarily goes down, it won't affect the ability of other services to continue functioning.\""
+    },
+    {
+      "question": "Under AWS's shared responsibility model as the book describes it, who is responsible for \"security of the cloud\" versus \"security in the cloud\"?",
+      "options": [
+        "Security of the cloud and security in the cloud are the same responsibility, just described from two angles",
+        "AWS is responsible for security OF the cloud (the infrastructure running its services); the customer is responsible for security IN the cloud (correctly configuring their own use of those services)",
+        "The customer is responsible for both, regardless of provider",
+        "AWS is responsible for both, regardless of customer configuration"
+      ],
+      "correctIndex": 1,
+      "explanation": "The book quotes AWS directly: AWS \"is responsible for protecting the infrastructure that runs AWS services,\" while \"your responsibility is determined by the AWS service that you use\" — i.e. security in the cloud."
+    },
+    {
+      "question": "What is the key architectural difference between Lambda and Kappa architecture for unifying batch and streaming data?",
+      "options": [
+        "Lambda and Kappa are simply two names for the same architecture",
+        "Lambda runs separate batch, streaming, and serving systems that must be reconciled; Kappa uses a single stream-processing platform as the backbone for all data handling, replaying the stream for batch-like needs",
+        "Lambda uses only streaming pipelines; Kappa uses only batch pipelines",
+        "Kappa requires a separate speed layer and batch layer, while Lambda does not"
+      ],
+      "correctIndex": 1,
+      "explanation": "The book describes Lambda as running batch, streaming, and serving as independent systems requiring reconciliation, while Kappa's premise is \"why not just use a stream-processing platform as the backbone for all data handling.\""
+    },
+    {
+      "question": "What problems does the book associate with first-generation (\"1.0\") data lakes?",
+      "options": [
+        "They required proprietary hardware only large enterprises could afford",
+        "They could only store structured relational data, not unstructured data",
+        "They often became unmanaged \"data swamps\" with poor schema/cataloging, painful deletes/updates, ballooning Hadoop-cluster costs, and a write-only design that clashed with regulations like GDPR",
+        "They were prohibitively expensive to set up and offered no cost advantage over data warehouses"
+      ],
+      "correctIndex": 2,
+      "explanation": "The book describes data lake 1.0's shortcomings in detail: the data swamp problem, DML operations that were \"painful to implement,\" ballooning Hadoop costs, and a write-only design that clashed with GDPR's deletion requirements."
+    },
+    {
+      "question": "What key capability does a data lakehouse add on top of a traditional data lake, per the book?",
+      "options": [
+        "It removes the need for object storage, moving everything to local disks",
+        "It only supports structured data, unlike a data lake",
+        "Data-warehouse-style controls and data management on object storage — notably ACID transactions — unlike the original data lake's essentially write-only design",
+        "It eliminates the need for any query engine entirely"
+      ],
+      "correctIndex": 2,
+      "explanation": "The book says the lakehouse \"supports atomicity, consistency, isolation, and durability (ACID) transactions, a big departure from the original data lake, where you simply pour in data and never update or delete it.\""
+    },
+    {
+      "question": "According to Zhamak Dehghani as cited in the book, what are the four key components of a data mesh?",
+      "options": [
+        "Security, DataOps, orchestration, and software engineering",
+        "Domain-oriented decentralized data ownership and architecture, data as a product, self-serve data infrastructure as a platform, and federated computational governance",
+        "Data warehousing, data lakes, ETL, and reverse ETL",
+        "Centralized data ownership, data as a service, vendor-managed infrastructure, and command-and-control governance"
+      ],
+      "correctIndex": 1,
+      "explanation": "The book lists these four components exactly as identified by Dehghani, whose core idea is decentralizing away from a single centrally-owned data platform toward domain ownership."
+    },
+    {
+      "question": "A team wants to migrate off a legacy monolith but worries a full rewrite is too risky. What approach does the book recommend, and why?",
+      "options": [
+        "Jump straight to a greenfield project and abandon the legacy system without any migration plan",
+        "Always do a complete big-bang rewrite to get a clean slate",
+        "Never attempt to replace legacy systems, since deprecation is never worth the effort",
+        "The strangler pattern — incrementally replacing pieces of the legacy system over time — because it's targeted and supports flexible, reversible decisions, unlike a risky “big-bang” rewrite"
+      ],
+      "correctIndex": 3,
+      "explanation": "The book explicitly warns against \"big-bang\" overhauls (\"this path often leads to disaster\") and recommends the strangler pattern for its \"targeted and surgical approach\" that preserves reversibility."
+    },
+    {
+      "question": "What is enterprise architecture in the chapter's working definition?",
+      "options": [
+        "A fixed inventory of every application and database that must never change.",
+        "The design of systems to support change in the enterprise through flexible and reversible decisions and careful trade-off evaluation.",
+        "A governance committee responsible for approving all software purchases.",
+        "A collection of data pipelines used only by the data engineering team."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter defines enterprise architecture around supporting change through flexible, reversible decisions and trade-off evaluation."
+    },
+    {
+      "question": "Which statement best describes how data architecture relates to enterprise architecture?",
+      "options": [
+        "They are unrelated disciplines.",
+        "Data architecture replaces enterprise architecture in data-driven companies.",
+        "Data architecture is a subset of enterprise architecture.",
+        "Enterprise architecture is a subset of data architecture."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter explicitly positions data architecture as a subset of enterprise architecture."
+    },
+    {
+      "question": "Why does the chapter emphasize flexible and reversible architectural decisions?",
+      "options": [
+        "Flexible decisions eliminate all technical trade-offs.",
+        "Reversible decisions guarantee that no architecture will ever need maintenance.",
+        "The world and business needs change, so reversible choices make it easier to adjust course as new information appears.",
+        "Reversible decisions are useful only for software licensing."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter connects reversibility to changing conditions and reducing the risk of architectural decisions."
+    },
+    {
+      "question": "What is a one-way door?",
+      "options": [
+        "A system with only one network endpoint.",
+        "A decision that is extremely difficult or nearly impossible to reverse.",
+        "A security policy that permits only one user.",
+        "A decision that can be changed immediately with no cost."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter uses Bezos's terminology for decisions that are almost impossible to reverse."
+    },
+    {
+      "question": "What is a two-way door?",
+      "options": [
+        "A physical architecture with two network paths.",
+        "A decision that can be reversed relatively easily if it does not work out.",
+        "A decision that always requires executive approval.",
+        "A decision that permanently locks an organization into one vendor."
+      ],
+      "correctIndex": 1,
+      "explanation": "Two-way doors are reversible decisions that allow organizations to iterate and learn."
+    },
+    {
+      "question": "Why should large architecture initiatives often be broken into smaller changes?",
+      "options": [
+        "Breaking work into pieces guarantees zero downtime.",
+        "Small changes eliminate the need for architecture.",
+        "Large initiatives cannot contain technical dependencies.",
+        "Smaller changes can make the overall initiative more manageable and keep individual decisions more reversible."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter connects change management with breaking large initiatives into smaller, more reversible actions."
+    },
+    {
+      "question": "What is the chapter's main warning about technical solutions?",
+      "options": [
+        "Technical solutions should support business goals rather than exist for their own sake.",
+        "Technical sophistication should always take priority over business requirements.",
+        "The newest technology is automatically the highest-value solution.",
+        "Architecture should be designed independently of business stakeholders."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter repeatedly stresses that technical solutions exist to support business goals."
+    },
+    {
+      "question": "Which set contains examples of physical or practical constraints that architecture must account for?",
+      "options": [
+        "Only dashboard performance.",
+        "Latency, reliability, density, energy consumption, complexity, and budgets.",
+        "Only programming language syntax.",
+        "Only cloud-provider branding."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter notes physical limits such as latency and energy plus practical limits such as complexity and budgets."
+    },
+    {
+      "question": "What does it mean to say that good data architecture is 'a living, breathing thing'?",
+      "options": [
+        "Architecture should never be documented.",
+        "Architecture should be replaced completely every year.",
+        "Architecture exists only while a project is being built.",
+        "Architecture must evolve as business needs, technologies, and practices change."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says architecture is never finished because change and evolution are central to its purpose."
+    },
+    {
+      "question": "Which characteristic is most associated with bad data architecture in the chapter?",
+      "options": [
+        "Rigid, tightly coupled, overly centralized design that makes development and change harder.",
+        "Reversible technology choices.",
+        "Flexible components with clear boundaries.",
+        "Reusable common components with appropriate security."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter explicitly contrasts good architecture with rigid, tightly coupled, overly centralized designs."
+    },
+    {
+      "question": "Which of the following is one of the chapter's nine principles of good data engineering architecture?",
+      "options": [
+        "Maximize architectural complexity.",
+        "Plan for failure.",
+        "Centralize every domain permanently.",
+        "Eliminate all managed services."
+      ],
+      "correctIndex": 1,
+      "explanation": "Planning for failure is one of the nine principles listed in the chapter."
+    },
+    {
+      "question": "Which set contains the chapter's nine principles of good data engineering architecture?",
+      "options": [
+        "Choose common components wisely; plan for failure; architect for scalability; architecture is leadership; always be architecting; build loosely coupled systems; make reversible decisions; prioritize security; embrace FinOps.",
+        "Build monoliths; use only batch; avoid domains; maximize RTO; eliminate APIs; use fixed capacity; ignore cost.",
+        "Use only open source; require one database; avoid abstractions; never refactor; eliminate governance; minimize documentation; ignore failure.",
+        "Use one vendor; avoid automation; maximize coupling; centralize everything; eliminate observability; minimize security; avoid cloud."
+      ],
+      "correctIndex": 0,
+      "explanation": "These are the nine architecture principles presented in the chapter."
+    },
+    {
+      "question": "Which item is an AWS Well-Architected Framework pillar mentioned in the chapter?",
+      "options": [
+        "Data as a product.",
+        "Federated computational governance.",
+        "Domain ownership.",
+        "Cost optimization."
+      ],
+      "correctIndex": 3,
+      "explanation": "The AWS pillars include operational excellence, security, reliability, performance efficiency, cost optimization, and sustainability."
+    },
+    {
+      "question": "Which item is one of Google Cloud's cloud-native architecture principles cited in the chapter?",
+      "options": [
+        "Require physical servers.",
+        "Centralize every workload.",
+        "Avoid all automation.",
+        "Favor managed services."
+      ],
+      "correctIndex": 3,
+      "explanation": "Google Cloud's cited principles include designing for automation, being smart with state, and favoring managed services."
+    },
+    {
+      "question": "Why are common components valuable in a large organization?",
+      "options": [
+        "They force every team to solve identical problems independently.",
+        "They eliminate the need for permissions.",
+        "They can facilitate collaboration, reduce silos, and let teams reuse shared capabilities and knowledge.",
+        "They make domain-specific requirements irrelevant."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter describes common components as a fabric that facilitates collaboration and breaks down silos."
+    },
+    {
+      "question": "Which is an example of a common component discussed in the chapter?",
+      "options": [
+        "Only proprietary hardware purchased for one project.",
+        "Only application user interfaces.",
+        "Only individual analysts' spreadsheets.",
+        "Object storage, version control, observability, orchestration, or processing engines."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter lists these types of shared capabilities as common components."
+    },
+    {
+      "question": "Why should common components not become one-size-fits-all mandates?",
+      "options": [
+        "Shared components are useful only when nobody uses them.",
+        "Forcing every team into one technology can hinder productivity on domain-specific problems.",
+        "Domain-specific problems disappear when a central team chooses the tools.",
+        "One-size-fits-all designs are always more flexible."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter advocates common components while warning against forcing inappropriate technology choices on every team."
+    },
+    {
+      "question": "How does separating compute and storage in cloud systems support common components?",
+      "options": [
+        "It forces every workload to use the same compute engine.",
+        "A shared storage layer can be accessed by specialized compute or query tools suited to different use cases.",
+        "It makes distributed systems impossible.",
+        "It eliminates the need for storage permissions."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter uses cloud compute/storage separation as an example of reusable shared infrastructure."
+    },
+    {
+      "question": "What does 'availability' mean in the chapter?",
+      "options": [
+        "The percentage of time an IT service or component is in an operable state.",
+        "The maximum acceptable data loss.",
+        "The probability that a system meets requirements during a specified interval.",
+        "The amount of data a system can store."
+      ],
+      "correctIndex": 0,
+      "explanation": "Availability is defined as the percentage of time a service or component is operable."
+    },
+    {
+      "question": "What does 'reliability' mean in the chapter?",
+      "options": [
+        "The maximum time a service may be offline.",
+        "The probability that a system meets defined standards while performing its intended function during a specified interval.",
+        "The percentage of time a service has an IP address.",
+        "The number of users a system can support."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter defines reliability in terms of meeting specified performance or functional standards over an interval."
+    },
+    {
+      "question": "What is a recovery time objective (RTO)?",
+      "options": [
+        "The number of replicas required.",
+        "The maximum acceptable amount of data loss.",
+        "The percentage of uptime required.",
+        "The maximum acceptable time for a service or system outage."
+      ],
+      "correctIndex": 3,
+      "explanation": "RTO measures acceptable downtime."
+    },
+    {
+      "question": "What is a recovery point objective (RPO)?",
+      "options": [
+        "The maximum acceptable data loss after a failure.",
+        "The amount of compute capacity available after scaling.",
+        "The maximum acceptable service outage.",
+        "The time required to deploy a new service."
+      ],
+      "correctIndex": 0,
+      "explanation": "RPO describes the acceptable state after recovery in terms of data loss."
+    },
+    {
+      "question": "Why should RTO be determined partly by business impact?",
+      "options": [
+        "RTO is only a technical measurement with no business relationship.",
+        "Different systems have different consequences when unavailable, so acceptable downtime varies by business importance.",
+        "RTO is always determined by database size.",
+        "RTO must be identical across an organization."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter gives different RTO examples for an internal reporting system and a public e-commerce site."
+    },
+    {
+      "question": "What is scalability?",
+      "options": [
+        "The ability to eliminate all operational costs.",
+        "The percentage of time a system is available.",
+        "The ability to increase system capacity to improve performance or handle greater demand.",
+        "The maximum acceptable data loss."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter defines scalability as increasing capacity to handle demand."
+    },
+    {
+      "question": "What is elasticity?",
+      "options": [
+        "The ability to move data between domains without APIs.",
+        "The ability to permanently increase hardware capacity.",
+        "The ability of a scalable system to dynamically scale up and down based on workload.",
+        "The ability to guarantee zero downtime."
+      ],
+      "correctIndex": 2,
+      "explanation": "Elasticity refers to dynamic scaling, ideally automatically, in response to current workload."
+    },
+    {
+      "question": "Why is scaling down important in cloud architecture?",
+      "options": [
+        "Scaling down is needed only for on-premises hardware.",
+        "Removing unneeded capacity can reduce costs after a workload spike subsides.",
+        "Scaling down increases the amount of idle capacity.",
+        "Scaling down guarantees higher latency."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter explicitly links scaling down with saving cloud costs."
+    },
+    {
+      "question": "What does 'scale to zero' mean?",
+      "options": [
+        "A system has zero latency.",
+        "A system requires no storage.",
+        "A system can shut down completely when it is not being used.",
+        "A system has zero capacity at all times."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter uses serverless functions and serverless OLAP databases as examples of systems that can scale to zero."
+    },
+    {
+      "question": "Why can an overly complicated scaling strategy be a poor architectural choice?",
+      "options": [
+        "A simple relational database can never be appropriate.",
+        "Complexity always improves reliability.",
+        "It can add unnecessary complexity and cost when a simpler design would meet the actual load.",
+        "Scaling strategies have no effect on cost."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter warns against inappropriate scaling strategies and recommends measuring actual and expected load."
+    },
+    {
+      "question": "What is the difference between vertical and horizontal scaling?",
+      "options": [
+        "Vertical scaling adds machines; horizontal scaling adds CPU to one machine.",
+        "Vertical scaling adds resources to a single machine; horizontal scaling adds more machines.",
+        "They are identical terms.",
+        "Vertical scaling applies only to cloud systems."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter distinguishes scaling up a single machine from adding machines to a distributed system."
+    },
+    {
+      "question": "Why can horizontal scaling improve availability and reliability?",
+      "options": [
+        "Workloads can be distributed across multiple machines with redundancy so another machine can continue if one fails.",
+        "It eliminates every possible failure.",
+        "It prevents replication.",
+        "It requires a single machine to handle every request."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter describes distributed systems as increasing capacity, availability, and reliability through distribution and redundancy."
+    },
+    {
+      "question": "What is a shared-nothing architecture?",
+      "options": [
+        "All requests must run on one central server.",
+        "All data must be stored in one database.",
+        "Each node handles requests without sharing resources such as memory, disk, or CPU with other nodes.",
+        "Every node shares all resources with every other node."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter defines shared-nothing systems around isolated node resources."
+    },
+    {
+      "question": "What is a shared-disk architecture?",
+      "options": [
+        "Only one node can ever process a request.",
+        "Every node has completely isolated storage with no shared resources.",
+        "Nodes share access to disk and memory resources so data remains accessible across nodes.",
+        "It is a synonym for serverless computing."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter contrasts shared-disk systems with shared-nothing systems."
+    },
+    {
+      "question": "What is a domain in the chapter's architecture discussion?",
+      "options": [
+        "A real-world subject area or sphere of knowledge, influence, or activity being represented in the architecture.",
+        "A single database table.",
+        "A physical server rack.",
+        "A cloud billing account."
+      ],
+      "correctIndex": 0,
+      "explanation": "Domains represent real-world subject areas such as sales or accounting."
+    },
+    {
+      "question": "What is a service?",
+      "options": [
+        "A set of functionality whose goal is to accomplish a particular task.",
+        "A complete enterprise architecture.",
+        "A storage tier used only for archival data.",
+        "A business domain containing every possible function."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter defines a service as functionality focused on accomplishing a task."
+    },
+    {
+      "question": "Can multiple services exist inside one domain?",
+      "options": [
+        "No; every domain must contain exactly one service.",
+        "Yes; a domain can contain multiple services that support different tasks within that subject area.",
+        "Only cloud providers can define multiple services.",
+        "Services must always belong to different domains."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter gives a sales domain with orders, invoicing, and products as examples."
+    },
+    {
+      "question": "Why does the chapter recommend talking with users and stakeholders when defining domains and services?",
+      "options": [
+        "User input is needed only after deployment.",
+        "Architecture can otherwise be designed only from database schemas.",
+        "Stakeholders are responsible for choosing all infrastructure.",
+        "Their real-world needs help reveal what the domain should contain and which services will actually help them."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter warns against architecting in a vacuum and recommends listening to users and stakeholders."
+    },
+    {
+      "question": "What is the key trade-off in tight versus loose coupling?",
+      "options": [
+        "The two approaches have no meaningful trade-offs.",
+        "Tight coupling always improves scalability.",
+        "Tight coupling can simplify coordination but creates dependencies; loose coupling improves independence but requires standards and accountability to keep data usable.",
+        "Loose coupling always removes all complexity."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter explicitly describes trade-offs between centralized dependence and decentralized independence."
+    },
+    {
+      "question": "What is a major benefit of loose coupling?",
+      "options": [
+        "A single central team controls all releases.",
+        "Components can evolve more independently because internal implementation details are hidden behind stable interfaces.",
+        "Teams must directly access one another's databases.",
+        "Every component must be released together."
+      ],
+      "correctIndex": 1,
+      "explanation": "Loose coupling allows components and teams to evolve without requiring global changes."
+    },
+    {
+      "question": "What is a potential risk of loose coupling at the organizational level?",
+      "options": [
+        "Decentralized teams may create data that is difficult for peers to use unless common standards, ownership, and accountability exist.",
+        "It prevents domain ownership.",
+        "It removes the need for governance.",
+        "It guarantees identical schemas across every team."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter warns that decentralization can reduce interoperability without shared standards and accountability."
+    },
+    {
+      "question": "What is a single-tier architecture?",
+      "options": [
+        "An architecture in which every service is independently deployed.",
+        "An architecture in which the database and application are tightly coupled, often on a single server.",
+        "An architecture based on a shared event bus.",
+        "An architecture with separate data, application, and presentation layers."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter describes single-tier architecture as tightly coupling database and application on one server."
+    },
+    {
+      "question": "Why is single-tier architecture often acceptable for prototypes but not production?",
+      "options": [
+        "Single-tier systems always cost more than distributed systems.",
+        "A failure of the shared server, database, or application can take down the entire architecture.",
+        "Single-tier systems cannot run locally.",
+        "Single-tier systems cannot store data."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter explicitly recommends single-tier designs for testing/prototyping but not production."
+    },
+    {
+      "question": "Why can querying a production application database for analytics be risky?",
+      "options": [
+        "Production databases cannot execute queries.",
+        "Analytics workloads can overwhelm the production database and make the application unavailable.",
+        "Analytics queries automatically disable replication.",
+        "Analytics queries always delete production data."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter warns that analytics queries against production databases can consume resources needed by the application."
+    },
+    {
+      "question": "What is a multitier architecture?",
+      "options": [
+        "An architecture with no separation of concerns.",
+        "An architecture that separates concerns into layers such as data, application logic, and presentation.",
+        "A storage-only architecture.",
+        "An architecture in which all functionality runs in one codebase on one machine."
+      ],
+      "correctIndex": 1,
+      "explanation": "Multitier architecture separates data, application, business logic, presentation, and related concerns."
+    },
+    {
+      "question": "What is a major benefit of a three-tier architecture?",
+      "options": [
+        "Every tier must use the same technology.",
+        "The presentation layer must directly access database internals.",
+        "All tiers share the same process and memory.",
+        "Each tier can be isolated so technologies and concerns can evolve with less monolithic coupling."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter highlights separation of concerns and freedom to use different technologies within tiers."
+    },
+    {
+      "question": "What is technical coupling versus domain coupling?",
+      "options": [
+        "They are identical concepts.",
+        "Technical coupling concerns architectural tiers, while domain coupling concerns how business domains are coupled together.",
+        "Technical coupling concerns business ownership, while domain coupling concerns CPU usage.",
+        "Both refer only to network latency."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter distinguishes these two forms of coupling explicitly."
+    },
+    {
+      "question": "Why does a monolith become difficult to change as it grows?",
+      "options": [
+        "Tightly coupled components can produce cascading consequences, making changes and upgrades difficult to isolate.",
+        "Every monolith has perfect modularity.",
+        "Monoliths eliminate dependencies.",
+        "Monoliths automatically create independent services."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter describes monolithic coupling as making component changes an exercise in trading one problem for another."
+    },
+    {
+      "question": "What is a microservices architecture in the chapter's framing?",
+      "options": [
+        "A centralized database with no service boundaries.",
+        "Separate, decentralized, loosely coupled services, each focused on a specific function.",
+        "A single application with every function in one codebase.",
+        "A system in which every service shares internal implementation details."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter contrasts microservices with monoliths as decentralized and loosely coupled."
+    },
+    {
+      "question": "What does the chapter recommend when breaking apart a monolith?",
+      "options": [
+        "Never involve stakeholders from the existing monolith.",
+        "Move every function into one new central service.",
+        "Always rewrite the entire system immediately.",
+        "Break out services incrementally rather than automatically attempting a complete refactor all at once."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter recommends extracting services and getting stakeholder buy-in rather than undertaking an indiscriminate full refactor."
+    },
+    {
+      "question": "What is a noisy neighbor problem in a multitenant system?",
+      "options": [
+        "Heavy usage by one tenant can degrade performance for other tenants sharing the system.",
+        "A tenant has no network connection.",
+        "Tenants use different cloud providers.",
+        "One tenant deletes another tenant's data."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter defines noisy neighbors in terms of performance degradation caused by one tenant's high usage."
+    },
+    {
+      "question": "What are the two major multitenancy concerns identified in the chapter?",
+      "options": [
+        "Performance and security.",
+        "Storage format and SQL syntax.",
+        "Cost and programming language.",
+        "Batching and machine learning."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter explicitly identifies performance and security as the two key multitenancy factors."
+    },
+    {
+      "question": "Why can multitenant tables be acceptable in some architectures?",
+      "options": [
+        "Tenant isolation is irrelevant when data is shared.",
+        "Data can be isolated through appropriate views or other controls, provided those controls cannot leak data.",
+        "Views make permissions unnecessary.",
+        "Shared tables automatically guarantee perfect security."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter says multitenant tables can be acceptable when properly isolated, but warns about leakage."
+    },
+    {
+      "question": "What is an event in an event-driven architecture?",
+      "options": [
+        "A database schema definition.",
+        "A scheduled batch job.",
+        "Something that happened, typically representing a change in the state of something.",
+        "A user permission."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter defines events broadly as occurrences or state changes, such as creating or updating an order."
+    },
+    {
+      "question": "What are the three main areas of an event-driven workflow?",
+      "options": [
+        "Modeling, training, and serving.",
+        "Storage, transformation, and deletion.",
+        "Event production, routing, and consumption.",
+        "Security, governance, and FinOps."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter breaks an event-driven workflow into production, routing, and consumption."
+    },
+    {
+      "question": "Why should producers, routers, and consumers in an event-driven workflow avoid tight dependencies?",
+      "options": [
+        "Loose dependencies prevent multiple consumers.",
+        "Loose dependencies allow components to operate and evolve more independently.",
+        "Tight dependencies are required for every event-driven system.",
+        "Avoiding dependencies eliminates the need for events."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter specifically states that event-driven workflows should avoid tightly coupled dependencies among producer, router, and consumer."
+    },
+    {
+      "question": "What is an advantage of event-driven architecture when a service goes offline?",
+      "options": [
+        "Events can only be consumed by the failed service.",
+        "The entire architecture must stop.",
+        "Event state can be distributed so other services or consumers can still access relevant events.",
+        "All events are automatically deleted."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter highlights resilience and multiple-consumer access as benefits of distributing event state."
+    },
+    {
+      "question": "What is a brownfield architecture project?",
+      "options": [
+        "A project starting from a completely clean slate.",
+        "A project that never changes existing systems.",
+        "A project that uses only greenfield cloud services.",
+        "A project that refactors or reorganizes an existing architecture and must account for legacy constraints."
+      ],
+      "correctIndex": 3,
+      "explanation": "Brownfield projects work within the constraints of existing and historical architectural choices."
+    },
+    {
+      "question": "Why does a brownfield project require understanding the existing architecture's history?",
+      "options": [
+        "Past decisions and constraints may explain current behavior and reveal risks, dependencies, and viable migration paths.",
+        "Understanding history prevents any architectural change.",
+        "Legacy systems never contain useful business value.",
+        "History is irrelevant once a new tool is selected."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter encourages empathy and context rather than simply criticizing previous decisions."
+    },
+    {
+      "question": "What is the strangler pattern?",
+      "options": [
+        "A method for preventing all legacy changes.",
+        "A complete rewrite performed in one release.",
+        "A database compression technique.",
+        "A migration approach in which new systems incrementally replace components of a legacy architecture over time."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter presents the strangler pattern as an incremental alternative to a risky big-bang rewrite."
+    },
+    {
+      "question": "Why does the chapter favor the strangler pattern over a big-bang rewrite in many brownfield cases?",
+      "options": [
+        "It eliminates all migration planning.",
+        "It allows targeted, incremental replacement while assessing impacts and preserving reversibility.",
+        "It requires no understanding of the existing system.",
+        "It guarantees that legacy systems can be deleted immediately."
+      ],
+      "correctIndex": 1,
+      "explanation": "Incremental replacement reduces risk and makes it easier to evaluate the effects of deprecating individual components."
+    },
+    {
+      "question": "What is a greenfield architecture project?",
+      "options": [
+        "A project that cannot use new technologies.",
+        "A project that must preserve every legacy component.",
+        "A project limited to refactoring existing databases.",
+        "A project starting relatively unconstrained by the history and legacy of a prior architecture."
+      ],
+      "correctIndex": 3,
+      "explanation": "Greenfield projects begin with a fresh architectural context."
+    },
+    {
+      "question": "What is shiny object syndrome in a greenfield project?",
+      "options": [
+        "Using managed services to reduce complexity.",
+        "Choosing fashionable technologies because they are new or exciting without first understanding their impact on project value.",
+        "Selecting mature tools based on requirements.",
+        "Incrementally replacing a legacy component."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter warns that greenfield freedom can encourage technology choices driven by novelty rather than requirements."
+    },
+    {
+      "question": "What is resume-driven development?",
+      "options": [
+        "Writing a professional resume for a data engineer.",
+        "Developing software from business requirements first.",
+        "Using only technologies that have long-term support.",
+        "Stacking impressive technologies into a project without prioritizing the project's ultimate goals."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter uses resume-driven development as a warning against technology choices made for prestige rather than value."
+    },
+    {
+      "question": "What should architects prioritize in both brownfield and greenfield projects?",
+      "options": [
+        "A complete rewrite regardless of risk.",
+        "Maximum architectural complexity.",
+        "Requirements, trade-offs, flexible and reversible decisions, and positive ROI.",
+        "The newest tools regardless of requirements."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter gives these as the common tenets of good architecture for both project types."
+    },
+    {
+      "question": "What is a data warehouse in the chapter's architecture examples?",
+      "options": [
+        "A device gateway for IoT sensors.",
+        "A central data hub used for reporting and analysis, typically containing highly structured data.",
+        "A message queue used only for streaming.",
+        "A source application database used exclusively for transactions."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter describes a data warehouse as a central hub for reporting and analysis with structured data."
+    },
+    {
+      "question": "What was Bill Inmon's classic description of a data warehouse intended to emphasize?",
+      "options": [
+        "A customer-facing application database.",
+        "A subject-oriented, integrated, nonvolatile, time-variant collection supporting management decisions.",
+        "A write-only object store for unstructured data.",
+        "A transient event queue for real-time applications."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter cites Inmon's classic definition of a warehouse."
+    },
+    {
+      "question": "Why is separating OLAP from production OLTP databases valuable?",
+      "options": [
+        "It forces all queries to run on the production database.",
+        "It moves analytical load away from production systems and can improve analytics performance and application availability.",
+        "It eliminates the need for a warehouse.",
+        "It guarantees that analytics never need transformation."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter calls the separation critical as businesses grow because it protects production systems from analytical workloads."
+    },
+    {
+      "question": "What is MPP in the context of data warehouse architecture?",
+      "options": [
+        "A method for manually loading spreadsheets.",
+        "A data privacy regulation.",
+        "A business ownership model.",
+        "A technical architecture approach involving massively parallel processing."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter identifies MPP as an example of the technical nature of a data warehouse architecture."
+    },
+    {
+      "question": "Can an organization have a data warehouse without an MPP system?",
+      "options": [
+        "No; a warehouse is defined solely by MPP.",
+        "Yes; organizational warehouse architecture and technical MPP architecture are related but not identical.",
+        "Only in an on-premises environment.",
+        "Only if the warehouse contains unstructured data."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter explicitly notes that a company can have a data warehouse without MPP and vice versa."
+    },
+    {
+      "question": "What is a data lake's key historical appeal?",
+      "options": [
+        "It requires all data to be modeled before storage.",
+        "It eliminates all governance requirements.",
+        "It can provide flexible, inexpensive storage for varied data on object storage without requiring the highly structured model of a traditional warehouse.",
+        "It can store only relational tables."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter's discussion of lake architecture emphasizes flexible object storage and contrasts it with highly structured warehouses."
+    },
+    {
+      "question": "What problem characterized many first-generation data lakes?",
+      "options": [
+        "They were unable to store unstructured data.",
+        "They could become poorly managed data swamps with weak cataloging, painful updates/deletes, and operational complexity.",
+        "They eliminated all compliance concerns.",
+        "They required every dataset to be fully modeled before ingestion."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter describes these as major shortcomings of early data lakes."
+    },
+    {
+      "question": "What key capability does a lakehouse add to the traditional data lake model?",
+      "options": [
+        "The elimination of analytical query engines.",
+        "A requirement that all data be stored in application databases.",
+        "The removal of object storage.",
+        "Warehouse-style data management capabilities such as ACID transactions on object storage."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter highlights ACID transactions as a major departure from the original write-oriented lake model."
+    },
+    {
+      "question": "Why can ACID transactions be valuable in a data lake?",
+      "options": [
+        "They force every workload to be streaming.",
+        "They support more reliable updates and deletes and make lake data behave more like managed database data.",
+        "They prevent all data from being queried.",
+        "They eliminate the need for object storage."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter contrasts transaction-capable lakehouses with the original write-only lake design."
+    },
+    {
+      "question": "What is Lambda architecture?",
+      "options": [
+        "A three-tier application architecture.",
+        "A data governance framework.",
+        "An architecture with separate batch, streaming, and serving systems whose results must be reconciled.",
+        "An architecture using only a single stream processor."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter describes Lambda as separate batch and streaming paths plus a serving layer."
+    },
+    {
+      "question": "Why can Lambda architecture be difficult to maintain?",
+      "options": [
+        "Multiple systems and codebases can create reconciliation problems and make code and data harder to keep consistent.",
+        "It requires no transformations.",
+        "It cannot process historical data.",
+        "It uses no separate systems."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter criticizes Lambda for the complexity of managing multiple independent paths."
+    },
+    {
+      "question": "What is Kappa architecture's central idea?",
+      "options": [
+        "Use a stream-processing platform as the backbone for ingestion, storage, and serving, with replay supporting batch-like processing.",
+        "Use separate batch and streaming systems permanently.",
+        "Use only a traditional relational database.",
+        "Replace all event processing with scheduled SQL."
+      ],
+      "correctIndex": 0,
+      "explanation": "Kappa was proposed as a response to Lambda's multiple-code-path complexity."
+    },
+    {
+      "question": "Why has Kappa not been widely adopted according to the chapter?",
+      "options": [
+        "Kappa cannot process real-time data.",
+        "Kappa cannot scale to large volumes.",
+        "Streaming can be difficult to execute, and Kappa architectures can be complex and expensive in practice.",
+        "Kappa requires physical tapes."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter identifies streaming complexity and cost as reasons for limited Kappa adoption."
+    },
+    {
+      "question": "What is the Dataflow model's key abstraction?",
+      "options": [
+        "Treat all data as events and perform aggregation over windows.",
+        "Treat every batch as a separate database.",
+        "Treat streaming and batch as unrelated systems.",
+        "Treat all data as static tables only."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter describes Dataflow as viewing all data as events and using windows for aggregation."
+    },
+    {
+      "question": "How does the Dataflow model relate batch and streaming?",
+      "options": [
+        "Streaming is treated as a special kind of static table.",
+        "Batch data cannot be represented as events.",
+        "Unbounded event streams represent ongoing data, while batches are bounded event streams with natural boundaries.",
+        "Batch and streaming require completely different abstractions."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter explicitly frames batches as bounded event streams."
+    },
+    {
+      "question": "What is a tumbling window?",
+      "options": [
+        "A physical storage tier.",
+        "A window that always contains the entire history.",
+        "A type of database replica.",
+        "A window that divides a stream into distinct, non-overlapping intervals for aggregation."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter mentions tumbling and sliding windows as choices for real-time aggregation."
+    },
+    {
+      "question": "What is a sliding window?",
+      "options": [
+        "A window that moves through a stream over time and can overlap successive intervals.",
+        "A window that never changes boundaries.",
+        "A network security boundary.",
+        "A warehouse partitioning scheme."
+      ],
+      "correctIndex": 0,
+      "explanation": "Sliding windows are one of the real-time aggregation window types mentioned in the chapter."
+    },
+    {
+      "question": "Why is the Dataflow approach attractive for unified batch and streaming?",
+      "options": [
+        "The same system and nearly identical code can support both bounded and unbounded event processing.",
+        "It eliminates all windowing concepts.",
+        "It only works with historical data.",
+        "It requires separate codebases for every mode."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter emphasizes common abstractions and nearly identical code for batch and streaming."
+    },
+    {
+      "question": "What is an IoT device in the chapter's definition?",
+      "options": [
+        "Only a smartphone application.",
+        "A batch processing cluster.",
+        "A connected physical device that senses its environment and collects and transmits data.",
+        "Only a cloud database."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter defines IoT as distributed connected devices such as sensors, smart devices, and computers."
+    },
+    {
+      "question": "Why can IoT devices be challenging for data architecture?",
+      "options": [
+        "They never generate data continuously.",
+        "They always use identical schemas.",
+        "They always have unlimited network connectivity.",
+        "They may operate with low power and bandwidth and can experience connectivity disruption, schema differences, corruption, and late-arriving data."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter lists these operational constraints and data-quality complications for IoT."
+    },
+    {
+      "question": "What is edge computing?",
+      "options": [
+        "Running every workload in a public cloud region.",
+        "Archiving data to cold storage.",
+        "Processing all data only in a central warehouse.",
+        "Processing data on or near the device before sending it downstream."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter describes devices performing computation on collected data before transmission as edge computing."
+    },
+    {
+      "question": "What is edge machine learning?",
+      "options": [
+        "Running machine-learning processing on or near the device before data is sent downstream.",
+        "Training every model in a centralized warehouse.",
+        "Using only batch analytics.",
+        "Applying security policies at the cloud perimeter."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter distinguishes edge ML from ordinary edge computation."
+    },
+    {
+      "question": "What is an IoT gateway?",
+      "options": [
+        "A customer-facing BI dashboard.",
+        "A machine-learning model.",
+        "A hub that connects devices and securely routes data to appropriate destinations.",
+        "A data warehouse used for reporting."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter describes gateways as connection and routing hubs for device swarms."
+    },
+    {
+      "question": "Why can an IoT gateway be valuable for low-power devices?",
+      "options": [
+        "It eliminates the need for any network.",
+        "It can provide a way station for data and manage connectivity while allowing devices to use relatively little power.",
+        "It forces devices to perform more computation.",
+        "It stores all data permanently."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter notes that gateways can help devices connect using very little power and can retain data temporarily."
+    },
+    {
+      "question": "Why might an IoT gateway upload data in batches?",
+      "options": [
+        "Remote environments may have intermittent connectivity, making periodic upload more practical than continuous transmission.",
+        "Batch upload always gives lower latency.",
+        "Gateways are incapable of retaining data.",
+        "IoT systems cannot produce streams."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter describes remote gateways that may store data and upload it when connectivity becomes available."
+    },
+    {
+      "question": "What is a notable IoT serving pattern described in the chapter?",
+      "options": [
+        "Use the device only as a data warehouse.",
+        "Analyze sensor measurements, derive optimizations, and send results back to devices to reconfigure or improve their operation.",
+        "Send every event only to a dashboard and never back to devices.",
+        "Archive all sensor data without consumption."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter describes an IoT reverse-ETL-like pattern in which analytical results are sent back to manufacturing devices."
+    },
+    {
+      "question": "What problem does the data mesh attempt to address?",
+      "options": [
+        "The absence of machine-learning algorithms.",
+        "Sprawling centralized data platforms and the divide between operational and analytical data.",
+        "The inability of warehouses to run SQL.",
+        "The lack of any data storage technology."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter presents data mesh as a response to monolithic centralized platforms and the operational/analytical divide."
+    },
+    {
+      "question": "What is a core idea of data mesh?",
+      "options": [
+        "All domains must use one physical database.",
+        "Domain-oriented decentralized data ownership and architecture.",
+        "All governance should be eliminated.",
+        "One central team owns every dataset."
+      ],
+      "correctIndex": 1,
+      "explanation": "Decentralized domain ownership is the first of the four key data mesh components."
+    },
+    {
+      "question": "Which is one of the four key components of data mesh?",
+      "options": [
+        "Fixed-capacity infrastructure.",
+        "Centralized ETL ownership.",
+        "Data as a product.",
+        "Single-tier architecture."
+      ],
+      "correctIndex": 2,
+      "explanation": "Data as a product is explicitly listed among the four components."
+    },
+    {
+      "question": "What does 'self-serve data infrastructure as a platform' mean in data mesh?",
+      "options": [
+        "Only a central team may access data.",
+        "Domains are supported by shared platform capabilities that let them produce and consume data without relying entirely on a central data team.",
+        "Every domain must build all infrastructure from scratch.",
+        "Self-service means eliminating governance."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter lists self-serve data infrastructure as a platform as a core data mesh component."
+    },
+    {
+      "question": "What is federated computational governance?",
+      "options": [
+        "No governance exists in a data mesh.",
+        "Governance is coordinated across domains while supported by computational mechanisms rather than relying solely on a single centralized authority.",
+        "Only the cloud provider governs data.",
+        "Every domain follows unrelated rules."
+      ],
+      "correctIndex": 1,
+      "explanation": "Federated computational governance is the fourth component named in the chapter's data mesh discussion."
+    },
+    {
+      "question": "Why should data engineers remain open-minded about new architecture patterns?",
+      "options": [
+        "The newest architecture is always superior.",
+        "One pattern should be adopted universally.",
+        "Architecture patterns never change.",
+        "New patterns may provide value for particular organizational needs, and no single architecture fits every situation."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter recommends awareness and open-minded evaluation rather than emotional attachment to one approach."
+    },
+    {
+      "question": "What is the chapter's stance on monoliths versus microservices?",
+      "options": [
+        "Monoliths are always bad.",
+        "Architecture should never change after choosing either one.",
+        "Microservices are always mandatory.",
+        "Use loose coupling as a pragmatic ideal, but recognize that monoliths can be appropriate under some conditions."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter explicitly says monoliths are not necessarily bad and may be a sensible starting point."
+    },
+    {
+      "question": "Why might a small organization intentionally start with a monolith?",
+      "options": [
+        "It can be simpler and faster while the organization is still moving quickly, provided the team plans for future evolution.",
+        "A monolith guarantees production reliability.",
+        "Monoliths automatically scale better than distributed systems.",
+        "Small organizations never need modularity."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says starting with a monolith can make sense when moving quickly, but warns against becoming too comfortable with it."
+    },
+    {
+      "question": "What is the modern data stack characterized by in the chapter?",
+      "options": [
+        "A single proprietary platform containing every function.",
+        "Only streaming infrastructure.",
+        "Physical servers managed entirely in-house.",
+        "Plug-and-play, modular, cloud-based components with relatively easy implementation and understandable pricing."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter describes the modern data stack as modular, cloud-based, and plug-and-play."
+    },
+    {
+      "question": "Why does the chapter caution against becoming emotionally attached to an architecture?",
+      "options": [
+        "Architectural patterns and technologies evolve, so choices should be evaluated by their value for current requirements.",
+        "Emotional attachment improves system reliability.",
+        "One architecture is guaranteed to remain optimal forever.",
+        "Architecture decisions should be made without evidence."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter encourages awareness of new developments and concrete decisions based on potential value."
+    },
+    {
+      "question": "Who should ideally collaborate with a dedicated data architect?",
+      "options": [
+        "Only database administrators.",
+        "No one; architecture should be isolated from engineering.",
+        "Data engineers and business stakeholders, among others, because architecture is not designed in a vacuum.",
+        "Only cloud vendors."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter describes data architects working closely with engineers and stakeholders to evaluate trade-offs."
+    },
+    {
+      "question": "When might a data engineer perform architecture duties?",
+      "options": [
+        "Only after becoming a CTO.",
+        "In a small or low-data-maturity organization where there may not be a dedicated data architect.",
+        "Only in organizations with no data.",
+        "Never; data engineers cannot design architecture."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter explicitly says data engineers may work double duty as architects in smaller or less mature companies."
+    },
+    {
+      "question": "Why should data architects work with business stakeholders?",
+      "options": [
+        "Architectural decisions involve trade-offs that must be evaluated against business requirements and value.",
+        "Stakeholders eliminate the need for technical analysis.",
+        "Business stakeholders should write all infrastructure code.",
+        "Architecture has no connection to business outcomes."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter emphasizes evaluating architecture trade-offs in the context of business needs."
+    },
+    {
+      "question": "Which question is an example of an architectural trade-off the chapter expects engineers to evaluate?",
+      "options": [
+        "Whether a cloud data warehouse or data lake is more appropriate for the organization's requirements.",
+        "Whether business goals should be ignored.",
+        "Whether all systems should use the newest technology.",
+        "Whether security should be postponed indefinitely."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter explicitly cites warehouse-versus-lake and cloud-platform choices as trade-offs."
+    },
+    {
+      "question": "What is the chapter's overall goal when designing data architecture?",
+      "options": [
+        "Eliminate all architectural change.",
+        "Maximize the number of technologies in the stack.",
+        "Create an architecture that matches the organization's unique requirements while balancing flexibility, trade-offs, risk, and value.",
+        "Find one universal architecture that every company must adopt."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter concludes by emphasizing organization-specific requirements and careful trade-off analysis."
+    }
+  ]
+}

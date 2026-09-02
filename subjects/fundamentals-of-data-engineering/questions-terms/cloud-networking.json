@@ -1,0 +1,205 @@
+{
+  "title": "Appendix B — Cloud Networking: Key Terms",
+  "source_file": "appendix-b-cloud-networking.md",
+  "question_count": 18,
+  "questions": [
+    {
+      "question": "What is a cloud network topology?",
+      "options": [
+        "A pricing scheme that charges for data moving between regions within the same cloud.",
+        "A set of security rules that controls which virtual machines can send traffic to the public internet.",
+        "A description of how components in the cloud are arranged and connected, including services, networks, and locations such as zones and regions.",
+        "A global system of DNS servers that routes user requests to the nearest cloud region."
+      ],
+      "correctIndex": 2,
+      "explanation": "The appendix defines a cloud network topology as describing how various components in the cloud are arranged and connected, such as cloud services, networks, and locations like zones and regions."
+    },
+    {
+      "question": "What is an availability zone?",
+      "options": [
+        "The smallest unit of network topology that public clouds make visible to customers; it can consist of multiple data centers.",
+        "A collection of two or more regions grouped for high availability.",
+        "A GCP-only layer in the resource hierarchy that contains multiple regions.",
+        "A private virtual network where virtual machines get their private IP addresses."
+      ],
+      "correctIndex": 0,
+      "explanation": "The availability zone is the smallest unit of network topology that public clouds make visible to customers, and a zone can potentially consist of multiple data centers."
+    },
+    {
+      "question": "What is a region in cloud networking?",
+      "options": [
+        "The smallest unit of network topology a public cloud exposes to its customers.",
+        "A content delivery network covering a specific geographic area.",
+        "A single data center that hosts all of a cloud customer's virtual machines.",
+        "A collection of two or more availability zones whose resources are independent so a local power outage doesn't take down multiple zones."
+      ],
+      "correctIndex": 3,
+      "explanation": "The appendix states that a region is a collection of two or more availability zones, and that the resources of separate zones are independent so a local power outage doesn't take down multiple zones."
+    },
+    {
+      "question": "What is a VPC (virtual private cloud)?",
+      "options": [
+        "A physical data center that a cloud customer leases for exclusive use.",
+        "A virtual network that the major clouds provide, inside which virtual machines receive private IP addresses.",
+        "A security group that filters traffic entering and leaving a virtual machine.",
+        "A billing construct that charges customers for each public IP address they allocate."
+      ],
+      "correctIndex": 1,
+      "explanation": "The appendix says the major clouds utilize virtual networks known as virtual private clouds (VPCs), and that virtual machines have private IP addresses within the VPC."
+    },
+    {
+      "question": "What is a private IP address?",
+      "options": [
+        "An address assigned to a VM to communicate with the outside world and receive internet traffic.",
+        "An address assigned by a CDN to cache content close to end users.",
+        "An address that cannot be used for communication between virtual machines in the same zone.",
+        "An address a virtual machine holds within a VPC; traffic to VMs within a zone is free when sent to private IP addresses."
+      ],
+      "correctIndex": 3,
+      "explanation": "Virtual machines have private IP addresses within the VPC, and the appendix notes that traffic sent to VMs within a zone is free only when sent to private IP addresses."
+    },
+    {
+      "question": "What is a public IP address?",
+      "options": [
+        "An address a virtual machine may be assigned to communicate with the outside world and receive traffic from the internet.",
+        "An address used only for traffic within a VPC, which never incurs charges.",
+        "An address reserved for object storage buckets inside a region.",
+        "An address that allows free data egress when communicating between availability zones."
+      ],
+      "correctIndex": 0,
+      "explanation": "VMs may also be assigned public IP addresses to communicate with the outside world and receive traffic from the internet, but communications using external IP addresses can incur data egress charges."
+    },
+    {
+      "question": "What are data egress charges?",
+      "options": [
+        "Charges for inbound traffic that clouds impose when customers upload data.",
+        "Charges for outbound traffic to the internet, which can also apply to data passing between availability zones and regions within a cloud.",
+        "The fixed monthly cost of reserving public IP addresses in a VPC.",
+        "Fees that clouds charge for providing DNS resolution to customer domains."
+      ],
+      "correctIndex": 1,
+      "explanation": "Clouds allow inbound traffic for free but charge for outbound traffic to the internet, and data egress charges can also apply to data passing between availability zones and regions within a cloud."
+    },
+    {
+      "question": "What is ingress traffic in cloud networking?",
+      "options": [
+        "Outbound traffic to the internet, which clouds charge for.",
+        "Traffic that passes between two virtual machines inside a single zone.",
+        "Inbound traffic; the appendix notes clouds allow it for free.",
+        "Traffic between a CDN edge and the origin server."
+      ],
+      "correctIndex": 2,
+      "explanation": "The appendix states that clouds allow inbound traffic for free but charge for outbound traffic to the internet."
+    },
+    {
+      "question": "What is a multiregion on GCP?",
+      "options": [
+        "A collection of data centers located within a single availability zone.",
+        "A CDN network that spans multiple continents.",
+        "A pair of regions connected by AWS Direct Connect.",
+        "A layer in GCP's resource hierarchy that contains multiple regions, currently US, EU, and ASIA."
+      ],
+      "correctIndex": 3,
+      "explanation": "The multiregion is a GCP layer in the resource hierarchy that contains multiple regions; current multiregions are US, EU, and ASIA, and several GCP resources like Cloud Storage and BigQuery support them."
+    },
+    {
+      "question": "What is GCP premium-tier networking?",
+      "options": [
+        "An option that lets traffic between zones and regions pass entirely over Google-owned networks without traversing the public internet.",
+        "A discount program for data egress fees on large volume customers.",
+        "A service that replicates object storage across regions automatically.",
+        "A peering arrangement between GCP and AWS VPCs."
+      ],
+      "correctIndex": 0,
+      "explanation": "Premium-tier networking allows traffic between zones and regions to pass entirely over Google-owned networks without traversing the public internet."
+    },
+    {
+      "question": "What is AWS Direct Connect?",
+      "options": [
+        "A managed load balancer that distributes traffic across availability zones.",
+        "An enhanced connectivity option that lets customers integrate their networks with a cloud region or VPC, offering higher bandwidth, lower latency, and discounts on data egress charges.",
+        "A CDN service offered by AWS for delivering static content.",
+        "A billing construct that waives all data egress fees for large customers."
+      ],
+      "correctIndex": 1,
+      "explanation": "Each major public cloud offers enhanced connectivity options; AWS Direct Connect lets customers integrate their networks with a cloud region or VPC and offers higher bandwidth, lower latency, and dramatic discounts on egress charges."
+    },
+    {
+      "question": "What is a content delivery network (CDN)?",
+      "options": [
+        "A direct network link between a customer's on-premises data center and a cloud region.",
+        "A GCP abstraction that contains multiple regions such as US, EU, and ASIA.",
+        "A network that offers dramatic performance enhancements and discounts for delivering data assets to the public or customers, working best when the same data is delivered repeatedly.",
+        "A security group that controls inbound and outbound traffic for virtual machines."
+      ],
+      "correctIndex": 2,
+      "explanation": "CDNs can offer dramatic performance enhancements and discounts for delivering data assets to the public or customers, and they work best when delivering the same data repeatedly."
+    },
+    {
+      "question": "What is latency in cloud networking?",
+      "options": [
+        "A measure of network performance affected by physical distance along the network path and the number of hops through routers; more distance and hops increase latency.",
+        "The volume of data a network can transfer per unit of time.",
+        "The fee charged for outbound traffic from a cloud to the internet.",
+        "The number of virtual machines running in a single availability zone."
+      ],
+      "correctIndex": 0,
+      "explanation": "The appendix explains that physical distance and network hops can increase latency and decrease performance, so placing resources close to users minimizes distance and hops."
+    },
+    {
+      "question": "What are network hops?",
+      "options": [
+        "Physical data centers within an availability zone.",
+        "The packets a CDN caches at its edge locations.",
+        "Independent resources of separate availability zones that prevent correlated failures.",
+        "Transits through routers along the network path; a minimal number of hops helps realize good network performance."
+      ],
+      "correctIndex": 3,
+      "explanation": "Good network performance comes from minimizing physical distance along the network path and a minimal number of hops through routers, since both can increase latency."
+    },
+    {
+      "question": "What does the appendix say about object storage?",
+      "options": [
+        "It must always be configured as a GCP multiregion to be available.",
+        "It is generally a regional resource; data may pass between zones to reach a VM, but there are no direct networking charges for this.",
+        "It incurs data egress fees for every request from a virtual machine.",
+        "It is always stored in a single zone to minimize latency."
+      ],
+      "correctIndex": 1,
+      "explanation": "In general, object storage is a regional resource; data may pass between zones to reach a virtual machine, but this is mainly invisible to customers with no direct networking charges."
+    },
+    {
+      "question": "What is geo-redundant storage?",
+      "options": [
+        "Storing data in two separate VPCs in the same availability zone.",
+        "Caching data on CDN edge locations closest to end users.",
+        "Storing data in multiple zones within a multiregion so it remains available in the event of a regional failure.",
+        "Duplicating data across two servers in the same rack for high availability."
+      ],
+      "correctIndex": 2,
+      "explanation": "Data in a GCP multiregion is stored in multiple zones in a geo-redundant manner so it should remain available in the event of a regional failure."
+    },
+    {
+      "question": "What is a correlated failure in the context of regions?",
+      "options": [
+        "A failure that affects an entire region at once, often caused by code or configuration problems deployed at the regional level.",
+        "A failure limited to a single rack within a data center.",
+        "A failure that occurs when egress fees prevent data movement between regions.",
+        "A failure that only affects virtual machines using public IP addresses."
+      ],
+      "correctIndex": 0,
+      "explanation": "Despite regions' geo-redundant design, many major cloud failures have affected entire regions, an example of correlated failure, generally resulting from code or configuration problems at the regional level."
+    },
+    {
+      "question": "According to the appendix, what role do data egress fees play for cloud providers?",
+      "options": [
+        "They subsidize the cost of inbound internet traffic for customers.",
+        "They act as a moat designed to prevent customers from leaving or deploying across multiple clouds, increasing the stickiness of stored data.",
+        "They are a neutral pricing mechanism that encourages interoperability.",
+        "They cover the cost of electricity and water for data centers."
+      ],
+      "correctIndex": 1,
+      "explanation": "The appendix says outbound traffic pricing is used to create a moat around cloud services, and that data egress fees are a moat designed to prevent public cloud customers from leaving or deploying across multiple clouds."
+    }
+  ]
+}

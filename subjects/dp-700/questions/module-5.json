@@ -1,0 +1,403 @@
+{
+  "title": "Module 5 — Quality Question Bank",
+  "source_file": "M5.1.md, M5.2.md, M5.3.md, M5.4.md",
+  "question_count": 36,
+  "questions": [
+    {
+      "question": "In Microsoft Fabric, lifecycle management is made up of which two capabilities?",
+      "options": [
+        "Deployment pipelines and source control integration",
+        "Monitor Hub and Activator",
+        "Workspace roles and item permissions",
+        "Capacities and domains"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lifecycle management in Fabric uses deployment pipelines and source control integration to achieve CI/CD."
+    },
+    {
+      "question": "Which version control systems are supported for Git integration in Microsoft Fabric?",
+      "options": [
+        "Bitbucket and GitLab",
+        "GitHub and Azure DevOps",
+        "Subversion and Mercurial",
+        "Azure Repos only"
+      ],
+      "correctIndex": 1,
+      "explanation": "GitHub and Azure DevOps are the version control systems that are supported in Fabric."
+    },
+    {
+      "question": "What best describes continuous integration (CI) in a version control workflow?",
+      "options": [
+        "Deploying code to production only after a formal review board approves it",
+        "Merging all finished work into the main codebase only at the end of a release cycle",
+        "Frequently committing code to a shared branch that is validated by a build process and automated testing",
+        "Automatically scaling infrastructure based on load"
+      ],
+      "correctIndex": 2,
+      "explanation": "In CI you frequently commit code to a shared branch or trunk and changes are validated by a build process and automated testing once merged."
+    },
+    {
+      "question": "How does continuous deployment differ from continuous delivery?",
+      "options": [
+        "Continuous deployment automatically releases updates into production through structured deployment stages once they pass automated tests",
+        "Continuous deployment only applies to source control, not pipelines",
+        "Continuous deployment requires manual approval before any release",
+        "Continuous deployment replaces version control entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "Continuous deployment automatically releases updates into production environments through structured deployment stages once they pass automated tests, whereas continuous delivery stops at a staging environment."
+    },
+    {
+      "question": "At what level does Git integration operate within Microsoft Fabric?",
+      "options": [
+        "At the item level for individual notebooks",
+        "At the capacity level",
+        "At the domain level",
+        "At the workspace level"
+      ],
+      "correctIndex": 3,
+      "explanation": "Integration with version control is at the workspace level in Fabric; you version items you develop within a workspace."
+    },
+    {
+      "question": "In Fabric CI/CD, which component is used to implement deployment?",
+      "options": [
+        "Fabric deployment pipelines",
+        "Git branches",
+        "Monitor Hub",
+        "OneLake security roles"
+      ],
+      "correctIndex": 0,
+      "explanation": "Deployment is implemented using Fabric deployment pipelines, while integration uses Git and automation uses Fabric REST APIs."
+    },
+    {
+      "question": "What is a recommended approach when combining deployment pipelines with Git integration?",
+      "options": [
+        "Connect only the Development workspace to Git",
+        "Connect only the Production workspace to Git",
+        "Never use deployment pipelines with Git",
+        "Connect each pipeline stage to a separate Git repository"
+      ],
+      "correctIndex": 0,
+      "explanation": "One common approach is to connect only the Development workspace to Git, using Git for version control while deployment pipelines handle promotion to Test and Production."
+    },
+    {
+      "question": "What does the Fabric CI/CD REST API 'List Deployment Pipeline Stage Items' do?",
+      "options": [
+        "Deletes all items from a pipeline stage",
+        "Returns the supported items from the workspace assigned to the specified stage of a deployment pipeline",
+        "Commits changes to the connected remote branch",
+        "Updates the workspace with commits pushed to the connected branch"
+      ],
+      "correctIndex": 1,
+      "explanation": "The List Deployment Pipeline Stage Items API returns the supported items from the workspace assigned to the specified stage of the specified deployment pipeline."
+    },
+    {
+      "question": "What is a best practice for keeping development work isolated from shared Fabric workspaces?",
+      "options": [
+        "Working directly in the shared production workspace",
+        "Working in a dedicated branch instead of the main code branch",
+        "Disabling Git integration for all users",
+        "Creating all items in a single shared workspace"
+      ],
+      "correctIndex": 1,
+      "explanation": "Feature development work should take place in a dedicated branch instead of the main code branch, and isolated workspaces or client tools should be used."
+    },
+    {
+      "question": "In Microsoft Fabric, what is monitoring?",
+      "options": [
+        "The process of collecting system data and metrics that determine if a system is healthy and operating as expected",
+        "A feature that only applies to streaming data",
+        "A tool used exclusively for deploying code to production",
+        "A method for assigning licenses to users"
+      ],
+      "correctIndex": 0,
+      "explanation": "Monitoring is the process of collecting system data and metrics that determine if a system is healthy and operating as expected."
+    },
+    {
+      "question": "What is the Monitor Hub in Microsoft Fabric?",
+      "options": [
+        "A version control tool for Git branches",
+        "A visualization tool that aggregates activity data from selected Fabric items and processes into a common interface",
+        "A security role for granting data access",
+        "A capacity management tool"
+      ],
+      "correctIndex": 1,
+      "explanation": "Monitor hub is the monitoring visualization tool in Fabric; it collects and aggregates data from selected Fabric items and processes in one place."
+    },
+    {
+      "question": "Which of the following activities can be monitored in the Monitor Hub?",
+      "options": [
+        "Data pipeline execution history",
+        "Git commit history",
+        "Tenant license assignments",
+        "Domain admin assignments"
+      ],
+      "correctIndex": 0,
+      "explanation": "Monitor hub shows monitoring metadata for activities such as data pipeline execution history, dataflow executions, and Spark job execution history."
+    },
+    {
+      "question": "When you select an activity in the Monitor Hub, which actions are available?",
+      "options": [
+        "Opening the activity, retrying it, and viewing activity details or historical runs",
+        "Deleting the activity and its workspace",
+        "Committing the activity to a Git branch",
+        "Assigning a license to the activity owner"
+      ],
+      "correctIndex": 0,
+      "explanation": "Actions available for a selected activity vary but include options such as opening the activity, retrying it, and viewing activity details or historical runs."
+    },
+    {
+      "question": "What is Activator in Microsoft Fabric?",
+      "options": [
+        "A tool in Real-Time Intelligence that triggers actions on streaming data when certain conditions are met",
+        "A workspace role that grants full access",
+        "A version control system",
+        "A capacity metrics reporting tool"
+      ],
+      "correctIndex": 0,
+      "explanation": "Activator is a tool in Real-Time Intelligence that can be used to trigger actions on streaming data when conditions or logic are met."
+    },
+    {
+      "question": "What are the four core concepts that Activator operates on?",
+      "options": [
+        "Events, Objects, Properties, and Rules",
+        "Workspaces, Capacities, Domains, and Items",
+        "Read, Write, ReadWrite, and Deny",
+        "Staging, Testing, Deployment, and Release"
+      ],
+      "correctIndex": 0,
+      "explanation": "Activator operates based on four core concepts: Events, Objects, Properties, and Rules."
+    },
+    {
+      "question": "In Activator, what does an Object represent?",
+      "options": [
+        "The rule that triggers an action",
+        "The data in an event record used to represent a business entity such as a sales order or a sensor",
+        "A specific point in time that an event occurred",
+        "The field that maps to a property"
+      ],
+      "correctIndex": 1,
+      "explanation": "The data in an event record can be used to represent an object, such as a sales order, a sensor, or some other business entity."
+    },
+    {
+      "question": "In Activator, what defines the conditions under which an action is triggered?",
+      "options": [
+        "Rules",
+        "Events",
+        "Properties",
+        "Objects"
+      ],
+      "correctIndex": 0,
+      "explanation": "Rules set the conditions under which an action is triggered based on the property values of objects referenced in events."
+    },
+    {
+      "question": "For semantic model refreshes, what should you monitor to identify transient issues before classifying an issue as a failure?",
+      "options": [
+        "Refresh retries",
+        "Git merge conflicts",
+        "Capacity SKU size",
+        "Audit log entries"
+      ],
+      "correctIndex": 0,
+      "explanation": "Monitor for semantic model refresh retries to help identify transient issues before classifying an issue as a failure."
+    },
+    {
+      "question": "What are the three levels at which Fabric evaluates access sequentially?",
+      "options": [
+        "Microsoft Entra ID authentication, Fabric access, and data security",
+        "Capacity, domain, and workspace",
+        "Item, folder, and table",
+        "User, group, and role"
+      ],
+      "correctIndex": 0,
+      "explanation": "Fabric evaluates access sequentially across Microsoft Entra ID authentication, Fabric access, and data security."
+    },
+    {
+      "question": "Which of the following is NOT one of the four primary data security access controls?",
+      "options": [
+        "Workspace roles",
+        "Item permissions",
+        "Domain roles",
+        "OneLake security"
+      ],
+      "correctIndex": 2,
+      "explanation": "The four primary data security access controls are workspace roles, item permissions, compute or granular permissions, and OneLake security."
+    },
+    {
+      "question": "Which workspace role can create, view, and modify all content and data but cannot share content or manage permissions?",
+      "options": [
+        "Admin",
+        "Member",
+        "Viewer",
+        "Contributor"
+      ],
+      "correctIndex": 3,
+      "explanation": "The Contributor role can create, view, and modify all content and data in the workspace but cannot share or manage permissions."
+    },
+    {
+      "question": "What is the scope of a workspace role in Fabric?",
+      "options": [
+        "A single table in a lakehouse",
+        "All items in a workspace",
+        "A single notebook",
+        "Only Power BI reports"
+      ],
+      "correctIndex": 1,
+      "explanation": "Workspace roles apply to all items in a workspace, so assigning someone a role gives access at the level the role allows across the whole workspace."
+    },
+    {
+      "question": "When you share a lakehouse, what does the Read permission always granted allow the recipient to do?",
+      "options": [
+        "Read all underlying data in SQL and OneLake",
+        "Create and modify lakehouse items",
+        "See the item metadata and view associated reports, without granting access to underlying data",
+        "Assign workspace roles to other users"
+      ],
+      "correctIndex": 2,
+      "explanation": "Read permission lets the recipient see the item's metadata and view associated reports, but does not grant access to any underlying data in SQL or OneLake."
+    },
+    {
+      "question": "What does the lakehouse sharing permission 'Read all Apache Spark and subscribe to events' do?",
+      "options": [
+        "Grants read access through Apache Spark and OneLake APIs and adds the recipient to the DefaultReader role",
+        "Grants write access to all tables in the lakehouse",
+        "Allows the recipient to export data to Excel",
+        "Makes the recipient a workspace Admin"
+      ],
+      "correctIndex": 0,
+      "explanation": "Read all Apache Spark and subscribe to events lets a recipient read lakehouse data through Spark and OneLake APIs and also adds them to the lakehouse's DefaultReader role."
+    },
+    {
+      "question": "Which Data Control Language (DCL) commands can be used to apply granular T-SQL permissions on the SQL analytics endpoint?",
+      "options": [
+        "CREATE, ALTER, and DROP",
+        "SELECT, INSERT, and UPDATE",
+        "GRANT, DENY, and REVOKE",
+        "BEGIN, COMMIT, and ROLLBACK"
+      ],
+      "correctIndex": 2,
+      "explanation": "When users query lakehouse data using T-SQL, granular permissions are applied using DCL commands GRANT, DENY, and REVOKE."
+    },
+    {
+      "question": "Why is it important to remove a user from the DefaultReader role when restricting them to a custom OneLake security role?",
+      "options": [
+        "DefaultReader is a workspace admin role that must always be assigned",
+        "Otherwise the user still has full read access through the default role",
+        "DefaultReader prevents users from viewing any data",
+        "Custom roles automatically add users to DefaultReader"
+      ],
+      "correctIndex": 1,
+      "explanation": "Every new lakehouse includes a DefaultReader role, so when you restrict a user to a custom role you must also remove them from DefaultReader or they retain full read access."
+    },
+    {
+      "question": "Which workspace roles can create or modify OneLake security roles?",
+      "options": [
+        "Only the workspace Admin and Member roles",
+        "Only the Contributor role",
+        "Any user with Read item permission",
+        "Only the Viewer role"
+      ],
+      "correctIndex": 0,
+      "explanation": "Only workspace Admin and Member roles can create or modify OneLake security roles."
+    },
+    {
+      "question": "What is the top level of the five-level Microsoft Fabric hierarchy?",
+      "options": [
+        "Capacity",
+        "Tenant",
+        "Domain",
+        "Workspace"
+      ],
+      "correctIndex": 1,
+      "explanation": "The top of the Fabric hierarchy is the tenant, which represents the entire Fabric environment and aligns with the Microsoft Entra ID directory."
+    },
+    {
+      "question": "Which admin role manages a specific capacity, including monitoring capacity performance?",
+      "options": [
+        "Fabric admin",
+        "Domain admin",
+        "Capacity admin",
+        "Workspace admin"
+      ],
+      "correctIndex": 2,
+      "explanation": "The capacity admin manages workspaces assigned to that capacity and monitors capacity performance."
+    },
+    {
+      "question": "Under what name does Microsoft Entra ID list the Fabric admin role?",
+      "options": [
+        "Power BI Administrator",
+        "Global Administrator",
+        "Data Administrator",
+        "Tenant Administrator"
+      ],
+      "correctIndex": 0,
+      "explanation": "Microsoft Entra ID lists the Fabric admin role as Power BI Administrator."
+    },
+    {
+      "question": "What do Fabric tenant settings control?",
+      "options": [
+        "Feature availability in the UI as governance policies",
+        "Direct security access to underlying data",
+        "The licensing of individual users",
+        "Capacity SKU size"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tenant settings control which Fabric features are available in the UI; they are governance policies, not security measures."
+    },
+    {
+      "question": "Which statement about assigning a workspace to a domain is true?",
+      "options": [
+        "It automatically restricts access to users in that domain",
+        "It does not change item visibility or security",
+        "It replaces workspace roles and item permissions",
+        "It moves the workspace to a different capacity"
+      ],
+      "correctIndex": 1,
+      "explanation": "Domain assignment does not change item visibility or security; domains organize governance, not access."
+    },
+    {
+      "question": "What happens to Fabric workspaces that are not assigned to a capacity?",
+      "options": [
+        "They fall back to shared capacity",
+        "They are automatically deleted",
+        "They are assigned to the highest capacity",
+        "They run on a trial capacity"
+      ],
+      "correctIndex": 0,
+      "explanation": "Workspaces not assigned to a capacity fall back to shared capacity, which has limitations and is not suitable for production workloads."
+    },
+    {
+      "question": "On an F64 or larger capacity, what license does a user need to view Power BI reports and dashboards with a viewer role?",
+      "options": [
+        "A Fabric Free license",
+        "Power BI Pro",
+        "Power BI Premium Per User",
+        "A capacity license"
+      ],
+      "correctIndex": 0,
+      "explanation": "Because Contoso has an F64 capacity, users with just a Free license can view Power BI reports and dashboards if they have a viewer role on the workspace."
+    },
+    {
+      "question": "Which tool contains the Feature Usage and Adoption report for tracking platform-wide usage?",
+      "options": [
+        "The admin monitoring workspace",
+        "The Monitor Hub",
+        "The Capacity Metrics app",
+        "The audit logs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The admin monitoring workspace contains the Feature Usage and Adoption report and its underlying semantic model."
+    },
+    {
+      "question": "Which tool does a Fabric admin use to visualize capacity unit (CU) consumption across a capacity?",
+      "options": [
+        "The Microsoft Fabric Capacity Metrics app",
+        "The Monitor Hub",
+        "The OneLake catalog Govern tab",
+        "The admin monitoring workspace"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Microsoft Fabric Capacity Metrics app lets a Fabric admin visualize CU consumption across a capacity and identify which workloads consume the most."
+    }
+  ]
+}

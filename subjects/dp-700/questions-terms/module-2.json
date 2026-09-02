@@ -1,0 +1,293 @@
+{
+  "title": "Module 2 — Key Terms",
+  "source_file": "M2.1.md, M2.2.md, M2.4.md, M2.7.md",
+  "question_count": 26,
+  "questions": [
+    {
+      "question": "What is OneLake in Microsoft Fabric?",
+      "options": [
+        "Fabric's centralized data storage architecture that unifies data across regions and clouds into a single logical lake without moving or duplicating data",
+        "A distributed compute cluster for Spark jobs",
+        "A KQL database for real-time data",
+        "A Power BI report catalog"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source defines OneLake as Fabric's centralized data storage architecture that unifies data into a single logical lake without movement or duplication."
+    },
+    {
+      "question": "What is OneLake built on, and what formats does it support?",
+      "options": [
+        "Azure Data Lake Storage Gen2 (ADLS Gen2), supporting formats such as Delta, Parquet, CSV, and JSON",
+        "Amazon S3, supporting only CSV",
+        "HDFS, supporting only Parquet",
+        "Azure Blob Storage, supporting only Delta"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states OneLake is built on ADLS Gen2 and supports Delta, Parquet, CSV, and JSON formats."
+    },
+    {
+      "question": "What are shortcuts in Microsoft Fabric?",
+      "options": [
+        "References to files or storage locations within OneLake or external sources that let you access existing data without copying it",
+        "Physical copies of data stored in OneLake",
+        "Scheduled data refresh jobs",
+        "Power BI report templates"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source defines shortcuts as references to files or storage locations that allow access to existing data without copying it."
+    },
+    {
+      "question": "What are workspaces in Microsoft Fabric?",
+      "options": [
+        "Logical containers that help organize and manage data, reports, and other assets with their own permissions",
+        "Physical data centers",
+        "KQL database instances",
+        "Spark pools"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source defines workspaces as logical containers for organizing assets, each with its own permissions."
+    },
+    {
+      "question": "What are the four workspace roles in Microsoft Fabric?",
+      "options": [
+        "Admin, contributor, member, and viewer",
+        "Owner, editor, reader, and guest",
+        "Bronze, silver, gold, and platinum",
+        "Admin, analyst, scientist, and engineer"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source lists workspace roles of admin, contributor, member, and viewer, noting they apply to all items in a workspace."
+    },
+    {
+      "question": "What is the OneLake catalog used for?",
+      "options": [
+        "Helping users find and access data sources, and helping analyze, monitor, and maintain data governance",
+        "Storing Spark notebook code",
+        "Scheduling pipeline runs",
+        "Managing KQL functions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source says the OneLake catalog helps discover data and supports governance analysis, monitoring, and maintenance."
+    },
+    {
+      "question": "What is a lakehouse in Microsoft Fabric?",
+      "options": [
+        "A unified platform combining the flexible storage of a data lake with the analytical capabilities of a data warehouse",
+        "A KQL database for streaming data",
+        "A Power BI semantic model",
+        "A data pipeline template"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source defines a lakehouse as combining data lake storage flexibility with data warehouse analytical capabilities."
+    },
+    {
+      "question": "What are the two main storage areas in a Fabric lakehouse, and what distinguishes them?",
+      "options": [
+        "Tables contains Delta Lake tables that support SQL queries, schemas, and ACID transactions; Files stores raw or semi-structured data files in their native format without enforced schemas",
+        "Tables stores raw files and Files stores Delta tables",
+        "Both folders enforce schemas identically",
+        "Files supports SQL queries and Tables does not"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes Tables as structured Delta tables with SQL/ACID support and Files as raw native-format files without schema enforcement."
+    },
+    {
+      "question": "What is Delta Lake?",
+      "options": [
+        "An open-source storage layer that brings reliability and relational database capabilities to data lakes",
+        "A proprietary Microsoft compression format",
+        "A KQL query engine",
+        "A Power BI data connector"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes Delta Lake as an open-source storage layer adding relational database semantics to Spark-based data lake processing."
+    },
+    {
+      "question": "Which benefits do Delta Lake tables provide?",
+      "options": [
+        "ACID transactions, schema enforcement, time travel, and efficient updates and deletes",
+        "Only fast reads with no transaction support",
+        "Row-level security and column-level encryption by default",
+        "Replacement for all data warehouses"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source lists ACID transactions, schema enforcement, time travel, and efficient updates/deletes as Delta table benefits."
+    },
+    {
+      "question": "What is the SQL analytics endpoint of a lakehouse?",
+      "options": [
+        "A read-only endpoint that queries Delta tables using T-SQL without modifying the underlying data files",
+        "A write-enabled endpoint for loading data",
+        "A Power BI report server",
+        "A Spark session interface"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes the SQL analytics endpoint as providing read-only T-SQL access to lakehouse tables."
+    },
+    {
+      "question": "What is Direct Lake mode in Power BI?",
+      "options": [
+        "A mode that reads data directly from Delta Lake Parquet files without importing or copying data",
+        "A mode that imports all data into Power BI memory",
+        "A mode that only works with CSV files",
+        "A live connection to on-premises databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states Direct Lake reads data directly from Delta Lake Parquet files without importing or copying data."
+    },
+    {
+      "question": "What is the medallion architecture in a Fabric lakehouse?",
+      "options": [
+        "A recommended data design pattern that organizes data logically into bronze (raw), silver (validated), and gold (enriched) layers",
+        "A hardware specification for Spark pools",
+        "A KQL query optimization technique",
+        "A Power BI report layout"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes the medallion architecture as a design pattern with bronze, silver, and gold layers representing increasing data quality."
+    },
+    {
+      "question": "What happens in the bronze, silver, and gold layers of a medallion architecture?",
+      "options": [
+        "Bronze ingests raw data in its original format, silver validates and refines data (removing nulls, deduplicating), and gold aligns data with specific business and analytics needs",
+        "Bronze aggregates data, silver ingests raw data, and gold validates",
+        "All layers store identical copies of data",
+        "Bronze enriches data, silver lands raw data, gold deduplicates"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes bronze as the raw landing zone, silver as the validated/refined layer, and gold as the enriched, business-aligned layer."
+    },
+    {
+      "question": "How does the medallion architecture relate to other data organization methods?",
+      "options": [
+        "It complements other methods rather than replacing them, acting as a framework for data cleaning",
+        "It replaces all existing data models",
+        "It forbids using star schemas",
+        "It only applies to streaming data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source says the medallion architecture complements other methods, acting as a framework for data cleaning."
+    },
+    {
+      "question": "What is the difference between data transformation and data orchestration in Fabric?",
+      "options": [
+        "Data transformation alters the structure or content of data (e.g. via Dataflows Gen2 or notebooks); data orchestration coordinates and manages multiple data-related processes (primarily via pipelines)",
+        "Both are handled exclusively by pipelines",
+        "Data transformation only applies to gold layer data",
+        "Data orchestration only applies to bronze layer data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source distinguishes transformation (altering data, via dataflows/notebooks) from orchestration (coordinating processes, via pipelines)."
+    },
+    {
+      "question": "How does the gold layer of a medallion architecture typically get modeled?",
+      "options": [
+        "In a star schema optimized for reporting",
+        "In a flat CSV file",
+        "As raw unstructured logs",
+        "In a single wide table with no relationships"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source says the gold layer should be modeled in a star schema and optimized for reporting."
+    },
+    {
+      "question": "What is a semantic model in Power BI?",
+      "options": [
+        "A way of viewing data using business-friendly terminology, typically represented as a star schema with facts and dimensions",
+        "A KQL materialized view",
+        "A Spark dataframe",
+        "A pipeline template"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source defines a semantic model as viewing data with business-friendly terminology, typically as a star schema with facts and dimensions."
+    },
+    {
+      "question": "How can you secure a Fabric lakehouse?",
+      "options": [
+        "By setting permissions at the workspace or item level",
+        "By deleting all data after loading",
+        "By disabling the SQL analytics endpoint",
+        "Only by using Azure Active Directory directly"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source says you secure a lakehouse by setting permissions at the workspace or item level."
+    },
+    {
+      "question": "What security guidance does the source give for the gold and bronze layers of a medallion architecture?",
+      "options": [
+        "Restrict access to both the gold and bronze layers for read-only purposes, emphasizing minimal permissions",
+        "Grant everyone write access to both layers",
+        "Restrict only the silver layer",
+        "Make all layers publicly accessible"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source recommends restricting Gold and Bronze layer access for read-only purposes with minimal permissions."
+    },
+    {
+      "question": "How does Git integration support CI/CD in Microsoft Fabric?",
+      "options": [
+        "It enables data teams to back up and version work, revert to previous stages, and collaborate using Git branches",
+        "It replaces the need for any version control",
+        "It only works with on-premises repositories",
+        "It automatically deploys all changes without review"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes Git integration as enabling backup, versioning, reverting, and branch-based collaboration for Fabric items."
+    },
+    {
+      "question": "What is the small file problem in Delta Lake, and what feature helps prevent it?",
+      "options": [
+        "Many small files degrade query performance; OptimizeWrite reduces the number of files by writing fewer, larger files",
+        "Large files cause corruption; Vacuum fixes it",
+        "Small files improve performance; Optimize breaks them apart",
+        "The problem only affects CSV files"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes the small file problem and OptimizeWrite, which writes fewer larger files and is enabled by default in Fabric."
+    },
+    {
+      "question": "What does the VACUUM command do in Delta Lake?",
+      "options": [
+        "Removes old Parquet data files not referenced in the transaction log and older than the retention period, while retaining transaction logs",
+        "Deletes the transaction log permanently",
+        "Consolidates small files into larger ones",
+        "Enables time travel beyond the retention period"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source says VACUUM removes old Parquet files while keeping transaction logs; time travel is limited by the retention period."
+    },
+    {
+      "question": "What is time travel in Delta Lake?",
+      "options": [
+        "The ability to query previous versions of a table using the transaction log, via version or timestamp options",
+        "A feature that predicts future data values",
+        "A scheduling capability for pipelines",
+        "A KQL function for real-time data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes time travel as retrieving older versions of data using logged transactions via versionAsOf or timestampAsOf options."
+    },
+    {
+      "question": "What is Spark Structured Streaming?",
+      "options": [
+        "An API based on a boundless dataframe in which streaming data is captured for processing",
+        "A KQL query pipeline",
+        "A Power BI streaming dataset",
+        "A batch-only processing model"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source describes Spark Structured Streaming as an API based on a boundless dataframe for processing streaming data."
+    },
+    {
+      "question": "What does the checkpointLocation option do in a Spark Structured Streaming write?",
+      "options": [
+        "It writes a checkpoint file that tracks the state of stream processing, enabling recovery from failure where processing left off",
+        "It deletes the streaming state",
+        "It only records the stream's start time",
+        "It converts streaming data to batch data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source says checkpointLocation writes a checkpoint file tracking stream state for failure recovery."
+    }
+  ]
+}

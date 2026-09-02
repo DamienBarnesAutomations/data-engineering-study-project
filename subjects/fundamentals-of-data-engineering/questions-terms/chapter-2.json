@@ -1,0 +1,502 @@
+{
+  "title": "Chapter 2 — The Data Engineering Lifecycle: Key Terms",
+  "source_file": "chapter-2-the-data-engineering-lifecycle.md",
+  "question_count": 45,
+  "questions": [
+    {
+      "question": "What is the data engineering lifecycle?",
+      "options": [
+        "A specific collection of data technologies that data engineers must master to manage data pipelines.",
+        "The complete lifespan of data across an entire organization, including stages a data engineer does not control.",
+        "A framework describing 'cradle to grave' data engineering, divided into stages that turn raw data ingredients into a useful end product for analysts, data scientists, and ML engineers.",
+        "A DevOps practice for automating the deployment of data pipelines and infrastructure."
+      ],
+      "correctIndex": 2,
+      "explanation": "The data engineering lifecycle is the central theme of the book: a framework describing 'cradle to grave' data engineering, split into five stages—generation, storage, ingestion, transformation, and serving data—that turn raw data ingredients into a useful end product."
+    },
+    {
+      "question": "What are the undercurrents of the data engineering lifecycle?",
+      "options": [
+        "Key foundations—security, data management, DataOps, data architecture, orchestration, and software engineering—that cut across multiple stages and support every aspect of the data engineering lifecycle.",
+        "The five stages that turn raw data ingredients into a useful end product for downstream consumers.",
+        "The specific technologies used to ingest, store, and transform data in a pipeline.",
+        "Secondary stages that occur only when primary lifecycle stages fail or overlap."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book terms these practices undercurrents—security, data management, DataOps, data architecture, orchestration, and software engineering—that cut across multiple stages and support every aspect of the lifecycle; no part of the lifecycle can adequately function without them."
+    },
+    {
+      "question": "What is a source system?",
+      "options": [
+        "The final storage location where transformed data is served to analysts and ML engineers.",
+        "A system that orchestrates data jobs across a pipeline using a directed acyclic graph.",
+        "The metadata catalog that tracks data lineage and dependencies across the lifecycle.",
+        "The origin of the data used in the data engineering lifecycle, such as an IoT device, an application message queue, or a transactional database."
+      ],
+      "correctIndex": 3,
+      "explanation": "A source system is the origin of the data used in the data engineering lifecycle, such as an IoT device, an application message queue, or a transactional database. A data engineer consumes data from a source system but doesn't typically own or control it."
+    },
+    {
+      "question": "What does it mean for a data source to be schemaless?",
+      "options": [
+        "That the data has no structure at all and cannot be queried or validated.",
+        "Not the absence of schema, but that the application defines the schema as data is written—for example, to a message queue, flat file, blob, or a document database like MongoDB.",
+        "That the schema is enforced by the database and application writes must conform to it.",
+        "That schema changes are prohibited once the source system is in production."
+      ],
+      "correctIndex": 1,
+      "explanation": "Schemaless doesn't mean the absence of schema. Rather, it means the application defines the schema as data is written—to a message queue, a flat file, a blob, or a document database such as MongoDB—in contrast to a fixed schema enforced in a relational database."
+    },
+    {
+      "question": "What is schema evolution?",
+      "options": [
+        "The practice of keeping a schema fixed and immutable once data begins flowing.",
+        "A technique for migrating data from a data lake to a cloud data warehouse.",
+        "The process of combining multiple source systems into a single unified schema.",
+        "The process by which schemas change over time as application and source systems evolve, which is encouraged in the Agile approach to software development."
+      ],
+      "correctIndex": 3,
+      "explanation": "Schemas change over time; in fact, schema evolution is encouraged in the Agile approach to software development. Evolving source schemas make the data engineer's job of transforming raw source data into valuable output more challenging."
+    },
+    {
+      "question": "What is hot data?",
+      "options": [
+        "Data that is accessed most frequently, often retrieved many times per day or even several times per second, and should be stored for fast retrieval.",
+        "Data that is seldom queried and appropriate for archival storage at low cost.",
+        "Data that is only accessed every week or month.",
+        "Data that arrives in real time and must be transformed in flight."
+      ],
+      "correctIndex": 0,
+      "explanation": "Data that is most frequently accessed is called hot data, commonly retrieved many times per day, perhaps even several times per second. It should be stored for fast retrieval, where 'fast' is relative to the use case."
+    },
+    {
+      "question": "What is cold data?",
+      "options": [
+        "Data that is accessed many times per second and stored for fast retrieval.",
+        "Data that has been transformed and is ready for serving to analysts.",
+        "Data that is seldom queried and appropriate for archival storage, often retained for compliance purposes or in case of a catastrophic failure in another system.",
+        "Data that is produced by cold storage systems like object stores."
+      ],
+      "correctIndex": 2,
+      "explanation": "Cold data is seldom queried and appropriate for storing in an archival system, often retained for compliance purposes or in case of a catastrophic failure in another system. Cloud vendors offer storage tiers with very cheap monthly storage costs but high prices for data retrieval."
+    },
+    {
+      "question": "What is batch ingestion?",
+      "options": [
+        "Continuously delivering data to downstream systems in real time, less than one second after production.",
+        "A specialized and convenient way of processing the continuous stream of data produced at the source in large chunks, such as handling a full day's worth of data in a single batch.",
+        "Pushing data directly to an endpoint, bypassing a backend database.",
+        "A system that coordinates many jobs to run on a scheduled cadence."
+      ],
+      "correctIndex": 1,
+      "explanation": "Virtually all data is inherently streaming—produced and updated continually at its source. Batch ingestion is simply a specialized and convenient way of processing this stream in large chunks, for example handling a full day's worth of data in a single batch."
+    },
+    {
+      "question": "What is streaming ingestion?",
+      "options": [
+        "Providing data to downstream systems in a continuous, real-time fashion, where real-time means data is available a short time (e.g., less than a second) after it is produced.",
+        "Processing a full day's worth of data in a single large chunk on a fixed schedule.",
+        "Pulling data from a source system by querying a current table snapshot.",
+        "Writing processed data from the output side of the lifecycle back into source systems."
+      ],
+      "correctIndex": 0,
+      "explanation": "Streaming ingestion provides data to downstream systems in a continuous, real-time fashion, where real-time (or near real-time) means data is available a short time after it is produced (e.g., less than one second). The latency required to qualify as real-time varies by domain."
+    },
+    {
+      "question": "What is a micro-batch approach to ingestion?",
+      "options": [
+        "Processing a full day's worth of data in a single large batch.",
+        "A batch pipeline that is re-run only when data quality issues are detected.",
+        "Transforming data within the stream itself before it reaches its destination.",
+        "Accumulating and ingesting data in small frequent batches, for example every minute, as an alternative to true millisecond real-time streaming."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter poses micro-batch as an alternative to millisecond real-time ingestion: accumulating and ingesting data, say, every minute. Many great ingestion frameworks handle both batch and micro-batch ingestion styles."
+    },
+    {
+      "question": "In the push model of data ingestion, how does data get from the source to a target?",
+      "options": [
+        "Data is retrieved from the source system by the ingestion process.",
+        "An ingestion system queries a source table snapshot on a fixed schedule.",
+        "The source system writes data out to a target, whether a database, object store, or filesystem.",
+        "Data is transformed in flight within the stream before reaching the target."
+      ],
+      "correctIndex": 2,
+      "explanation": "In the push model of data ingestion, a source system writes data out to a target, whether a database, object store, or filesystem. The line between the push and pull paradigms can be quite blurry, as data is often pushed and pulled through the pipeline stages."
+    },
+    {
+      "question": "In the pull model of data ingestion, how does data get from the source to a target?",
+      "options": [
+        "The source system writes data out to a database, object store, or filesystem.",
+        "Data is retrieved from the source system by the ingestion process, as in ETL's extract step, which queries a current source table snapshot.",
+        "Messages are pushed to a queue where the ingestion system picks them up.",
+        "Data bypasses a backend database and is pushed directly to an endpoint."
+      ],
+      "correctIndex": 1,
+      "explanation": "In the pull model, data is retrieved from the source system. ETL's extract (E) part clarifies that we're dealing with a pull ingestion model: in traditional ETL, the ingestion system queries a current source table snapshot on a fixed schedule."
+    },
+    {
+      "question": "What is extract, transform, load (ETL)?",
+      "options": [
+        "A process commonly used in batch-oriented ingestion workflows in which data is extracted from a source, transformed, and then loaded into a target system.",
+        "A streaming process that loads raw data before transforming it in the warehouse.",
+        "The practice of feeding processed data from the output side back into source systems.",
+        "A process that coordinates many jobs to run on a scheduled cadence."
+      ],
+      "correctIndex": 0,
+      "explanation": "ETL (extract, transform, load) is commonly used in batch-oriented ingestion workflows. Its extract step clarifies that ETL deals with a pull ingestion model, where the ingestion system queries a current source table snapshot on a fixed schedule."
+    },
+    {
+      "question": "What is extract, load, transform (ELT)?",
+      "options": [
+        "A batch-oriented process that transforms data before loading it into the target.",
+        "The practice of feeding processed data back into source systems.",
+        "An ingestion and transformation pattern in which data is extracted and loaded into the target system first and then transformed there.",
+        "A real-time ingestion pattern that transforms data within the stream itself."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter contrasts ETL with extract, load, transform (ELT). In ELT, data is loaded into the target system before transformation, rather than being transformed before load as in ETL."
+    },
+    {
+      "question": "What is change data capture (CDC)?",
+      "options": [
+        "A method for copying a full snapshot of a source table on a fixed schedule.",
+        "A process for converting raw data into a normalized form for analytics.",
+        "A storage pattern that captures cold data for archival purposes.",
+        "A technique for tracking changes in a source database, for example by triggering a message every time a row changes, reading the database's binary logs, or pulling rows changed since the last update."
+      ],
+      "correctIndex": 3,
+      "explanation": "Change data capture (CDC) tracks changes in a source database. Continuous CDC can trigger a message every time a row changes, use binary logs that record every commit, while timestamp-based batch CDC pulls the rows changed since the previous update."
+    },
+    {
+      "question": "What does the transformation stage of the data engineering lifecycle involve?",
+      "options": [
+        "Moving raw data from source systems into a storage system without modification.",
+        "Changing data from its original form into something useful for downstream use cases, such as mapping types, standardizing formats, removing bad records, normalizing schemas, and aggregating for reporting or ML.",
+        "Serving data to analysts, data scientists, and ML engineers for consumption.",
+        "Providing data to downstream systems in a continuous, real-time fashion."
+      ],
+      "correctIndex": 1,
+      "explanation": "Transformation means data is changed from its original form into something useful for downstream use cases. Without proper transformations, data sits inert and is not in a useful form for reports, analysis, or ML; the transformation stage is where data typically begins to create value."
+    },
+    {
+      "question": "What is data featurization?",
+      "options": [
+        "A process for aggregating data into reports and dashboards for business users.",
+        "A method for tracking changes to data in a source database.",
+        "A transformation process that extracts and enhances data features useful for training ML models, combining domain expertise with data science experience.",
+        "The process of defining business logic that translates raw transactions into financial statements."
+      ],
+      "correctIndex": 2,
+      "explanation": "Featurization intends to extract and enhance data features useful for training ML models, combining domain expertise with extensive experience in data science. Once data scientists determine how to featurize data, data engineers can automate the process in the transformation stage."
+    },
+    {
+      "question": "What is analytics in the context of data serving?",
+      "options": [
+        "The core of most data endeavors: generating reports or dashboards and doing ad hoc analysis on stored and transformed data, which used to be mostly BI but now includes operational and embedded analytics.",
+        "Feeding processed data back into source systems for downstream applications.",
+        "Training machine learning models on historical data.",
+        "Tracking the origin and changes to data over time."
+      ],
+      "correctIndex": 0,
+      "explanation": "Analytics is the core of most data endeavors: once data is stored and transformed, you generate reports or dashboards and do ad hoc analysis. Whereas the bulk of analytics used to encompass BI, it now includes other facets such as operational and embedded analytics."
+    },
+    {
+      "question": "What is business intelligence (BI)?",
+      "options": [
+        "Fine-grained analytics of operations that promote actions users can take immediately.",
+        "Customer-facing analytics delivered on a SaaS platform.",
+        "A real-time view of inventory or website health.",
+        "Analytics that marshals collected data to describe a business's past and current state, using business logic to process raw data into reports and dashboards aligned with business definitions."
+      ],
+      "correctIndex": 3,
+      "explanation": "Business intelligence marshals collected data to describe a business's past and current state and requires using business logic to process raw data. BI systems maintain a repository of business logic and definitions used to query the data warehouse so reports align with business definitions."
+    },
+    {
+      "question": "What is operational analytics?",
+      "options": [
+        "Analytics that describes a business's past and current state using historical trends.",
+        "Analytics that focuses on the fine-grained details of operations, promoting actions users can take immediately—for example, a live view of inventory or real-time dashboarding of website or application health.",
+        "Customer-facing analytics provided to thousands of customers on a SaaS platform.",
+        "Ad hoc analysis of data stored in a data warehouse."
+      ],
+      "correctIndex": 1,
+      "explanation": "Operational analytics focuses on the fine-grained details of operations, promoting actions that users can act on immediately, such as a live view of inventory or real-time dashboarding of website health. It focuses on the present and doesn't necessarily concern historical trends."
+    },
+    {
+      "question": "What is multitenancy in storage and analytics systems?",
+      "options": [
+        "Storing each customer's data in a physically separate database instance.",
+        "Giving all users admin access to simplify data access.",
+        "The capability to house data for many customers in common tables while presenting it to each customer through logical views with appropriately defined controls and filters so each customer sees only their data.",
+        "A pattern for storing cold data in archival storage tiers."
+      ],
+      "correctIndex": 2,
+      "explanation": "Many storage and analytics systems support multitenancy: data engineers can house data for many customers in common tables and present it externally through logical views with appropriately defined controls and filters. Data engineers must understand its minutiae to ensure absolute data security and isolation."
+    },
+    {
+      "question": "What is a feature store?",
+      "options": [
+        "A tool combining data engineering and ML engineering that maintains feature history and versions, supports feature sharing among teams, and provides operational and orchestration capabilities such as backfilling.",
+        "A system that stores raw ingested data before transformation.",
+        "A metadata catalog that tracks data lineage across the lifecycle.",
+        "A storage tier for hot data that must be retrieved quickly."
+      ],
+      "correctIndex": 0,
+      "explanation": "Feature stores are designed to reduce the operational burden for ML engineers by maintaining feature history and versions, supporting feature sharing among teams, and providing basic operational and orchestration capabilities such as backfilling."
+    },
+    {
+      "question": "What is reverse ETL?",
+      "options": [
+        "Extracting data from a source, transforming it, and loading it into a warehouse.",
+        "A pull-based ingestion model that queries source table snapshots.",
+        "Transforming data within an event stream before it reaches storage.",
+        "Taking processed data from the output side of the data engineering lifecycle—such as analytics or scored models—and feeding it back into source systems, production systems, or SaaS platforms."
+      ],
+      "correctIndex": 3,
+      "explanation": "Reverse ETL takes processed data from the output side of the data engineering lifecycle and feeds it back into source systems. It is beneficial and often necessary—for example, pushing metrics from a data warehouse to a customer data platform, CRM, or advertising platform."
+    },
+    {
+      "question": "What is the principle of least privilege?",
+      "options": [
+        "Granting admin access to all users to avoid friction in data pipelines.",
+        "Giving a user or system access to only the essential data and resources needed to perform an intended function, and nothing more.",
+        "Giving users access to all data so they can explore freely.",
+        "Restricting access to data only while it is in transit."
+      ],
+      "correctIndex": 1,
+      "explanation": "The principle of least privilege means giving a user or system access to only the essential data and resources to perform an intended function. Giving admin access to all users is a common antipattern that is 'a catastrophe waiting to happen.'"
+    },
+    {
+      "question": "What is data management?",
+      "options": [
+        "The development, execution, and supervision of plans, policies, programs, and practices that deliver, control, protect, and enhance the value of data and information assets throughout their lifecycle.",
+        "The practice of building consistent entity definitions known as golden records.",
+        "Optimizing data toward a desired state so it conforms to business expectations.",
+        "Coordinating many jobs to run on a scheduled cadence."
+      ],
+      "correctIndex": 0,
+      "explanation": "Data management is the DAMA DMBOK definition: the development, execution, and supervision of plans, policies, programs, and practices that deliver, control, protect, and enhance the value of data and information assets throughout their lifecycle."
+    },
+    {
+      "question": "What is data governance?",
+      "options": [
+        "The practice of building consistent entity definitions known as golden records.",
+        "Recording an audit trail of data through its lifecycle.",
+        "A data management function that ensures the quality, integrity, security, and usability of data collected by an organization, engaging people, processes, and technologies to maximize data value while protecting data with appropriate security controls.",
+        "A set of technical practices that map Agile, DevOps, and statistical process control to data."
+      ],
+      "correctIndex": 2,
+      "explanation": "Data governance is, first and foremost, a data management function to ensure the quality, integrity, security, and usability of the data collected by an organization. It engages people, processes, and technologies, with core categories of discoverability, security, and accountability."
+    },
+    {
+      "question": "What is metadata?",
+      "options": [
+        "The set of all possible values that can occur for a given field type.",
+        "A consistent entity definition that harmonizes data across an organization.",
+        "The audit trail of data's evolution through transformations.",
+        "'Data about data'—the information needed to make data discoverable and governable, which underpins every section of the data engineering lifecycle."
+      ],
+      "correctIndex": 3,
+      "explanation": "Metadata is 'data about data' and underpins every section of the data engineering lifecycle. It is exactly the data needed to make data discoverable and governable, and is divided into autogenerated and human-generated categories."
+    },
+    {
+      "question": "What is business metadata?",
+      "options": [
+        "Metadata describing the data model and schema, field mappings, and pipeline workflows.",
+        "Metadata relating to the way data is used in the business, including business and data definitions, data rules and logic, how and where data is used, and the data owner(s).",
+        "Statistics about processes, job IDs, runtime logs, and error logs.",
+        "Data used to classify other data, such as internal codes and units of measurement."
+      ],
+      "correctIndex": 1,
+      "explanation": "Business metadata relates to the way data is used in the business, including business and data definitions, data rules and logic, how and where data is used, and the data owner(s). A data engineer uses it to answer nontechnical questions about who, what, where, and how."
+    },
+    {
+      "question": "What is technical metadata?",
+      "options": [
+        "Metadata describing the data created and used by systems across the lifecycle, including the data model and schema, data lineage, field mappings, and pipeline workflows.",
+        "Metadata about business definitions, data rules, and data owners.",
+        "Statistics about processes, job IDs, runtime logs, and error logs.",
+        "Data used to classify other data, such as geographic codes and units of measurement."
+      ],
+      "correctIndex": 0,
+      "explanation": "Technical metadata describes the data created and used by systems across the data engineering lifecycle, including the data model and schema, data lineage, field mappings, and pipeline workflows. Data engineers use it to create, connect, and monitor various systems."
+    },
+    {
+      "question": "What is operational metadata?",
+      "options": [
+        "Metadata about business and data definitions, rules, and owners.",
+        "Metadata describing the data model, schema, and field mappings.",
+        "Metadata describing the operational results of various systems, including statistics about processes, job IDs, application runtime logs, data used in a process, and error logs.",
+        "Data used to classify other data, such as internal codes and calendar standards."
+      ],
+      "correctIndex": 2,
+      "explanation": "Operational metadata describes the operational results of various systems—statistics about processes, job IDs, application runtime logs, data used in a process, and error logs. A data engineer uses it to determine whether a process succeeded or failed."
+    },
+    {
+      "question": "What is reference metadata?",
+      "options": [
+        "Metadata describing the data model, schema, and pipeline workflows.",
+        "Statistics about processes, job IDs, and error logs.",
+        "Metadata about how data is used in the business, including data owners.",
+        "Data used to classify other data, also called lookup data—for example, internal codes, geographic codes, units of measurement, and internal calendar standards."
+      ],
+      "correctIndex": 3,
+      "explanation": "Reference metadata is data used to classify other data, also referred to as lookup data, such as internal codes, geographic codes, units of measurement, and internal calendar standards. As a standard for interpreting other data, it changes slowly over time."
+    },
+    {
+      "question": "What is data accountability?",
+      "options": [
+        "Giving every user access to the data they need to do their jobs.",
+        "Assigning an individual to govern a portion of data; the responsible person coordinates the governance activities of other stakeholders who touch the data.",
+        "Ensuring data conforms to schema expectations and business definitions.",
+        "Building consistent entity definitions known as golden records."
+      ],
+      "correctIndex": 1,
+      "explanation": "Data accountability means assigning an individual to govern a portion of data; the responsible person coordinates the governance activities of other stakeholders. Managing data quality is tough if no one is accountable for the data in question."
+    },
+    {
+      "question": "What is data quality?",
+      "options": [
+        "The optimization of data toward the desired state, orbiting the question 'What do you get compared with what you expect?' and characterized by accuracy, completeness, and timeliness.",
+        "Ensuring that data is served to users within a service-level agreement.",
+        "Assigning individuals to govern portions of data.",
+        "The set of all possible values that can occur for a given field type."
+      ],
+      "correctIndex": 0,
+      "explanation": "Data quality is the optimization of data toward the desired state, orbiting the question 'What do you get compared with what you expect?' Its three main characteristics are accuracy (factually correct), completeness (records and fields complete), and timeliness (records available in a timely fashion)."
+    },
+    {
+      "question": "What is master data management (MDM)?",
+      "options": [
+        "A technique for tracking changes to a source database.",
+        "A framework describing 'cradle to grave' data engineering.",
+        "The practice of building consistent entity definitions—known as golden records—that harmonize entity data across an organization and with its partners; a business operations process facilitated by technology tools.",
+        "The process of coordinating many jobs to run on a scheduled cadence."
+      ],
+      "correctIndex": 2,
+      "explanation": "Master data management (MDM) is the practice of building consistent entity definitions known as golden records, which harmonize entity data across an organization and with its partners. It is a business operations process facilitated by building and deploying technology tools."
+    },
+    {
+      "question": "What is data modeling and design?",
+      "options": [
+        "A technique for tracking changes to data in a source database.",
+        "The practice of feeding processed data back into source systems.",
+        "Assigning an individual to govern a portion of data.",
+        "The process of converting data into a usable form so that business insights can be derived through analytics and data science, and it can happen almost anywhere in an organization—even in firmware or API design."
+      ],
+      "correctIndex": 3,
+      "explanation": "Data modeling and design is the process for converting data into a usable form to derive business insights. It can happen almost anywhere in an organization—firmware engineers designing IoT record formats and web developers designing JSON responses or MySQL table schemas are all doing data modeling."
+    },
+    {
+      "question": "What is data lineage?",
+      "options": [
+        "A technique for optimizing data toward a desired state.",
+        "The recording of an audit trail of data through its lifecycle, tracking both the systems that process the data and the upstream data it depends on.",
+        "The practice of building consistent entity definitions across an organization.",
+        "Data that classifies other data, such as internal codes."
+      ],
+      "correctIndex": 1,
+      "explanation": "Data lineage describes the recording of an audit trail of data through its lifecycle, tracking both the systems that process the data and the upstream data it depends on. It helps with error tracking, accountability, debugging, and compliance."
+    },
+    {
+      "question": "What is data integration and interoperability?",
+      "options": [
+        "The process of integrating data across tools and processes, increasingly done through general-purpose APIs rather than custom database connections.",
+        "The practice of converting data into a usable form for analytics.",
+        "A technique for tracking changes to a source database.",
+        "The recording of an audit trail of data through its lifecycle."
+      ],
+      "correctIndex": 0,
+      "explanation": "Data integration and interoperability is the process of integrating data across tools and processes. Increasingly, integration happens through general-purpose APIs rather than custom database connections, as pipelines pull from and push to various systems via their APIs."
+    },
+    {
+      "question": "What is DataOps?",
+      "options": [
+        "A framework for describing the five stages of the data engineering lifecycle.",
+        "The process of coordinating many jobs to run on a scheduled cadence.",
+        "A collection of technical practices, workflows, cultural norms, and architectural patterns that map Agile methodology, DevOps, and statistical process control to data, enabling rapid innovation, high data quality, and collaboration.",
+        "A technique for tracking changes to data in a source database."
+      ],
+      "correctIndex": 2,
+      "explanation": "DataOps maps the best practices of Agile methodology, DevOps, and statistical process control (SPC) to data; whereas DevOps improves software products, DataOps does the same for data products. Its three core technical elements are automation, monitoring and observability, and incident response."
+    },
+    {
+      "question": "What is data architecture?",
+      "options": [
+        "A specific tool used to orchestrate data jobs across a pipeline.",
+        "The practice of building consistent entity definitions for master data.",
+        "A storage pattern for data that is seldom accessed.",
+        "An undercurrent that reflects the current and future state of data systems that support an organization's long-term data needs and strategy."
+      ],
+      "correctIndex": 3,
+      "explanation": "Data architecture reflects the current and future state of data systems that support an organization's long-term data needs and strategy. A data engineer translates business requirements into designs balanced for cost and operational simplicity."
+    },
+    {
+      "question": "What is orchestration?",
+      "options": [
+        "A pure scheduler that is aware only of time, such as cron.",
+        "The process of coordinating many jobs to run as quickly and efficiently as possible on a scheduled cadence, using metadata on job dependencies generally in the form of a directed acyclic graph (DAG).",
+        "A technique for tracking changes to a source database.",
+        "The process of converting raw data into a usable form."
+      ],
+      "correctIndex": 1,
+      "explanation": "Orchestration is the process of coordinating many jobs to run as quickly and efficiently as possible on a scheduled cadence. Unlike a pure scheduler such as cron, which is aware only of time, an orchestration engine builds in metadata on job dependencies in the form of a DAG."
+    },
+    {
+      "question": "What is a directed acyclic graph (DAG) in the context of orchestration?",
+      "options": [
+        "A representation of job dependencies used by orchestration engines, in which the graph can be run once or scheduled to run at a fixed interval, such as daily, weekly, every hour, or every five minutes.",
+        "A streaming pipeline that processes events in real time.",
+        "A storage layout that organizes data by temperature.",
+        "A pure scheduler that is aware only of time."
+      ],
+      "correctIndex": 0,
+      "explanation": "An orchestration engine builds in metadata on job dependencies, generally in the form of a directed acyclic graph (DAG). The DAG can be run once or scheduled to run at a fixed interval of daily, weekly, every hour, every five minutes, etc."
+    },
+    {
+      "question": "What is backfilling in the context of data systems?",
+      "options": [
+        "Moving cold data to archival storage tiers.",
+        "A technique for tracking changes to a source database.",
+        "Running a DAG or task retroactively to process data for past time ranges—for example, when new tasks are added to an existing DAG, or in feature stores to regenerate historical features.",
+        "Serving data to downstream users within a service-level agreement."
+      ],
+      "correctIndex": 2,
+      "explanation": "Advanced orchestration engines can backfill new DAGs or individual tasks as they are added to a DAG, running them retroactively over past time ranges. Feature stores also provide basic operational capabilities such as backfilling."
+    },
+    {
+      "question": "What is infrastructure as code (IaC)?",
+      "options": [
+        "Writing SQL to query and transform data in a cloud data warehouse.",
+        "Using code to declare data tasks and their dependencies for an orchestration engine.",
+        "The practice of feeding processed data back into source systems.",
+        "Applying software engineering practices to the configuration and management of infrastructure, enabling automated infrastructure deployment based on a set of specifications."
+      ],
+      "correctIndex": 3,
+      "explanation": "Infrastructure as code (IaC) applies software engineering practices to the configuration and management of infrastructure. Frameworks allow automated infrastructure deployment based on specifications, and it is a vital part of DevOps, allowing version control and repeatability of deployments."
+    },
+    {
+      "question": "What is pipelines as code?",
+      "options": [
+        "A technique for automating the configuration of cloud infrastructure.",
+        "The core concept of present-day orchestration systems, in which data engineers use code (typically Python) to declare data tasks and dependencies that the orchestration engine interprets to run steps using available resources.",
+        "A batch processing pattern where a full day's data is handled in one chunk.",
+        "A method for tracking changes to a source database using binary logs."
+      ],
+      "correctIndex": 1,
+      "explanation": "Pipelines as code is the core concept of present-day orchestration systems: data engineers use code (typically Python) to declare data tasks and dependencies among them, and the orchestration engine interprets these instructions to run steps using available resources."
+    },
+    {
+      "question": "How does the chapter describe a cloud data warehouse?",
+      "options": [
+        "A storage system that can store data, process data in pipelines, and serve it to analysts, and that manages schema metadata internally, supporting complex query patterns.",
+        "A schema-agnostic storage system that does not manage schema metadata.",
+        "A system used only for archival of cold data at very low cost.",
+        "A system that coordinates many jobs to run on a scheduled cadence."
+      ],
+      "correctIndex": 0,
+      "explanation": "Cloud data warehouses can store data, process data in pipelines, and serve it to analysts. Unlike object stores, which don't manage schema metadata (so it must be managed in a metastore), cloud data warehouses manage schema metadata internally and support complex query patterns."
+    }
+  ]
+}

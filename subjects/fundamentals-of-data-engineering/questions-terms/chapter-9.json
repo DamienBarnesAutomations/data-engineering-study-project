@@ -1,0 +1,447 @@
+{
+  "title": "Chapter 9 — Serving Data for Analytics, Machine Learning, and Reverse ETL: Key Terms",
+  "source_file": "chapter-9-serving-data-for-analytics-machine-learning-and-reverse-etl.md",
+  "question_count": 40,
+  "questions": [
+    {
+      "question": "What is 'serving data' in the data engineering lifecycle?",
+      "options": [
+        "The process of ingesting raw data from source systems into a data warehouse.",
+        "The act of transforming raw data into structured tables for storage.",
+        "The final stage of the data engineering lifecycle, in which data is delivered to downstream use cases such as analytics, machine learning, and reverse ETL.",
+        "The practice of archiving historical data for long-term retention."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter opens by describing serving as the final stage of the data engineering lifecycle, delivering data for downstream use cases like analytics, ML, and reverse ETL."
+    },
+    {
+      "question": "What is analytics, according to the chapter?",
+      "options": [
+        "Discovering, exploring, identifying, and making visible key insights and patterns within data.",
+        "Storing large volumes of structured data for later retrieval.",
+        "Moving data between systems to make it available for downstream consumers.",
+        "Sending processed data back into source systems for operational use."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter defines analytics as discovering, exploring, identifying, and making visible key insights and patterns within data, carried out with statistical methods, reporting, and BI tools."
+    },
+    {
+      "question": "What is business analytics?",
+      "options": [
+        "The use of real-time data to trigger immediate operational actions.",
+        "Analytics embedded inside an application for external end users.",
+        "Automated machine learning used to train models without human intervention.",
+        "The use of historical and current data to make strategic and actionable decisions."
+      ],
+      "correctIndex": 3,
+      "explanation": "Business analytics uses historical and current data to make strategic and actionable decisions, factoring in longer-term trends alongside statistical analysis and human judgment."
+    },
+    {
+      "question": "What is operational analytics?",
+      "options": [
+        "The use of historical data to inform long-term strategic decisions.",
+        "The use of data to take immediate action, such as real-time application monitoring and alerts.",
+        "The practice of embedding analytics dashboards inside end-user applications.",
+        "A process for sending processed data back into source systems."
+      ],
+      "correctIndex": 1,
+      "explanation": "Operational analytics uses data to take immediate action; the chapter's example is real-time application monitoring that triggers scaling events or alerts when thresholds are breached."
+    },
+    {
+      "question": "How does the chapter summarize the difference between operational analytics and business analytics?",
+      "options": [
+        "Operational analytics takes immediate action, while business analytics produces actionable insights.",
+        "Operational analytics uses batch data, while business analytics uses streaming data.",
+        "Operational analytics is external-facing, while business analytics is internal-facing.",
+        "Operational analytics is automated, while business analytics requires manual effort."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter distills the difference as 'immediate action versus actionable insights,' driven by the time horizon: up-to-the-second updates matter for operational analytics but not for business analytics."
+    },
+    {
+      "question": "What is a dashboard in the context of business analytics?",
+      "options": [
+        "A detailed written summary of a specific business investigation.",
+        "A tool that runs automated machine learning models.",
+        "A concise view that shows decision makers how an organization is performing against a handful of core metrics.",
+        "A database that stores streaming data for operational use."
+      ],
+      "correctIndex": 2,
+      "explanation": "A dashboard concisely shows decision makers how an organization is performing against a handful of core metrics, such as sales and customer retention, presented as visualizations or summary statistics."
+    },
+    {
+      "question": "What is the goal of a report in business analytics?",
+      "options": [
+        "To show how an organization is performing against a handful of core metrics.",
+        "To send processed data back into source systems.",
+        "To enable users to build data products on their own.",
+        "To use data to drive insights and action."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter states that the goal of a report is to use data to drive insights and action, often summarizing the findings of an ad hoc analysis."
+    },
+    {
+      "question": "What is ad hoc analysis?",
+      "options": [
+        "A predefined dashboard that is updated automatically with core metrics.",
+        "An analysis in which an analyst digs into a potential issue or question and comes back with insights.",
+        "A tool for consolidating business definitions and logic.",
+        "The process of loading data from an OLAP database back into a source system."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter describes ad hoc analysis as an analyst digging into a potential issue and returning with insights; reports typically start as ad hoc requests."
+    },
+    {
+      "question": "What is embedded analytics?",
+      "options": [
+        "Internal analytics used by executives to monitor core business metrics.",
+        "Real-time monitoring of application performance by engineering teams.",
+        "External-facing analytics, typically dashboards embedded within a data application that give end users key metrics about their relationship with the application.",
+        "A tool for maintaining and computing business logic."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter describes embedded analytics as external-facing, end-user-facing dashboards embedded within data applications that give users key metrics about their relationship with the application."
+    },
+    {
+      "question": "What is a data application (data app)?",
+      "options": [
+        "An application that provides analytics to end users, often with analytics dashboards embedded within the application itself.",
+        "A database used to serve large, computationally intensive queries.",
+        "A report generated by an analyst to summarize a business investigation.",
+        "A process for moving data from source systems into a data warehouse."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says companies increasingly provide analytics to end users; these are typically referred to as data applications, often with analytics dashboards embedded within the application itself."
+    },
+    {
+      "question": "What is reverse ETL?",
+      "options": [
+        "The process of ingesting raw data from source systems into a data warehouse.",
+        "The process of serving data by loading it from an OLAP database back into a source system.",
+        "The process of transforming data in a staging layer before loading it.",
+        "The practice of querying data across multiple federated systems."
+      ],
+      "correctIndex": 1,
+      "explanation": "Reverse ETL is a buzzword for serving data by loading it from an OLAP database back into a source system; the chapter's example feeds scored leads back into a CRM where the sales team works."
+    },
+    {
+      "question": "What term do the authors half-jokingly suggest instead of 'reverse ETL'?",
+      "options": [
+        "Backward transformation loop (BTL).",
+        "Batch load and transfer (BLT).",
+        "Business logic transformation (BLT).",
+        "Bidirectional load and transform (BLT)."
+      ],
+      "correctIndex": 3,
+      "explanation": "The authors half-jokingly call reverse ETL 'bidirectional load and transform (BLT),' noting that 'reverse ETL' does not quite accurately describe loading data from OLAP systems back into source systems."
+    },
+    {
+      "question": "According to the chapter, what is the root consideration in serving data?",
+      "options": [
+        "Trust: end users need to trust that the data is a reliable representation of their business.",
+        "Latency: data must be delivered with the lowest possible delay.",
+        "Cost: serving data must be as inexpensive as possible.",
+        "Automation: serving should require no manual intervention."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says above all else, trust is the root consideration in serving data; a loss of trust is often a silent death knell for a data project."
+    },
+    {
+      "question": "What is data validation?",
+      "options": [
+        "Providing an ongoing view of data and data processes.",
+        "Consolidating business definitions and logic in a reusable fashion.",
+        "Analyzing data to ensure that it accurately represents financial information, customer interactions, and sales.",
+        "Building a query with appropriate logic that returns accurate answers."
+      ],
+      "correctIndex": 2,
+      "explanation": "Data validation is analyzing data to ensure that it accurately represents financial information, customer interactions, and sales."
+    },
+    {
+      "question": "What is data observability?",
+      "options": [
+        "A one-time validation of data before it is served.",
+        "An ongoing view of data and data processes.",
+        "A tool for maintaining and computing business logic.",
+        "The process of loading data back into source systems."
+      ],
+      "correctIndex": 1,
+      "explanation": "Data observability provides an ongoing view of data and data processes, and must be applied throughout the data engineering lifecycle to build stakeholder trust."
+    },
+    {
+      "question": "What is an SLA in the context of serving data?",
+      "options": [
+        "A metric that describes how performance will be measured against an agreement.",
+        "A tool for computing business logic and metrics.",
+        "A database that combines OLAP and stream-processing capabilities.",
+        "A contract between a data engineer and stakeholders that tells users what to expect from a data product."
+      ],
+      "correctIndex": 3,
+      "explanation": "An SLA tells users what to expect from your data product; it is a contract between you and your stakeholders, for example 'data will be reliably available and of high quality.'"
+    },
+    {
+      "question": "What is an SLO?",
+      "options": [
+        "A contract that tells users what to expect from a data product.",
+        "A tool for maintaining and computing business logic.",
+        "A key part of an SLA that describes the ways performance will be measured against what was agreed to.",
+        "The final stage of the data engineering lifecycle."
+      ],
+      "correctIndex": 2,
+      "explanation": "An SLO is a key part of an SLA and describes the ways you will measure performance against what you have agreed to, such as 'our pipelines will have 99% uptime.'"
+    },
+    {
+      "question": "What is a data product, per D. J. Patil's definition quoted in the chapter?",
+      "options": [
+        "A product that facilitates an end goal through the use of data.",
+        "A database that stores curated datasets for downstream consumers.",
+        "A dashboard that shows core organizational metrics.",
+        "A pipeline that moves data from source systems into a warehouse."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter quotes D. J. Patil: 'A good definition of a data product is a product that facilitates an end goal through the use of data.'"
+    },
+    {
+      "question": "What is a self-service data product?",
+      "options": [
+        "Automated machine learning for citizen data scientists.",
+        "Analytics embedded within an application for end users.",
+        "A centralized team that builds all reports for the business.",
+        "Giving the user the ability to build data products on their own."
+      ],
+      "correctIndex": 3,
+      "explanation": "Self-service data products, giving the user the ability to build data products on their own, have long been an aspiration; the chapter notes they are still tough to implement in practice."
+    },
+    {
+      "question": "What does 'data definition' refer to?",
+      "options": [
+        "The formulas used to derive metrics from data.",
+        "The meaning of data as it is understood throughout the organization.",
+        "The process of validating data before it is served.",
+        "The schema imposed on data by a database."
+      ],
+      "correctIndex": 1,
+      "explanation": "Data definition refers to the meaning of data as it is understood throughout the organization; for example, the precise meaning of 'customer' within a company."
+    },
+    {
+      "question": "What does 'data logic' stipulate?",
+      "options": [
+        "Formulas for deriving metrics from data, such as gross sales or customer lifetime value.",
+        "The meaning of data as understood across the organization.",
+        "The rules for granting read-only access to datasets.",
+        "The frequency with which data batches are served."
+      ],
+      "correctIndex": 0,
+      "explanation": "Data logic stipulates formulas for deriving metrics from data, such as gross sales or customer lifetime value, and must encode data definitions and the details of statistical calculations."
+    },
+    {
+      "question": "What is a semantic layer?",
+      "options": [
+        "A tool that serves data by loading it from an OLAP database back into source systems.",
+        "A database that combines OLAP with stream-processing capabilities.",
+        "An external-facing dashboard embedded within an application.",
+        "A way to consolidate business definitions and logic in a reusable fashion: write once, use anywhere."
+      ],
+      "correctIndex": 3,
+      "explanation": "Using a semantic layer, you consolidate business definitions and logic in a reusable fashion; the chapter calls this an object-oriented approach to metrics, calculations, and logic."
+    },
+    {
+      "question": "What is a metrics layer?",
+      "options": [
+        "A layer that provides fine-grained access control on databases.",
+        "A storage system for unstructured files.",
+        "A tool for maintaining and computing business logic.",
+        "A process for moving data from warehouses into source systems."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter defines a metrics layer as a tool for maintaining and computing business logic, citing concrete examples like Looker and Data Build Tool (dbt)."
+    },
+    {
+      "question": "What is headless BI, as described in the chapter?",
+      "options": [
+        "A BI tool that operates without any data sources.",
+        "A term closely related to the semantic layer and metrics layer that the chapter groups with tools for maintaining and computing business logic.",
+        "Analytics embedded within an application for end users.",
+        "A self-service analytics approach used by executives."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter notes that a metrics layer is a tool for maintaining and computing business logic, that a semantic layer is extremely similar conceptually, and that headless BI is another closely related term."
+    },
+    {
+      "question": "What is LookML?",
+      "options": [
+        "A Python library for loading data into notebooks.",
+        "A language for defining schema in data warehouses.",
+        "A language for training machine learning models.",
+        "A specialized language used by Looker to define virtual, complex business logic and generate SQL queries."
+      ],
+      "correctIndex": 3,
+      "explanation": "Looker's LookML allows users to define virtual, complex business logic; Looker uses LookML to generate SQL queries, which are pushed down to the database."
+    },
+    {
+      "question": "How does a data mesh change the way data is served, according to the chapter?",
+      "options": [
+        "Every domain team takes on two aspects of decentralized, peer-to-peer data serving: serving data to other teams and running its own dashboards and analytics for self-service.",
+        "A central data team serves all internal constituents from a single warehouse.",
+        "All serving is automated through reverse ETL pipelines.",
+        "Analytics is embedded within external applications."
+      ],
+      "correctIndex": 0,
+      "explanation": "Data mesh fundamentally changes serving: instead of siloed data teams, every domain team prepares data for consumption by other teams and runs its own dashboards and analytics for self-service."
+    },
+    {
+      "question": "What is query pushdown, as used by Looker and similar modern BI systems?",
+      "options": [
+        "Pulling data from a database and storing it locally on the BI server.",
+        "A computational model in which the BI system encodes data processing logic in a language like LookML, generates SQL, and runs the queries against the source database.",
+        "Sending processed data back into source systems.",
+        "Querying multiple data sources without centralizing data."
+      ],
+      "correctIndex": 1,
+      "explanation": "Looker relies on query pushdown: it encodes data processing logic in LookML, combines this with dynamic user input to generate SQL queries, runs these against the source database, and presents the output."
+    },
+    {
+      "question": "What is query federation?",
+      "options": [
+        "Storing a single copy of data centrally in an OLAP database.",
+        "Loading processed data from a warehouse back into a source system.",
+        "Pulling data from multiple sources, such as data lakes, RDBMSs, and data warehouses, without centralizing the data.",
+        "Serving data through massively multitenant cloud storage."
+      ],
+      "correctIndex": 2,
+      "explanation": "Query federation pulls data from multiple sources such as data lakes, RDBMSs, and data warehouses; it suits situations where you want flexibility or the source data must be tightly controlled."
+    },
+    {
+      "question": "What does the chapter mean by data sharing?",
+      "options": [
+        "Sharing data through massively multitenant storage systems in a cloud environment, which turns data serving into a security and access control problem.",
+        "Emailing files to individual data consumers.",
+        "Querying multiple systems via distributed query engines.",
+        "Loading data from an OLAP database back into a source system."
+      ],
+      "correctIndex": 0,
+      "explanation": "Data sharing specifically means sharing through massively multitenant storage systems in a cloud environment; the data consumers run the queries, turning serving into a security and access control problem."
+    },
+    {
+      "question": "What is file exchange in data serving?",
+      "options": [
+        "Moving data from source systems into a data warehouse.",
+        "Sharing data through multitenant cloud storage.",
+        "Querying data directly from multiple source systems.",
+        "Processing data and generating files to pass to data consumers."
+      ],
+      "correctIndex": 3,
+      "explanation": "File exchange is ubiquitous in serving: we process data and generate files to pass to data consumers, such as CSVs or text files for analysis."
+    },
+    {
+      "question": "What is 'query quality'?",
+      "options": [
+        "The characteristics of the data itself and techniques to filter bad data.",
+        "Building a query with appropriate logic that returns accurate answers to business questions.",
+        "The speed at which a query engine returns results.",
+        "The frequency with which queries are cached."
+      ],
+      "correctIndex": 1,
+      "explanation": "While data quality focuses on characteristics of the data itself, query quality is a question of building a query with appropriate logic that returns accurate answers to business questions."
+    },
+    {
+      "question": "What does 'slicing and dicing' mean in the context of OLAP/BI?",
+      "options": [
+        "Splitting data into training and test sets for ML.",
+        "Decomposing data into files and distributing them to consumers.",
+        "Interactive filtering and aggregation.",
+        "Moving data between the transform and load stages of a pipeline."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter describes basic OLAP/BI slicing and dicing as interactive filtering and aggregation, which runs on the BI server's local copy of the data."
+    },
+    {
+      "question": "Which type of database does the chapter focus on when serving data for analytics and ML?",
+      "options": [
+        "OLTP databases used to run production transactions.",
+        "Graph databases optimized for relationships.",
+        "Document databases optimized for semistructured data.",
+        "OLAP databases, such as data warehouses and data lakes."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter keeps its focus on serving data from OLAP databases, e.g., data warehouses and data lakes, which impose structure through schema and offer high serving performance for large, computationally intensive queries."
+    },
+    {
+      "question": "What are operational analytics databases?",
+      "options": [
+        "Databases that allow queries across a large range of historical data while encompassing up-to-the-second current data, essentially combining aspects of OLAP databases with stream-processing systems.",
+        "Databases optimized for read-only access to source systems.",
+        "Databases that store features for machine learning models.",
+        "Databases that only serve batch data on a scheduled basis."
+      ],
+      "correctIndex": 0,
+      "explanation": "Operational analytics databases allow queries to run across a large range of historical data while encompassing up-to-the-second current data; essentially they combine aspects of OLAP databases with stream-processing systems."
+    },
+    {
+      "question": "What is featurization in the context of ML?",
+      "options": [
+        "Serving model predictions back into source systems.",
+        "Converting raw data into features, numeric representations, for use by machine learning models.",
+        "Monitoring the performance of models in production.",
+        "Splitting data into training and test sets."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter notes data engineers may handle extremely ML-specific tasks such as featurization of data, and that all data used for ML is converted to numbers during the feature-engineering process."
+    },
+    {
+      "question": "What does Jupyter (as in Jupyter Notebook) stand for?",
+      "options": [
+        "Java, Python, and Ruby.",
+        "Julia, Perl, and R.",
+        "Julia, Python, and R.",
+        "JavaScript, Python, and R."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter notes that Jupyter stands for Julia, Python, and R; the latter two are popular for data science applications, especially notebooks."
+    },
+    {
+      "question": "What is the book's guidance on handling credentials in notebooks and data science code?",
+      "options": [
+        "Credentials are fine to share in messages and email within a team.",
+        "Credentials should be committed to version control for reproducibility.",
+        "Credentials should be rotated only after a security incident.",
+        "Credentials should never be embedded in code; ideally, data scientists should use credential managers or CLI tools."
+      ],
+      "correctIndex": 3,
+      "explanation": "Incorrectly handled credentials are a major security risk; the book urges that credentials never be embedded in code and that data scientists use credential managers or CLI tools to manage access."
+    },
+    {
+      "question": "What is DataOps?",
+      "options": [
+        "An approach that operationalizes data management, monitoring data health, quality, latency, security, and uptime.",
+        "A database optimized for serving analytics and ML workloads.",
+        "A tool for defining business logic and metrics.",
+        "A process for loading data back into source systems."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter says DataOps operationalizes data management, monitoring things like data health, data downtime, latency, data quality, security and access, and uptime to achieve an SLO."
+    },
+    {
+      "question": "What is data obfuscation, as described in the chapter?",
+      "options": [
+        "Encrypting data at rest in a data warehouse.",
+        "Compressing data to reduce storage costs.",
+        "Serving synthetic, scrambled, or anonymized data to end users so they can get signal from the data while making it difficult to identify protected information.",
+        "Deleting data that is no longer used."
+      ],
+      "correctIndex": 2,
+      "explanation": "Advancements in data obfuscation allow you to serve synthetic, scrambled, or anonymized data to end users, reducing the risk of data leakage while still giving analysts signal."
+    },
+    {
+      "question": "What is the principle of least privilege?",
+      "options": [
+        "Granting all users full access and revoking it as needed.",
+        "Providing only the access required for the purpose at hand and the job to be done.",
+        "Giving data teams the broadest possible permissions to be productive.",
+        "Allowing read-only access only to executives."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter urges exercising the principle of least privilege both for people and systems, providing only the access required for the purpose at hand and the job to be done."
+    }
+  ]
+}

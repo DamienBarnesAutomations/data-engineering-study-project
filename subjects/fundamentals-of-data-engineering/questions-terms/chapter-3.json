@@ -1,0 +1,502 @@
+{
+  "title": "Chapter 3 — Designing Good Data Architecture: Key Terms",
+  "source_file": "chapter-3-designing-good-data-architecture.md",
+  "question_count": 45,
+  "questions": [
+    {
+      "question": "How does the book define data architecture?",
+      "options": [
+        "The design of systems to support change in the enterprise, achieved by flexible and reversible decisions reached through careful evaluation of trade-offs.",
+        "The design of systems to support the evolving data needs of an enterprise, achieved by flexible and reversible decisions reached through a careful evaluation of trade-offs.",
+        "A description of the structure and interaction of the enterprise's major types and sources of data, logical data assets, physical data assets, and data management resources.",
+        "An organizational model that aligns strategy, operations, and technology to create a roadmap for success."
+      ],
+      "correctIndex": 1,
+      "explanation": "The book defines data architecture as 'the design of systems to support the evolving data needs of an enterprise, achieved by flexible and reversible decisions reached through a careful evaluation of trade-offs.'"
+    },
+    {
+      "question": "How does the book define enterprise architecture?",
+      "options": [
+        "The design of systems to support change in the enterprise, achieved by flexible and reversible decisions reached through careful evaluation of trade-offs.",
+        "A discipline for proactively leading enterprise responses to disruptive forces by identifying and analyzing the execution of change toward desired business vision and outcomes.",
+        "The design of systems to support the evolving data needs of an enterprise, achieved by flexible and reversible decisions reached through a careful evaluation of trade-offs.",
+        "A description of the structure and interaction of the enterprise's major types and sources of data."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book's definition of enterprise architecture is 'the design of systems to support change in the enterprise, achieved by flexible and reversible decisions reached through careful evaluation of trade-offs.'"
+    },
+    {
+      "question": "What does operational architecture describe?",
+      "options": [
+        "Operational architecture describes what needs to be done, encompassing the functional requirements related to people, processes, and technology.",
+        "Operational architecture details how data is ingested, stored, transformed, and served along the data engineering lifecycle.",
+        "Operational architecture is the design of systems to support the evolving data needs of an enterprise.",
+        "Operational architecture defines the physical network topology and hardware specifications of a system."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says operational architecture encompasses the functional requirements of what needs to happen related to people, processes, and technology; it describes what needs to be done."
+    },
+    {
+      "question": "What does technical architecture describe?",
+      "options": [
+        "Technical architecture describes what needs to be done, encompassing the functional requirements related to people, processes, and technology.",
+        "Technical architecture is the design of systems to support change in the enterprise.",
+        "Technical architecture defines the business processes that the data serves.",
+        "Technical architecture outlines how data is ingested, stored, transformed, and served along the data engineering lifecycle, detailing how it will happen."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book says technical architecture outlines how data is ingested, stored, transformed, and served along the data engineering lifecycle; it details how something will happen, while operational architecture describes what needs to be done."
+    },
+    {
+      "question": "What is a 'two-way door' in the context of Amazon's decision-making?",
+      "options": [
+        "A decision that is almost impossible to reverse, such as selling a major business unit.",
+        "A reversible decision: you walk through the door and proceed if you like what you see, or step back through if you don't.",
+        "A decision that requires a five-year planning cycle before it can be executed.",
+        "A decision that must be approved by every team in the organization."
+      ],
+      "correctIndex": 1,
+      "explanation": "Jeff Bezos describes a two-way door as an easily reversible decision: you walk through and proceed if you like what you see or step back through if you don't. The book urges aiming for two-way doors whenever possible."
+    },
+    {
+      "question": "What characterizes 'good' data architecture, according to the book?",
+      "options": [
+        "Good data architecture serves business requirements with a common, widely reusable set of building blocks while maintaining flexibility and making appropriate trade-offs.",
+        "Good data architecture uses the newest, most cutting-edge technologies available for every component.",
+        "Good data architecture is authoritarian and crams one-size-fits-all decisions into a big ball of mud.",
+        "Good data architecture is tightly coupled, rigid, and overly centralized."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says good data architecture serves business requirements with a common, widely reusable set of building blocks while maintaining flexibility and making appropriate trade-offs; bad architecture is rigid, tightly coupled, and one-size-fits-all."
+    },
+    {
+      "question": "What is a 'common component' in the context of good data architecture?",
+      "options": [
+        "A proprietary database chosen by architects and forced on every team in the organization.",
+        "A specialized tool built specifically for one team's domain-specific problem.",
+        "A component that is tightly coupled to a single team's stack and cannot be shared.",
+        "Anything with broad applicability within an organization, such as object storage, version-control systems, observability, monitoring and orchestration systems, and processing engines."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book says common components can be anything that has broad applicability within an organization, including object storage, version-control systems, observability, monitoring and orchestration systems, and processing engines."
+    },
+    {
+      "question": "What is availability, in the context of designing for failure?",
+      "options": [
+        "The system's probability of meeting defined standards in performing its intended function during a specified interval.",
+        "The percentage of time an IT service or component is in an operable state.",
+        "The maximum acceptable time for a service or system outage.",
+        "The maximum acceptable data loss during an outage."
+      ],
+      "correctIndex": 1,
+      "explanation": "The book defines availability as the percentage of time an IT service or component is in an operable state."
+    },
+    {
+      "question": "What is reliability, in the context of designing for failure?",
+      "options": [
+        "The percentage of time an IT service or component is in an operable state.",
+        "The maximum acceptable data loss during an outage.",
+        "The maximum acceptable time for a service or system outage.",
+        "The system's probability of meeting defined standards in performing its intended function during a specified interval."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book defines reliability as the system's probability of meeting defined standards in performing its intended function during a specified interval."
+    },
+    {
+      "question": "What is the recovery time objective (RTO)?",
+      "options": [
+        "The maximum acceptable time for a service or system outage, generally set by determining the business impact of an outage.",
+        "The maximum acceptable data loss during an outage.",
+        "The percentage of time an IT service or component is in an operable state.",
+        "The system's probability of meeting defined standards in performing its intended function."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines the recovery time objective (RTO) as the maximum acceptable time for a service or system outage, generally set by determining the business impact of the outage."
+    },
+    {
+      "question": "What is the recovery point objective (RPO)?",
+      "options": [
+        "The maximum acceptable time for a service or system outage.",
+        "The percentage of time an IT service or component is in an operable state.",
+        "The system's probability of meeting defined standards in performing its intended function.",
+        "The maximum acceptable data loss during an outage, representing the acceptable state after recovery."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book defines the recovery point objective (RPO) as the maximum acceptable data loss, the acceptable state after recovery."
+    },
+    {
+      "question": "What is scalability, as defined for data systems?",
+      "options": [
+        "The ability of a scalable system to scale dynamically, automatically scaling up and down based on the current workload.",
+        "The system's probability of meeting defined standards in performing its intended function during a specified interval.",
+        "The ability to increase the capacity of a system to improve performance and handle the demand.",
+        "The maximum acceptable data loss during an outage."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book defines scalability as allowing us to increase the capacity of a system to improve performance and handle the demand, such as handling a high rate of queries or a huge data set."
+    },
+    {
+      "question": "What is elasticity in the context of scalable systems?",
+      "options": [
+        "The ability to increase the capacity of a system to improve performance and handle the demand.",
+        "The maximum acceptable time for a service or system outage.",
+        "The percentage of time an IT service or component is in an operable state.",
+        "The ability of a scalable system to scale dynamically; a highly elastic system automatically scales up and down based on the current workload."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book defines elasticity as the ability of a scalable system to scale dynamically; a highly elastic system can automatically scale up and down based on the current workload."
+    },
+    {
+      "question": "What does it mean for a system to 'scale to zero'?",
+      "options": [
+        "The system shuts down completely when not in use, as many serverless systems can do automatically.",
+        "The system scales vertically by adding CPU, disk, memory, and I/O to a single machine.",
+        "The system has no ability to scale and must run at a fixed capacity.",
+        "The system reduces data retention to zero to cut storage costs."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says some scalable systems can scale to zero: they shut down completely when not in use, and many serverless systems (e.g., serverless functions and serverless OLAP databases) do this automatically."
+    },
+{
+      "question": "What is FinOps?",
+      "options": [
+        "An evolving cloud financial management discipline and cultural practice that helps engineering, finance, technology, and business teams collaborate on data-driven spending decisions.",
+        "A performance engineering approach that maximizes performance for data processes on a fixed set of resources.",
+        "A security model that divides responsibility between the cloud provider and the user.",
+        "A command-and-control budgeting process where finance teams dictate all technology spending."
+      ],
+      "correctIndex": 0,
+      "explanation": "The FinOps Foundation defines FinOps as an evolving cloud financial management discipline and cultural practice that enables organizations to get maximum business value by helping teams collaborate on data-driven spending decisions."
+    },
+    {
+      "question": "What does the shared responsibility model state?",
+      "options": [
+        "The cloud provider is solely responsible for securing everything in the cloud.",
+        "The cloud user is solely responsible for securing everything in the cloud.",
+        "Security is handled by a hardened network perimeter with trusted things inside.",
+        "Security is divided into the security of the cloud (the provider's responsibility) and security in the cloud (the user's responsibility)."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book says Amazon emphasizes the shared responsibility model, which divides security into the security of the cloud and security in the cloud; providers secure their services, but users are responsible for their applications and data."
+    },
+    {
+      "question": "What is zero-trust security?",
+      "options": [
+        "A security model that places faith in a hardened network perimeter, with trusted things inside and untrusted things outside.",
+        "A security model that does not rely on a hardened perimeter, recognizing that external threats effectively become internal threats and that all data engineers are security engineers.",
+        "A security model where all assets are isolated from the outside world with no external connectivity.",
+        "A security model in which the cloud provider manages all permissions for every user."
+      ],
+      "correctIndex": 1,
+      "explanation": "The book contrasts zero-trust security with the traditional hard-perimeter model; in a cloud-native environment the notion of a hardened perimeter erodes, and all data engineers should consider themselves security engineers."
+    },
+    {
+      "question": "What is a domain, as defined in this chapter?",
+      "options": [
+        "A set of functionality whose goal is to accomplish a task.",
+        "A single machine or server in a distributed system.",
+        "The real-world subject area for which you're architecting—a sphere of knowledge, influence, or activity that the user's program is applied to.",
+        "A central data hub used for reporting and analysis."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book cites Eric Evans's definition: 'A domain is a sphere of knowledge, influence, or activity,' and adds that a domain is the real-world subject area for which you're architecting."
+    },
+    {
+      "question": "What is a service, as defined in this chapter?",
+      "options": [
+        "A set of functionality whose goal is to accomplish a task.",
+        "The real-world subject area for which you're architecting.",
+        "A sphere of knowledge, influence, or activity.",
+        "A centralized data repository that stores all of an organization's data."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines a service as a set of functionality whose goal is to accomplish a task; for example, a sales order-processing service's only job is to process orders."
+    },
+    {
+      "question": "What is tight coupling?",
+      "options": [
+        "Decentralized domains and services that do not have strict dependence on each other.",
+        "An architecture where teams require little communication to get work done.",
+        "A pattern of extremely centralized dependencies and workflows in which every part of a domain and service is vitally dependent on every other domain and service.",
+        "A pattern in which components are updated separately as changes and improvements are made."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book says on one end of the spectrum you can choose extremely centralized dependencies and workflows, where every part of a domain and service is vitally dependent on every other; this pattern is known as tightly coupled."
+    },
+    {
+      "question": "What is loose coupling?",
+      "options": [
+        "Extremely centralized dependencies and workflows where every part is vitally dependent on every other part.",
+        "Decentralized domains and services that do not have strict dependence on each other, so teams can test, deploy, and change systems without dependencies on other teams.",
+        "A single codebase running on a single machine that provides both application logic and user interface.",
+        "An architecture where the database and application reside on a single server."
+      ],
+      "correctIndex": 1,
+      "explanation": "The book describes loose coupling as decentralized domains and services that do not have strict dependence on each other; when architecture and teams are loosely coupled, teams require little communication to get work done."
+    },
+    {
+      "question": "What is a single-tier architecture?",
+      "options": [
+        "An architecture where the database and application are tightly coupled, residing on a single server, so that if the server, database, or application fails, the entire architecture fails.",
+        "An architecture composed of separate layers: data, application logic, and presentation.",
+        "An architecture made up of separate, decentralized, and loosely coupled services.",
+        "An architecture where each node handles a single request and does not share resources with other nodes."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says in a single-tier architecture the database and application are tightly coupled on a single server; while good for prototyping, it is not advised for production because of failure risks."
+    },
+    {
+      "question": "What is a three-tier architecture?",
+      "options": [
+        "An architecture where the database and application are tightly coupled on a single server.",
+        "An architecture made up of separate, decentralized, and loosely coupled services.",
+        "An architecture where a single node handles each request and nodes do not share memory, disk, or CPU.",
+        "A widely used client-server design consisting of data, application logic, and presentation tiers, each isolated from the other to allow separation of concerns."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book describes a common multitier architecture as the three-tier architecture, a widely used client-server design consisting of data, application logic, and presentation tiers, each isolated from the other for separation of concerns."
+    },
+    {
+      "question": "What is a monolith, in its most extreme version?",
+      "options": [
+        "A single codebase running on a single machine that provides both the application logic and user interface.",
+        "A system broken into many small components that interface through abstraction layers such as APIs.",
+        "A system where each service has a specific function and is decoupled from other services.",
+        "A system that is decentralized with no strict dependence between domains."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the general notion of a monolith includes as much as possible under one roof; in its most extreme version, it consists of a single codebase running on a single machine providing both application logic and user interface."
+    },
+    {
+      "question": "What is technical coupling within a monolith?",
+      "options": [
+        "Coupling that refers to the way domains are coupled together.",
+        "Coupling that refers to architectural tiers.",
+        "Coupling that refers to how teams communicate with one another.",
+        "Coupling that refers to the sharing of database schemas between departments."
+      ],
+      "correctIndex": 1,
+      "explanation": "The book says coupling within monoliths can be viewed in two ways: technical coupling refers to architectural tiers, while domain coupling refers to the way domains are coupled together."
+    },
+    {
+      "question": "What is domain coupling?",
+      "options": [
+        "Coupling that refers to architectural tiers.",
+        "Coupling between the database and the application layer.",
+        "Coupling that refers to the way domains are coupled together.",
+        "Coupling between worker nodes in a distributed system."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book says domain coupling refers to the way domains are coupled together, as distinct from technical coupling, which refers to architectural tiers."
+    },
+    {
+      "question": "What is a microservices architecture?",
+      "options": [
+        "A single codebase running on a single machine that provides both application logic and user interface.",
+        "An architecture where the database and application are tightly coupled on a single server.",
+        "An architecture with data, application logic, and presentation tiers.",
+        "An architecture made up of separate, decentralized, and loosely coupled services, each with a specific function, so that if one service goes down it won't affect the others."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book says microservices architecture comprises separate, decentralized, and loosely coupled services, each with a specific function; if one service temporarily goes down, it won't affect other services' ability to function."
+    },
+    {
+      "question": "What is multitenancy, as discussed in this chapter?",
+      "options": [
+        "Giving each customer a dedicated physical server to guarantee isolation.",
+        "Allowing only a single team to access a given system.",
+        "Sharing systems across multiple teams, organizations, and customers, at various grains, requiring consideration of performance isolation and data security.",
+        "Merging all tenants' data into a single table with no isolation mechanisms."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book says engineers make decisions about sharing systems across multiple teams, organizations, and customers; all cloud services are multitenant at various grains, with factors of performance (noisy neighbor) and security (data isolation) to consider."
+    },
+    {
+      "question": "What is an event-driven architecture?",
+      "options": [
+        "An architecture that embraces the event-driven workflow and uses events to communicate across services, distributing the state of an event across multiple services.",
+        "An architecture where services communicate by directly reading each other's data stores.",
+        "An architecture with a single codebase providing both application logic and user interface.",
+        "An architecture where batch and streaming systems operate independently in separate layers."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says an event-driven architecture embraces the event-driven workflow and uses it to communicate across services; its advantage is that it distributes the state of an event across multiple services, and any time you have loosely coupled services this is a candidate for it."
+    },
+    {
+      "question": "What is a brownfield project?",
+      "options": [
+        "A project that allows you to pioneer a fresh start, unconstrained by the history or legacy of a prior architecture.",
+        "A project that involves refactoring and reorganizing an existing architecture and is constrained by the choices of the present and past.",
+        "A project that replaces a legacy system with a direct all-at-once rewrite.",
+        "A project that uses only the newest and coolest tools available."
+      ],
+      "correctIndex": 1,
+      "explanation": "The book says brownfield projects often involve refactoring and reorganizing an existing architecture and are constrained by the choices of the present and past, requiring a thorough understanding of the legacy architecture."
+    },
+    {
+      "question": "What is a greenfield project?",
+      "options": [
+        "A project that is constrained by the choices of the present and past of an existing architecture.",
+        "A project that slowly and incrementally replaces a legacy architecture's components.",
+        "A project that allows you to pioneer a fresh start, unconstrained by the history or legacy of a prior architecture.",
+        "A project that involves a big-bang overhaul of the old architecture all at once."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book says a greenfield project allows you to pioneer a fresh start, unconstrained by the history or legacy of a prior architecture, and tends to be easier than a brownfield project."
+    },
+    {
+      "question": "What is the strangler pattern?",
+      "options": [
+        "An all-at-once, big-bang overhaul of a legacy architecture, often figuring out deprecation as you go.",
+        "A pattern in which new systems slowly and incrementally replace a legacy architecture's components, eventually completely replacing it.",
+        "A greenfield approach where you start with a clean slate and the newest tools.",
+        "A pattern of forcing every team to use one proprietary technology."
+      ],
+      "correctIndex": 1,
+      "explanation": "The book describes the strangler pattern as an alternative to a direct rewrite: new systems slowly and incrementally replace a legacy architecture's components, eventually replacing the legacy architecture completely."
+    },
+    {
+      "question": "What is a data warehouse, as described in this chapter?",
+      "options": [
+        "A central data hub used for reporting and analysis, in which data is typically highly formatted and structured for analytics use cases.",
+        "A central repository that stores all data, structured and unstructured, without imposing tight structural limitations.",
+        "A more refined subset of a warehouse focused on a single department or line of business.",
+        "A system that incorporates warehouse controls while housing data in object storage and supporting ACID transactions."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says a data warehouse is a central data hub used for reporting and analysis, typically containing data highly formatted and structured for analytics; it cites Inmon's definition of it as subject-oriented, integrated, nonvolatile, and time-variant."
+    },
+    {
+      "question": "What does ETL stand for, and what does it describe?",
+      "options": [
+        "Extract, transform, load: a process that pulls data from source systems, cleans and standardizes it while imposing business logic, then loads it into the data warehouse target database.",
+        "Extract, load, transform: data moved directly into the warehouse with transformations handled inside the warehouse.",
+        "Evaluate, transfer, and log: a process for monitoring data pipelines.",
+        "Export, transform, and link: a process for sharing data between domains."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes ETL as having an extract phase that pulls data from source systems, a transformation phase that cleans and standardizes data, and a load phase that pushes data into the data warehouse target database system."
+    },
+    {
+      "question": "What is ELT?",
+      "options": [
+        "Extract, transform, load, where transformations are performed in an external processing system before loading.",
+        "Evaluate, load, and test: a quality-assurance process for data pipelines.",
+        "Export, load, and translate: a process for moving data between data lakes.",
+        "Extract, load, transform: data is moved more or less directly into a staging area in the data warehouse, and transformations are handled directly in the warehouse to leverage its computational power."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book says with the ELT data warehouse architecture, data is moved more or less directly from production systems into a staging area in the warehouse, and transformations are handled directly in the warehouse rather than in an external system."
+    },
+    {
+      "question": "What is MPP in the context of data warehouse architecture?",
+      "options": [
+        "Massively parallel processing systems, which are optimized to scan massive amounts of data in parallel and allow high-performance aggregation and statistical calculations.",
+        "A single-server system scaled vertically by increasing CPU, disk, and memory.",
+        "A message queue used for streaming data ingestion.",
+        "An object storage system used to house unstructured data."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says MPPs (first popularized in the 1980s) support SQL semantics but are optimized to scan massive amounts of data in parallel, allowing high-performance aggregation and statistical calculations."
+    },
+    {
+      "question": "What is a cloud data warehouse?",
+      "options": [
+        "A data warehouse that requires sizing an MPP system for several years and signing a multimillion-dollar contract to procure it.",
+        "A repository that dumps all structured and unstructured data without structural limitations.",
+        "A data warehouse delivered as a pay-as-you-go cloud service, often separating compute from storage so users can spin up computing power on demand.",
+        "A data mart that serves a single department's analytics needs."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book says cloud data warehouses represent a significant evolution of the on-premises warehouse; Amazon Redshift kicked off the revolution, and BigQuery and Snowflake popularized separating compute from storage with pay-as-you-go scalability."
+    },
+    {
+      "question": "What is a data mart?",
+      "options": [
+        "A central data hub used for reporting and analysis for the entire organization.",
+        "A repository that stores all data, structured and unstructured, without imposing tight structural limitations.",
+        "A more refined subset of a warehouse designed to serve analytics and reporting, focused on a single suborganization, department, or line of business.",
+        "A system that incorporates warehouse controls while housing data in object storage."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book says a data mart is a more refined subset of a warehouse designed to serve analytics and reporting, focused on a single suborganization, department, or line of business, in contrast to the full warehouse that serves the broader organization."
+    },
+    {
+      "question": "What is a data lake?",
+      "options": [
+        "A central repository that stores all of your data, structured and unstructured, without imposing tight structural limitations.",
+        "A central data hub used for reporting and analysis, with data highly formatted and structured for analytics.",
+        "A refined subset of a warehouse focused on a single department.",
+        "A system that combines warehouse data management controls with object storage."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the data lake as an architecture that instead of imposing tight structural limitations on data simply dumps all data, structured and unstructured, into a central location."
+    },
+    {
+      "question": "What is a data lakehouse?",
+      "options": [
+        "The first-generation data lake, which started with HDFS and was essentially write-only.",
+        "A data lake that has become a dumping ground of unmanageable data.",
+        "A data warehouse that uses ETL and centralized organizational structures.",
+        "An architecture that incorporates the controls, data management, and data structures of a data warehouse while still housing data in object storage and supporting a variety of query and transformation engines, including ACID transactions."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book says Databricks introduced the data lakehouse, which incorporates warehouse controls, data management, and data structures while housing data in object storage; notably it supports ACID transactions, a big departure from the original data lake."
+    },
+    {
+      "question": "What is the modern data stack?",
+      "options": [
+        "An expensive, monolithic toolset with releases and roadmaps largely hidden from users.",
+        "A stack that relies on custom-built proprietary technologies with unclear pricing.",
+        "A trendy analytics architecture that uses cloud-based, plug-and-play, easy-to-use, off-the-shelf components to create a modular and cost-effective data architecture.",
+        "A data warehouse architecture based on ETL pipelines and data marts."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book says the main objective of the modern data stack is to use cloud-based, plug-and-play, easy-to-use, off-the-shelf components to create a modular and cost-effective data architecture, reducing complexity and increasing modularization."
+    },
+    {
+      "question": "What is the Lambda architecture?",
+      "options": [
+        "An architecture that uses a stream-processing platform as the backbone for all data handling, covering ingestion, storage, and serving.",
+        "An architecture with independent batch, streaming (speed), and serving layers, where the source system is ideally immutable and append-only, sending data to both stream and batch destinations.",
+        "An architecture that views all data as events aggregated over windows.",
+        "An architecture where data is processed only in batch using a data warehouse."
+      ],
+      "correctIndex": 1,
+      "explanation": "The book says in a Lambda architecture you have systems operating independently of each other—batch, streaming, and serving; the source system is ideally immutable and append-only, sending data to a speed layer and a batch layer, with a serving layer aggregating results."
+    },
+    {
+      "question": "What is the Kappa architecture?",
+      "options": [
+        "An architecture with separate batch, speed, and serving layers that run independently.",
+        "An architecture that keeps batch and streaming on different codebases that are reconciled later.",
+        "An architecture, proposed by Jay Kreps, that uses a stream-processing platform as the backbone for all data handling—ingestion, storage, and serving—so real-time and batch processing apply seamlessly to the same data.",
+        "An architecture based on a centralized monolithic data warehouse."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book says Jay Kreps proposed the Kappa architecture as a response to Lambda's shortcomings: why not use a stream-processing platform as the backbone for all data handling, reading the live event stream directly and replaying large chunks for batch processing."
+    },
+    {
+      "question": "What is the core idea of the Dataflow model?",
+      "options": [
+        "To maintain separate code paths for batch and streaming so each can be optimized independently.",
+        "To route all data through a centralized data warehouse before it is served.",
+        "To treat all data as immutable files stored in a distributed file system.",
+        "To view all data as events, with aggregation performed over various types of windows; real-time streams are unbounded data, batches are bounded event streams, and real-time and batch processing happen in the same system with nearly identical code."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book says the core idea of the Dataflow model is to view all data as events, aggregating over windows; ongoing real-time event streams are unbounded data, batches are simply bounded event streams, and processing happens in the same system with nearly identical code."
+    },
+    {
+      "question": "What is the data mesh?",
+      "options": [
+        "A centralized data architecture in which a single team gathers data from all domains and reconciles it for consumption across the organization.",
+        "A monolithic data lake owned centrally by a central data platform team.",
+        "A recent response to sprawling monolithic data platforms that inverts the challenges of centralized data architecture by applying domain-driven design concepts to data, with domain-oriented decentralized data ownership and data as a product.",
+        "A data warehouse architecture organized around ETL and data marts."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book says the data mesh is a recent response to sprawling monolithic data platforms and 'the great divide of data,' applying domain-driven design concepts to data architecture; Dehghani's four components include domain-oriented decentralized data ownership, data as a product, self-serve data infrastructure as a platform, and federated computational governance."
+    }
+  ]
+}

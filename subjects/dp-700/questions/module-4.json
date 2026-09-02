@@ -1,0 +1,623 @@
+{
+  "title": "Module 4 — Quality Question Bank",
+  "source_file": "M4.2.md, M4.3.md, M4.4.md, M4.5.md, M4.6.md, M4.7.md",
+  "question_count": 56,
+  "questions": [
+    {
+      "question": "What is Microsoft Fabric?",
+      "options": [
+        "A set of disconnected standalone tools that must be integrated manually",
+        "An end-to-end analytics SaaS platform built on a unified data lake called OneLake",
+        "A relational database management system for transactional workloads",
+        "A data visualization tool that only creates reports and dashboards"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source describes Microsoft Fabric as an end-to-end analytics platform that provides a single, integrated environment built on a unified data lake called OneLake."
+    },
+    {
+      "question": "OneLake, the centralized storage in Microsoft Fabric, is built on which technology?",
+      "options": [
+        "Azure Blob Storage",
+        "Azure Data Lake Storage Gen2 (ADLS Gen2)",
+        "Amazon S3",
+        "Dataverse"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source states that OneLake is built on Azure Data Lake Storage Gen2 (ADLS Gen2) and supports formats including Delta, Parquet, CSV, and JSON."
+    },
+    {
+      "question": "Which data formats does OneLake support for stored data?",
+      "options": [
+        "Delta, Parquet, CSV, and JSON",
+        "Only CSV and XML",
+        "Only Parquet",
+        "Avro, ORC, and XML only"
+      ],
+      "correctIndex": 0,
+      "explanation": "OneLake supports various formats, including Delta, Parquet, CSV, and JSON, and all compute engines in Fabric store their data in OneLake automatically."
+    },
+    {
+      "question": "What is the purpose of shortcuts in Microsoft Fabric?",
+      "options": [
+        "To copy data from external sources into OneLake for permanent storage",
+        "To provide quick navigation links in the Fabric portal",
+        "To reference files or storage locations so you can access existing data without copying it",
+        "To move data between workspaces automatically"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source defines shortcuts as references to files or storage locations within OneLake or external sources, allowing you to access existing data without copying it and stay in sync with the source."
+    },
+    {
+      "question": "Where is Microsoft Fabric administration centrally managed?",
+      "options": [
+        "In the Admin portal",
+        "In the OneLake catalog",
+        "In each workspace's settings",
+        "In Power BI Desktop"
+      ],
+      "correctIndex": 0,
+      "explanation": "Fabric administration is centralized in the Admin portal, where you can manage groups and permissions, configure data sources and gateways, and monitor usage and performance."
+    },
+    {
+      "question": "Which of the following is provided by the OneLake catalog for data governance?",
+      "options": [
+        "Guidance on sensitivity labels, item metadata, and data refresh status",
+        "Automatic backup of all workspace data",
+        "SQL query execution history",
+        "Capacity unit billing details"
+      ],
+      "correctIndex": 0,
+      "explanation": "The OneLake catalog helps analyze, monitor, and maintain data governance by providing guidance on sensitivity labels, item metadata, and data refresh status."
+    },
+    {
+      "question": "How can an administrator enable Microsoft Fabric for an organization?",
+      "options": [
+        "By signing up each user for an individual trial",
+        "From Admin portal > Tenant settings in the Power BI service, for the whole organization or specific security groups",
+        "By configuring a new SQL server instance",
+        "Only through the Azure portal resource creation flow"
+      ],
+      "correctIndex": 1,
+      "explanation": "Admins can enable Fabric in the Admin portal > Tenant settings in the Power BI service, either for the entire organization or for specific Microsoft 365 or Microsoft Entra security groups."
+    },
+    {
+      "question": "Which Fabric IQ workload models business data using ontologies, semantic models, and graphs so agents can reason over analytics in OneLake and Power BI?",
+      "options": [
+        "Fabric IQ",
+        "Foundry IQ",
+        "Work IQ",
+        "Data IQ"
+      ],
+      "correctIndex": 0,
+      "explanation": "Fabric IQ models business data (ontologies, semantic models, and graphs), while Foundry IQ connects structured and unstructured data across Azure and other sources, and Work IQ captures collaboration signals."
+    },
+    {
+      "question": "In a data warehouse dimensional model, which type of table contains the numerical data you want to analyze?",
+      "options": [
+        "Dimension table",
+        "Fact table",
+        "Staging table",
+        "View"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source states that fact tables contain the numerical data you want to analyze and typically have a large number of rows, while dimension tables provide descriptive context."
+    },
+    {
+      "question": "What is the difference between a surrogate key and an alternate key in a dimension table?",
+      "options": [
+        "Surrogate keys come from the source system; alternate keys are auto-generated integers",
+        "Surrogate keys are auto-generated identifiers specific to the warehouse; alternate keys are natural or business keys from the source system",
+        "Both are used only for reporting",
+        "There is no difference between them"
+      ],
+      "correctIndex": 1,
+      "explanation": "A surrogate key is a unique identifier the system generates, while an alternate key is a natural or business key from the source system that maintains traceability."
+    },
+    {
+      "question": "In a snowflake schema, what happens to the DimProduct dimension?",
+      "options": [
+        "It is stored directly joined to the fact table",
+        "It splits (normalizes) into separate dimension tables for product categories and suppliers",
+        "It is removed from the model",
+        "It becomes a fact table"
+      ],
+      "correctIndex": 1,
+      "explanation": "In a snowflake schema, the DimProduct table splits (normalizes) into separate dimension tables for product categories and suppliers, unlike a star schema where it relates directly to the fact table."
+    },
+    {
+      "question": "What is a key difference between a Fabric warehouse and a SQL analytics endpoint?",
+      "options": [
+        "The warehouse supports writing data (INSERT, UPDATE, DELETE, MERGE), while the SQL analytics endpoint is read-only",
+        "Only the SQL analytics endpoint supports T-SQL",
+        "The warehouse cannot create views",
+        "The SQL analytics endpoint supports creating tables with DDL"
+      ],
+      "correctIndex": 0,
+      "explanation": "The comparison table shows the warehouse supports writes and DDL, while the SQL analytics endpoint is read-only over lakehouse Delta tables, though both can create views and stored procedures."
+    },
+    {
+      "question": "How can you query data across warehouses and lakehouses without copying data?",
+      "options": [
+        "Using OPENROWSET with a temporary table",
+        "Using three-part naming (database.schema.table) in a single query",
+        "Exporting each dataset to CSV first",
+        "Creating a data pipeline for every table"
+      ],
+      "correctIndex": 1,
+      "explanation": "Cross-database querying lets you join warehouse tables with lakehouse tables in a single query using three-part naming (database.schema.table) without copying data."
+    },
+    {
+      "question": "What is a zero-copy table clone in a Fabric data warehouse?",
+      "options": [
+        "A clone that duplicates all underlying data files for safety",
+        "A clone that copies table metadata while referencing the same underlying data files in OneLake, so data isn't duplicated",
+        "A snapshot stored in external storage",
+        "A backup created in Power BI"
+      ],
+      "correctIndex": 1,
+      "explanation": "Clones copy table metadata while still referencing the same underlying data files in OneLake, so the data itself isn't duplicated, keeping storage costs low."
+    },
+    {
+      "question": "How do semantic models created from a Fabric warehouse read data?",
+      "options": [
+        "Using Direct Lake mode, reading data directly from OneLake Parquet files without scheduled refreshes",
+        "Using import mode that copies data into Power BI memory on a schedule",
+        "Through a live connection to SQL Server",
+        "Through a data gateway"
+      ],
+      "correctIndex": 0,
+      "explanation": "Semantic models created from a Fabric warehouse use Direct Lake mode, which reads data directly from OneLake Parquet files so reports reflect the latest data without scheduled refreshes."
+    },
+    {
+      "question": "How long does query insights retain historical query data in a Fabric warehouse?",
+      "options": [
+        "7 days",
+        "15 days",
+        "30 days",
+        "90 days"
+      ],
+      "correctIndex": 2,
+      "explanation": "The source states that query insights retains data for 30 days and helps identify long-running queries, performance changes, and resource usage."
+    },
+    {
+      "question": "What characterizes a full (initial) load in a data warehouse?",
+      "options": [
+        "History is preserved and tables are updated with new information",
+        "All tables are truncated and reloaded, and the old data is lost",
+        "Only changed rows are updated",
+        "It is the most complex load type to implement"
+      ],
+      "correctIndex": 1,
+      "explanation": "A full load truncates and reloads all tables, losing old data, and is typically used when setting up a new warehouse or when a complete refresh is required."
+    },
+    {
+      "question": "Which statement is true about incremental loads?",
+      "options": [
+        "They take longer than initial loads and preserve no history",
+        "History is preserved, and tables are updated with new information, requiring mechanisms to track changes since the last load",
+        "They require truncating all tables each time",
+        "They are only used when setting up a new warehouse"
+      ],
+      "correctIndex": 1,
+      "explanation": "Incremental loads update the warehouse with changes since the last update, preserve history, take less time, and require mechanisms to track changes in the source data."
+    },
+    {
+      "question": "In a slowly changing dimension (SCD), what does a Type 2 SCD do?",
+      "options": [
+        "Overwrites existing data and keeps no history",
+        "Adds new records for changes, keeping full history for a given natural key",
+        "Adds history as a new column",
+        "Never allows dimension attributes to change"
+      ],
+      "correctIndex": 1,
+      "explanation": "Type 2 SCDs add new records for changes and keep full history for a given natural key, expiring the old version when a new one becomes active."
+    },
+    {
+      "question": "In a standard warehouse load, why are fact tables typically loaded after dimension tables?",
+      "options": [
+        "Because fact tables are smaller than dimension tables",
+        "To ensure the dimensions that the facts reference already exist, so the load logic can look up the corresponding surrogate keys",
+        "Because fact tables are loaded first in all scenarios",
+        "To avoid using business keys"
+      ],
+      "correctIndex": 1,
+      "explanation": "Loading facts after dimensions ensures the dimensions they reference are present so the loading logic can look up the correct surrogate keys, matching events to the dimension state at the time of the fact."
+    },
+    {
+      "question": "Which credentials are required to connect the COPY statement to an Azure storage account?",
+      "options": [
+        "Shared Access Signature (SAS) or Storage Account Key (SAK)",
+        "Microsoft Entra MFA only",
+        "SQL Server username and password",
+        "A gateway connection string"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source states that to connect to an Azure storage account, you need to use either a Shared Access Signature (SAS) or a Storage Account Key (SAK)."
+    },
+    {
+      "question": "How can you load data from another warehouse or lakehouse in the same workspace into a warehouse?",
+      "options": [
+        "Using CREATE TABLE AS SELECT (CTAS) and INSERT...SELECT with three-part naming",
+        "By exporting to Excel first",
+        "Only by using the copy data assistant",
+        "By attaching external disks"
+      ],
+      "correctIndex": 0,
+      "explanation": "You reference data assets with three-part naming and use CREATE TABLE AS SELECT (CTAS) and INSERT...SELECT to load data from other warehouses and lakehouses."
+    },
+    {
+      "question": "Which of the following is NOT a valid data destination for Dataflow Gen2?",
+      "options": [
+        "Azure SQL Database",
+        "Lakehouse",
+        "Azure Data Explorer (Kusto)",
+        "Power BI report"
+      ],
+      "correctIndex": 3,
+      "explanation": "The listed Dataflow Gen2 destinations are Azure SQL Database, Lakehouse, Azure Data Explorer (Kusto), Azure Synapse Analytics (SQL DW), and Warehouse; Power BI report is not one of them."
+    },
+    {
+      "question": "Which update methods can you choose when loading data into a warehouse destination from Dataflow Gen2?",
+      "options": [
+        "Merge and Upsert",
+        "Append and Replace",
+        "Insert and Truncate",
+        "Copy and Move"
+      ],
+      "correctIndex": 1,
+      "explanation": "When you select a warehouse as a destination, you can choose Append (add new rows to an existing table) or Replace (replace the entire table content)."
+    },
+    {
+      "question": "In a star schema, what do dimension tables provide?",
+      "options": [
+        "The measurable, quantitative business data",
+        "Descriptive attributes that give context to fact table data",
+        "Only the primary keys",
+        "Stored procedures"
+      ],
+      "correctIndex": 1,
+      "explanation": "Fact tables store measurable, quantitative data, while dimension tables contain descriptive attributes related to fact data, answering who, what, where, when, and how much."
+    },
+    {
+      "question": "How does DENSE_RANK differ from RANK?",
+      "options": [
+        "DENSE_RANK always returns 1 for every row",
+        "DENSE_RANK ranks rows without gaps when there are ties, while RANK's subsequent rank reflects the number of higher-ranked rows including ties",
+        "RANK does not support partitioning",
+        "DENSE_RANK returns the percentile rather than a rank"
+      ],
+      "correctIndex": 1,
+      "explanation": "The source notes DENSE_RANK ranks rows like RANK but without gaps when ties occur, whereas RANK's later ranks reflect the number of higher rows, including ties."
+    },
+    {
+      "question": "What does the APPROX_COUNT_DISTINCT function use to return an approximate count?",
+      "options": [
+        "A bitmap index",
+        "A HyperLogLog algorithm with a maximum error rate of 2% at 97% probability",
+        "A full table scan",
+        "A sample of exactly 10% of rows"
+      ],
+      "correctIndex": 1,
+      "explanation": "APPROX_COUNT_DISTINCT uses a HyperLogLog algorithm and the result is guaranteed to have a maximum error rate of 2% with 97% probability."
+    },
+    {
+      "question": "In a snowflake schema, why are multiple JOIN clauses often required to relate a fact table to a snowflake dimension?",
+      "options": [
+        "Because fact tables cannot be joined directly",
+        "Because dimensions are partially normalized, requiring traversal through intermediate tables like DimProduct to reach DimCategory",
+        "Because joins are prohibited in snowflake schemas",
+        "Because only one join is ever needed"
+      ],
+      "correctIndex": 1,
+      "explanation": "In a snowflake schema, dimensions may be partially normalized, so both JOIN clauses are required to traverse the relationship chain from FactSales to DimCategory through DimProduct."
+    },
+    {
+      "question": "When running queries in the SQL query editor, how are large result sets displayed?",
+      "options": [
+        "All rows are shown",
+        "A preview limited to 10,000 rows if the result exceeds that",
+        "Only the first 100 rows",
+        "The result is truncated at 1,000 rows with no preview"
+      ],
+      "correctIndex": 1,
+      "explanation": "The Results section shows a preview, limited to 10,000 rows if the result set exceeds that amount."
+    },
+    {
+      "question": "Which statement about the Visualize results option in the SQL query editor is true?",
+      "options": [
+        "It supports all queries including those with ORDER BY",
+        "It does not support queries with an ORDER BY clause",
+        "It only works with Excel",
+        "It requires a semantic model first"
+      ],
+      "correctIndex": 1,
+      "explanation": "Visualize results creates a Power BI visual from query results but the source notes it doesn't support queries with an ORDER BY clause."
+    },
+    {
+      "question": "Which authentication method is supported when connecting to a Fabric warehouse from SSMS?",
+      "options": [
+        "SQL Server authentication",
+        "Microsoft Entra ID authentication only",
+        "Windows authentication only",
+        "Basic authentication with a shared secret"
+      ],
+      "correctIndex": 1,
+      "explanation": "Microsoft Fabric supports Microsoft Entra ID authentication only; SQL authentication isn't supported."
+    },
+    {
+      "question": "Which network requirement must be met to connect to a Fabric warehouse from a client tool?",
+      "options": [
+        "TCP port 1433 must be open in the network firewall",
+        "TCP port 8080 must be open",
+        "UDP port 53 must be open",
+        "No ports are required"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source notes that TCP port 1433 must be open in your network firewall to connect to a Fabric warehouse."
+    },
+    {
+      "question": "What are the prerequisites for using Copilot in Fabric Data Warehouse?",
+      "options": [
+        "The Copilot tenant switch is enabled, the capacity is in a supported region, and a paid SKU (F2 or higher or a P SKU) is required",
+        "A free trial SKU is sufficient",
+        "Copilot is available without any capacity requirements",
+        "A separate Azure subscription is required"
+      ],
+      "correctIndex": 0,
+      "explanation": "Paid SKUs (F2 or higher or a P SKU) are required as trial SKUs aren't supported, and the Copilot tenant switch must be enabled with the capacity in a supported region."
+    },
+    {
+      "question": "In Copilot code completion, how do you accept a suggested completion?",
+      "options": [
+        "Press Enter",
+        "Press Tab",
+        "Press Esc",
+        "Double-click the suggestion"
+      ],
+      "correctIndex": 1,
+      "explanation": "Copilot provides suggestions as dimmed ghost text; you accept a suggestion by pressing Tab or dismiss it by continuing to type."
+    },
+    {
+      "question": "How can you guide Copilot when writing a query in the SQL editor?",
+      "options": [
+        "By using comments with -- to describe what you want the query to do",
+        "By writing comments in any language",
+        "By avoiding all comments",
+        "By only using uppercase keywords"
+      ],
+      "correctIndex": 0,
+      "explanation": "The source shows that leaving comments in your query using -- prompts Copilot to generate a corresponding query, helping you write clear and accurate SQL."
+    },
+    {
+      "question": "In the Copilot chat pane, which command generates a SQL query from a prompt?",
+      "options": [
+        "/fix",
+        "/question",
+        "/generate-sql",
+        "/help"
+      ],
+      "correctIndex": 2,
+      "explanation": "The /generate-sql command generates a SQL query from the provided prompt, while /question gives a natural language response and /fix fixes errors."
+    },
+    {
+      "question": "Which Copilot chat command provides an explanation for the query in the active query tab?",
+      "options": [
+        "/explain",
+        "/question",
+        "/generate-sql",
+        "/help"
+      ],
+      "correctIndex": 0,
+      "explanation": "The /explain command provides an explanation for the query in the active query tab, per the command table in the source."
+    },
+    {
+      "question": "How does the Copilot chat pane handle conversation context?",
+      "options": [
+        "It retains context across prompts within the same session, allowing follow-up messages to reference earlier queries",
+        "Each prompt is treated in isolation with no context",
+        "Context is only retained if the query is saved",
+        "Context is reset after every two messages"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Copilot chat pane retains context across prompts within the same session, enabling multi-turn interactions like refining a query with /fix."
+    },
+    {
+      "question": "When is the Fix quick action button enabled in the SQL query editor?",
+      "options": [
+        "Always enabled",
+        "Only after you run a query that returns an error, which Copilot uses as context",
+        "After any successful query run",
+        "Only when Copilot is disabled"
+      ],
+      "correctIndex": 1,
+      "explanation": "The Fix button is only enabled after you run a query that returns an error, since Copilot automatically uses that error message as context."
+    },
+    {
+      "question": "Which language does natural language to SQL support in Fabric Data Warehouse?",
+      "options": [
+        "All languages with translation",
+        "English to T-SQL",
+        "Only Spanish",
+        "Any natural language automatically"
+      ],
+      "correctIndex": 1,
+      "explanation": "Currently, natural language to SQL supports English to T-SQL, so prompts should be written in English to take full advantage of the feature."
+    },
+    {
+      "question": "What do data warehouse workloads consume that Fabric bills your organization for?",
+      "options": [
+        "Capacity units (CUs), consumed by data read and write activities such as queries and OneLake file operations",
+        "Number of tables",
+        "Number of users",
+        "Storage only, at a fixed rate"
+      ],
+      "correctIndex": 0,
+      "explanation": "The cost of Fabric is based on capacity units (CUs), and in data warehouse workloads CUs are consumed by read and write activities including queries and OneLake file operations."
+    },
+    {
+      "question": "What can an administrator monitor using the Microsoft Fabric Capacity Metrics app?",
+      "options": [
+        "Capacity utilization trends, what processes consume CUs, and whether throttling is occurring",
+        "The number of workspaces created",
+        "Query code quality",
+        "Git commit history"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Capacity Metrics app lets you observe utilization trends, determine what processes consume CUs, and see whether throttling is occurring."
+    },
+    {
+      "question": "Which dynamic management view returns information about active requests in a Fabric data warehouse?",
+      "options": [
+        "sys.dm_exec_connections",
+        "sys.dm_exec_sessions",
+        "sys.dm_exec_requests",
+        "sys.dm_exec_query_stats"
+      ],
+      "correctIndex": 2,
+      "explanation": "sys.dm_exec_requests returns information about active requests, while sys.dm_exec_connections returns connections and sys.dm_exec_sessions returns sessions."
+    },
+    {
+      "question": "Which DMV returns information about authenticated sessions?",
+      "options": [
+        "sys.dm_exec_sessions",
+        "sys.dm_exec_requests",
+        "sys.dm_exec_connections",
+        "sys.dm_os_wait_stats"
+      ],
+      "correctIndex": 0,
+      "explanation": "sys.dm_exec_sessions returns information about authenticated sessions, per the DMV list in the monitoring module."
+    },
+    {
+      "question": "Which query insights view provides details of each completed SQL query?",
+      "options": [
+        "queryinsights.long_running_queries",
+        "queryinsights.exec_requests_history",
+        "queryinsights.frequently_run_queries",
+        "queryinsights.active_requests"
+      ],
+      "correctIndex": 1,
+      "explanation": "queryinsights.exec_requests_history provides details of each completed SQL query, while the other views cover long-running and frequently run queries."
+    },
+    {
+      "question": "How quickly do completed queries appear in the query insights views?",
+      "options": [
+        "Instantly",
+        "Within seconds",
+        "Depending on concurrent workloads, queries may take up to 15 minutes to be reflected",
+        "After 24 hours"
+      ],
+      "correctIndex": 2,
+      "explanation": "Depending on concurrent workloads, queries may take up to 15 minutes to be reflected in the query insights views."
+    },
+    {
+      "question": "How does query insights treat queries that have predicates?",
+      "options": [
+        "Each literal value is counted as a separate query",
+        "Queries with predicates are parameterized and considered the same query if the parameterized statements are an exact match",
+        "Predicates are ignored entirely",
+        "Only queries without predicates are recorded"
+      ],
+      "correctIndex": 1,
+      "explanation": "Queries with predicates are parameterized and considered the same query if the parameterized statements are an exact match, as shown by the two different date literal examples."
+    },
+    {
+      "question": "Which view would you use to identify long-running SQL commands that have been used more than once?",
+      "options": [
+        "queryinsights.long_running_queries",
+        "queryinsights.exec_requests_history",
+        "sys.dm_exec_requests",
+        "queryinsights.frequently_run_queries"
+      ],
+      "correctIndex": 0,
+      "explanation": "The queryinsights.long_running_queries view provides details of query execution time and can filter on number_of_runs to find long-running commands used more than once."
+    },
+    {
+      "question": "What does the email() dynamic data masking function do?",
+      "options": [
+        "Hides the entire email address",
+        "Exposes the first letter of an email address and the constant suffix \".com\"",
+        "Shows the full email to all users",
+        "Randomizes the email domain"
+      ],
+      "correctIndex": 1,
+      "explanation": "The email() function exposes the first letter of an email address and the constant suffix \".com\", and is only applicable to email fields."
+    },
+    {
+      "question": "Which data types is the random() masking function applicable to?",
+      "options": [
+        "Text strings",
+        "Numeric and binary data types only",
+        "Date and time types",
+        "All data types"
+      ],
+      "correctIndex": 1,
+      "explanation": "The random() function replaces numeric or binary values with a random number in a specified range and is only applicable to numeric and binary data types."
+    },
+    {
+      "question": "How does dynamic data masking affect the data in the database?",
+      "options": [
+        "It permanently changes the stored data",
+        "The data in the database isn't changed; masking rules are applied to query results",
+        "It creates a masked copy of the table",
+        "It deletes the unmasked data"
+      ],
+      "correctIndex": 1,
+      "explanation": "The data in the database isn't changed when DDM is applied; masking rules are applied to query results so actual data remains intact and secure."
+    },
+    {
+      "question": "In row-level security, what does a filter predicate do?",
+      "options": [
+        "It is an inline table-valued function that filters rows based on the predicate, invoked when a user accesses the table",
+        "It creates a new column in the table",
+        "It masks columns for nonprivileged users",
+        "It grants SELECT permissions"
+      ],
+      "correctIndex": 0,
+      "explanation": "RLS associates a security predicate function with a table; when a user accesses data, the function is invoked and only returns rows where the predicate evaluates to true."
+    },
+    {
+      "question": "Which of the following is a recommended best practice when implementing row-level security?",
+      "options": [
+        "Create a separate schema for predicate functions and security policies",
+        "Use type conversions in predicate functions to improve readability",
+        "Add excessive joins to predicates for flexibility",
+        "Apply the predicate to every view directly"
+      ],
+      "correctIndex": 0,
+      "explanation": "Best practices include creating a separate schema for predicate functions and security policies, avoiding type conversions, and avoiding excessive joins and recursion in predicates."
+    },
+    {
+      "question": "If a user is granted a permission and also denied the same permission on an object, what happens?",
+      "options": [
+        "The GRANT always supersedes the DENY",
+        "The DENY always supersedes the GRANT",
+        "The permission is inherited from the workspace",
+        "Access is granted only during business hours"
+      ],
+      "correctIndex": 1,
+      "explanation": "If a user is granted a permission and denied the same permission, the DENY will always supersede the grant, and the user will be denied access to the object."
+    },
+    {
+      "question": "In the column-level security example for a Patients table, how is access to the sensitive MedicalHistory column restricted?",
+      "options": [
+        "By masking the column with email()",
+        "By granting SELECT on the table to all roles and then denying SELECT on the MedicalHistory column to the Receptionist and Patient roles",
+        "By deleting the column",
+        "By creating a new table"
+      ],
+      "correctIndex": 1,
+      "explanation": "The example grants SELECT on all columns to all roles, then denies SELECT on the MedicalHistory column to the Receptionist and Patient roles so only Doctor and Nurse can access it."
+    },
+    {
+      "question": "Which techniques does the source recommend to prevent SQL injection when using dynamic SQL?",
+      "options": [
+        "Using parameterization methods like sp_executesql or QUOTENAME",
+        "Using string concatenation",
+        "Running queries without validation",
+        "Storing dynamic SQL in views"
+      ],
+      "correctIndex": 0,
+      "explanation": "Always use parameterization methods like sp_executesql or QUOTENAME to sanitize inputs, since dynamic SQL carries a risk of SQL injection attacks."
+    }
+  ]
+}

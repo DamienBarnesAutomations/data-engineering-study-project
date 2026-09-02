@@ -1,0 +1,228 @@
+{
+  "title": "Appendix B — Cloud Networking: Quality Question Bank",
+  "source_file": "appendix-b-cloud-networking.md",
+  "original_question_file": "cloud-networking.json",
+  "question_count": 20,
+  "questions": [
+    {
+      "question": "Why do cloud providers charge for outbound (egress) traffic while allowing inbound traffic for free, per the book?",
+      "options": [
+        "It's a deliberate strategy to create a moat and increase the stickiness of stored data, not because outbound traffic actually costs providers more",
+        "Outbound bandwidth is technically far more expensive for providers to supply than inbound bandwidth",
+        "Egress pricing is mandated by international telecom regulation",
+        "Egress charges apply only to structured data and never to unstructured files"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"Outbound traffic is not inherently cheaper, but clouds use this method to create a moat around their services and increase the stickiness of stored data, a practice that has been widely criticized.\""
+    },
+    {
+      "question": "What's the difference between an availability zone and a region, per the book?",
+      "options": [
+        "An availability zone is the smallest customer-visible network unit; a region is a collection of two or more independent zones, giving resilience against a single zone's local failures",
+        "A region is smaller than an availability zone and sits inside it",
+        "Availability zones and regions are two names for the identical underlying concept",
+        "A region refers only to a single physical server rack, unlike a zone"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines the zone as \"the smallest unit of network topology that public clouds make visible to customers,\" and a region as \"a collection of two or more availability zones\" whose independent resources prevent a local outage from taking down multiple zones."
+    },
+    {
+      "question": "Why does the book recommend running a high-throughput ephemeral cluster (like Amazon EMR) within a single availability zone rather than spread across zones?",
+      "options": [
+        "Bandwidth is highest and latency lowest within a single zone, and traffic to private IPs within a zone is free — spanning zones adds latency and can incur egress charges",
+        "Clusters are technically incapable of running across multiple availability zones",
+        "Multi-zone clusters are always cheaper to run than single-zone clusters",
+        "Single-zone clusters are required by every major cloud provider's terms of service"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states clouds \"support their highest network bandwidth and lowest latency between systems and services within a zone,\" recommending high-throughput workloads like EMR run in a single zone."
+    },
+    {
+      "question": "What GCP-specific abstraction sits above \"region\" in the resource hierarchy, and what does it offer?",
+      "options": [
+        "The multiregion (e.g. US, EU, ASIA) — it stores data geo-redundantly across multiple regions and lets VMs within the same multiregion access Cloud Storage data with no egress fees",
+        "\"Multiregion\" is purely a marketing term with no actual technical or geo-redundancy meaning",
+        "The multiregion abstraction is exclusive to AWS, not available on GCP",
+        "It refers to a single physical data center shared globally by all customers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes GCP's multiregion as containing \"multiple regions,\" storing data \"in multiple zones within the multiregion in a geo-redundant manner,\" with \"no data egress fees for VMs in a multiregion to access Cloud Storage data in the same multiregion.\""
+    },
+    {
+      "question": "According to the book's example, how much cheaper can data egress be over a direct cloud network connection (like AWS Direct Connect) versus the public internet?",
+      "options": [
+        "Roughly 9 cents/GB over the public internet down to about 2 cents/GB over Direct Connect in a typical US scenario",
+        "Direct connections are described as always more expensive than public internet egress",
+        "There's no price difference at all, only a latency improvement",
+        "Direct Connect eliminates egress charges entirely, with zero residual cost"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives this exact figure: \"AWS egress charges drop from 9 cents per gigabyte over the public internet to 2 cents per gigabyte over direct connect.\""
+    },
+    {
+      "question": "The book cites Zoom choosing Oracle Cloud over AWS in 2020 as a signal about the future of data egress fees. What made Oracle so much cheaper for Zoom's use case?",
+      "options": [
+        "Zoom's estimated monthly AWS egress fees would have exceeded $11 million, versus under $2 million on Oracle — a difference driven specifically by data egress pricing",
+        "Oracle offered Zoom free compute resources in exchange for exclusive advertising rights",
+        "The price difference was due to Oracle's superior video compression codec technology",
+        "AWS refused to serve video conferencing companies at any price at that time"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book cites Corey Quinn's estimate: \"Zoom's AWS monthly data egress fees would run over $11 million at list price; Oracle's would cost less than $2 million.\""
+    },
+    {
+      "question": "How does the book define a cloud network topology, and why should data engineers care about it?",
+      "options": [
+        "It describes how components in the cloud are arranged and connected, such as cloud services, networks, and locations (zones, regions) — engineers should always know how it affects connectivity across the data systems they build",
+        "It is purely a vendor marketing concept with no technical meaning",
+        "Cloud networking never affects data systems",
+        "It refers only to physical cables inside one data center"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines cloud network topology and stresses its impact on the systems engineers build."
+    },
+    {
+      "question": "What does the book say about availability zones possibly containing multiple data centers?",
+      "options": [
+        "A zone can potentially consist of multiple data centers, but cloud customers cannot control resource placement at this level",
+        "A zone always contains exactly one data center",
+        "Customers can choose which data center their resources use",
+        "Zones are purely logical and contain no physical data centers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes zones can span multiple data centers but customers can't control placement."
+    },
+    {
+      "question": "When is network traffic to VMs within a zone free, and what is the significant caveat?",
+      "options": [
+        "Traffic must be sent to private IP addresses — communications using external/public IP addresses can incur data egress charges, since virtual machines in a VPC may also have public IPs",
+        "Traffic is always free regardless of IP address type",
+        "Traffic must use public IP addresses to be free",
+        "Egress charges never apply within a VPC"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says traffic to VMs within a zone is free only when sent to private IPs; public IP communications can incur egress charges."
+    },
+    {
+      "question": "Why are the resources of separate availability zones designed to be independent?",
+      "options": [
+        "Data centers require many resources (electrical power, water), so independent zone resources ensure a local power outage doesn't take down multiple availability zones",
+        "Independent zones make failover impossible",
+        "Zones share all resources to reduce cost",
+        "Independence is a purely cosmetic design choice"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says zone resources are independent so a local outage doesn't affect multiple zones."
+    },
+    {
+      "question": "What does the book say about regions and proximity to users?",
+      "options": [
+        "Offering multiple regions lets engineers put resources close to any users, minimizing physical distance along the network path and the number of router hops, both of which can increase latency and decrease performance",
+        "Regions have no effect on latency",
+        "Physical distance never affects network performance",
+        "Regions only exist for regulatory compliance"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book connects region placement to proximity, distance, and network hops."
+    },
+    {
+      "question": "How does networking performance and cost compare within a zone, between zones, and between regions?",
+      "options": [
+        "Within a zone is fastest and cheapest; between zones performance is worse and incurs nominal egress charges; between regions is even slower and may incur higher egress fees",
+        "All locations have identical performance and cost",
+        "Between-region traffic is always free",
+        "Within-zone traffic is the most expensive"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the performance/cost hierarchy from within-zone to between-region traffic."
+    },
+    {
+      "question": "What does the book say about object storage and networking charges?",
+      "options": [
+        "Object storage is generally a regional resource; some data may pass between zones to reach a VM but this is mainly invisible to customers with no direct networking charges, though customers remain responsible for object access costs",
+        "Object storage always incurs large networking fees",
+        "Object storage is a single-zone resource only",
+        "Object access costs never apply"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says zone-to-VM object data passing is invisible with no direct networking charges."
+    },
+    {
+      "question": "What does the book say about regional failures and correlated failure?",
+      "options": [
+        "Despite regions' geo-redundant design, many major cloud service failures have affected entire regions — an example of correlated failure, generally from code or configuration problems occurring at the regional level",
+        "Regional failures are impossible",
+        "Regional failures never result from code or configuration",
+        "Geo-redundant design eliminates all failures"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes regional failures as correlated failures from regional code/config problems."
+    },
+    {
+      "question": "What are the current GCP multiregions, and which resources support them?",
+      "options": [
+        "US, EU, and ASIA; several GCP resources support multiregions, including Cloud Storage and BigQuery",
+        "Only US and EU, and only for compute",
+        "Multiregions are exclusive to AWS",
+        "Multiregions support only databases, never storage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists US, EU, and ASIA multiregions supported by Cloud Storage and BigQuery."
+    },
+    {
+      "question": "How can customers set up multiregional infrastructure on AWS or Azure, and what is the difference versus GCP?",
+      "options": [
+        "It involves duplicating data between regions to increase redundancy and put data closer to users, rather than GCP's native geo-redundant multiregion abstraction",
+        "AWS and Azure forbid multiregional setups",
+        "AWS and Azure replicate automatically with no duplication",
+        "There is no difference between providers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says AWS/Azure multiregional setups involve duplicating data between regions."
+    },
+    {
+      "question": "What is Google's premium-tier networking, and what does it offer?",
+      "options": [
+        "Google essentially owns significantly more global-scale networking resources than other providers, allowing traffic between zones and regions to pass entirely over Google-owned networks without traversing the public internet",
+        "Premium-tier networking routes all traffic over the public internet",
+        "Premium-tier is a marketing term with no benefit",
+        "Only AWS offers premium-tier networking"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes premium-tier networking over Google-owned networks."
+    },
+    {
+      "question": "What does the book say about content delivery networks (CDNs) and their caveats?",
+      "options": [
+        "CDNs offer dramatic performance enhancements and discounts for delivering data assets, work best when delivering the same data repeatedly, but don't work everywhere — certain countries may block internet traffic and CDN delivery",
+        "CDNs work identically in every country",
+        "CDNs are only useful for unique one-time data",
+        "CDNs eliminate the need to read the fine print"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes CDN benefits and the caveats of country-level blocking and repeated-data fit."
+    },
+    {
+      "question": "Why does the book call data egress fees an impediment to interoperability, data sharing, and data movement?",
+      "options": [
+        "Right now egress fees are a moat designed to prevent public cloud customers from leaving or deploying across multiple clouds",
+        "Egress fees promote interoperability",
+        "Egress fees make multi-cloud deployment easier",
+        "Egress fees only affect on-premises systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book calls egress fees a moat preventing leaving or multicloud deployment."
+    },
+    {
+      "question": "What does the book predict about the future of data egress fees?",
+      "options": [
+        "GCP, AWS, or Azure may announce significant cuts in egress fees in the next few years leading to a sea change in the cloud business model, and it's possible egress fees go away, similar to how limited cell-phone minutes disappeared decades ago",
+        "Egress fees will rise dramatically",
+        "Egress fees are permanent and unchangeable",
+        "Egress fees are mandated by law forever"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book predicts egress fee cuts or elimination, analogizing to the disappearance of cell-phone minutes."
+    }
+  ]
+}

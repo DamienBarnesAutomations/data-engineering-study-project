@@ -1,0 +1,1603 @@
+{
+  "title": "Chapter 5 — Data Generation in Source Systems: Quality Question Bank",
+  "source_file": "chapter-5-data-generation-in-source-systems.md",
+  "original_question_file": "chapter-5.json",
+  "question_count": 145,
+  "questions": [
+    {
+      "question": "What's the difference between OLTP and OLAP systems, and why does running heavy analytics directly on an OLTP database become problematic at scale?",
+      "options": [
+        "OLTP handles many small, low-latency read/write transactions (application backends); OLAP is built for large analytical scans — running analytics on OLTP causes performance issues from structural limits and resource contention with transactional workloads",
+        "OLTP is used for analytics workloads, while OLAP powers application backends",
+        "OLTP and OLAP are functionally identical systems marketed under different names",
+        "OLTP databases are architecturally incapable of storing more than a few thousand rows"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states OLTP systems \"support low latency and high concurrency\" for application backends, and warns that running analytics on OLTP \"runs into performance issues due to structural limitations... or resource contention with competing transactional workloads.\""
+    },
+    {
+      "question": "What do the four ACID guarantees stand for, and what does \"isolation\" specifically ensure?",
+      "options": [
+        "Atomicity, consistency, isolation, durability; isolation ensures concurrent updates to the same data resolve as if executed in some sequential order",
+        "Atomicity, consistency, indexing, durability; isolation guarantees a database can only be queried by one user at a time",
+        "Isolation and durability are the same guarantee under two different names",
+        "ACID refers to types of database index structures, not transactional guarantees"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines isolation exactly this way: \"if two updates are in flight concurrently for the same thing, the end database state will be consistent with the sequential execution of these updates in the order they were submitted.\""
+    },
+    {
+      "question": "A banking app checks Account A's balance, then transfers funds to Account B only if sufficient — and the whole operation must fully succeed or fully fail. What ACID property does this describe, and what breaks without it?",
+      "options": [
+        "Atomic transactions — without atomicity, Account A could be debited without Account B being credited (or vice versa), leaving an inconsistent state",
+        "Durability — without it, both account balances would be encrypted incorrectly",
+        "Isolation — without it, the transfer would simply run twice as fast",
+        "Consistency — without it, the bank could not use SQL to query balances at all"
+      ],
+      "correctIndex": 0,
+      "explanation": "This is the book's own bank-transfer example of an atomic transaction: \"The entire transaction should run with updates to both account balances or fail without updating either account balance.\""
+    },
+    {
+      "question": "What is change data capture (CDC), and what mechanism do relational databases commonly use to support it?",
+      "options": [
+        "CDC extracts each insert/update/delete event from a database, often by processing the database's own write-ahead/event log to build a change stream",
+        "CDC means periodically re-exporting the full database as a CSV file",
+        "CDC only works with NoSQL document databases, never relational ones",
+        "CDC requires disabling ACID guarantees on the source database"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines CDC as extracting \"each change event (insert, update, delete)\" and notes relational databases \"often generate an event log stored directly on the database server that can be processed to create a stream.\""
+    },
+    {
+      "question": "What's the difference between the CRUD and insert-only patterns for storing application state, and what's a downside of insert-only?",
+      "options": [
+        "CRUD updates records in place; insert-only never updates, instead inserting a new timestamped record for every change — the downside is tables grow large, and finding the current record needs an expensive MAX(timestamp)-style lookup",
+        "CRUD always preserves full history, while insert-only silently overwrites old data",
+        "Insert-only is usable only with graph databases",
+        "CRUD and insert-only are simply two names for the same underlying pattern"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes insert-only's disadvantages directly: \"tables can grow quite large... record lookups incur extra overhead because looking up the current state involves running MAX(created_timestamp).\""
+    },
+    {
+      "question": "What key distinction does the book draw between a \"message\" and a \"stream\" in event-driven systems?",
+      "options": [
+        "A message is a discrete signal removed from the queue once delivered; a stream is an append-only, ordered log retained over a long window, supporting replay and aggregation across many events",
+        "Messages and streams are functionally identical terms used interchangeably with no real distinction",
+        "Messages apply only to video data, never to data engineering pipelines",
+        "A stream can only ever hold a single event at any given time"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains messages are removed from the queue once delivered, while a stream is \"an append-only log of event records\" persisted over long retention windows for replay and aggregation."
+    },
+    {
+      "question": "The book distinguishes event time, ingestion time, and process time for streaming data. What does each mean?",
+      "options": [
+        "Event time is when the event was actually generated; ingestion time is when it's captured into storage/a queue; process time is when (and how long) it takes to transform after ingestion",
+        "Event time is when a business user views a report about the data",
+        "Ingestion time is always identical to event time in any well-designed system",
+        "Process time refers only to batch jobs and never applies to streaming"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines these three distinct timestamps exactly this way, emphasizing that an \"undetermined time lag\" always separates event generation from later ingestion and processing."
+    },
+    {
+      "question": "A team stores each user's profile, including a nested array of favorite bands, as a single JSON-like object with no need to join across tables. Which database type is this, and what key limitation does the book call out?",
+      "options": [
+        "A document store — its key limitation is no support for joins, so related data must often be duplicated across documents, risking inconsistency",
+        "A wide-column database — its limitation is that it cannot store nested arrays at all",
+        "A graph database — its limitation is that it can only store numeric values",
+        "A key-value cache — its limitation is that all data vanishes whenever the application restarts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states document stores don't support joins, meaning \"data cannot be easily normalized,\" and that \"the same data must be stored in multiple documents... software engineers must be careful to update a property everywhere it is stored.\""
+    },
+    {
+      "question": "What are wide-column databases optimized for, and what major query limitation does the book describe?",
+      "options": [
+        "Extremely high write rates and massive scale at low latency (petabytes, millions of requests/sec) — but they support only a single index (the row key) and no complex queries",
+        "Complex multi-table joins run at the lowest possible latency of any database type",
+        "They cap out at a few thousand total rows regardless of hardware",
+        "They cannot scale beyond a single physical server"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says wide-column databases \"support rapid scans of massive amounts of data, but they do not support complex queries. They have only a single index (the row key) for lookups.\""
+    },
+    {
+      "question": "A social network wants to answer \"how many users can I reach within two hops of connections?\" Why does the book say a document database struggles with this, and what's better suited?",
+      "options": [
+        "Document databases aren't optimized for relationship-traversal queries — a graph database, with explicit nodes and edges, is designed exactly for this",
+        "A time-series database is better suited, since traversal is fundamentally a time-based operation",
+        "A key-value store is better suited, since traversal is just repeated key lookups with no overhead",
+        "A search database is better suited, since traversal is fundamentally a text-matching problem"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives this exact scenario, noting complex traversal code on a document store \"would run slowly and consume significant resources,\" while \"graph databases are designed for precisely this type of query.\""
+    },
+    {
+      "question": "How does the book distinguish REST from GraphQL as API paradigms?",
+      "options": [
+        "REST calls are stateless and typically restricted to one data model per request; GraphQL allows retrieving multiple data models in a single flexible request shaped like the query",
+        "GraphQL is stateful, maintaining session variables between calls, while REST is stateless",
+        "REST always returns JSON while GraphQL never does",
+        "GraphQL supports only read operations and never supports writes"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts REST's stateless, model-restricted calls with GraphQL, which \"opens up the possibility of retrieving multiple data models in a single request... allowing for more flexible and expressive queries.\""
+    },
+    {
+      "question": "What makes webhooks different in direction from a typical API call, and why are they sometimes called \"reverse APIs\"?",
+      "options": [
+        "In a webhook, the source system initiates the connection, pushing data to an endpoint hosted by the consumer — the opposite of a typical API call where the consumer pulls data from the source",
+        "Webhooks always use gRPC instead of HTTP under the hood",
+        "Webhooks require the consumer to poll the source system every second",
+        "Webhooks are simply a deprecated synonym for REST APIs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains: \"the connection goes from the source system to the data sink, the opposite of typical APIs. For this reason, webhooks are often called reverse APIs.\""
+    },
+    {
+      "question": "A message queue delivers messages \"at least once\" rather than \"exactly once.\" What system property does the book say helps handle the resulting risk of duplicate processing?",
+      "options": [
+        "Idempotency — designing the system so processing a message once produces the same outcome as processing it multiple times",
+        "Strict FIFO ordering — guaranteeing order eliminates duplicate processing entirely",
+        "Extending the message retention window indefinitely",
+        "Disabling acknowledgments so messages are never marked as delivered"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"Ideally, systems should be idempotent. In an idempotent system, the outcome of processing a message once is identical to the outcome of processing it multiple times.\""
+    },
+    {
+      "question": "In an event-streaming platform, what is a stream partition for, and what problem must engineers avoid when picking a partition key?",
+      "options": [
+        "Partitions subdivide a stream to allow parallel processing across multiple consumers; a poorly chosen key can cause \"hotspotting,\" where a disproportionate share of messages land in one partition",
+        "Partitions exist purely for data backup and have no effect on throughput",
+        "A bad partition key only risks a slightly higher storage bill, nothing else",
+        "Partitions always split data strictly by timestamp with no other option"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns: \"A key concern with stream partitioning is ensuring that your partition key does not generate hotspotting—a disproportionate number of messages delivered to one partition,\" citing an uneven US-state example."
+    },
+    {
+      "question": "What is a \"data contract,\" as the book (citing James Denmore) defines it, and why would a data engineer want one with an upstream source system team?",
+      "options": [
+        "A written agreement on what data is extracted, how, how often, and who the contacts are on both sides — it sets clear expectations so the engineer isn't blindsided by upstream changes",
+        "A legal document required before any database whatsoever can be queried",
+        "A synonym for an SLA that covers only server uptime",
+        "An internal-only document that source system owners never see or agree to"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book quotes Denmore's definition directly: a written agreement stating what data is extracted, via what method, how often, and who the contacts are for both source system and ingestion teams."
+    },
+    {
+      "question": "What's the difference between an SLA and an SLO, as the book defines them for source systems?",
+      "options": [
+        "An SLA states the expectations agreed with the source system's owners (e.g. \"data will be reliably available\"); an SLO is a measurable target against that agreement (e.g. \"99% uptime\")",
+        "SLA and SLO are the same concept, just two different acronyms for it",
+        "An SLA applies only to streaming systems, and an SLO applies only to batch systems",
+        "SLOs are set unilaterally by the data engineer with no input from source system owners"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives this exact pairing: an SLA example (\"data from source systems will be reliably available and of high quality\") and its corresponding SLO (\"source systems will have 99% uptime\")."
+    },
+    {
+      "question": "Which examples does the book give of analog data creation, and what property does it say such data often has?",
+      "options": [
+        "Vocal speech, sign language, writing on paper, and playing an instrument — analog data is often transient, its contents easily lost after the moment passes",
+        "Credit card transactions and database commits — analog data is always durably stored",
+        "IoT sensor readings and stock trades — analog data is by definition digital",
+        "Web server logs and application errors — analog data is always structured"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these four examples of analog creation and notes: \"This analog data is often transient; how often have you had a verbal conversation whose contents are lost to the ether after the conversation ends?\""
+    },
+    {
+      "question": "How does the book define digital data creation, and which pair of examples illustrates its two forms?",
+      "options": [
+        "Digital data is either converted from analog form or is the native product of a digital system — a texting app converting speech to digital text (analog to digital) and a credit card transaction saved to databases (native digital)",
+        "Digital data can only be created by scanning paper documents into PDFs",
+        "Digital data is created only when a human manually types data into a spreadsheet",
+        "Digital data requires a physical storage medium to exist at all"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says digital data \"is either created by converting analog data to digital form or is the native product of a digital system,\" giving the texting-app and credit-card examples."
+    },
+    {
+      "question": "How does the book define a \"file,\" and what kinds of things do applications write to them?",
+      "options": [
+        "A file is a sequence of bytes, typically stored on disk; applications write local parameters, events, logs, images, and audio to files",
+        "A file is a relational table persisted in an RDBMS",
+        "A file can only contain unstructured text and nothing else",
+        "A file is a message that has been delivered and removed from a queue"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines a file as \"a sequence of bytes, typically stored on a disk\" and lists parameters, events, logs, images, and audio as common file contents."
+    },
+    {
+      "question": "Why does the book say files are a \"universal medium of data exchange\" even in an API-driven world?",
+      "options": [
+        "Much of the world still sends and receives files — for example, government agencies often make data available as Excel or CSV downloads or files attached in email",
+        "Files are the only format that supports real-time streaming",
+        "Files cannot be sent over email or downloaded",
+        "Files are inherently more secure than any API"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"As much as data engineers wish that they could get data programmatically, much of the world still sends and receives files,\" using government Excel/CSV data as an example."
+    },
+    {
+      "question": "Which five source file formats does the book name as the main types a data engineer encounters, and which is structured, semistructured, and unstructured?",
+      "options": [
+        "Excel, CSV, TXT, JSON, and XML — structured (Excel, CSV), semistructured (JSON, XML, CSV), unstructured (TXT, CSV)",
+        "Parquet, ORC, Avro, JSON, and XML — structured (Parquet), semistructured (JSON, XML)",
+        "Excel, SQL, CSV, PDF, and JPEG — all classified as unstructured",
+        "JSON, XML, YAML, TXT, and Parquet — none of which are structured"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these five formats and their categories exactly, noting that CSV appears as both semistructured and unstructured. Parquet, ORC, and Avro are covered in a later chapter."
+    },
+    {
+      "question": "The book says you'll use Parquet, ORC, and Avro heavily as a data engineer. Where does it place these formats relative to the source-system files chapter?",
+      "options": [
+        "They are covered in a later chapter (on storage and technical file details), since the focus here is on source-system files",
+        "They are source-system files covered extensively in this chapter",
+        "They are not discussed anywhere in the book",
+        "They are legacy formats that predate Excel and CSV"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says these formats will be covered later and that \"Chapter 6 covers the technical details of files.\""
+    },
+    {
+      "question": "How does the book describe the reality of API-based data ingestion, in contrast to the theory?",
+      "options": [
+        "In theory APIs simplify ingestion, but in practice many APIs expose a good deal of data complexity, and engineers must often invest significant energy maintaining custom API connections",
+        "APIs have fully automated ingestion so engineers never write custom code",
+        "APIs only ever return fully cleaned, analysis-ready data",
+        "APIs are rarely used for data exchange in the cloud"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"In theory, APIs simplify the data ingestion task for data engineers. In practice, many APIs still expose a good deal of data complexity for engineers to manage.\""
+    },
+    {
+      "question": "What is an application database, and what standard example does the book give?",
+      "options": [
+        "A database that stores the state of an application — for example, a database storing account balances that an app updates as transactions and payments happen",
+        "A database used exclusively for executive dashboards",
+        "A database that only ever holds static reference data",
+        "A database that runs analytics scans on every request"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines an application database as one that \"stores the state of an application,\" using a bank account-balance database as the standard example."
+    },
+    {
+      "question": "Why does the book caution that calling OLTP systems \"transactional databases\" can be misleading?",
+      "options": [
+        "The label does not necessarily imply the system supports atomic transactions",
+        "OLTP systems never store data durably",
+        "OLTP systems cannot handle concurrent users",
+        "The label means the system only supports analytics"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says OLTP systems \"are often referred to as transactional databases, but this does not necessarily imply that the system in question supports atomic transactions.\""
+    },
+    {
+      "question": "Which performance characteristics does the book attribute to OLTP systems?",
+      "options": [
+        "Low latency and high concurrency; an RDBMS can select or update a row in under a millisecond and handle thousands of reads and writes per second",
+        "High latency and low concurrency by design",
+        "Single-user access with multi-second query latencies",
+        "No support for concurrent writes at all"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says OLTP databases \"support low latency and high concurrency,\" with an RDBMS able to operate on a row in under a millisecond and handle thousands of reads/writes per second."
+    },
+    {
+      "question": "What trade-off does the book note about document database clusters versus RDBMS as application backends?",
+      "options": [
+        "Document database clusters can manage higher document commit rates at the expense of potential inconsistency",
+        "Document clusters are always slower than RDBMS systems",
+        "Document clusters cannot handle any concurrent writes",
+        "Document clusters sacrifice throughput for stronger consistency"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"A document database cluster can manage even higher document commit rates at the expense of potential inconsistency.\""
+    },
+    {
+      "question": "Why are OLTP systems generally less suited to analytics at scale?",
+      "options": [
+        "They are optimized for many small concurrent transactions, not for a single query that must scan a vast amount of data",
+        "They cannot store more than a few gigabytes of data",
+        "They lack any form of query processing",
+        "They are designed only for dashboard rendering"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says OLTP systems are \"less suited to use cases driven by analytics at scale, where a single query must scan a vast amount of data.\""
+    },
+    {
+      "question": "What does consistency mean in the ACID model, as defined in the book?",
+      "options": [
+        "Any database read will return the last written version of the retrieved item",
+        "Committed data will never be lost, even in the event of power loss",
+        "Concurrent updates resolve in some sequential order",
+        "Every query must complete in under one second"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines ACID consistency exactly this way: \"any database read will return the last written version of the retrieved item.\""
+    },
+    {
+      "question": "What does durability mean in the ACID model, as defined in the book?",
+      "options": [
+        "Committed data will never be lost, even in the event of power loss",
+        "Any read returns the last written version of an item",
+        "Updates resolve as if executed sequentially",
+        "A database can never go offline for maintenance"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says: \"Durability indicates that committed data will never be lost, even in the event of power loss.\""
+    },
+    {
+      "question": "What does the book say about whether ACID guarantees are required for application backends?",
+      "options": [
+        "They are not required, and relaxing these constraints can be a considerable boon to performance and scale; but they guarantee a consistent picture of the world that simplifies the app developer's task",
+        "ACID is mandatory for every application backend without exception",
+        "ACID guarantees can only be relaxed for analytics workloads",
+        "Relaxing ACID always reduces performance"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"ACID characteristics are not required to support application backends, and relaxing these constraints can be a considerable boon to performance and scale.\""
+    },
+    {
+      "question": "Why must all engineers understand operating with and without ACID?",
+      "options": [
+        "Some distributed databases use relaxed consistency constraints such as eventual consistency to improve performance, and understanding the consistency model helps prevent disasters",
+        "ACID databases cannot ever be queried",
+        "Non-ACID databases do not exist in production",
+        "Only engineers on database teams need consistency knowledge"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says engineers must understand operating with and without ACID because \"some distributed databases use relaxed consistency constraints, such as eventual consistency, to improve performance,\" and \"understanding the consistency model you're working with helps you prevent disasters.\""
+    },
+    {
+      "question": "The book notes that small companies often run analytics directly on an OLTP. Why does this pattern work in the short term but fail to scale?",
+      "options": [
+        "At some point analytical queries run into performance issues from structural limitations of OLTP or resource contention with competing transactional workloads",
+        "OLTP databases automatically delete historical data after thirty days",
+        "OLTP systems cannot execute any aggregate queries at all",
+        "The pattern never works, even for small data volumes"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says this pattern \"works in the short term but is ultimately not scalable,\" hitting structural limits or resource contention at scale."
+    },
+    {
+      "question": "What does the book call applications that hybridize transactional and analytics workloads?",
+      "options": [
+        "Data applications",
+        "OLTP databases",
+        "Data swamps",
+        "Operational warehouses"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says: \"We'll use the term data application to refer to applications that hybridize transactional and analytics workloads.\""
+    },
+    {
+      "question": "Why is an OLAP system typically inefficient at handling lookups of individual records?",
+      "options": [
+        "It is built to run large analytics queries, and any query typically involves scanning a minimal data block, often 100 MB or more in size",
+        "It has no query engine whatsoever",
+        "It only supports writing and never reading",
+        "It can only process data in real time, never interactively"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says OLAP systems \"are built to run large analytics queries and is typically inefficient at handling lookups of individual records,\" with queries scanning data blocks of 100 MB or more."
+    },
+    {
+      "question": "What happens if you try to look up thousands of individual items per second in a columnar OLAP system, per the book?",
+      "options": [
+        "It will bring the system to its knees unless combined with a caching layer designed for that use case",
+        "It performs faster than any other workload on the system",
+        "It is the recommended primary workload for OLAP systems",
+        "It requires no caching or indexing at all"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns that \"trying to look up thousands of individual items per second in such a system will bring it to its knees unless it is combined with a caching layer designed for this use case.\""
+    },
+    {
+      "question": "What does the \"online\" in OLAP mean, and does the book limit OLAP to systems supporting OLAP cubes?",
+      "options": [
+        "Online means the system constantly listens for incoming queries, making it suitable for interactive analytics; the book uses OLAP to mean any system supporting high-scale interactive analytics, not just OLAP cubes",
+        "Online means the system runs on the public internet; OLAP refers only to cube systems",
+        "Online means the data is always fresh; OLAP refers only to multidimensional arrays",
+        "Online means the system never stops; OLAP is limited to spreadsheet tools"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says: \"we're using the term OLAP to refer to any database system that supports high-scale interactive analytics queries; we are not limiting ourselves to systems that support OLAP cubes.\""
+    },
+    {
+      "question": "Why does a chapter about source systems discuss OLAP systems, which are typically analytics storage/query systems?",
+      "options": [
+        "Engineers often need to read data from an OLAP system — e.g. a data warehouse serving data for ML training, or an OLAP system serving a reverse ETL workflow",
+        "OLAP systems are actually source systems for every pipeline",
+        "The chapter discusses OLAP only to criticize it",
+        "OLAP systems can never be used by data engineers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains: \"in practical use cases, engineers often need to read data from an OLAP system,\" giving ML training and reverse ETL as examples."
+    },
+    {
+      "question": "What is reverse ETL, as described in the chapter's OLAP discussion?",
+      "options": [
+        "Sending derived data from an analytics system back to a source system, such as a CRM, SaaS platform, or transactional application",
+        "Deleting all derived data from a warehouse",
+        "Reversing the order of records in a database table",
+        "Extracting raw data from an OLAP system for batch loading"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines reverse ETL as a workflow \"where derived data in an analytics system is sent back to a source system, such as a CRM, SaaS platform, or transactional application.\""
+    },
+    {
+      "question": "What is CDC frequently leveraged for, according to the book?",
+      "options": [
+        "Replicating between databases in near real time or creating an event stream for downstream processing",
+        "Compressing tables to save storage space",
+        "Generating nightly full-database CSV exports",
+        "Encrypting database logs for security"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says CDC \"is frequently leveraged to replicate between databases in near real time or create an event stream for downstream processing.\""
+    },
+    {
+      "question": "How does the book say CDC is handled in relational databases versus many cloud NoSQL databases?",
+      "options": [
+        "Relational databases often generate an event log stored on the database server that can be processed into a stream; many cloud NoSQL databases can send a log or event stream to a target storage location",
+        "Relational databases cannot support CDC at all",
+        "Cloud NoSQL databases never produce change streams",
+        "Both require the data engineer to build binary logs from scratch"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"relational databases often generate an event log stored directly on the database server that can be processed to create a stream,\" while many cloud NoSQL databases \"can send a log or event stream to a target storage location.\""
+    },
+    {
+      "question": "What is a log, and which sources of logs does the book list?",
+      "options": [
+        "A log captures information about events that occur in systems; sources include operating systems, applications, servers, containers, networks, and IoT devices",
+        "A log is a type of NoSQL document store",
+        "A log can only ever capture web traffic patterns",
+        "A log is an encrypted backup of an entire database"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"a log captures information about events that occur in systems\" and lists operating systems, applications, servers, containers, networks, and IoT devices as sources."
+    },
+    {
+      "question": "At minimum, what should a log capture, according to the book?",
+      "options": [
+        "Who (the human, system, or service account associated with the event), what happened (the event and metadata), and when (the timestamp)",
+        "Only the timestamp of the event",
+        "Only the raw binary contents of the event",
+        "Only the identity of the software developer who wrote the code"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"at a minimum, a log should capture who, what, and when,\" defining each in exactly these terms."
+    },
+    {
+      "question": "What are binary-encoded logs, and what is a standard example given in the book?",
+      "options": [
+        "Logs encoded in a custom compact format for space efficiency and fast I/O — database logs are a standard example",
+        "Logs that contain only ASCII text",
+        "Logs that are always human-readable JSON",
+        "Logs that are stored only in memory and never persisted"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says binary-encoded logs \"encode data in a custom compact format for space efficiency and fast I/O,\" with database logs as the standard example."
+    },
+    {
+      "question": "What are the characteristics and drawbacks of semistructured logs?",
+      "options": [
+        "They are encoded as text in an object serialization format such as JSON; they are machine-readable and portable, but much less efficient than binary logs and often require significant custom code to extract value",
+        "They are fully structured relational tables",
+        "They cannot be parsed by any machine",
+        "They are more efficient than binary logs in every respect"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes semistructured logs as JSON-based, machine-readable, and portable, but \"much less efficient than binary logs,\" and notes extracting value \"often requires significant custom code.\""
+    },
+    {
+      "question": "What are plain-text (unstructured) logs, and what makes extracting value from them complicated?",
+      "options": [
+        "They essentially store console output from software, so no general-purpose standards exist, and extracting useful information from the raw text can be complicated",
+        "They are always fully normalized relational data",
+        "They are the most compact and efficient log format",
+        "They are encrypted JSON documents"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says plain-text logs \"essentially store the console output from software,\" have \"no general-purpose standards,\" and can be helpful though extraction from raw text \"might be complicated.\""
+    },
+    {
+      "question": "What is log resolution, and what distinguishes database logs from big data system logs in this regard?",
+      "options": [
+        "Resolution is the amount of event data captured in a log; database logs capture enough to reconstruct database state at any point, while big data systems may note only that a particular type of commit event occurred",
+        "Resolution is the physical screen size of a log viewer",
+        "Resolution refers to how fast a log file is written to disk",
+        "Resolution is the number of log levels a system supports"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines log resolution as \"the amount of event data captured in a log,\" contrasting database logs that allow state reconstruction with big data logs that may only record commit-event occurrences."
+    },
+    {
+      "question": "What is log level, as the book defines it?",
+      "options": [
+        "The conditions required to record a log entry, specifically concerning errors and debugging — software is often configurable to log every event or only errors",
+        "The amount of data captured per log entry",
+        "The timestamp resolution of a log entry",
+        "The compression ratio applied to a log file"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"the log level refers to the conditions required to record a log entry, specifically concerning errors and debugging,\" noting software can log every event or only errors."
+    },
+    {
+      "question": "How does the book say batch logs and real-time log entries are typically delivered?",
+      "options": [
+        "Batch logs are often written continuously to a file, while individual log entries can be written to a messaging system such as Kafka or Pulsar for real-time applications",
+        "Batch logs are always sent via email",
+        "Real-time logs are always stored in relational databases",
+        "Both are always written to plain-text console output"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"batch logs are often written continuously to a file,\" while individual entries \"can be written to a messaging system such as Kafka or Pulsar for real-time applications.\""
+    },
+    {
+      "question": "What are write-ahead logs, and what crucial role do they play in database guarantees?",
+      "options": [
+        "Typically binary files in a database-native format; the database stores each operation in the log before acknowledging the request, so even if the server fails it can recover its state on reboot by completing unfinished work",
+        "Text files that record every user login attempt",
+        "Compressed archives taken once a month",
+        "In-memory caches that are never persisted"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes write-ahead logs as binary database-native files where operations are stored before acknowledgment, guaranteeing recoverability on reboot."
+    },
+    {
+      "question": "Why are database logs extremely useful in data engineering?",
+      "options": [
+        "They enable CDC to generate event streams from database changes",
+        "They replace the need for any data modeling",
+        "They automatically clean and deduplicate data",
+        "They are the only storage format allowed in data lakes"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says database logs \"are extremely useful in data engineering, especially for CDC to generate event streams from database changes.\""
+    },
+    {
+      "question": "What does CRUD stand for, and what is a basic tenet of the pattern?",
+      "options": [
+        "Create, read, update, and delete — data must be created before being used, after which it can be read, updated, and finally destroyed",
+        "Compress, replicate, update, and deduplicate — data must be compressed before storage",
+        "Create, read, unify, and delete — data must be unified across systems",
+        "Cache, render, update, and delete — data must be cached before rendering"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines CRUD as the four basic operations of persistent storage and notes \"a basic tenet of CRUD is that data must be created before being used.\""
+    },
+    {
+      "question": "Where does the book say CRUD is commonly found in practice?",
+      "options": [
+        "In web applications, which make heavy use of CRUD for RESTful HTTP requests and for storing and retrieving data from a database",
+        "Only in mainframe batch systems",
+        "Only in graph database queries",
+        "Only in streaming analytics pipelines"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"a web application will make heavy use of CRUD for RESTful HTTP requests and storing and retrieving data from a database.\""
+    },
+    {
+      "question": "For a database where an application applies CRUD operations, what are the two extraction approaches the book contrasts?",
+      "options": [
+        "Snapshot-based extraction versus event extraction with CDC, which gives a complete history of operations and potentially allows for near real-time analytics",
+        "Full-table export versus column pruning",
+        "Encrypted transfer versus plain-text transfer",
+        "Daily CSV versus nightly Parquet dumps"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says snapshot-based extraction can get data from a CRUD database, while \"event extraction with CDC gives us a complete history of operations and potentially allows for near real-time analytics.\""
+    },
+    {
+      "question": "How does the insert-only pattern retain history, and how do you read the current state of a record?",
+      "options": [
+        "It retains history directly in the table by inserting a new timestamped record for each change; you read the current state by looking up the latest record under that ID",
+        "It overwrites the previous record in place with no history",
+        "It keeps history only in an external archive file",
+        "It marks old records as deleted using a flag"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes insert-only as inserting new timestamped records rather than updating, and reading the current state \"by customer ID, you would look up the latest record under that ID.\""
+    },
+    {
+      "question": "Why is the insert-only pattern especially useful for an application like a banking app presenting customer address history?",
+      "options": [
+        "In a sense it maintains a database log directly in the table itself, giving the application access to history",
+        "It guarantees the fastest possible lookups",
+        "It prevents any duplicate records from ever existing",
+        "It automatically deletes old addresses after one year"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"the insert-only pattern maintains a database log directly in the table itself, making it especially useful if the application needs access to history,\" giving the banking address-history example."
+    },
+    {
+      "question": "What is the analytics insert-only ETL pattern the book describes, and how does it relate to a CRUD table?",
+      "options": [
+        "Data pipelines insert a new record in the target analytics table anytime an update occurs in the CRUD table",
+        "Analytics tables are updated in place with no history",
+        "The pattern requires deleting the CRUD table after ingestion",
+        "The pattern only applies to streaming pipelines, never batch"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"in the insert-only ETL pattern, data pipelines insert a new record in the target analytics table anytime an update occurs in the CRUD table.\""
+    },
+    {
+      "question": "Besides growing large, what second disadvantage does the book list for insert-only tables?",
+      "options": [
+        "Record lookups are expensive because finding the current state involves running MAX(created_timestamp), which is costly when many records exist under a single ID",
+        "Records cannot ever be purged",
+        "It does not support any primary keys",
+        "It cannot be used with timestamps"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"record lookups incur extra overhead because looking up the current state involves running MAX(created_timestamp),\u201d and if hundreds or thousands of records sit under a single ID, this is expensive."
+    },
+    {
+      "question": "How does the book suggest keeping insert-only table size reasonable?",
+      "options": [
+        "Purging records based on a record sunset date or a maximum number of record versions",
+        "Disabling inserts after the table reaches a fixed size",
+        "Deleting the oldest records every hour without conditions",
+        "Storing all versions in external flat files"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"sometimes records are purged based on a record sunset date or a maximum number of record versions to keep table size reasonable.\""
+    },
+    {
+      "question": "How does the book define a message in an event-driven system?",
+      "options": [
+        "Raw data communicated across two or more systems, typically sent through a message queue from a publisher to a consumer and removed from the queue once delivered",
+        "A persistent append-only log of records",
+        "A database table that accumulates history",
+        "A file containing serialized application state"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines a message as \"raw data communicated across two or more systems,\" sent through a queue, and \"once the message is delivered, it is removed from the queue.\""
+    },
+    {
+      "question": "What IoT example does the book use to illustrate messages as discrete, singular signals?",
+      "options": [
+        "An IoT device sends a message with the latest temperature reading to a message queue; a service ingests it to decide whether to turn a furnace on or off, and the message is removed once the action is taken",
+        "An IoT device writes every reading to an append-only stream forever",
+        "An IoT device queries a database for historical readings",
+        "An IoT device sends a full database backup with each reading"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book walks through this exact scenario, noting the message is removed from the queue once received and acted upon."
+    },
+    {
+      "question": "What is a stream, and why might events in it not always be delivered in exact order?",
+      "options": [
+        "A stream is an append-only log of event records accumulated in an ordered sequence; events aren't always delivered in exact order because of the subtleties of distributed systems",
+        "A stream is a queue that removes messages on delivery",
+        "A stream is a file that is rewritten in place on every event",
+        "A stream guarantees strict ordering with zero exceptions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines a stream as \"an append-only log of event records\" and notes events \"aren't always delivered in exact order because of the subtleties of distributed systems.\""
+    },
+    {
+      "question": "Why does the book say you'll use streams when you care about what happened over many events?",
+      "options": [
+        "Because records in a stream are persisted over a long retention window — often weeks or months — allowing aggregations on multiple records or rewinding to a point in time",
+        "Because streams remove each record immediately after delivery",
+        "Because streams can only hold a single event",
+        "Because streams are optimized for individual record lookups"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the append-only nature of streams persists records \"over a long retention window—often weeks or months—allowing for complex operations on records such as aggregations... or the ability to rewind to a point in time within the stream.\""
+    },
+    {
+      "question": "How does the book describe the relationship between systems that process streams and message passing?",
+      "options": [
+        "Systems that process streams can process messages, and streaming platforms are frequently used for message passing; messages are often accumulated in streams when message analytics is wanted",
+        "Streaming platforms can never handle individual messages",
+        "Message queues cannot feed into stream analytics",
+        "The two concepts are completely unrelated"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes \"systems that process streams can process messages, and streaming platforms are frequently used for message passing,\" with the IoT temperature-trend analysis as an example."
+    },
+    {
+      "question": "What undetermined delay does the book say occurs in the life of an event, and why should timestamps be recorded at each phase?",
+      "options": [
+        "An undetermined time lag occurs between event creation and downstream ingestion/processing; engineers should log events as they occur and at each stage so they can accurately track data movement through pipelines",
+        "Events are processed instantly with no delay possible",
+        "Timestamps are unnecessary once data reaches storage",
+        "Only ingestion timestamps matter for pipeline accuracy"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"an undetermined time lag will occur upon event creation, before the event is ingested and processed downstream,\" and recommends timestamp logs at each stage."
+    },
+    {
+      "question": "How does the book define ingestion time versus process time?",
+      "options": [
+        "Ingestion time is when an event is ingested into a message queue, cache, memory, object storage, a database, or anywhere else data is stored; process time occurs after ingestion when the data is processed (typically a transformation)",
+        "Ingestion time is when an event is generated; process time is when a user views it",
+        "Ingestion time and process time are always identical",
+        "Process time is measured only in milliseconds"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines ingestion time as when data is ingested into storage and process time as after ingestion \"when the data is processed (typically, a transformation).\""
+    },
+    {
+      "question": "What does the book say about processing time, as distinct from process time?",
+      "options": [
+        "Processing time is how long the data took to process, measured in seconds, minutes, hours, etc.",
+        "Processing time is when the event was originally generated",
+        "Processing time refers to how long data waits before ingestion",
+        "Processing time is identical to process time by definition"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"processing time is how long the data took to process, measured in seconds, minutes, hours, etc.\""
+    },
+    {
+      "question": "How does the book recommend capturing event, ingestion, and processing timestamps?",
+      "options": [
+        "Preferably in an automated way, by setting up monitoring along data workflows to capture when events occur, when they're ingested and processed, and how long processing took",
+        "By manually entering timestamps into a spreadsheet",
+        "By recording only the final report generation time",
+        "By relying on the source system to do all timing"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends recording these times \"preferably in an automated way,\" with monitoring to capture all three phases and processing duration."
+    },
+    {
+      "question": "According to the book, what is a database management system (DBMS)?",
+      "options": [
+        "A database system used to store and serve data, consisting of a storage engine, query optimizer, disaster recovery, and other key components",
+        "A tool that only manages user authentication",
+        "A synonym for a single database table",
+        "A spreadsheet application for data analysts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines a DBMS as consisting of \"a storage engine, query optimizer, disaster recovery, and other key components for managing the database system.\""
+    },
+    {
+      "question": "What does the book say about indexes and lookups across databases?",
+      "options": [
+        "Indexes can help speed up lookups, but not all databases have indexes; engineers should know whether their database uses indexes and understand major types such as B-tree and log-structured merge-trees (LSM)",
+        "Every database uses the same index structure",
+        "Indexes are only relevant to graph databases",
+        "Indexes make lookups slower in all cases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book advises understanding whether a database uses indexes and the \"major types of indexes, including B-tree and log-structured merge-trees (LSM).\""
+    },
+    {
+      "question": "What two scaling strategies does the book contrast when evaluating a database?",
+      "options": [
+        "Horizontal scaling (more database nodes) versus vertical scaling (more resources on a single machine)",
+        "Batch scaling versus streaming scaling",
+        "Encrypted scaling versus plain-text scaling",
+        "Local scaling versus remote scaling"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book asks: \"Does it scale horizontally (more database nodes) or vertically (more resources on a single machine)?\""
+    },
+    {
+      "question": "Which consistency questions does the book suggest asking about a database?",
+      "options": [
+        "Is the database fully consistent or does it support a relaxed consistency model (e.g. eventual consistency)? Does it support optional consistency modes for reads and writes (e.g. strongly consistent reads)?",
+        "Does the database use SQL or not?",
+        "What is the database's maximum storage size?",
+        "How many indexes does the database support?"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists consistency as a major consideration, including relaxed consistency models and optional consistency modes such as strongly consistent reads."
+    },
+    {
+      "question": "What history does the book give for relational databases?",
+      "options": [
+        "They were developed at IBM in the 1970s and popularized by Oracle in the 1980s, with internet growth and the LAMP stack driving a rise in vendor and open source RDBMS options",
+        "They were invented at Google in the 2000s",
+        "They were created by Amazon in the 1990s",
+        "They predate computers entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"relational databases were developed at IBM in the 1970s and popularized by Oracle in the 1980s,\" with LAMP stack growth and a rise in RDBMS options."
+    },
+    {
+      "question": "How does the book describe the physical storage of rows in an RDBMS, and what terms does it say are used interchangeably?",
+      "options": [
+        "Rows are typically stored as a contiguous sequence of bytes on disk; the terms column and field are used interchangeably",
+        "Rows are stored randomly across many disks; column and table are interchangeable",
+        "Rows are stored only in memory; field and index are interchangeable",
+        "Rows are always compressed; column and row are interchangeable"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"rows are typically stored as a contiguous sequence of bytes on disk,\" and \"we use the terms column and field interchangeably throughout this book.\""
+    },
+    {
+      "question": "What role do primary keys and foreign keys play in relational databases, per the book?",
+      "options": [
+        "Tables are indexed by a primary key (a unique field per row); foreign keys connect fields to primary keys in other tables, facilitating joins and complex schemas spread across tables",
+        "Primary keys are optional and foreign keys are forbidden",
+        "Foreign keys are used only for indexing performance, never joins",
+        "Primary keys store the full row content"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says tables are \"typically indexed by a primary key, a unique field for each row,\" and foreign keys \"facilitating joins, and allowing for complex schemas that spread data across multiple tables.\""
+    },
+    {
+      "question": "What is normalization, and what problems does it prevent?",
+      "options": [
+        "A strategy for ensuring data in records is not duplicated in multiple places, avoiding the need to update states in multiple locations at once and preventing inconsistencies",
+        "A strategy for duplicating data across every table for faster reads",
+        "A method for deleting redundant columns",
+        "A technique for converting relational data to JSON"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines normalization as \"a strategy for ensuring that data in records is not duplicated in multiple places,\" preventing inconsistencies."
+    },
+    {
+      "question": "What does NoSQL stand for, and how does the book describe the class of databases it covers?",
+      "options": [
+        "Not only SQL — a whole class of databases that abandon the relational paradigm",
+        "No SQL at all — databases that cannot store tabular data",
+        "New SQL — a single vendor's relational product",
+        "Notably slow queries — databases optimized for latency over throughput"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says NoSQL \"stands for not only SQL\" and \"refers to a whole class of databases that abandon the relational paradigm.\""
+    },
+    {
+      "question": "What trade-offs does the book associate with NoSQL databases?",
+      "options": [
+        "Dropping relational constraints can improve performance, scalability, and schema flexibility, but NoSQL databases typically also abandon strong consistency, joins, or a fixed schema",
+        "NoSQL databases gain strong consistency while losing performance",
+        "NoSQL databases always support full SQL joins",
+        "NoSQL databases enforce stricter schemas than relational databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says dropping relational constraints \"can improve performance, scalability, and schema flexibility,\" but \"NoSQL databases also typically abandon various RDBMS characteristics, such as strong consistency, joins, or a fixed schema.\""
+    },
+    {
+      "question": "What does the book say drove the origin of modern NoSQL databases?",
+      "options": [
+        "In the early 2000s, tech companies such as Google and Amazon outgrew their relational databases and pioneered new distributed, nonrelational databases to scale their web platforms",
+        "Academics invented NoSQL to simplify SQL syntax",
+        "Government regulations required abandoning relational databases",
+        "NoSQL was created solely to reduce storage costs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book traces modern NoSQL to Google and Amazon \"outgrowing their relational databases\" and pioneering \"new distributed, nonrelational databases to scale their web platforms.\""
+    },
+    {
+      "question": "What history does the book give for the term \"NoSQL\"?",
+      "options": [
+        "The term first appeared in 1998, and the modern version was coined by Eric Evans in the 2000s, who suggested it on IRC for the first NoSQL meetup",
+        "The term was invented by Johan Oskarsson in 1998",
+        "The term was coined by Google engineers in 2010",
+        "The term has always had a single precise definition"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"the term NoSQL first appeared in 1998\" and \"the modern version was coined by Eric Evans in the 2000s,\" who suggested the name on IRC."
+    },
+    {
+      "question": "Who organized the first NoSQL meetup, and what did Evans regret about the name?",
+      "options": [
+        "Johan Oskarsson organized it; Evans regretted that the vague name opened the door to talk submissions for literally anything that stored data and wasn't an RDBMS",
+        "Eric Evans organized it; he regretted the name was too precise",
+        "Google organized it; the name was intended to mean \"new\" SQL",
+        "Oracle organized it; the name referred to a specific product"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book quotes Evans: \"Johan Oskarsson was organizing the first meetup... it was one of three or four suggestions that I spouted off,\" and his regret that the name \"is so vague that it opened the door to talk submissions for literally anything that stored data, and wasn't an RDBMS.\""
+    },
+    {
+      "question": "Which six NoSQL database types does the book cover?",
+      "options": [
+        "Key-value, document, wide-column, graph, search, and time series",
+        "Relational, document, graph, spatial, XML, and object",
+        "Key-value, relational, cube, RDF, columnar, and in-memory",
+        "Only document and key-value stores"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says it \"consider[s] the following database types: key-value, document, wide-column, graph, search, and time series.\""
+    },
+    {
+      "question": "How does the book define a key-value store, and to what familiar data structure does it compare one?",
+      "options": [
+        "A nonrelational database that retrieves records using a key that uniquely identifies each record; similar to a hash map or dictionary but potentially more scalable",
+        "A database that stores data only as sorted lists",
+        "A database optimized for joining many tables",
+        "A database that can only hold numeric values"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines key-value stores as retrieving records by a unique key and notes they are \"similar to hash map or dictionary data structures... but potentially more scalable.\""
+    },
+    {
+      "question": "Which other NoSQL database types does the book say key-value stores encompass?",
+      "options": [
+        "Document stores and wide-column databases",
+        "Graph databases and time-series databases",
+        "Search databases and relational databases",
+        "Only in-memory caches"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"key-value stores encompass several NoSQL database types—for example, document stores and wide column databases.\""
+    },
+    {
+      "question": "Why are in-memory key-value databases popular for caching, and what is a key caveat?",
+      "options": [
+        "They offer ultra-fast lookup and high concurrency for session data; however, storage is typically temporary and data disappears if the database shuts down",
+        "They offer the most durable storage of any database type",
+        "They enforce strict schemas for cached data",
+        "They are always slower than disk-based databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says in-memory key-value databases are \"popular for caching session data... where ultra-fast lookup and high concurrency are required,\" but \"storage in these systems is typically temporary; if the database shuts down, the data disappears.\""
+    },
+    {
+      "question": "How can key-value stores serve applications requiring high-durability persistence, and what example does the book give?",
+      "options": [
+        "They persist data to disk and across multiple nodes — e.g. an ecommerce application durably storing each user's event state changes as they browse, add to cart, and check out",
+        "They can only keep data in memory",
+        "They require a separate database for durable storage",
+        "They are only suited to session caching"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says key-value stores \"often persist data to disk and across multiple nodes to support such use cases,\" using the ecommerce session-and-checkout example."
+    },
+    {
+      "question": "How does the book define a document, and how do collections map to relational terminology?",
+      "options": [
+        "A document is a nested object, usually a JSON object for practical purposes; documents are stored in collections and retrieved by key, and a collection is roughly equivalent to a table in a relational database",
+        "A document is a flat text file; a collection is a folder of files",
+        "A document is a row of a relational table",
+        "A document can only contain primitive data types"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"a document is a nested object\" usually viewed as JSON, stored in collections and retrieved by key, with \"a collection is roughly equivalent to a table in a relational database.\""
+    },
+    {
+      "question": "Why can schema evolution in document databases be a \"blessing and a curse\"?",
+      "options": [
+        "Flexible, expressive schemas can evolve as an application grows, but if developers aren't careful, data can become inconsistent and bloated, and schema changes can break downstream ingestion if not communicated before deployment",
+        "Schemas are enforced so strictly that they can never change",
+        "Document databases cannot support any schema at all",
+        "Schema evolution always improves data quality automatically"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes document schema flexibility as \"a blessing and a curse,\" noting the risk of inconsistent, bloated data and downstream ingestion breaks when schema changes aren't communicated in time."
+    },
+    {
+      "question": "What does the book say about indexes in document databases?",
+      "options": [
+        "Most document databases support the creation of indexes and lookup tables, allowing retrieval of documents by specific properties such as name",
+        "Document databases never support indexes",
+        "Indexes are available only in relational databases",
+        "Indexes make document retrieval impossible"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"most document databases also support the creation of indexes and lookup tables to allow retrieval of documents by specific properties,\" e.g. an index on name."
+    },
+    {
+      "question": "What does the book say about ACID compliance and consistency in document stores?",
+      "options": [
+        "They are generally not ACID compliant, and many are eventually consistent; allowing data distribution across a cluster is a boon for scaling but can lead to catastrophes when implications are misunderstood",
+        "They are always fully ACID compliant",
+        "They guarantee strongly consistent reads on every operation",
+        "They never replicate data across a cluster"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says document stores \"are generally not ACID compliant, unlike relational databases,\" and that many are eventually consistent, with distribution \"a boon for scaling and performance but can lead to catastrophes\" when misunderstood."
+    },
+    {
+      "question": "What two approaches does the book describe for running analytics on document stores, and what downside applies to the scan approach?",
+      "options": [
+        "Running a full scan to extract all data from a collection or employing a CDC strategy to send events to a target stream; full scans have performance and cost implications, slowing the database and often incurring significant per-scan fees on serverless cloud offerings",
+        "Full scans are always free and instant",
+        "CDC cannot be used with document stores",
+        "Analytics must be run on the document store directly with no extraction"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says engineers \"generally must run a full scan... or employ a CDC strategy,\" and that \"the scan often slows the database as it runs, and many serverless cloud offerings charge a significant fee for each full scan.\""
+    },
+    {
+      "question": "In which domains does the book say wide-column databases have become popular?",
+      "options": [
+        "Ecommerce, fintech, ad tech, IoT, and real-time personalization",
+        "Only government archival systems",
+        "Only desktop spreadsheet applications",
+        "Only mainframe batch processing"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says these characteristics \"have made wide-column databases popular in ecommerce, fintech, ad tech, IoT, and real-time personalization applications.\""
+    },
+    {
+      "question": "How must data engineers generally handle complex queries against wide-column databases?",
+      "options": [
+        "Extract data and send it to a secondary analytics system, either by running large scans or employing CDC to capture an event stream",
+        "Run complex queries directly on the wide-column database",
+        "They cannot extract data at all",
+        "Complex queries must be written in SQL within the database"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says wide-column databases don't support complex queries, so engineers \"must generally extract data and send it to a secondary analytics system... by running large scans for the extraction or employing CDC to capture an event stream.\""
+    },
+    {
+      "question": "What specialized query languages does the book say graph databases may use?",
+      "options": [
+        "SPARQL, Resource Description Framework (RDF), Graph Query Language (GQL), and Cypher",
+        "SQL, PL/SQL, and T-SQL only",
+        "JSON and XML only",
+        "Python and R only"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says graph databases \"utilize specialized query languages such as SPARQL, Resource Description Framework (RDF), Graph Query Language (GQL), and Cypher.\""
+    },
+    {
+      "question": "What three options does the book present to data engineers working with graph data?",
+      "options": [
+        "Map the source system graph data into one of their existing preferred paradigms, analyze the graph data within the source system itself, or adopt graph-specific analytics tools",
+        "Only convert all graph data into JSON documents",
+        "Only delete graph data after ingestion",
+        "Only store graph data as flat text files"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists exactly these three choices: mapping to existing paradigms, analyzing within the source, or adopting graph-specific analytics tools."
+    },
+    {
+      "question": "How can graph data be handled in relational systems, and what caution does the book raise about transactional graph databases?",
+      "options": [
+        "Graph data can be reencoded into rows in a relational database; transactional graph databases are designed for analytics, although large queries may overload production systems",
+        "Graph data can never be stored outside a graph database",
+        "Transactional graph databases are immune to overload",
+        "Relational databases cannot represent graph structures at all"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"graph data can be reencoded into rows in a relational database,\" and \"transactional graph databases are also designed for analytics, although large queries may overload production systems.\""
+    },
+    {
+      "question": "What are the two prominent use cases for a search database that the book identifies?",
+      "options": [
+        "Text search and log analysis",
+        "Transactional processing and batch loading",
+        "Session caching and key lookups",
+        "Graph traversal and time-series aggregation"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"two prominent use cases exist for a search database: text search and log analysis.\""
+    },
+    {
+      "question": "How does the book describe text search and log analysis as search-database workloads?",
+      "options": [
+        "Text search matches on exact, fuzzy, or semantically similar keywords or phrases; log analysis is used for anomaly detection, real-time monitoring, security analytics, and operational analytics",
+        "Text search only matches exact strings; log analysis only counts lines",
+        "Both are limited to structured relational queries",
+        "Log analysis cannot use indexes"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines text search as searching \"a body of text for keywords or phrases, matching on exact, fuzzy, or semantically similar matches,\" and log analysis as serving anomaly detection, real-time monitoring, security analytics, and operational analytics."
+    },
+    {
+      "question": "Which search database examples does the book give, and what application use case does it mention?",
+      "options": [
+        "Elasticsearch, Apache Solr or Lucene, and Algolia — for example, an ecommerce site may power its product search with a search database",
+        "Oracle and PostgreSQL",
+        "MongoDB and Cassandra",
+        "Neo4j and Amazon Neptune"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names Elasticsearch, Apache Solr or Lucene, and Algolia, and gives the ecommerce product-search example."
+    },
+    {
+      "question": "What is a time series, and what examples does the book give?",
+      "options": [
+        "A series of values organized by time — for example, stock prices moving as trades are executed or a weather sensor taking atmospheric temperatures every minute",
+        "A series of unrelated text documents",
+        "A set of user profiles indexed by key",
+        "A graph of connected users"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines a time series as \"a series of values organized by time,\" giving stock prices and weather sensor readings as examples."
+    },
+    {
+      "question": "Why are time-series databases often write-heavy, and what technique do they commonly use to support fast writes and reads?",
+      "options": [
+        "They address growing, high-velocity data volumes from IoT, event and application logs, ad tech, and fintech, and often utilize memory buffering to support fast writes and reads",
+        "They avoid all writes by design",
+        "They only handle low-velocity archival data",
+        "They use disk-only storage with no memory involvement"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says these workloads \"are write-heavy\" and that \"time-series databases often utilize memory buffering to support fast writes and reads.\""
+    },
+    {
+      "question": "What distinction does the book draw between measurement-based and event-based data in time-series databases?",
+      "options": [
+        "Measurement data is generated regularly (e.g. temperature or air-quality sensors); event-based data is irregular and created every time an event occurs (e.g. a motion sensor detecting movement)",
+        "Measurement data is irregular and event-based data is regular",
+        "Measurement data is always human-typed",
+        "The two terms are synonyms"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"measurement data is generated regularly, such as temperature or air-quality sensors,\" while \"event-based data is irregular and created every time an event occurs—for instance, when a motion sensor detects movement.\""
+    },
+    {
+      "question": "What does the book say about the schema, ordering, and analytics fit of time-series data?",
+      "options": [
+        "The schema typically contains a timestamp and a small set of fields, data is ordered by timestamp, and time-series databases suit operational analytics but are not great for BI use cases; joins are not common",
+        "Time-series data is unordered and supports full SQL joins",
+        "Time-series databases are ideal for BI dashboards",
+        "Time-series schemas require dozens of related tables"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the schema contains a timestamp and small set of fields, data is ordered by the timestamp, it's \"suitable for operational analytics but not great for BI use cases,\" and \"joins are not common.\""
+    },
+    {
+      "question": "What is REST, and where does the book say its practices were laid out?",
+      "options": [
+        "REST stands for representational state transfer, a set of practices and philosophies for building HTTP web APIs laid out by Roy Fielding in 2000 in a PhD dissertation",
+        "REST stands for remote event state transfer, invented by Facebook",
+        "REST is a relational query language defined by IBM",
+        "REST is a proprietary Google protocol"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says REST \"stands for representational state transfer\" and was \"laid out by Roy Fielding in 2000 in a PhD dissertation.\""
+    },
+    {
+      "question": "What does it mean that REST interactions are stateless?",
+      "options": [
+        "There is no notion of a session with associated state variables such as a working directory; each REST call is independent, and calls change the system's state globally rather than per session",
+        "REST calls cannot change any state at all",
+        "Every REST call depends on the previous call's session",
+        "REST requires a persistent terminal session"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts REST with a Linux terminal session: no session state variables, each call independent, and changes are global to the full system."
+    },
+    {
+      "question": "What criticism of REST does the book relay, and what consequence does it note for developers?",
+      "options": [
+        "REST is in no way a full specification, so developers utilizing an API must gain a significant amount of domain knowledge to build applications or pull data effectively",
+        "REST is too formally specified and hard to use",
+        "REST cannot be used over HTTP",
+        "REST only supports write operations"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes critics \"point out that REST is in no way a full specification,\" so developers must gain significant domain knowledge."
+    },
+    {
+      "question": "What developments have simplified setting up data-ingestion pipelines from REST APIs?",
+      "options": [
+        "Client libraries (especially in Python) that handle authentication and map methods into accessible classes, plus off-the-shelf connectors and platforms for building custom connectors",
+        "REST APIs now automatically push data with no code",
+        "All REST APIs now share a single universal schema",
+        "Custom connector code has been banned"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says data providers frequently supply client libraries, and various services and open source libraries provide off-the-shelf connectors and simplify custom connector building."
+    },
+    {
+      "question": "Despite connectors and client libraries, why does the book say engineers still need to write and maintain custom code to pull data from APIs?",
+      "options": [
+        "There are numerous data APIs without client libraries or out-of-the-box connector support, and at virtually any large company data engineers will need custom code that requires understanding the data structure and choosing a synchronization strategy",
+        "APIs never require any code at all",
+        "All APIs provide connectors, so no custom code is ever needed",
+        "Custom code is only needed for on-premises systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says low-level plumbing tasks \"still consume many resources\" and that \"at virtually any large company, data engineers will need to deal with the problem of writing and maintaining custom code to pull data from APIs.\""
+    },
+    {
+      "question": "What is gRPC, and what serialization standard is it built around?",
+      "options": [
+        "A remote procedure call library developed internally at Google in 2015 and later released as an open standard, built around the Protocol Buffers open data serialization standard",
+        "A REST-based JSON API framework",
+        "A message queue protocol from Amazon",
+        "A graph query language"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says gRPC \"is a remote procedure call library developed internally at Google in 2015 and later released as an open standard,\" built around Protocol Buffers."
+    },
+    {
+      "question": "What efficiency aspects does the book say gRPC emphasizes, and what does it enable for engineers?",
+      "options": [
+        "Efficient bidirectional exchange of data over HTTP/2, considering CPU utilization, power consumption, battery life, and bandwidth; its specific technical standards allow common client libraries and transferable skills",
+        "Maximum disk usage regardless of cost",
+        "Only backward compatibility with SOAP",
+        "Human-readable log output"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says gRPC \"emphasizes the efficient bidirectional exchange of data over HTTP/2\" and, like GraphQL, \"imposes much more specific technical standards than REST,\" enabling common client libraries and reusable skills."
+    },
+    {
+      "question": "What is the core concept of cloud data sharing, and what does the book say can serve as a sharing platform?",
+      "options": [
+        "A multitenant system supports security policies for sharing data among tenants; any public cloud object storage system with a fine-grained permission system can be a platform for data sharing",
+        "Data sharing requires emailing files to partners",
+        "Only relational databases can share data",
+        "Data sharing is limited to single-tenant systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says cloud data sharing is \"that a multitenant system supports security policies for sharing data among tenants,\" and \"any public cloud object storage system with a fine-grained permission system can be a platform for data sharing.\""
+    },
+    {
+      "question": "What capabilities does the book say modern data-sharing platforms support, and how does data sharing relate to data mesh?",
+      "options": [
+        "Row, column, and sensitive data filtering, plus data marketplaces; data sharing facilitates decentralized data management patterns such as data mesh",
+        "Only full-database copies with no filtering",
+        "No filtering capabilities of any kind",
+        "Data sharing prevents decentralization"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says many modern sharing platforms \"support row, column, and sensitive data filtering,\" and that data sharing \"facilitates decentralized data management patterns such as data mesh.\""
+    },
+    {
+      "question": "Why does the book say companies want to make their data available, and what examples does it give?",
+      "options": [
+        "Data is sticky and creates a flywheel — greater adoption and usage means more data; examples include the US Bureau of Labor Statistics, NASA, and Facebook sharing data with advertisers",
+        "Companies are legally required to publish all data",
+        "Making data available always costs more than it returns",
+        "Data sharing only ever applies to government agencies"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"data is sticky, and a flywheel is created by allowing users to integrate and extend their application,\" giving BLS, NASA, and Facebook as examples."
+    },
+    {
+      "question": "What methods does the book describe for direct third-party data access, and what CRM workflow does it describe?",
+      "options": [
+        "APIs, data sharing on a cloud platform, or data download; a common workflow pulls CRM data, blends it through a customer scoring model, then uses reverse ETL to send the data back into the CRM for better-qualified leads",
+        "Only manual copy-paste from websites",
+        "Only FTP file transfers",
+        "Only read-only access to shared databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"direct third-party data access is commonly done via APIs, through data sharing on a cloud platform, or through data download,\" and describes the CRM scoring and reverse ETL workflow."
+    },
+    {
+      "question": "How does the book define a message queue, and how are messages removed from it?",
+      "options": [
+        "A mechanism to asynchronously send data (usually small messages, in the kilobytes) between discrete systems using a publish and subscribe model; the subscriber acknowledges receipt of the message, removing it from the queue",
+        "A synchronous channel that holds messages forever",
+        "A tool for storing large files on disk",
+        "A database used only for analytics"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines a message queue as an asynchronous publish/subscribe mechanism for small messages, with the subscriber's acknowledgment removing the message from the queue."
+    },
+    {
+      "question": "What benefits and key considerations does the book attribute to message queues?",
+      "options": [
+        "They decouple applications, buffer transient load spikes, and make messages durable through distributed replication; key considerations are frequency of delivery, message ordering, and scalability",
+        "They couple all systems tightly and eliminate ordering concerns",
+        "They only work within a single process",
+        "They never persist any message"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says message queues \"allow applications and systems to be decoupled,\" \"buffer messages to handle transient load spikes,\" and make messages durable via replication; considerations include frequency of delivery, message ordering, and scalability."
+    },
+    {
+      "question": "What does the book say about message ordering, FIFO, and what engineers should assume?",
+      "options": [
+        "Strict FIFO means a message ingested first is always delivered first, but in practice messages can be published and received out of order in highly distributed systems; don't assume order unless the queue guarantees it, and design for out-of-order delivery",
+        "All message queues guarantee strict FIFO with no overhead",
+        "Message ordering never matters to downstream subscribers",
+        "Out-of-order delivery is impossible in any queue"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explains strict FIFO, notes SQS standard queues only make \"best effort\" at order, and advises: \"In general, don't assume that your messages will be delivered in order... You typically need to design for out-of-order message delivery.\""
+    },
+    {
+      "question": "What does the book say about delivery frequency of messages, and what does it recommend for handling duplicates?",
+      "options": [
+        "Messages can be sent exactly once or at least once; systems should ideally be idempotent so processing a message once produces the same outcome as processing it multiple times",
+        "Messages are always delivered exactly once",
+        "Duplicate messages are always discarded automatically",
+        "Delivery frequency only matters for batch systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says messages \"can be sent exactly once or at least once,\" and that \"ideally, systems should be idempotent,\" with the outcome of processing once identical to processing multiple times."
+    },
+    {
+      "question": "Why does the book say exactly-once delivery is technically impossible to guarantee?",
+      "options": [
+        "It is impossible to guarantee, as illustrated by the Two Generals Problem, and a consumer can fail right before acknowledging even an exactly-once delivery",
+        "It is possible only with strict FIFO queues",
+        "It requires disabling replication entirely",
+        "It is guaranteed by all cloud providers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book's footnote says \"exactly once delivery is impossible to guarantee, as illustrated by the Two Generals Problem,\" and it gives the consumer-fails-before-acknowledging scenario."
+    },
+    {
+      "question": "How does the book characterize the scalability of popular message queues, and what complications arise?",
+      "options": [
+        "They are horizontally scalable, running across multiple servers, and can scale up and down dynamically, buffer messages, and durably store them; complications include multiple deliveries and fuzzy ordering",
+        "They are limited to a single server",
+        "They cannot buffer messages when systems fall behind",
+        "Horizontal scaling eliminates all delivery complications"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the most popular queues \"are horizontally scalable, running across multiple servers,\" but that this \"can create a variety of complications, as mentioned previously (multiple deliveries and fuzzy ordering).\""
+    },
+    {
+      "question": "How does the book contrast a message queue with an event-streaming platform?",
+      "options": [
+        "A message queue primarily routes messages with certain delivery guarantees; an event-streaming platform ingests and processes data in an ordered log of records that is retained and can be replayed from a past point in time",
+        "Event-streaming platforms remove messages immediately after delivery",
+        "Message queues retain records for months by default",
+        "The two are identical in every respect"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the big difference is that a message queue \"is primarily used to route messages with certain delivery guarantees,\" while an event-streaming platform processes data \"in an ordered log of records,\" retained and replayable."
+    },
+    {
+      "question": "What features does the book say an event has in an event-streaming platform?",
+      "options": [
+        "A key, a value, and a timestamp — and multiple key-value timestamps might be contained in a single event",
+        "Only a timestamp",
+        "Only a payload string",
+        "Only a schema definition"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"an event has the following features: a key, a value, and a timestamp,\" with an ecommerce order as the example."
+    },
+    {
+      "question": "What is a topic in an event-streaming platform, and how many producers and consumers can it have?",
+      "options": [
+        "A collection of related events (e.g. fraud alerts, customer orders, or IoT temperature readings); a topic can have zero, one, or multiple producers and consumers",
+        "A single event with a key and value",
+        "A queue that allows only one consumer",
+        "A physical disk partition"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines a topic as \"a collection of related events,\" noting it \"can have zero, one, or multiple producers and customers on most event-streaming platforms.\""
+    },
+    {
+      "question": "What example does the book give of a topic with multiple consumers?",
+      "options": [
+        "A web orders topic with fulfillment and marketing as subscribers — fulfillment triggers the fulfillment process while marketing runs real-time analytics or trains ML models",
+        "A temperature topic consumed only by the furnace controller",
+        "A topic that cannot be consumed at all",
+        "A topic restricted to a single internal dashboard"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book walks through the web-orders topic: the fulfillment subscriber triggers fulfillment, and marketing runs real-time analytics or ML tuning."
+    },
+    {
+      "question": "How does the book analogize stream partitions, and how are messages distributed among them?",
+      "options": [
+        "Partitions are like the lanes of a multilane freeway, allowing parallelism and higher throughput; messages are distributed across partitions by partition key, and messages with the same partition key always end up in the same partition",
+        "Partitions are like pages in a book read in any order",
+        "Partitions distribute messages randomly with no key logic",
+        "Each partition can hold only one message"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"a good analogy is a multilane freeway,\" with parallelism and higher throughput, and messages distributed by partition key, where the same key always lands in the same partition."
+    },
+    {
+      "question": "How does the book illustrate a partition-key calculation, and what IoT pattern does it recommend?",
+      "options": [
+        "Using a numeric message ID, you divide by 3 and take the remainder to pick among three partitions; in IoT, use a device ID as the partition key so all messages from a device go to the same processing server",
+        "Partitions are chosen by alphabetical order of the key",
+        "IoT devices must use the state as the partition key",
+        "Partition keys are assigned randomly at runtime"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book's Figure 5-11 example divides a numeric ID by 3 and takes the remainder, and it recommends using a device ID as the partition key for IoT so each device's messages reach one processing server."
+    },
+    {
+      "question": "Why are event-streaming platforms a good choice when you need reliable production, storage, and ingestion of event data?",
+      "options": [
+        "They are typically distributed systems with streams stored on various nodes, so if a node goes down another replaces it and the stream is still accessible, meaning records aren't lost",
+        "They store all records on a single node",
+        "They delete records as soon as a node fails",
+        "They cannot replicate data across nodes"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says this fault tolerance and resilience \"make streaming platforms a good choice when you need a system that can reliably produce, store, and ingest event data.\""
+    },
+    {
+      "question": "What two categories of upstream stakeholders does the book say a data engineer typically deals with, and what defines each?",
+      "options": [
+        "Systems stakeholders, who build and maintain the source systems (software engineers, application developers, third parties), and data stakeholders, who own and control access to the data (IT, a data governance group, or third parties)",
+        "Executives, who approve budgets, and analysts, who write reports",
+        "Customers, who use products, and vendors, who sell them",
+        "Only a single engineering team with no distinction"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines systems stakeholders as those who build and maintain source systems and data stakeholders as those who \"own and control access to the data you want,\" noting they are often different people and sometimes the same."
+    },
+    {
+      "question": "What does the book call among the most overlooked areas where data engineers can get a lot of value?",
+      "options": [
+        "Creating a feedback loop between data engineers and stakeholders of the source systems to create awareness of how data is consumed and used",
+        "Writing perfect SQL for every pipeline",
+        "Purchasing the newest orchestration tool",
+        "Hiring more data analysts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says creating this feedback loop \"is among the single most overlooked areas where data engineers can get a lot of value,\" so engineers are made aware of upstream impacts such as schema or data changes."
+    },
+    {
+      "question": "Where does the book say data contracts should be stored, and how should they be formatted?",
+      "options": [
+        "In a well-known, easy-to-find location such as a GitHub repo or internal documentation site, and ideally in a standardized form so they can be integrated into development or queried programmatically",
+        "In a private personal notebook",
+        "Only in email correspondence",
+        "As unformatted prose in a wiki nobody reads"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends storing data contracts \"in a well-known and easy-to-find location such as a GitHub repo or internal documentation site\" and formatting them in a standardized form."
+    },
+    {
+      "question": "How does the book characterize the data engineer's control over source systems and their undercurrents?",
+      "options": [
+        "Source systems are generally outside the control of the data engineer, and there's an implicit assumption that their stakeholders follow best practices for data management, DataOps, and other undercurrents",
+        "Data engineers fully own and operate every source system",
+        "Source systems never involve other stakeholders",
+        "Undercurrents never apply to source systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"source systems are generally outside the control of the data engineer,\" with an implicit assumption that owners follow best practices; the engineer should get as much upstream support as possible."
+    },
+    {
+      "question": "Which security considerations does the book list for source systems?",
+      "options": [
+        "Whether data is encrypted at rest and in transit, whether you access the source over the public internet or a VPN, keeping credentials locked away (key manager, password manager, or SSO), and trusting but verifying the source system",
+        "Only whether the source has a firewall",
+        "Only whether the source uses HTTPS",
+        "Security of source systems is never the engineer's concern"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists all four areas, concluding \"always be sure to trust but verify that the source system is legitimate.\""
+    },
+    {
+      "question": "What does the book say about data management of source systems from a data engineer's perspective?",
+      "options": [
+        "In most cases you will have only peripheral control, if any, so you should understand how data is managed upstream since it directly influences ingestion, storage, and transformation",
+        "Data engineers have total control over upstream data management",
+        "Data management of source systems is irrelevant to pipelines",
+        "Source systems cannot be governed or documented"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"in most cases, you will have only peripheral control—if any control at all—over source systems and the data they produce,\" and that understanding upstream management directly influences how you ingest, store, and transform data."
+    },
+    {
+      "question": "Which data-management areas does the book list to consider about source systems, and what privacy question does it raise?",
+      "options": [
+        "Data governance, data quality, schema changes, master data management, privacy and ethics, and regulatory requirements — including whether you have access to raw data or it will be obfuscated, how long it's retained, and whether it shifts locations",
+        "Only storage cost and query performance",
+        "Only the number of tables in the source",
+        "Privacy and regulatory concerns never apply to source systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these areas and raises questions about raw versus obfuscated data, retention, location shifts, and whether regulations even permit access."
+    },
+    {
+      "question": "Why does the book say operational excellence (DevOps, DataOps, MLOps, XOps) should extend up and down the entire stack?",
+      "options": [
+        "So the data engineering lifecycle is supported at both ends, even though it's often not fully realized in practice",
+        "So that only the data engineering team can be blamed for failures",
+        "Because source system teams never need operational practices",
+        "It is required by law"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"operational excellence... should extend up and down the entire stack and support the data engineering and lifecycle. While this is ideal, it's often not fully realized.\""
+    },
+    {
+      "question": "What DataOps observability checks does the book recommend for source systems?",
+      "options": [
+        "Set up monitoring for source system uptime and checks that data conforms to expectations — e.g. is the data good quality, is the schema conformant, are customer records consistent, and is data hashed as stipulated by internal policy",
+        "Only monitor the data warehouse",
+        "Only track the number of tables",
+        "Observability of source systems is impossible"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these exact checks under DataOps observability, including schema conformance, record consistency, and policy-stipulated hashing."
+    },
+    {
+      "question": "What incident-response planning does the book recommend for source system failures?",
+      "options": [
+        "Plan how your pipeline behaves if a source system goes offline and how to backfill the \"lost\" data once the system is back online",
+        "Ignore the failure until analysts complain",
+        "Delete the affected pipeline entirely",
+        "Shift the incident to the source system team with no plan"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book asks: \"How will your data pipeline behave if a source system goes offline? What's your plan to backfill the 'lost' data once the source system is back online?\""
+    },
+    {
+      "question": "What four factors does the book list for understanding source system architecture strengths and weaknesses?",
+      "options": [
+        "Reliability, durability, availability, and people",
+        "Cost, speed, color, and branding",
+        "Schema, index, query, and cache",
+        "Only uptime percentage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book discusses source system architectures under reliability, durability, availability, and people (who's in charge of the design)."
+    },
+    {
+      "question": "What does the book say about reliability and durability of source systems?",
+      "options": [
+        "All systems suffer from entropy — outputs drift, bugs are introduced, and glitches happen; and everything eventually fails, so you must account for how an inevitable failure or outage will affect your managed data systems",
+        "Reliable systems never fail and durable systems cannot lose data",
+        "Reliability and durability are the same concept",
+        "Source systems are guaranteed to be perfectly reliable"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"all systems suffer from entropy at some point\" under reliability, and under durability: \"everything fails... you need to account for how an inevitable failure or outage will affect your managed data systems.\""
+    },
+    {
+      "question": "What orchestration considerations does the book raise for accessing source systems?",
+      "options": [
+        "Ensuring your orchestration has correct network access, authentication, and authorization; understanding data availability cadence (fixed schedule vs whenever); and deciding whether to share common frameworks such as Kubernetes or Airflow with the application team while balancing integration benefits against tight-coupling risk",
+        "Only the brand of orchestration tool",
+        "Only the number of DAGs",
+        "Orchestration never touches source systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says orchestration mainly requires \"the correct network access, authentication, and authorization,\" plus cadence/frequency and common-framework decisions with no single correct answer."
+    },
+    {
+      "question": "What software-engineering considerations does the book list for writing code to access a source system?",
+      "options": [
+        "Networking (HTTPS, SSH, VPN), authentication and authorization (credentials stored safely, correct IAM roles), access patterns (API pagination, driver compatibility, retries and timeouts), orchestration integration, parallelization, and deployment",
+        "Only variable naming conventions",
+        "Only code formatting style",
+        "Software engineering skills are not needed for source access"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists exactly these six areas: networking, authentication/authorization, access patterns, orchestration, parallelization, and deployment."
+    },
+    {
+      "question": "What does the book warn about data engineers who treat source systems as \"someone else's problem\"?",
+      "options": [
+        "They do so at their peril — data engineers who abuse source systems may need to look for another job when production goes down",
+        "It is the recommended best practice",
+        "Source systems never affect production",
+        "There are no consequences for ignoring source systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"data engineers tend to treat source systems as 'someone else's problem'—do this at your peril! Data engineers who abuse source systems may need to look for another job when production goes down.\""
+    },
+    {
+      "question": "What benefits does the book say better collaboration with source system teams can bring?",
+      "options": [
+        "Higher-quality data, more successful outcomes, and better data products",
+        "Lower salaries for data engineers",
+        "Elimination of all pipelines",
+        "Guaranteed zero incidents"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says \"if there's a stick, there's also a carrot. Better collaboration with source system teams can lead to higher-quality data, more successful outcomes, and better data products.\""
+    },
+    {
+      "question": "How does the book describe the growing integration between data engineers and source system teams?",
+      "options": [
+        "Reverse ETL has risen into prominence, an event-streaming platform can serve event-driven architectures and analytics, and a source system can also be a data engineering system — so build shared systems where it makes sense",
+        "The two teams should never interact",
+        "Source systems can never be data engineering systems",
+        "Reverse ETL has been deprecated permanently"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes reverse ETL's rise, that a source system can also be a data engineering system, and advises to \"build shared systems where it makes sense to do so.\""
+    },
+    {
+      "question": "What does the book recommend for building user-facing value with application teams?",
+      "options": [
+        "Look for opportunities to build user-facing data products, talk to application teams about analytics they'd like to present to users or places where ML could improve the user experience, and make application teams stakeholders in data engineering",
+        "Keep all data products internal",
+        "Avoid discussing ML with application teams",
+        "Wait for application teams to come to you"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives exactly this advice in its conclusion, including making application teams stakeholders and sharing successes."
+    }
+  ]
+}

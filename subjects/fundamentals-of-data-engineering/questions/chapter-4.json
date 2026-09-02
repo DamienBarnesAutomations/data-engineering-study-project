@@ -1,0 +1,1427 @@
+{
+  "title": "Chapter 4 — Choosing Technologies Across the Data Engineering Lifecycle: Quality Question Bank",
+  "source_file": "chapter-4-choosing-technologies-across-the-data-engineering-lifecycle.md",
+  "original_question_file": "chapter-4.json",
+  "question_count": 129,
+  "questions": [
+    {
+      "question": "The book insists on \"architecture first, technology second.\" How does it distinguish architecture from tools?",
+      "options": [
+        "Architecture is strategic — the high-level design, roadmap, and blueprint (the what, why, and when); tools are tactical — how the architecture gets realized",
+        "Architecture refers only to cloud systems, while tools refer only to on-premises systems",
+        "Architecture and tools are interchangeable terms as the book uses them",
+        "Architecture decisions are made by developers, while tool decisions are made by executives"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states plainly: \"Architecture is strategic; tools are tactical... Architecture is the what, why, and when. Tools are used to make the architecture a reality; tools are the how.\""
+    },
+    {
+      "question": "What does the book call it when a small data team tries to emulate a giant tech company's complex, bleeding-edge practices, usually wasting time and money?",
+      "options": [
+        "Cargo-cult engineering",
+        "Resume-driven development",
+        "Shiny object syndrome",
+        "Undifferentiated heavy lifting"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book names this specific pattern — small teams reading about a giant company's cutting-edge tech and trying to replicate it — \"cargo-cult engineering.\""
+    },
+    {
+      "question": "According to the book, what should small teams or teams with weaker technical chops primarily rely on?",
+      "options": [
+        "Custom-built distributed systems to match big-tech practices",
+        "As many managed and SaaS tools as possible so limited bandwidth can focus on high-value problems",
+        "Only open-source tools that require heavy operational work",
+        "A single monolithic platform that never needs replacement"
+      ],
+      "correctIndex": 1,
+      "explanation": "The book advises: \"Especially for small teams or teams with weaker technical chops, use as many managed and SaaS tools as possible, and dedicate your limited bandwidth to solving the complex problems that directly add value to the business.\""
+    },
+    {
+      "question": "Why does the book say \"perfect is the enemy of good\" in the context of technology selection?",
+      "options": [
+        "Because teams that deliberate for months or years without deciding often fail to deliver value and sometimes dissolve",
+        "Because the newest technology is always the best choice",
+        "Because architecture should never be revisited",
+        "Because cost is the only factor that matters"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns that slow decisions are \"the kiss of death to data teams\" and that some teams dissolve after failing to deliver value."
+    },
+    {
+      "question": "What is interoperability in the book's definition?",
+      "options": [
+        "How various technologies or systems connect, exchange information, and interact",
+        "The ability of a single tool to replace every other tool",
+        "A measure of how many languages a team knows",
+        "The total cost of ownership of a technology stack"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter defines interoperability as how technologies \"connect, exchange information, and interact.\""
+    },
+    {
+      "question": "What does the book recommend regarding modularity and swapping technologies?",
+      "options": [
+        "Design for modularity so technologies can be swapped as new practices become available",
+        "Lock into a single vendor forever for simplicity",
+        "Never change tools once they are in production",
+        "Always prefer the most complex possible integration"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book repeatedly advises designing for modularity and the ability to easily swap technologies."
+    },
+    {
+      "question": "What is Total Cost of Ownership (TCO)?",
+      "options": [
+        "The total estimated cost of an initiative, including direct and indirect costs of products and services",
+        "Only the cloud provider's monthly invoice",
+        "Only the salaries of the data team",
+        "The cost of open-source licenses only"
+      ],
+      "correctIndex": 0,
+      "explanation": "TCO includes both direct costs (team salaries, cloud bills) and indirect/overhead costs."
+    },
+    {
+      "question": "What's the difference between capital expenses (capex) and operational expenses (opex), and which does the book recommend data engineers favor?",
+      "options": [
+        "Capex requires large upfront investment with long-term depreciation (traditional on-prem purchases); opex is gradual and pay-as-you-go (cloud) — the book recommends an opex-first, cloud-centered approach",
+        "Opex requires large upfront investment; capex is pay-as-you-go — the book recommends capex-first",
+        "Capex and opex both refer exclusively to cloud spending models",
+        "The book recommends capex-first for maximum long-term stability"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts capex's up-front, depreciating investment with opex's flexible, consumption-based model and urges an \"opex-first approach centered on the cloud.\""
+    },
+    {
+      "question": "What is \"total opportunity cost of ownership\" (TOCO), and why does the book call ignoring it \"a massive blind spot\"?",
+      "options": [
+        "TOCO is the cost of the alternatives given up by committing to a technology — ignoring it is risky because moving away from a poor or obsolete choice can be difficult and expensive",
+        "TOCO is simply the licensing fee charged for an open source project",
+        "TOCO is just another name for TCO, describing the identical cost concept",
+        "TOCO applies only to on-premises hardware purchases, never cloud services"
+      ],
+      "correctIndex": 0,
+      "explanation": "TOCO is \"the cost of lost opportunities that we incur in choosing a technology.\" The book calls failure to evaluate it a massive blind spot."
+    },
+    {
+      "question": "How does the book characterize inflexible data technologies?",
+      "options": [
+        "Like bear traps — easy to get into and extremely painful to escape",
+        "Like temporary scaffolding that is always easy to remove",
+        "Like fully reversible two-way doors by definition",
+        "Like free utilities that never create lock-in"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explicitly uses the \"bear traps\" metaphor for inflexible technologies."
+    },
+    {
+      "question": "What is the core message of FinOps according to the quote the book highlights?",
+      "options": [
+        "FinOps is about making money — cloud spend can drive revenue, growth, and velocity, not merely about saving money",
+        "FinOps is only about reducing cloud bills to the absolute minimum",
+        "FinOps is a pure accounting exercise with no engineering involvement",
+        "FinOps applies only to on-premises hardware"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book quotes: \"If it seems that FinOps is about saving money, then think again. FinOps is about making money.\""
+    },
+    {
+      "question": "Object storage and SQL are given as \"immutable\" technology examples, while a wave of JavaScript frontend frameworks illustrates \"transitory\" ones. What test does the book's Lindy effect suggest for telling them apart?",
+      "options": [
+        "The longer a technology has already been established and used, the longer it's likely to keep being used",
+        "Immutable technologies are always open source, while transitory ones are always proprietary",
+        "Only technologies invented before the year 2000 count as immutable",
+        "Any cloud-native technology is automatically classified as transitory"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Immutable technologies benefit from the Lindy effect: the longer a technology has been established, the longer it will be used.\""
+    },
+    {
+      "question": "What time horizon does the book recommend for reevaluating technology choices?",
+      "options": [
+        "Every two years",
+        "Every ten years",
+        "Only when a major outage occurs",
+        "Never — once chosen, stick with a technology forever"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book suggests evaluating tools every two years and building transitory tools around immutable foundations."
+    },
+    {
+      "question": "What is the book's advice regarding immutable versus transitory technologies?",
+      "options": [
+        "Use immutable technologies as the base and build transitory tools around them",
+        "Prefer only the newest transitory technologies",
+        "Avoid all immutable technologies because they are outdated",
+        "Treat every technology as equally likely to last forever"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Whenever possible, find the immutable technologies... and use those as your base. Build transitory tools around the immutables.\""
+    },
+    {
+      "question": "What does the book mean by \"data gravity,\" and why should data engineers watch out for it?",
+      "options": [
+        "Once data lands in a given cloud, the egress fees and migration effort to move it elsewhere can be very high, creating vendor lock-in",
+        "It refers to how large datasets physically slow down network hardware",
+        "It describes the tendency of data quality to degrade over time as data ages",
+        "It's a term for how ML models become biased toward larger training sets"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Data gravity is real: once data lands in a cloud, the cost to extract it and migrate processes can be very high.\""
+    },
+    {
+      "question": "The book cites Dropbox's repatriation from AWS to its own hardware as a cautionary example, arguing \"you are not Dropbox, nor are you Cloudflare.\" What point is it making?",
+      "options": [
+        "Dropbox's move made sense only because of its extreme scale and a highly specialized storage product — most companies lack those conditions, so copying the decision is a false-equivalence mistake",
+        "No company should ever consider leaving the public cloud, under any circumstances",
+        "Dropbox's repatriation decision was actually a strategic mistake other companies should avoid",
+        "Repatriation is always cheaper than staying in the cloud once a company stores over 1 terabyte of data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book calls the popular use of the Dropbox case study \"a compelling example of the false equivalence logical fallacy.\""
+    },
+    {
+      "question": "What's the core trade-off in the book's \"build versus buy\" framing, and what's its general recommendation?",
+      "options": [
+        "Building gives end-to-end control but costs resources/expertise; buying saves effort but cedes control — the book recommends building only where it creates real competitive advantage, otherwise using what's already available",
+        "The book recommends always building in-house to avoid any form of vendor lock-in",
+        "The book recommends always buying, since building custom software is never worthwhile",
+        "Build versus buy is framed as a purely legal decision, not a technical or business one"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book's tire analogy: invest in building only when it provides competitive advantage; otherwise \"stand on the shoulders of giants.\""
+    },
+    {
+      "question": "What does COSS (commercial open source software) mean, and how does a typical COSS vendor make money?",
+      "options": [
+        "A vendor offers the \"core\" of an OSS project for free while charging for enhancements, curated distributions, or a fully managed hosted version",
+        "COSS means the source code is kept fully private despite being marketed as \"open\"",
+        "COSS vendors make money exclusively through GitHub sponsorships",
+        "COSS means the software can legally only be used by commercial, not personal, users"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines COSS exactly this way and cites Databricks and Confluent as examples."
+    },
+    {
+      "question": "Through its \"48-hour ETL pipeline\" example and its discussion of multitenancy, what two big cons of monolithic systems does the book highlight?",
+      "options": [
+        "Brittleness (one failure anywhere forces the whole pipeline to restart) and difficulty isolating multiple users' workloads from each other (resource contention)",
+        "Monoliths are always slower to develop initially than modular systems",
+        "Monoliths cannot be hosted in a cloud environment under any circumstances",
+        "Monoliths always cost more in software licensing than modular alternatives"
+      ],
+      "correctIndex": 0,
+      "explanation": "The 48-hour pipeline had to restart entirely on any failure; multitenancy creates resource-contention problems."
+    },
+    {
+      "question": "What is the \"distributed monolith\" pattern, and what example does the book give of a tool that can suffer from it?",
+      "options": [
+        "A distributed system where separate services or nodes still share a common set of dependencies or codebase — Apache Airflow is given as an example, since a client library for one task must be installed cluster-wide",
+        "A monolith that has been fully containerized and is therefore no longer coupled at all",
+        "Running multiple completely independent monoliths side by side with zero shared code",
+        "A deprecated term the book says no longer applies to any modern cloud tooling"
+      ],
+      "correctIndex": 0,
+      "explanation": "Airflow is cited: every service runs the same codebase and dependencies, so one task's client library must be installed everywhere."
+    },
+    {
+      "question": "What two solutions does the book mention for the problems of the distributed monolith?",
+      "options": [
+        "Ephemeral infrastructure (each job gets its own temporary cluster) and proper decomposition into containers",
+        "Always using a single permanent Hadoop cluster",
+        "Forcing every job onto the same set of shared dependencies forever",
+        "Avoiding orchestration tools entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ephemeral clusters (e.g., EMR, Dataproc) and containers are presented as the two main remedies."
+    },
+    {
+      "question": "What are the main advantages the book attributes to modular architectures?",
+      "options": [
+        "Ability to choose the best technology for each job and to swap tools as technology changes",
+        "Fewer systems to reason about and zero interoperability concerns",
+        "Guaranteed lower cost than any monolith",
+        "Elimination of the need for orchestration"
+      ],
+      "correctIndex": 0,
+      "explanation": "Modularity lets engineers pick the best tool per step and replace components over time."
+    },
+    {
+      "question": "What is the main downside of modularity that the book acknowledges?",
+      "options": [
+        "There is more to reason about; interoperability can become a headache; orchestration becomes more complex",
+        "Modularity always increases total cost of ownership",
+        "Modular systems cannot run in the cloud",
+        "Modularity prevents the use of open-source tools"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes that modularity creates more systems to understand and operate and makes orchestration the \"glue.\""
+    },
+    {
+      "question": "A team's serverless function processes a very high, steady rate of individual events, and costs are spiraling. What does the book suggest is worth considering, and why?",
+      "options": [
+        "Multithreading/multiprocessing or a container-based approach, since serverless functions carry per-invocation overhead that can become \"catastrophically expensive\" at high event rates",
+        "Switch to an on-premises mainframe, since serverless is fundamentally incompatible with high event rates",
+        "Reduce the function's memory allocation to zero to cut costs",
+        "Disable autoscaling entirely to make cost fully predictable"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Handling one event per function call at a high event rate can be catastrophically expensive, especially when simpler approaches like multithreading or multiprocessing are great alternatives.\""
+    },
+    {
+      "question": "According to the book's evaluation criteria, which factor most directly favors choosing servers (with containers) over serverless?",
+      "options": [
+        "Workloads with many moving parts or heavy, complex dependencies and compute/memory needs — serverless suits simple, discrete tasks best",
+        "Serverless is always cheaper regardless of workload shape, so servers are never favored",
+        "Servers should be chosen whenever a workload involves any SQL at all",
+        "Containers are only relevant for streaming workloads, never batch workloads"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Serverless works best for simple, discrete tasks... It's not as suitable if you have many moving parts or require a lot of compute or memory horsepower.\""
+    },
+    {
+      "question": "What does the book recommend as the default starting point when evaluating serverless versus servers?",
+      "options": [
+        "Look at using serverless first, then move to servers (with containers) once you have outgrown serverless options",
+        "Always start with dedicated servers for maximum control",
+        "Never use serverless because of cost risk",
+        "Use only Kubernetes from day one"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"We suggest looking at using serverless first and then servers—with containers and orchestration if possible—once you've outgrown serverless options.\""
+    },
+    {
+      "question": "What security caveat does the book raise about container clusters versus full VMs?",
+      "options": [
+        "Container escape is a real risk; a Kubernetes cluster should host code only within an environment of mutual trust, unlike true multitenant VM environments such as EC2",
+        "Containers provide stronger isolation than VMs in all cases",
+        "Kubernetes is safe for any multitenant public workload without additional controls",
+        "Container security is irrelevant because serverless eliminates containers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book explicitly warns that container clusters do not offer the same isolation as VMs and that container escape is a practical risk."
+    },
+    {
+      "question": "The book's \"787 Business Jet vs. Tesla Model S Plaid\" comparison illustrates what common mistake in evaluating database benchmarks?",
+      "options": [
+        "Comparing systems optimized for fundamentally different use cases as if they were interchangeable produces meaningless, \"apples-to-oranges\" conclusions",
+        "That expensive systems always outperform cheap ones on any benchmark",
+        "That benchmarks should always be run on the smallest dataset possible",
+        "That cloud systems are inherently faster than on-premises systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "The jet-versus-car analogy is used to illustrate apples-to-oranges comparisons common in database benchmarking."
+    },
+    {
+      "question": "The book describes a common benchmark trick where vendors use tiny datasets that fit entirely in cache or memory. Why is this misleading?",
+      "options": [
+        "It makes performance look artificially high and understates storage costs, compared to how the system actually behaves at real-world data volumes",
+        "It's actually a fair test, since most production datasets are that small",
+        "It's misleading only for row-based systems, never for columnar databases",
+        "Small test datasets are required by most vendors' legal contracts"
+      ],
+      "correctIndex": 0,
+      "explanation": "Products claiming petabyte scale \"will often use benchmark datasets small enough to easily fit in the storage on your smartphone.\""
+    },
+    {
+      "question": "What is \"asymmetric optimization\" in the context of vendor benchmarks?",
+      "options": [
+        "A vendor tunes its own system heavily (e.g., pre-indexing joins) while leaving the competing system untuned, producing unfair results",
+        "Running the same query on both systems with identical schemas and indexes",
+        "Using only open-source databases for all comparisons",
+        "Publishing only cost figures and never performance figures"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes vendors juicing their own system while applying no comparable tuning to the competitor."
+    },
+    {
+      "question": "What is the book's overall stance on vendor benchmarks?",
+      "options": [
+        "\"Let the buyer beware\" — do your own homework rather than blindly relying on vendor numbers",
+        "Vendor benchmarks are always trustworthy and should be the primary decision factor",
+        "Benchmarks are useless and should be ignored entirely",
+        "Only DeWitt-clause-protected benchmarks are reliable"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter ends the benchmark discussion with \"let the buyer beware.\""
+    },
+    {
+      "question": "When evaluating a technology from a data-management perspective, what kinds of questions does the book suggest asking a vendor?",
+      "options": [
+        "How do you protect data against breaches? What is your compliance with GDPR/CCPA? Can I host data to meet regulatory needs? How do you ensure data quality?",
+        "Only questions about raw query performance",
+        "Only questions about the number of stars on GitHub",
+        "Questions limited to the vendor's marketing slogans"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists exactly these sample questions for assessing data-management practices."
+    },
+    {
+      "question": "For DataOps concerns when evaluating technology, what does the book say you should understand?",
+      "options": [
+        "How much control you have over deploying code, how you will be alerted to problems, and how you will respond to incidents",
+        "Only the theoretical maximum throughput of the system",
+        "Only the list of supported programming languages",
+        "Only the vendor's logo design"
+      ],
+      "correctIndex": 0,
+      "explanation": "The DataOps section focuses on control, alerting, and incident response."
+    },
+    {
+      "question": "Why does the book single out Apache Airflow for discussion even though it generally avoids naming specific tools?",
+      "options": [
+        "Because orchestration is currently dominated by one open-source technology and Airflow has massive mindshare, an active community, and commercial managed offerings",
+        "Because Airflow is the only orchestration tool that ever works",
+        "Because the authors invented Airflow",
+        "Because Airflow is guaranteed never to have scaling issues"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book makes an explicit exception for Airflow because of its dominant position."
+    },
+    {
+      "question": "What are the main downsides of Airflow that the book acknowledges?",
+      "options": [
+        "Non-scalable core components (scheduler and backend DB) that can become bottlenecks; the distributed-monolith dependency pattern; limited support for schema management, lineage, and cataloging; difficult development and testing",
+        "Airflow has no community and no managed offerings",
+        "Airflow can only be run on-premises",
+        "Airflow supports only a single programming language"
+      ],
+      "correctIndex": 0,
+      "explanation": "These limitations are listed directly in the Airflow section."
+    },
+    {
+      "question": "What alternatives to Airflow does the book mention as aiming to solve some of its problems?",
+      "options": [
+        "Prefect and Dagster",
+        "Only Kubernetes CronJobs",
+        "Only proprietary mainframe schedulers",
+        "No alternatives exist"
+      ],
+      "correctIndex": 0,
+      "explanation": "Prefect and Dagster are the two contenders explicitly named."
+    },
+    {
+      "question": "What is the book's overarching software-engineering advice for data engineers when choosing technologies?",
+      "options": [
+        "Strive for simplification and abstraction; buy or use prebuilt open-source solutions whenever possible; eliminate undifferentiated heavy lifting; focus custom work only where it creates competitive advantage",
+        "Hand-code every connector and pipeline from scratch for maximum control",
+        "Prefer the most complex custom solution available",
+        "Ignore cost and opportunity cost entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "This is the concluding recommendation of the chapter."
+    },
+    {
+      "question": "Why does the book say \"the world doesn’t need the millionth +1 database-to-cloud data warehouse connector\"?",
+      "options": [
+        "Because connecting a production database to a cloud warehouse is a solved problem; custom work should be reserved for true competitive advantage",
+        "Because databases and warehouses should never be connected",
+        "Because open-source connectors are illegal",
+        "Because every company must invent its own unique protocol"
+      ],
+      "correctIndex": 0,
+      "explanation": "The example is used to illustrate avoiding undifferentiated heavy lifting."
+    },
+    {
+      "question": "What does the book say about the relationship between team skills and technology choice?",
+      "options": [
+        "Stick with technologies and workflows the team already knows; learning new tools is a large time investment that should be made wisely",
+        "Always force the team to learn the newest language or framework",
+        "Team skills are irrelevant to technology selection",
+        "Only low-code tools should ever be considered"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter advises inventorying skills and preferring familiar tools unless the investment is clearly justified."
+    },
+    {
+      "question": "What is the continuum the book describes regarding technology complexity and team size?",
+      "options": [
+        "A continuum from simple to complex technologies; team size roughly determines how much bandwidth can be dedicated to complex solutions",
+        "Larger teams must always use simpler tools",
+        "Small teams should always build the most complex systems",
+        "Complexity is independent of team size"
+      ],
+      "correctIndex": 0,
+      "explanation": "Team size is presented as a practical constraint on how much complexity can be absorbed."
+    },
+    {
+      "question": "What does the book say about standards versus non-standards in interoperability?",
+      "options": [
+        "Some integrations benefit from standards (JDBC/ODBC); others (REST APIs) lack true standards and rely on vendor or project effort for smooth integration",
+        "All modern data tools follow identical, universal standards",
+        "Standards never exist in data tooling",
+        "Only proprietary protocols should be used"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter contrasts JDBC/ODBC with the quirks of REST APIs."
+    },
+    {
+      "question": "What is the book's view of the cloud's effect on cost models for data systems?",
+      "options": [
+        "It enabled opex / consumption-based models that give engineers far greater flexibility to iterate and experiment inexpensively",
+        "It forced every company back into large capital purchases",
+        "It eliminated all cost considerations",
+        "It made hardware ownership mandatory again"
+      ],
+      "correctIndex": 0,
+      "explanation": "The shift from multimillion-dollar contracts to pay-as-you-go is highlighted as transformative."
+    },
+    {
+      "question": "Why does the book urge data engineers to be pragmatic about flexibility?",
+      "options": [
+        "The data landscape changes too quickly to invest in long-term hardware that goes stale and cannot easily scale",
+        "Flexibility is never valuable",
+        "Hardware never becomes obsolete",
+        "All technologies last forever once purchased"
+      ],
+      "correctIndex": 0,
+      "explanation": "Rapid change is the reason given for preferring flexible, opex-oriented choices."
+    },
+    {
+      "question": "What does the book say about the typical trajectory of transitory technologies?",
+      "options": [
+        "Hype, meteoric growth in popularity, then a slow descent into obscurity",
+        "Immediate and permanent dominance",
+        "Linear improvement forever",
+        "Complete immunity to competition"
+      ],
+      "correctIndex": 0,
+      "explanation": "This trajectory is described for both JavaScript frameworks and many data tools."
+    },
+    {
+      "question": "What example does the book give of a technology that was rapidly adopted and then largely relegated to legacy deployments?",
+      "options": [
+        "Hive — it solved MapReduce complexity but was later superseded by Presto and others",
+        "SQL",
+        "Object storage",
+        "The C programming language"
+      ],
+      "correctIndex": 0,
+      "explanation": "Hive is the concrete example of a successful technology that faded after successors improved on it."
+    },
+    {
+      "question": "What does the book say about evaluating barriers to leaving a chosen technology?",
+      "options": [
+        "Always consider how easy (or painful) it will be to transition away; go in with eyes wide open about possible abandonment or poor fit",
+        "Never consider exit costs",
+        "Assume every technology can be left at zero cost",
+        "Exit costs only matter for open-source projects"
+      ],
+      "correctIndex": 0,
+      "explanation": "This is part of the advice on avoiding \"bear traps.\""
+    },
+    {
+      "question": "What are the four principal location options the book discusses for running technology stacks?",
+      "options": [
+        "On-premises, cloud, hybrid cloud, and multicloud",
+        "Only on-premises and only public cloud",
+        "Only edge devices",
+        "Only mainframes"
+      ],
+      "correctIndex": 0,
+      "explanation": "These four categories structure the Location section."
+    },
+    {
+      "question": "What operational responsibilities does the book associate with on-premises systems?",
+      "options": [
+        "Owning hardware, repairing or replacing failed components, managing upgrade cycles, and provisioning for peak load",
+        "Zero operational responsibility",
+        "Only writing application code",
+        "Only paying a monthly SaaS invoice"
+      ],
+      "correctIndex": 0,
+      "explanation": "These responsibilities are listed in the on-premises subsection."
+    },
+    {
+      "question": "How does the book characterize the early cloud era versus later developments?",
+      "options": [
+        "Early cloud was dominated by IaaS (VMs, virtual disks); later there was a shift toward PaaS and continued growth of SaaS, plus serverless",
+        "The cloud has always been exclusively SaaS",
+        "IaaS has disappeared completely",
+        "Serverless existed before any other cloud offering"
+      ],
+      "correctIndex": 0,
+      "explanation": "The progression from IaaS to PaaS/SaaS/serverless is described explicitly."
+    },
+    {
+      "question": "What examples of PaaS does the book give?",
+      "options": [
+        "Managed databases (RDS, Cloud SQL), managed streaming (Kinesis, SQS), managed Kubernetes (GKE, AKS)",
+        "Only virtual machines",
+        "Only Salesforce and Zoom",
+        "Only physical servers"
+      ],
+      "correctIndex": 0,
+      "explanation": "These are the concrete PaaS examples provided."
+    },
+    {
+      "question": "What examples of SaaS does the book give?",
+      "options": [
+        "Salesforce, Google Workspace, Microsoft 365, Zoom, Fivetran",
+        "Only Amazon EC2",
+        "Only open-source Hadoop",
+        "Only custom-built internal tools"
+      ],
+      "correctIndex": 0,
+      "explanation": "These SaaS examples appear in the cloud subsection."
+    },
+    {
+      "question": "What does the book say about serverless products in general?",
+      "options": [
+        "They generally offer automated scaling from zero to high usage, are billed pay-as-you-go, and allow operation without awareness of underlying servers",
+        "They always require full-time server management",
+        "They never scale to zero",
+        "They are exclusively on-premises"
+      ],
+      "correctIndex": 0,
+      "explanation": "This is the general characterization given before the deeper serverless discussion."
+    },
+    {
+      "question": "What is the book's explanation for why archival storage can be dramatically cheaper per gigabyte than standard storage on the same clusters?",
+      "options": [
+        "Providers sell storage capacity, IOPS, and bandwidth as separate assets; archival tiers sell cheap unused capacity while charging steeply for retrieval — analogous to insurance",
+        "Archival storage uses completely different, slower physical disks",
+        "The price difference is only a temporary marketing promotion",
+        "Archival data is always compressed 17× more than standard data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book’s economic analysis treats archival pricing as selling spare capacity while discouraging reads."
+    },
+    {
+      "question": "What does the book recommend when modeling serverless costs?",
+      "options": [
+        "Monitor real-world cost per event and maximum execution length, then model overall costs (including worst-case scenarios such as bot swarms or DDoS) as event rates grow",
+        "Assume costs will always stay negligible",
+        "Ignore duration limits",
+        "Only look at the free-tier limits"
+      ],
+      "correctIndex": 0,
+      "explanation": "Monitoring and modeling, including worst-case scenarios, are explicitly advised."
+    },
+    {
+      "question": "What are the key considerations the book lists for deciding whether serverless is appropriate?",
+      "options": [
+        "Workload size and complexity, execution frequency and duration, requests and networking features, language support, runtime limitations, and cost behavior at scale",
+        "Only the logo of the cloud provider",
+        "Only whether the team has previously used serverless",
+        "Only the number of GitHub stars"
+      ],
+      "correctIndex": 0,
+      "explanation": "These criteria appear in the \"How to Evaluate Server Versus Serverless\" subsection."
+    },
+    {
+      "question": "What does the book say about treating servers in the cloud?",
+      "options": [
+        "Expect them to fail; treat them as ephemeral resources created and deleted as needed; use boot scripts or images; deploy via CI/CD; use clusters and autoscaling; treat infrastructure as code; use containers for complex workloads",
+        "Treat every server as a permanent, highly customized \"special snowflake\"",
+        "Never use autoscaling",
+        "Never use infrastructure-as-code tools"
+      ],
+      "correctIndex": 0,
+      "explanation": "These operational practices are listed under the servers discussion."
+    },
+    {
+      "question": "What is the book's view of the relationship between architecture and technology selection?",
+      "options": [
+        "Always approach technology the same way as architecture: assess trade-offs and aim for reversible decisions",
+        "Technology choices should be made before any architecture is considered",
+        "Architecture and technology are completely unrelated",
+        "Once a technology is chosen, architecture becomes irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": "This is the final summary statement of the chapter."
+    },
+    {
+      "question": "What does the book say about the current state of technology evaluation?",
+      "options": [
+        "Today is possibly the most confusing time in history for evaluating and selecting technologies because new technologies and patterns emerge daily",
+        "Technology selection has never been easier or more straightforward",
+        "All major technology choices were settled years ago",
+        "Only one correct technology stack exists for every company"
+      ],
+      "correctIndex": 0,
+      "explanation": "The concluding paragraph opens with this observation."
+    },
+    {
+      "question": "What does the book list as the main considerations that must be balanced when choosing technologies?",
+      "options": [
+        "Use case, cost, build versus buy, and modularization",
+        "Only the newest marketing claims",
+        "Only the number of venture-capital dollars behind a product",
+        "Only the personal preferences of the most senior engineer"
+      ],
+      "correctIndex": 0,
+      "explanation": "These four factors are named in the conclusion."
+    },
+    {
+      "question": "Why does the book say data engineers should eliminate undifferentiated heavy lifting?",
+      "options": [
+        "So that limited resources can be focused on the areas that give a solid competitive advantage",
+        "Because all custom code is inherently bad",
+        "Because open-source tools never need any operational work",
+        "Because cloud providers forbid custom code"
+      ],
+      "correctIndex": 0,
+      "explanation": "The goal of eliminating undifferentiated heavy lifting is to free capacity for true competitive work."
+    },
+    {
+      "question": "What is the book's stance on whether a technology must be open source or proprietary?",
+      "options": [
+        "Use whatever (open source or managed SaaS) best solves the problem while adding business value; the key is avoiding unnecessary lock-in and undifferentiated work",
+        "Only pure open source is ever acceptable",
+        "Only proprietary SaaS is ever acceptable",
+        "Open source and proprietary options are never allowed to coexist"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter repeatedly emphasizes value and reversible decisions over ideology."
+    },
+    {
+      "question": "What does the book say about the role of orchestration in modular architectures?",
+      "options": [
+        "Orchestration becomes the glue that binds the modules together; orchestrating many tools is more complex than orchestrating one",
+        "Orchestration is unnecessary once modularity is achieved",
+        "Only monolithic systems ever need orchestration",
+        "Orchestration tools eliminate the need for any other technology"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter elevates orchestration to its own undercurrent partly because of modular complexity."
+    },
+    {
+      "question": "What does the book say about the relationship between team size and the risk of cargo-cult engineering?",
+      "options": [
+        "Small teams are especially prone to it because they see complex practices at large companies and try to copy them without the corresponding resources",
+        "Only large teams ever fall into cargo-cult engineering",
+        "Cargo-cult engineering never occurs",
+        "Cargo-cult engineering is recommended for startups"
+      ],
+      "correctIndex": 0,
+      "explanation": "The cargo-cult warning is directed primarily at small or less-experienced teams."
+    },
+    {
+      "question": "What does the book recommend regarding the spectrum from low-code to code-first tools?",
+      "options": [
+        "Choose tools that match the team's existing preferences and skills rather than forcing a style the team does not know",
+        "Always force the team onto pure code-first tools",
+        "Always force the team onto pure low-code tools",
+        "The spectrum does not matter"
+      ],
+      "correctIndex": 0,
+      "explanation": "Inventorying skills and matching tools to those skills is explicit advice."
+    },
+    {
+      "question": "What is the book's definition of speed to market in the technology-selection context?",
+      "options": [
+        "Choosing technologies that help deliver features and data faster while maintaining quality and security, and working in a tight launch-learn-iterate loop",
+        "Shipping the absolute minimum viable product with zero regard for quality",
+        "Waiting years to select the perfect technology",
+        "Only optimizing for the lowest possible cloud bill"
+      ],
+      "correctIndex": 0,
+      "explanation": "Speed to market is defined as rapid, high-quality delivery with continuous feedback."
+    },
+    {
+      "question": "What does the book say about the danger of deliberating too long on technology choices?",
+      "options": [
+        "Slow decisions and output are the kiss of death; some data teams dissolve after failing to deliver value",
+        "Long deliberation always produces the best possible architecture",
+        "Teams should never decide until every possible option has been exhaustively evaluated",
+        "Speed is irrelevant to data-team survival"
+      ],
+      "correctIndex": 0,
+      "explanation": "The \"kiss of death\" language is used directly."
+    },
+    {
+      "question": "What does the book say about the relationship between common components and team collaboration?",
+      "options": [
+        "When chosen well, common components become a fabric that facilitates collaboration and breaks down silos",
+        "Common components always create silos",
+        "Teams should never share any components",
+        "Common components are only useful for security teams"
+      ],
+      "correctIndex": 0,
+      "explanation": "Although the full discussion of common components appears in Chapter 3, Chapter 4 reinforces the value of shared, well-chosen building blocks."
+    },
+    {
+      "question": "What does the book say about the risk of \"special snowflake\" servers?",
+      "options": [
+        "They introduce a glaring vulnerability because they are overly customized and brittle; treat servers as ephemeral instead",
+        "Every server should be a unique special snowflake",
+        "Special-snowflake servers are the only reliable pattern",
+        "The concept does not apply in the cloud"
+      ],
+      "correctIndex": 0,
+      "explanation": "The \"special snowflake\" warning appears in the servers guidance."
+    },
+    {
+      "question": "What infrastructure-as-code tools does the book mention as examples?",
+      "options": [
+        "Terraform, AWS CloudFormation, and Google Cloud Deployment Manager",
+        "Only handwritten shell scripts",
+        "Only proprietary mainframe tools",
+        "No infrastructure-as-code tools are mentioned"
+      ],
+      "correctIndex": 0,
+      "explanation": "These three tools are named explicitly."
+    },
+    {
+      "question": "What does the book say about the security isolation of services such as AWS Fargate and Google App Engine?",
+      "options": [
+        "They run containers without requiring the user to manage a Kubernetes cluster and fully isolate the containers, mitigating multitenancy security issues",
+        "They provide no isolation at all",
+        "They require the user to manage the underlying cluster manually",
+        "They are only suitable for on-premises use"
+      ],
+      "correctIndex": 0,
+      "explanation": "These managed container services are presented as a way to gain container flexibility with better isolation."
+    },
+    {
+      "question": "What does the book say about the future of abstraction in the data stack?",
+      "options": [
+        "Abstraction will continue working its way across the data stack; even Kubernetes is widely available as a managed service, and further abstraction layers are expected",
+        "Abstraction has already reached its maximum and will reverse",
+        "Users will always have to manage every physical server",
+        "Managed services will disappear"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter ends the serverless/containers discussion with this forward-looking observation."
+    },
+    {
+      "question": "What does the book say about the relationship between FinOps and the ability to iterate quickly?",
+      "options": [
+        "The ability to iterate quickly and scale dynamically is invaluable for creating business value and is a major motivation for shifting workloads to the cloud",
+        "FinOps is only about freezing all spending",
+        "Iteration speed is unrelated to financial management",
+        "Cloud spending always reduces product velocity"
+      ],
+      "correctIndex": 0,
+      "explanation": "FinOps is framed as enabling value creation through rapid iteration, not merely cost cutting."
+    },
+    {
+      "question": "What does the book say about the Lindy effect as a practical test?",
+      "options": [
+        "Apply it as a litmus test to determine whether a technology is potentially immutable",
+        "Ignore it completely",
+        "Use it only for programming languages invented after 2010",
+        "Use it only for proprietary software"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Lindy effect is presented as a practical decision-making tool."
+    },
+    {
+      "question": "What does the book say about the probability of failure of many data technologies?",
+      "options": [
+        "There is a reasonable probability of failure; therefore always consider how easy it is to transition away",
+        "Most new data technologies are guaranteed to succeed long-term",
+        "Failure risk is zero for any tool that raises venture capital",
+        "Failure risk only applies to open-source projects"
+      ],
+      "correctIndex": 0,
+      "explanation": "This realistic assessment underpins the advice on exit barriers."
+    },
+    {
+      "question": "What does the book say about the role of data engineers versus dedicated architects in technology selection?",
+      "options": [
+        "Data engineers must understand good architecture and the various technology trade-offs because architecture is an undercurrent of the data-engineering lifecycle; in smaller organizations a data engineer may also act as architect",
+        "Only dedicated architects may ever choose technologies",
+        "Data engineers should never think about architecture",
+        "Architecture is irrelevant to technology selection"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter continues the theme that architecture and technology selection are inseparable responsibilities."
+    },
+    {
+      "question": "What does the book say about the danger of over-architecting for a distant future?",
+      "options": [
+        "Tooling chosen for a far-future vision may already be stale when that future arrives; the future often looks little like what was envisioned years earlier",
+        "It is always correct to design exclusively for a ten-year horizon",
+        "Over-architecting never occurs",
+        "The future is perfectly predictable"
+      ],
+      "correctIndex": 0,
+      "explanation": "The \"today versus the future\" section warns against this exact trap."
+    },
+    {
+      "question": "What does the book recommend as the practical approach to the present-versus-future tension?",
+      "options": [
+        "Choose the best technology for the moment and near future, but in a way that supports future unknowns and evolution",
+        "Ignore present needs entirely",
+        "Ignore all future possibilities",
+        "Never change any technology once it is selected"
+      ],
+      "correctIndex": 0,
+      "explanation": "This balanced guidance appears in the immutable/transitory discussion."
+    },
+    {
+      "question": "What does the book say about the relationship between modularity and reversible decisions?",
+      "options": [
+        "Modularity supports reversible decisions by making it easier to swap components; committing to a monolith reduces flexibility and reversibility",
+        "Monoliths are always more reversible",
+        "Modularity makes every decision irreversible",
+        "Reversibility is unrelated to architecture style"
+      ],
+      "correctIndex": 0,
+      "explanation": "The monolith-versus-modular section explicitly links modularity to flexibility and reversible decisions."
+    },
+    {
+      "question": "What does the book say about the cons of a pure monolith?",
+      "options": [
+        "Potential loss of flexibility, higher opportunity cost, and high-friction development cycles",
+        "Monoliths have no cons",
+        "Monoliths always scale better than modular systems",
+        "Monoliths eliminate all operational complexity forever"
+      ],
+      "correctIndex": 0,
+      "explanation": "These three costs are listed when evaluating monoliths versus modular options."
+    },
+    {
+      "question": "What does the book say about the attractiveness of monoliths?",
+      "options": [
+        "They are attractive because of ease of understanding and reduced complexity, but that comes at a high cost in flexibility",
+        "They are never attractive under any circumstances",
+        "They are always the optimal long-term choice",
+        "They automatically provide the highest availability"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter acknowledges the short-term appeal while warning of the longer-term costs."
+    },
+    {
+      "question": "What does the book say about the relationship between the undercurrents and technology selection?",
+      "options": [
+        "Whatever technology you choose, be sure to understand how it supports the undercurrents (security, data management, DataOps, data architecture, orchestration, software engineering)",
+        "Undercurrents are irrelevant once a technology is chosen",
+        "Only performance benchmarks matter",
+        "Undercurrents apply only to architecture, never to tools"
+      ],
+      "correctIndex": 0,
+      "explanation": "The final major section of the chapter is devoted to this point."
+    },
+    {
+      "question": "What does the book say about the difficulty of choosing technologies today?",
+      "options": [
+        "Choosing the right technologies is no easy task, especially when new technologies and patterns emerge daily; it is a balance of use case, cost, build versus buy, and modularization",
+        "Technology selection has become trivial",
+        "There is only one correct choice for every company",
+        "Cost is the sole decision factor"
+      ],
+      "correctIndex": 0,
+      "explanation": "This is the opening of the conclusion."
+    },
+    {
+      "question": "What is the final piece of advice the book gives about approaching technology decisions?",
+      "options": [
+        "Always approach technology the same way as architecture: assess trade-offs and aim for reversible decisions",
+        "Make irreversible commitments as quickly as possible",
+        "Ignore all trade-offs",
+        "Never revisit a technology decision"
+      ],
+      "correctIndex": 0,
+      "explanation": "This sentence closes the chapter."
+    },
+    {
+      "question": "What does the book say is the simple criterion for choosing a good data technology?",
+      "options": [
+        "Does it add value to a data product and the broader business?",
+        "Is it the newest technology available?",
+        "Does it require the most complex infrastructure?",
+        "Is it the most popular tool on GitHub?"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book states: \"We feel the criteria to choose a good data technology is simple: does it add value to a data product and the broader business?\""
+    },
+    {
+      "question": "Why does the book say teams go \"off the rails\" by choosing technologies before mapping out an architecture?",
+      "options": [
+        "Reasons include shiny object syndrome, resume-driven development, and a lack of expertise in architecture — in practice this often produces a kind of Dr. Seuss fantasy machine rather than a true data architecture",
+        "Choosing technology first always produces perfect architecture",
+        "Architecture expertise is irrelevant to technology choice",
+        "Resume-driven development is a recommended best practice"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these reasons for premature technology selection and warns it produces a fantasy machine rather than real architecture."
+    },
+    {
+      "question": "How does the book distinguish direct costs from indirect costs in total cost of ownership (TCO)?",
+      "options": [
+        "Direct costs can be directly attributed to an initiative (e.g. team salaries or the AWS bill); indirect costs, also known as overhead, are independent of the initiative and must be paid regardless of where they're attributed",
+        "Direct costs are always higher than indirect costs",
+        "Indirect costs are directly attributed to initiatives",
+        "TCO only includes direct costs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines direct costs as attributable to the initiative and indirect costs (overhead) as independent of it."
+    },
+    {
+      "question": "How does the book characterize operational expenses (opex)?",
+      "options": [
+        "Opex is gradual and spread out over time, short-term focused, can be pay-as-you-go, and is closer to a direct cost, making it easier to attribute to a data project",
+        "Opex requires a large up-front capital outlay",
+        "Opex is long-term focused like capex",
+        "Opex cannot be attributed to projects"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book contrasts opex's gradual, spread-out, short-term nature with capex's up-front investment."
+    },
+    {
+      "question": "Why was opex not an option for large data projects until recently, and what changed?",
+      "options": [
+        "Data systems often required multimillion-dollar contracts; the cloud changed this by allowing consumption-based payment, letting engineers iterate quickly with various configurations, often inexpensively",
+        "Opex was always available for large projects",
+        "The cloud made opex more expensive",
+        "Consumption-based models predate the cloud"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says multimillion-dollar contracts were the norm until the cloud enabled consumption-based opex."
+    },
+    {
+      "question": "What does choosing data stack A commit you to, and what critical questions should you ask about it?",
+      "options": [
+        "You're committed to the team to support it, training, setup, and maintenance — ask how quickly and cheaply you can move to something newer and better, and whether the expertise you've built translates to the next wave",
+        "Choosing a stack has no ongoing commitments",
+        "You can always switch stacks with zero cost",
+        "Training and maintenance never matter"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the commitment to a chosen stack and the critical questions about moving away from it."
+    },
+    {
+      "question": "What examples of immutable technologies does the book give?",
+      "options": [
+        "Object storage, SQL, bash, the power grid, relational databases, the C programming language, and the x86 processor architecture",
+        "JavaScript frontend frameworks only",
+        "Only cloud-specific services",
+        "Only NoSQL databases"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these as technologies benefiting from the Lindy effect."
+    },
+    {
+      "question": "What trajectory does the book describe for transitory technologies, using JavaScript frontend frameworks as the example?",
+      "options": [
+        "A lot of hype, followed by meteoric growth in popularity, then a slow descent into obscurity — e.g. Backbone.js, Ember.js, and Knockout were popular in the early 2010s while React and Vue.js have massive mindshare today",
+        "Immediate and permanent dominance",
+        "Linear improvement forever",
+        "Transitory technologies never fade"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book uses the JavaScript frontend framework churn as the classic example of the transitory trajectory."
+    },
+    {
+      "question": "What does the book say about VCs and data-tooling investments?",
+      "options": [
+        "Top VCs make big-money bets knowing most of their data-tooling investments will fail — if they can't get it right, it's hard for you to know which technologies to invest in",
+        "VCs never fail at data investments",
+        "VC investment guarantees technology success",
+        "You should always copy VC picks"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes that even well-funded VCs fail with most data-tooling bets."
+    },
+    {
+      "question": "Why are on-premises systems still the default for established companies, and what responsibilities come with them?",
+      "options": [
+        "Established companies own their hardware in owned data centers or leased colocation space, and are operationally responsible for repairing/replacing failed hardware, managing upgrade cycles, and provisioning enough capacity to handle peaks like Black Friday",
+        "Established companies have no operational responsibilities",
+        "On-premises systems need no upgrades",
+        "Peak load provisioning is unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes on-premises ownership and its operational responsibilities."
+    },
+    {
+      "question": "What does the book say about the cloud's resource model?",
+      "options": [
+        "Instead of purchasing hardware, you rent hardware and managed services, with resources reservable on an extremely short-term basis — VMs spin up in less than a minute and usage is billed in per-second increments, enabling dynamic scaling",
+        "Cloud resources require long lead-time planning",
+        "VMs take weeks to spin up",
+        "Cloud billing is always annual"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the cloud's rental model with near-instant VM spin-up and per-second billing."
+    },
+    {
+      "question": "How does the book describe the progression from IaaS to PaaS to SaaS?",
+      "options": [
+        "The early cloud era was dominated by IaaS (rented slices of hardware like VMs and virtual disks); PaaS adds sophisticated managed services to support applications; SaaS moves up the ladder to fully functioning enterprise platforms",
+        "SaaS came before IaaS",
+        "PaaS and IaaS are identical",
+        "IaaS is the most abstract layer"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the IaaS-to-PaaS-to-SaaS progression of abstraction."
+    },
+    {
+      "question": "What analogy does the book make between cloud services and credit default swaps?",
+      "options": [
+        "Many cloud services are similar to financial derivatives — cloud providers not only slice hardware into small pieces through virtualization, but also sell these pieces with varying technical characteristics and risks attached",
+        "Cloud services are unrelated to finance",
+        "Cloud providers give full transparency about internals",
+        "Hardware is never sliced in the cloud"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book analogizes cloud service tiers to financial derivatives with varying risk."
+    },
+    {
+      "question": "How does the book explain archival storage's dramatically lower price on the same clusters as standard storage?",
+      "options": [
+        "Each disk has three assets (storage capacity, IOPS, and bandwidth); providers can sell cheap storage space with expensive IOPS to discourage reads, rather than leaving capacity empty",
+        "Archival storage uses completely different hardware",
+        "The price difference is a temporary promotion",
+        "Archival disks have no IOPS limits"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book's analysis: selling cheap capacity with expensive IOPS discourages reads."
+    },
+    {
+      "question": "What does the book say about archival storage as a type of insurance?",
+      "options": [
+        "Cloud vendors are selling a type of insurance that pays out for the insurer rather than the policy buyer in a catastrophe — storage is extremely cheap but retrieval is expensive, a price happily paid in a true emergency",
+        "Archival storage insurance pays the customer",
+        "Retrieval costs are always negligible",
+        "Insurance is not involved in storage pricing"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes archival pricing as insurance that favors the insurer on retrieval."
+    },
+    {
+      "question": "What does the book say cloud vendors monetize beyond CPU, memory, and features?",
+      "options": [
+        "Cloud vendors monetize characteristics such as durability, reliability, longevity, and predictability, and a variety of compute platforms discount offerings for ephemeral or interruptible workloads",
+        "Cloud vendors only charge for CPU and memory",
+        "Durability and reliability are always free",
+        "Ephemeral workloads always cost more"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the monetization of reliability-type characteristics and discounts for ephemeral workloads."
+    },
+    {
+      "question": "What is the \"curse of familiarity,\" and what does the book say about lift-and-shift migration?",
+      "options": [
+        "New technology products are often designed to look like something familiar to ease adoption, but have subtleties users must learn; simple lift-and-shift is a reasonable initial migration phase, especially under a financial cliff, but leaving cloud assets in that state brings a rude shock since long-running cloud servers cost more",
+        "Cloud services are identical to on-premises servers",
+        "Lift-and-shift is the final optimized state",
+        "Familiarity never hides subtleties"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the curse of familiarity and the lift-and-shift caution."
+    },
+    {
+      "question": "How does the book say to find value in the cloud pricing model?",
+      "options": [
+        "Rather than long-running servers sized for peak load, use autoscaling to scale down during light loads and up during peaks, and use reserved or spot instances or serverless functions in place of servers",
+        "Deploy long-running servers for full peak load",
+        "Avoid autoscaling entirely",
+        "Only use on-demand pricing"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book recommends autoscaling, reserved/spot instances, and serverless for cloud value."
+    },
+    {
+      "question": "What does the book warn about data egress fees and vendor lock-in?",
+      "options": [
+        "Getting data onto most cloud platforms is cheap or free, but getting it out can be extremely expensive — be aware of egress fees and their long-term impacts before getting blindsided by a large bill",
+        "Egress fees are always free",
+        "Vendors never want to lock you in",
+        "Data extraction is always cheap"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns about cheap ingress and expensive egress creating lock-in."
+    },
+    {
+      "question": "Why might organizations choose a hybrid cloud model, and what example does the book give?",
+      "options": [
+        "Organizations may have achieved operational excellence in certain areas and migrate only specific workloads where they see immediate cloud benefits — e.g. an on-premises Spark stack migrated to ephemeral cloud clusters to reduce operational burden and allow rapid scaling",
+        "Hybrid cloud requires migrating everything at once",
+        "Operational excellence forces full cloud migration",
+        "Hybrid cloud eliminates all egress costs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes targeted hybrid migration with the on-prem Spark example."
+    },
+    {
+      "question": "How does the hybrid cloud data flow model minimize egress costs?",
+      "options": [
+        "On-premises applications generate event data pushed to the cloud essentially for free, the bulk of data remains in the cloud for analysis, and only smaller amounts are pushed back for deploying models, reverse ETL, etc.",
+        "Data flows in many directions continuously",
+        "All data returns to on-premises",
+        "Egress costs are identical in both directions"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the one-directional hybrid flow that minimizes egress."
+    },
+    {
+      "question": "What motivations does the book give for multicloud deployments?",
+      "options": [
+        "SaaS platforms wish to offer services close to existing customer cloud workloads (e.g. Snowflake and Databricks across multiple clouds), and companies want the best services across several clouds (e.g. Google Ads on GCP, Azure for Microsoft workloads, AWS Lambda)",
+        "Multicloud is always simpler than single cloud",
+        "Multicloud eliminates egress costs",
+        "Only one cloud ever has useful services"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists proximity to customers and best-of-breed services as multicloud motivations."
+    },
+    {
+      "question": "What disadvantages does the book list for a multicloud approach?",
+      "options": [
+        "Data egress costs and networking bottlenecks are critical, going multicloud introduces significant complexity, companies must manage a dizzying array of services across clouds, cross-cloud integration and security present a considerable challenge, and multicloud networking can be diabolically complicated",
+        "Multicloud is simple and cheap",
+        "Cross-cloud integration is trivial",
+        "Multicloud has no networking challenges"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these multicloud disadvantages."
+    },
+    {
+      "question": "What does the book say about the \"cloud of clouds\" services, using Snowflake as an example?",
+      "options": [
+        "A Snowflake account runs in a single cloud region, but customers can spin up other accounts in GCP, AWS, or Azure with simple scheduled data replication between them, and the interface is essentially the same in all accounts, removing the training burden of switching between cloud-native services",
+        "Cloud of clouds services do not replicate data",
+        "Each Snowflake account has a unique interface",
+        "Snowflake cannot run on multiple clouds"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes Snowflake's cross-cloud accounts and consistent interface."
+    },
+    {
+      "question": "What does the book say about decentralized computing (blockchain, Web 3.0, and the edge)?",
+      "options": [
+        "Though not widely used now, decentralized platforms have proven extremely popular but have not had a significant impact in the data space — still, keeping an eye on them is worthwhile",
+        "Decentralized platforms already dominate data",
+        "Blockchain has no relevance to technology decisions",
+        "Edge computing is fully mature in data"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes decentralized platforms' popularity without significant data-space impact yet."
+    },
+    {
+      "question": "What does the book advise about choosing a deployment strategy and having an escape plan?",
+      "options": [
+        "Don't choose a complex multicloud or hybrid-cloud strategy unless there's a compelling reason — choose a single-cloud strategy if scenarios don't apply, but have an escape plan (mental flexibility) locked behind glass to evaluate alternatives if things go wrong",
+        "Always choose multicloud for safety",
+        "Escape plans are unnecessary",
+        "Single-cloud strategy has no lock-in"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book advises single-cloud by default with a prepared escape plan."
+    },
+    {
+      "question": "How does the book characterize the argument in Wang and Casado's \"The Cost of Cloud, A Trillion Dollar Paradox\"?",
+      "options": [
+        "Readers widely interpreted it as a call for repatriation, but the authors make a somewhat more subtle argument that companies should expend significant resources to control cloud spending and consider repatriation as a possible option",
+        "They call for full repatriation of all workloads",
+        "They argue cloud spending needs no control",
+        "They claim repatriation is always a mistake"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the subtle spending-control argument behind the repatriation headline."
+    },
+    {
+      "question": "What context does the book give for Dropbox's repatriation from AWS, beyond the popular headline?",
+      "options": [
+        "Dropbox stores many exabytes of data, handles enormous network traffic requiring hundreds of gigabits of connectivity and peering partners, has a highly specialized storage product combining object and block characteristics, built a custom integrated stack, and continued building out other AWS workloads",
+        "Dropbox is a small company with modest data needs",
+        "Dropbox repatriated because AWS was cheap",
+        "Dropbox stopped all cloud usage entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book details Dropbox's scale, bandwidth, specialized product, custom stack, and continued AWS usage."
+    },
+    {
+      "question": "What examples does the book give of companies where owning hardware makes sense, and what defines \"cloud scale\"?",
+      "options": [
+        "Backblaze (over an exabyte), Cloudflare (25 million internet properties and 51 Tbps), Netflix (custom CDN while running transcoding on AWS), and Apple's iCloud as a candidate — you might be at cloud scale if storing an exabyte of data or handling terabits per second of internet traffic",
+        "Any company with over a terabyte should repatriate",
+        "Cloud scale is reached at 1 TB of internal traffic",
+        "Only Dropbox qualifies for hardware ownership"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book gives these examples and defines cloud scale as exabyte storage or terabits-per-second traffic."
+    },
+    {
+      "question": "What does the book say about the trend toward bottom-up software adoption in companies?",
+      "options": [
+        "Whereas IT used to make most purchase decisions top-down, the trend is now bottom-up adoption driven by developers, data engineers, data scientists, and other technical roles, making technology adoption an organic, continuous process",
+        "IT always makes all purchase decisions",
+        "Bottom-up adoption is a thing of the past",
+        "Only executives adopt software"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the shift to bottom-up, developer-driven software adoption."
+    },
+    {
+      "question": "How does the book define open source software (OSS) and its caveats?",
+      "options": [
+        "OSS makes the software and underlying codebase available for general use under specific licensing terms, is often created by distributed collaborators, and is free to use, change, and distribute most of the time, but many licenses require that the source code of derived software be included when distributed",
+        "OSS software can never be changed",
+        "OSS has no licensing terms",
+        "OSS always requires payment"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines OSS distribution and its licensing caveats."
+    },
+    {
+      "question": "What factors does the book list for evaluating a community-managed OSS project?",
+      "options": [
+        "Mindshare, maturity, troubleshooting, project management, team, developer relations and community management, contributing, roadmap, self-hosting and maintenance, and giving back to the community",
+        "Only the number of GitHub stars",
+        "Only whether it's free",
+        "Only the license type"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these community-managed OSS evaluation factors."
+    },
+    {
+      "question": "What is commercial OSS (COSS), and which vendors does the book cite as examples?",
+      "options": [
+        "A vendor offers the core of the OSS for free while charging for enhancements, curated code distributions, or fully managed services — examples include Databricks (Spark), Confluent (Kafka), and DBT Labs (dbt)",
+        "COSS keeps the source code fully private",
+        "COSS vendors charge for the core only",
+        "No vendors offer managed OSS"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines COSS and cites Databricks, Confluent, and DBT Labs."
+    },
+    {
+      "question": "What factors does the book list for evaluating a commercial OSS project?",
+      "options": [
+        "Value, delivery model, support, releases and bug fixes, sales cycle and pricing, company finances, logos versus revenue, and community support",
+        "Only the license type",
+        "Only the download size",
+        "Only the logo design"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these commercial OSS evaluation factors."
+    },
+    {
+      "question": "Why do clouds offer their own managed open source products?",
+      "options": [
+        "Clouds make their money through consumption — more offerings in a cloud ecosystem mean a greater chance of stickiness and increased customer spending",
+        "Clouds offer them out of charity",
+        "Managed OSS loses money for clouds",
+        "Stickiness reduces cloud revenue"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says managed OSS offerings drive consumption and stickiness."
+    },
+    {
+      "question": "What factors does the book list for evaluating an independent proprietary offering?",
+      "options": [
+        "Interoperability, mindshare and market share, documentation and support, pricing, and longevity",
+        "Only the price tag",
+        "Only the marketing materials",
+        "Only the number of founders"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists these independent proprietary offering factors."
+    },
+    {
+      "question": "What example does the book give of a cloud platform proprietary service, and why does the cloud create stickiness?",
+      "options": [
+        "Amazon created DynamoDB to handle Amazon.com's growth and later offered it solely on AWS, now a top-rated product; cloud vendors bundle products to work well together, creating stickiness through a strong integrated ecosystem",
+        "DynamoDB was created for external customers",
+        "Cloud vendors never bundle products",
+        "DynamoDB is open source"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes DynamoDB's origin and the cloud's bundling-driven stickiness."
+    },
+    {
+      "question": "What final advice does the book give for the build-versus-buy decision?",
+      "options": [
+        "In general, favor OSS and COSS by default, which frees you to focus on improving areas where these options are insufficient, and focus on a few areas where building something will add significant value or reduce friction substantially",
+        "Build everything yourself",
+        "Never use OSS",
+        "Ignore competitive advantage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book favors OSS/COSS by default with focused customization."
+    },
+    {
+      "question": "What pros does the book attribute to monolithic systems?",
+      "options": [
+        "They're easy to reason about, require a lower cognitive burden and context switching since everything is self-contained, and typically involve one principal programming language",
+        "Monoliths require no reasoning",
+        "Monoliths need many languages",
+        "Monoliths always have zero cognitive burden"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists ease of reasoning and low cognitive burden as monolith pros."
+    },
+    {
+      "question": "How did Bezos's API mandate and the two-pizza rule drive microservices?",
+      "options": [
+        "The API mandate decreases coupling between applications, allowing refactoring and decomposition, and the two-pizza rule (teams of at most five) limits complexity, forcing large applications to be broken into small, manageable, loosely coupled pieces",
+        "They drove larger, more coupled teams",
+        "The API mandate increases coupling",
+        "The two-pizza rule allows teams of one hundred"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes how these Amazon practices drove microservices decomposition."
+    },
+    {
+      "question": "How do data-processing technologies support a modular model?",
+      "options": [
+        "Data is stored in object storage in a standard format such as Parquet so any processing tool supporting the format can read it and write results back, and cloud data warehouses interoperate through import/export and external tables that run queries directly on data in a data lake",
+        "Each tool uses a proprietary format",
+        "Object storage prevents tool interoperation",
+        "External tables require copying data into warehouses"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes standard-format object storage and external tables enabling modularity."
+    },
+    {
+      "question": "What does the book say about a traditional Hadoop cluster as an example of the distributed monolith?",
+      "options": [
+        "A Hadoop cluster can host several frameworks (Hive, Pig, Spark) with many internal dependencies and core components (Hadoop common, HDFS, YARN, Java), often with one version of each component installed, making upgrades and installations a significant challenge",
+        "Hadoop clusters have no shared dependencies",
+        "Each Hadoop job has its own environment",
+        "Upgrades never break Hadoop jobs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the Hadoop cluster's shared dependencies and upgrade challenges."
+    },
+    {
+      "question": "What does the book say about AWS Lambda's role in the serverless trend?",
+      "options": [
+        "The serverless trend kicked off in full force with AWS Lambda in 2014, with the promise of executing small chunks of code on an as-needed basis without managing a server — its main popularity drivers are cost and convenience",
+        "Lambda was the first serverless system ever",
+        "Serverless predates Lambda and includes BigQuery",
+        "Lambda requires managing servers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says the trend kicked off with Lambda in 2014, while noting serverless systems (like BigQuery) predate it."
+    },
+    {
+      "question": "How does the book describe containers?",
+      "options": [
+        "Containers are often called lightweight virtual machines — whereas a traditional VM wraps an entire OS, a container packages an isolated user space (filesystem and a few processes), providing dependency and code isolation without the overhead of a full OS kernel",
+        "Containers include a full operating system kernel",
+        "Containers are identical to VMs",
+        "Containers cannot isolate dependencies"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book defines containers as lightweight VMs with isolated user space."
+    },
+    {
+      "question": "What nonsensical cost comparison trick does the book describe in benchmarks?",
+      "options": [
+        "Comparing ephemeral and non-ephemeral systems on a cost-per-second basis — many MPP systems run for years once configured while other databases charge per query or per second of use, making the comparison nonsensical",
+        "Comparing systems with identical cost models",
+        "All cost comparisons are valid",
+        "Ephemeral systems are always more expensive"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book warns against comparing ephemeral and long-running systems on cost-per-second."
+    },
+    {
+      "question": "What does the book say about the data architecture undercurrent and technology choice?",
+      "options": [
+        "Good data architecture means assessing trade-offs and choosing the best tools while keeping decisions reversible — the main goals are avoiding unnecessary lock-in, ensuring interoperability across the stack, and producing high ROI",
+        "Architecture should lock you into one vendor",
+        "Interoperability is unimportant",
+        "Reversibility conflicts with good architecture"
+      ],
+      "correctIndex": 0,
+      "explanation": "The book ties the architecture undercurrent's trade-off/reversibility goals to technology choice."
+    }
+  ]
+}

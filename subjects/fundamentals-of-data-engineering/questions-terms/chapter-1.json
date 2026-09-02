@@ -1,0 +1,447 @@
+{
+  "title": "Chapter 1 — Data Engineering Described: Key Terms",
+  "source_file": "chapter-1-data-engineering-described.md",
+  "question_count": 40,
+  "questions": [
+    {
+      "question": "How does the book define data engineering?",
+      "options": [
+        "The collection, storage, and analysis of data using only SQL-based tools and relational databases.",
+        "The set of operations aimed at creating interfaces and mechanisms for the flow and access of information, maintained by dedicated specialists.",
+        "The development, implementation, and maintenance of systems and processes that take in raw data and produce high-quality, consistent information that supports downstream use cases such as analysis and machine learning.",
+        "A subdiscipline of data science focused on building and tuning machine learning models."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book defines data engineering as the development, implementation, and maintenance of systems and processes that convert raw data into high-quality, consistent information, and as the intersection of security, data management, DataOps, data architecture, orchestration, and software engineering."
+    },
+    {
+      "question": "What does a data engineer do, according to the book's definition?",
+      "options": [
+        "Builds machine learning models and tunes them for production deployment.",
+        "Designs the blueprint for organizational data management and architecture.",
+        "Creates reports and dashboards for business stakeholders.",
+        "Manages the data engineering lifecycle, beginning with getting data from source systems and ending with serving data for use cases such as analysis or machine learning."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book says a data engineer manages the data engineering lifecycle, starting with getting data from source systems and ending with serving data for use cases like analysis or machine learning."
+    },
+    {
+      "question": "What is the data engineering lifecycle?",
+      "options": [
+        "A set of steps for deploying software applications in a cloud environment.",
+        "The stages a data engineer manages—generation, storage, ingestion, transformation, and serving—which give holistic context to the data engineer's role.",
+        "The progression of a company from low to high data utilization.",
+        "A framework for structuring data science teams within an organization."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter introduces the data engineering lifecycle as a big idea that gives data engineers holistic context, with stages of generation, storage, ingestion, transformation, and serving."
+    },
+    {
+      "question": "What are the undercurrents of the data engineering lifecycle?",
+      "options": [
+        "Critical ideas across the entire lifecycle, including security, data management, DataOps, data architecture, orchestration, and software engineering.",
+        "The data produced by external-facing applications such as IoT devices and ecommerce platforms.",
+        "The stages of the lifecycle: generation, storage, ingestion, transformation, and serving.",
+        "The primary programming languages a data engineer must know: SQL, Python, a JVM language, and bash."
+      ],
+      "correctIndex": 0,
+      "explanation": "The undercurrents are critical ideas across the entire lifecycle: security, data management, DataOps, data architecture, orchestration, and software engineering."
+    },
+    {
+      "question": "What is SQL described as in the book?",
+      "options": [
+        "A programming language used primarily for writing custom MapReduce jobs in Hadoop.",
+        "The most common interface for databases and data lakes, developed at IBM and popularized by Oracle, which has reemerged as the lingua franca of data.",
+        "A massively parallel processing database that uses multiple processors to crunch large amounts of data.",
+        "A NoSQL database designed for highly scalable, schema-less data."
+      ],
+      "correctIndex": 1,
+      "explanation": "SQL was developed by engineers at IBM and popularized by Oracle; the book calls it the most common interface for databases and data lakes and the lingua franca of data."
+    },
+    {
+      "question": "What does ETL stand for?",
+      "options": [
+        "Evaluate, transform, and load.",
+        "Extract, transform, and load—a common data-processing pattern the book covers.",
+        "Extract, translate, and log.",
+        "Export, transfer, and link."
+      ],
+      "correctIndex": 1,
+      "explanation": "The book's footnote defines ETL as extract, transform, load, calling it a common pattern covered in the book, often used with SQL-focused data processing."
+    },
+    {
+      "question": "What is a data warehouse?",
+      "options": [
+        "A data-modeling technique developed by Ralph Kimball for structuring business logic.",
+        "A framework for processing data in a distributed cluster of commodity hardware.",
+        "A type of NoSQL database used for highly scalable applications.",
+        "A business data concept that took shape in the 1980s and was officially coined as a term by Bill Inmon in 1989."
+      ],
+      "correctIndex": 3,
+      "explanation": "The chapter says the business data warehouse took shape in the 1980s and Bill Inmon officially coined the term data warehouse in 1989, with data warehousing being a precursor to data engineering."
+    },
+    {
+      "question": "What are massively parallel processing (MPP) databases?",
+      "options": [
+        "Databases that store data in a single monolithic server to ensure consistency.",
+        "Databases that use multiple processors to crunch large amounts of data, ushering in the first age of scalable analytics.",
+        "NoSQL databases optimized for real-time event streaming.",
+        "Systems that process data sequentially using a single processor."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter describes MPP databases as using multiple processors to crunch large amounts of data, ushering in the first age of scalable analytics."
+    },
+    {
+      "question": "What does 'big data' mean, per the Oxford English Dictionary definition cited in the book?",
+      "options": [
+        "Extremely large data sets that may be analyzed computationally to reveal patterns, trends, and associations, especially relating to human behavior and interactions.",
+        "The set of operations aimed at creating interfaces and mechanisms for the flow and access of information.",
+        "The use of multiple processors to crunch large amounts of data in a single database.",
+        "A specific technology framework for processing data in a distributed cluster."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book quotes the Oxford English Dictionary defining big data as extremely large data sets that may be analyzed computationally to reveal patterns, trends, and associations."
+    },
+    {
+      "question": "What are the three Vs of data?",
+      "options": [
+        "Volume, verification, and value.",
+        "Velocity, virtualization, and visualization.",
+        "Speed, size, and structure.",
+        "Velocity, variety, and volume."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book calls the three Vs of data—velocity, variety, and volume—a famous and succinct description of big data."
+    },
+    {
+      "question": "What was the Google File System?",
+      "options": [
+        "A system described in a 2003 Google paper that, along with MapReduce, was a 'big bang' for data technologies.",
+        "An open source data-processing framework developed by Yahoo engineers.",
+        "A NoSQL database developed by Amazon for highly scalable applications.",
+        "A system for storing data in massively parallel processing databases."
+      ],
+      "correctIndex": 0,
+      "explanation": "In 2003 Google published a paper on the Google File System, which the book describes as a 'big bang' for data technologies along with the later MapReduce paper."
+    },
+    {
+      "question": "What is MapReduce?",
+      "options": [
+        "An ultra-scalable data-processing paradigm described in a 2004 Google paper.",
+        "An infinitely scalable object storage service.",
+        "A highly scalable NoSQL database.",
+        "A SQL-based query language for relational databases."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says Google published a paper on MapReduce in 2004, describing it as an ultra-scalable data-processing paradigm."
+    },
+    {
+      "question": "What is Apache Hadoop?",
+      "options": [
+        "A public cloud computing platform offered by Amazon.",
+        "An open source technology developed by engineers at Yahoo and released in 2006, inspired by Google's papers on the Google File System and MapReduce.",
+        "A relational database management system developed at IBM.",
+        "A data-modeling technique for structuring business logic in a data warehouse."
+      ],
+      "correctIndex": 1,
+      "explanation": "The Google papers inspired engineers at Yahoo to develop and later open source Apache Hadoop in 2006, an ecosystem whose impact on large-scale data problems the book says is hard to overstate."
+    },
+    {
+      "question": "What is HDFS?",
+      "options": [
+        "A SQL framework for querying data in a data warehouse.",
+        "A streaming engine for processing real-time events.",
+        "Hadoop Distributed File System—part of the Hadoop ecosystem that big data engineers had to be proficient in.",
+        "A scripting language used for Linux operating systems."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book lists HDFS (Hadoop Distributed File System) as part of the Hadoop ecosystem that big data engineers had to master, alongside YARN and MapReduce."
+    },
+    {
+      "question": "What is Amazon EC2?",
+      "options": [
+        "An elastic computing environment created by Amazon as its data needs exploded.",
+        "An infinitely scalable storage system.",
+        "A highly scalable NoSQL database.",
+        "The first popular public cloud service."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book says Amazon created elastic computing environments (Amazon Elastic Compute Cloud, or EC2) to keep up with its exploding data needs."
+    },
+    {
+      "question": "What is Amazon S3?",
+      "options": [
+        "An elastic computing environment.",
+        "Amazon Simple Storage Service—an infinitely scalable storage system.",
+        "A highly scalable NoSQL database.",
+        "A data-processing framework in the Hadoop ecosystem."
+      ],
+      "correctIndex": 1,
+      "explanation": "The book describes S3 (Amazon Simple Storage Service) as an infinitely scalable storage system created by Amazon."
+    },
+    {
+      "question": "What is Amazon DynamoDB?",
+      "options": [
+        "A highly scalable NoSQL database created by Amazon.",
+        "An elastic computing environment.",
+        "An infinitely scalable storage system.",
+        "A massively parallel processing database."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book lists DynamoDB as Amazon's highly scalable NoSQL database, one of the core data building blocks Amazon created."
+    },
+    {
+      "question": "What is the public cloud, as described in the book?",
+      "options": [
+        "A cluster of commodity hardware maintained by a single company for its own use.",
+        "A set of open source tools for processing large amounts of data.",
+        "A pay-as-you-go resource marketplace created by virtualizing and reselling vast pools of commodity hardware, first popularized by AWS.",
+        "A relational database system offered as software as a service."
+      ],
+      "correctIndex": 2,
+      "explanation": "AWS became the first popular public cloud by virtualizing and reselling vast pools of commodity hardware, creating an ultra-flexible pay-as-you-go resource marketplace."
+    },
+    {
+      "question": "What revolution does the book describe as ushering in a new era of big 'real-time' data?",
+      "options": [
+        "The transition from on-premises data centers to cloud computing.",
+        "The transition from batch computing to event streaming.",
+        "The transition from SQL to NoSQL databases.",
+        "The change from relational databases to MPP databases."
+      ],
+      "correctIndex": 1,
+      "explanation": "The book says another revolution occurred with the transition from batch computing to event streaming, ushering in a new era of big 'real-time' data."
+    },
+    {
+      "question": "What did big data engineers typically do?",
+      "options": [
+        "Built forward-looking models to make predictions and recommendations.",
+        "Designed the blueprint for organizational data management.",
+        "Created reports and dashboards for business users.",
+        "Maintained massive clusters of commodity hardware to deliver data at scale, shifting focus from core technology development to data delivery."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book says big data engineers maintained massive clusters of commodity hardware to deliver data at scale, shifting their focus from core technology development to data delivery."
+    },
+    {
+      "question": "What is data maturity?",
+      "options": [
+        "The number of years a company has been operating.",
+        "The progression toward higher data utilization, capabilities, and integration across the organization, which does not simply depend on a company's age or revenue.",
+        "The amount of data a company stores in its data warehouse.",
+        "The size of a company's data engineering team."
+      ],
+      "correctIndex": 1,
+      "explanation": "The book defines data maturity as the progression toward higher data utilization, capabilities, and integration across the organization, noting it does not simply depend on the age or revenue of a company."
+    },
+    {
+      "question": "What characterizes Stage 1 (starting with data) of the book's data maturity model?",
+      "options": [
+        "A fully data-driven company with automated pipelines and self-service analytics.",
+        "A company with formal data practices and specialized data engineering roles.",
+        "A company in the very early stages of data maturity, with fuzzy or loosely defined goals, low adoption, a small data team, and a data engineer who is usually a generalist.",
+        "A company focused on building custom tools that leverage data as a competitive advantage."
+      ],
+      "correctIndex": 2,
+      "explanation": "In stage 1, goals are fuzzy or loosely defined, adoption is low, the data team is small, and a data engineer is usually a generalist who moves fast to get traction and add value."
+    },
+    {
+      "question": "What characterizes Stage 2 (scaling with data) of the data maturity model?",
+      "options": [
+        "A company in the very early stages of planning its data architecture.",
+        "A stage where a company has moved away from ad hoc data requests, established formal data practices, and is creating scalable data architectures with data engineering roles moving from generalists to specialists.",
+        "A fully data-driven company focused on data governance and DataOps.",
+        "A company that relies entirely on ad hoc data requests."
+      ],
+      "correctIndex": 1,
+      "explanation": "In stage 2, companies have moved away from ad hoc requests to formal data practices, focus on scalable data architectures, and see data engineering roles move from generalists to specialists."
+    },
+    {
+      "question": "What characterizes Stage 3 (leading with data) of the data maturity model?",
+      "options": [
+        "A stage where the company is data-driven, enabling self-service analytics and ML, with a focus on data management, data governance, DataOps, and tools that expose and disseminate data such as catalogs and lineage tools.",
+        "A company in the very early stages of data maturity with fuzzy goals.",
+        "A company moving away from ad hoc requests toward formal data practices.",
+        "A company that avoids all custom tooling regardless of competitive advantage."
+      ],
+      "correctIndex": 0,
+      "explanation": "In stage 3, the company is data-driven, with automated pipelines enabling self-service analytics and ML, and data engineers focus on data management, governance, DataOps, and disseminating data."
+    },
+    {
+      "question": "What does a Type A data engineer refer to?",
+      "options": [
+        "A data engineer where A stands for analysis, focused on deriving insight from data.",
+        "A data engineer who builds custom data tools and systems that scale.",
+        "A data engineer where A stands for abstraction, who avoids undifferentiated heavy lifting and manages the lifecycle mainly with off-the-shelf products, managed services, and tools.",
+        "A data engineer who builds machine learning models for production."
+      ],
+      "correctIndex": 2,
+      "explanation": "For Type A data engineers, A stands for abstraction: they avoid undifferentiated heavy lifting and manage the lifecycle using entirely off-the-shelf products, managed services, and tools."
+    },
+    {
+      "question": "What does a Type B data engineer refer to?",
+      "options": [
+        "A data engineer where B stands for build, who builds data tools and systems that scale and leverage a company's core competency and competitive advantage.",
+        "A data engineer where B stands for business, focused on reports and dashboards.",
+        "A data engineer who manages the lifecycle using entirely off-the-shelf products.",
+        "A data engineer who focuses on understanding and deriving insight from data."
+      ],
+      "correctIndex": 0,
+      "explanation": "For Type B data engineers, B stands for build: they build data tools and systems that scale and leverage a company's core competency and competitive advantage, more commonly found at companies in stages 2 and 3."
+    },
+    {
+      "question": "What is the Data Science Hierarchy of Needs?",
+      "options": [
+        "A model ranking data engineering roles within an organization.",
+        "A framework describing the three stages of data maturity.",
+        "A classification of data engineers into type A and type B.",
+        "A 2017 framework by Monica Rogati showing that AI and ML sit atop more mundane areas such as data movement, storage, collection, and infrastructure."
+      ],
+      "correctIndex": 3,
+      "explanation": "In 2017 Monica Rogati published the Data Science Hierarchy of Needs, showing where AI and ML sit in proximity to more mundane areas such as data movement, storage, collection, and infrastructure."
+    },
+    {
+      "question": "How does the book describe the relationship between data engineering and data science?",
+      "options": [
+        "Data science sits upstream from data engineering, providing inputs that data engineers convert into something useful.",
+        "Data engineering sits upstream from data science, meaning data engineers provide the inputs used by data scientists, who sit downstream and convert them into something useful.",
+        "Data engineering and data science are both downstream from business intelligence.",
+        "Data engineering is a subdiscipline of data science."
+      ],
+      "correctIndex": 1,
+      "explanation": "The book argues data engineering is separate from data science, sitting upstream from it: data engineers provide the inputs used by downstream data scientists, who convert these inputs into something useful."
+    },
+    {
+      "question": "What does a data scientist do, per the book?",
+      "options": [
+        "Focuses on past or present business performance and trends using SQL.",
+        "Designs the blueprint for organizational data management.",
+        "Builds forward-looking models to make predictions and recommendations, which are then evaluated on live data to provide value.",
+        "Maintains massive clusters of commodity hardware to deliver data at scale."
+      ],
+      "correctIndex": 2,
+      "explanation": "Data scientists build forward-looking models to make predictions and recommendations, and these models are evaluated on live data to provide value."
+    },
+    {
+      "question": "What does a data analyst do, per the book?",
+      "options": [
+        "Builds forward-looking models to make predictions and recommendations.",
+        "Develops advanced ML techniques and maintains ML infrastructure in production.",
+        "Owns the key technological strategy for external-facing applications.",
+        "Seeks to understand business performance and trends, typically focusing on the past or present and usually running SQL queries in a data warehouse or data lake."
+      ],
+      "correctIndex": 3,
+      "explanation": "Whereas data scientists are forward-looking, a data analyst typically focuses on the past or present, running SQL queries in a data warehouse or data lake."
+    },
+    {
+      "question": "What do machine learning engineers do, per the book?",
+      "options": [
+        "Develop advanced ML techniques, train models, and design and maintain the infrastructure running ML processes in a scaled production environment.",
+        "Focus on understanding past and present business performance.",
+        "Design the blueprint for organizational data management.",
+        "Build reports and dashboards for business executives."
+      ],
+      "correctIndex": 0,
+      "explanation": "ML engineers overlap with data engineers and data scientists; they develop advanced ML techniques, train models, and design and maintain the infrastructure running ML processes in production."
+    },
+    {
+      "question": "What is a data architect, per the book?",
+      "options": [
+        "A role that generates the internal data that data engineers consume.",
+        "A role that produces data through operational monitoring.",
+        "An upstream stakeholder who designs the blueprint for organizational data management, mapping out processes, data architecture, and systems, and serving as a bridge between technical and nontechnical sides.",
+        "A role that builds forward-looking models to make predictions."
+      ],
+      "correctIndex": 2,
+      "explanation": "Data architects are upstream stakeholders who design the blueprint for organizational data management and serve as a bridge between an organization's technical and nontechnical sides."
+    },
+    {
+      "question": "What is DataOps?",
+      "options": [
+        "An abbreviation for data operations—one of the undercurrents of the data engineering lifecycle.",
+        "The set of operations aimed at creating interfaces for the flow of data.",
+        "A data-modeling technique developed by Ralph Kimball.",
+        "A programming language used for writing data pipelines."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book notes DataOps is an abbreviation for data operations and lists it among the undercurrents of the data engineering lifecycle."
+    },
+    {
+      "question": "What is the modern data stack?",
+      "options": [
+        "A collection of off-the-shelf open source and third-party products assembled to make analysts' lives easier.",
+        "A collection of monolithic frameworks like Hadoop and Spark.",
+        "The primary programming languages of data engineering.",
+        "A model describing the three stages of data maturity."
+      ],
+      "correctIndex": 0,
+      "explanation": "The book describes the modern data stack as a collection of off-the-shelf open source and third-party products assembled to make analysts' lives easier, a popular trend in the early 2020s."
+    },
+    {
+      "question": "What is an external-facing data engineer?",
+      "options": [
+        "A data engineer who focuses on BI dashboards, reports, and internal business processes.",
+        "A data engineer who aligns with the users of external-facing applications such as social media apps, IoT devices, and ecommerce platforms, and who must handle heavier query concurrency and multitenant security concerns.",
+        "A data engineer who designs the blueprint for organizational data management.",
+        "A data engineer who builds machine learning models for production."
+      ],
+      "correctIndex": 1,
+      "explanation": "External-facing data engineers align with users of external applications like social media, IoT, and ecommerce, and face much larger query concurrency loads and more complex security concerns."
+    },
+    {
+      "question": "What is an internal-facing data engineer?",
+      "options": [
+        "A data engineer who focuses on activities crucial to the needs of the business and internal stakeholders, such as data pipelines and data warehouses for BI dashboards, reports, and ML models.",
+        "A data engineer who works on external-facing applications like IoT devices.",
+        "A data engineer who maintains massive clusters of commodity hardware.",
+        "A data engineer who owns the key technological strategy for external-facing applications."
+      ],
+      "correctIndex": 0,
+      "explanation": "Internal-facing data engineers focus on the needs of the business and internal stakeholders, creating and maintaining data pipelines and data warehouses for BI dashboards, reports, and ML models."
+    },
+    {
+      "question": "What is undifferentiated heavy lifting, as used in the book?",
+      "options": [
+        "The maintenance of massive clusters of commodity hardware.",
+        "The process of building custom tools that leverage a company's core competency.",
+        "Unnecessary technical complexity that the book advises avoiding; data engineers should use off-the-shelf, turnkey solutions unless custom work creates a competitive advantage.",
+        "The collection, cleaning, and preparation of data for analysis."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book repeatedly advises avoiding undifferentiated heavy lifting—boxing yourself in with unnecessary technical complexity—and customizing only where a competitive advantage results."
+    },
+    {
+      "question": "What is the chief data officer (CDO) role, per the book?",
+      "options": [
+        "A C-suite role responsible for analytics, strategy, and decision making for the business.",
+        "A C-suite role that owns the key technological strategy for external-facing applications.",
+        "A C-suite role created in 2002 at Capital One, responsible for a company's data assets and strategy, including data products, master data management, and privacy.",
+        "A highly technical C-suite role focused specifically on data science and ML research."
+      ],
+      "correctIndex": 2,
+      "explanation": "The book says the CDO was created in 2002 at Capital One and is responsible for a company's data assets and strategy, overseeing data products and core functions such as master data management and privacy."
+    },
+    {
+      "question": "What are data products, as discussed in the book?",
+      "options": [
+        "Reports and dashboards generated for business executives.",
+        "Products overseen by product managers that are either built from the ground up or are incremental improvements upon existing products.",
+        "Machine learning models deployed to production.",
+        "The raw data pulled from SaaS platforms and partner businesses."
+      ],
+      "correctIndex": 1,
+      "explanation": "In the context of data engineers, products overseen by product managers are called data products, built from the ground up or improved incrementally upon existing products."
+    },
+    {
+      "question": "What are the primary programming languages of data engineering, per the book?",
+      "options": [
+        "R, JavaScript, Go, Rust, C/C++, C#, and Julia.",
+        "Python, R, Julia, and MATLAB.",
+        "Java, C++, SQL, and PowerShell.",
+        "SQL, Python, a Java Virtual Machine language (usually Java or Scala), and bash."
+      ],
+      "correctIndex": 3,
+      "explanation": "The book divides data engineering languages into primary and secondary categories; the primary languages are SQL, Python, a JVM language (usually Java or Scala), and bash."
+    }
+  ]
+}
