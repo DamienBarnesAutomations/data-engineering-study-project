@@ -2,14 +2,12 @@ import { chapterLabel, chaptersForMode, getScopeProgress, getSubject, MIXED_SCOP
 import { el, clear } from '../lib/dom';
 import type { ChapterQuestions, QuestionBank, QuizMode, ScopeKey, SubjectBank } from '../types';
 
-const MODES: { value: QuizMode; label: string; icon: string }[] = [
-  { value: 'practice', label: 'Practice questions', icon: '🧠' },
-  { value: 'terms', label: 'Key terms', icon: '🔑' },
+const MODES: { value: QuizMode; label: string }[] = [
+  { value: 'practice', label: 'Questions' },
+  { value: 'terms', label: 'Terms' },
 ];
 
-const SUBJECT_ICONS = ['📘', '🧩', '📙', '📕'];
-
-const COUNT_PRESETS = [5, 10, 20, 50];
+const COUNT_PRESETS = [5, 10, 25, 50];
 
 function radioChip(
   name: string,
@@ -48,7 +46,6 @@ export function renderSetup(
   const subjectInputs: HTMLInputElement[] = [];
   bank.subjects.forEach((s, i) => {
     const { wrapper, input } = radioChip('subject', s.id, i === 0, 'card-radio', 'card-content', (content) => {
-      content.appendChild(el('span', 'card-icon', SUBJECT_ICONS[i % SUBJECT_ICONS.length]));
       content.appendChild(el('span', '', s.book));
     });
     input.addEventListener('change', populateModes);
@@ -107,9 +104,11 @@ export function renderSetup(
   function renderPresets(available: number): void {
     presetRow.replaceChildren();
     count = clampCount(count, available);
-    const values = [...new Set([...COUNT_PRESETS.filter((p) => p < available), available])];
+    const fitting = COUNT_PRESETS.filter((p) => p <= available);
+    const values = fitting.length > 0 ? fitting : [available];
+    if (!values.includes(count)) count = values[values.length - 1];
     for (const n of values) {
-      const chip = el('button', 'preset-chip', n === available ? `All (${n})` : String(n));
+      const chip = el('button', 'preset-chip', String(n));
       chip.type = 'button';
       chip.dataset.value = String(n);
       chip.addEventListener('click', () => {
@@ -128,7 +127,7 @@ export function renderSetup(
     modeGroup.replaceChildren();
     available.forEach((m, i) => {
       const { wrapper, input } = radioChip('mode', m.value, i === 0, 'segmented-option', 'segmented-content', (content) => {
-        content.append(`${m.icon} ${m.label}`);
+        content.append(m.label);
       });
       input.addEventListener('change', populateScopes);
       modeGroup.appendChild(wrapper);
